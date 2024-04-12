@@ -1,7 +1,9 @@
 import type { StorybookConfig } from '@storybook/html-webpack5';
+import path from 'path';
 
 const config: StorybookConfig = {
   stories: ['../components/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  staticDirs: ['../assets'],
   addons: [
     '@storybook/addon-webpack5-compiler-swc',
     '@storybook/addon-links',

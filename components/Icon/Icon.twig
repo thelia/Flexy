@@ -1,3 +1,11 @@
-Icon
 
-{{ source('assets/icons/account.svg') }}
+{% for title, line in icons %}
+  <div>{{ title }}</div>
+  <div class='flex flex-wrap gap-2'>
+    {% for icon in line %}
+      <div class='{{ size }} {{ color }}'>
+        {{ source("/icons/" ~ icon  ~".svg") }}
+      </div>
+    {% endfor %}
+  </div>
+{% endfor %}
