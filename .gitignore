@@ -1,0 +1,26 @@
+# Ignore compiled files.
+dist/**/*
+!dist/.gitkeep
+
+# npm
+node_modules
+
+# Storybook
+.out
+
+# System
+.DS_Store
+.idea
+.vscode
+
+# Git deploy
+.publish
+
+# Composer
+composer.lock
+vendor
+
+# Jest
+.coverage
+
+*storybook.log

@@ -1,0 +1,29 @@
+{
+  "theme": [
+    "bg-theme-dark",
+    "bg-theme",
+    "bg-theme-medium",
+    "bg-theme-light",
+    "bg-theme-lighter",
+    "bg-theme-lightest"
+  ],
+  "black-white": ["bg-black", "bg-white"],
+  "grey": [
+    "bg-grey-darker",
+    "bg-grey-dark",
+    "bg-grey",
+    "bg-grey-lighter",
+    "bg-grey-lightest"
+  ],
+  "error": [
+    "bg-error-dark",
+    "bg-error",
+    "bg-error-lighter",
+    "bg-error-lightest"
+  ],
+  "success": ["bg-success-dark", "bg-success", "bg-success-lightest"],
+  "warning": ["bg-warning", "bg-warning-lightest"],
+  "validate": ["bg-validated", "bg-validated-lightest"],
+  "informative": ["bg-informative", "bg-informative-lightest"],
+  "processing": ["bg-processing", "bg-processing-lightest"]
+}

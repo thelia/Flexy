@@ -1,0 +1,12 @@
+{% for line in colors %}
+ <div class='flex gap-4'>
+   {% for color in line %}
+     <div>
+       <div class="Color shadow-lg p-4">
+         <div class='Color-box {{ color }} w-[150px] h-[120px]'></div>
+         <div class='text-center mt-2 h-10'>{{ color }}</div>
+       </div>
+     </div>
+   {% endfor %}
+ </div>
+{% endfor %}
