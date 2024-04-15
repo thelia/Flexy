@@ -1,4 +1,4 @@
-.Checkbox {
+.Checkbox, .Radio {
   display: flex;
   align-items: center;
   position: relative;
@@ -18,21 +18,8 @@
     height: 0;
     width: 0;
 
-    &:checked {
-      & ~ .Checkbox-checkmark {
-        background-color: var(--current-checkbox-color);
-        span {
-          display: block;
-        }
-      }
-      &:disabled {
-        & ~ .Checkbox-checkmark {
-          background-color: var(--current-checkbox-disabled);
-        }
-      }
-    }
     &:indeterminate {
-      ~ .Checkbox-checkmark {
+      ~ .checkmark {
         &:after {
           content: "";
           position: absolute;
@@ -44,19 +31,19 @@
         }
       }
       &:disabled {
-        & ~ .Checkbox-checkmark:after {
+        & ~ .checkmark:after {
           background: var(--current-checkbox-disabled);
         }
       }
     }
     &:focus {
-      & ~ .Checkbox-checkmark {
+      & ~ .checkmark {
         outline: var(--checkbox-focus) solid 1px;
         outline-offset: 1px;
       }
     }
   }
-  &-checkmark {
+  .checkmark {
     width: 16px;
     height: 16px;
     border: 1px solid var(--current-checkbox-color);
@@ -66,21 +53,68 @@
       display: none;
     }
   }
-  input:disabled  ~ .Checkbox-checkmark {
+  input:disabled  ~ .checkmark {
     border: 1px solid var(--current-checkbox-disabled);
   }
 
-  &:hover {
-    input:not(:disabled) ~ .Checkbox-checkmark {
+  &:hover input:not(:disabled) {
+    & ~ .checkmark {
       border: 1px solid var(--current-checkbox-hover);
     }
-    input:checked:not(:disabled) ~ .Checkbox-checkmark {
-      background-color: var(--current-checkbox-hover);
-    }
-    input:indeterminate:not(:disabled) ~ .Checkbox-checkmark {
+    &:indeterminate ~ .checkmark {
       background-color: var(--grey-lightest);
       &:after {
         background: var(--current-checkbox-hover);
+      }
+    }
+  }
+}
+
+.Checkbox {
+  input {
+    &:checked {
+      & ~ .checkmark {
+        background-color: var(--current-checkbox-color);
+        span {
+          display: block;
+        }
+      }
+      &:disabled {
+        & ~ .checkmark {
+          background-color: var(--current-checkbox-disabled);
+        }
+      }
+    }
+  }
+  &:hover input:not(:disabled) {
+    &:checked ~ .checkmark {
+      background-color: var(--current-checkbox-hover);
+    }
+  }
+}
+
+.Radio {
+  .checkmark {
+    border-radius: 555rem;
+    width: 14px;
+    height: 14px;
+  }
+  input {
+    &:checked {
+      & ~ .checkmark:after {
+        content: "";
+        position: absolute;
+        border-radius: 555rem;
+        top:2px;
+        bottom:2px;
+        left:2px;
+        right:2px;
+        background-color: var(--current-checkbox-color);
+      }
+    }
+    &:disabled {
+      & ~ .checkmark:after {
+        background: var(--current-checkbox-disabled);
       }
     }
   }

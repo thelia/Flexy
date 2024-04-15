@@ -1,12 +1,12 @@
 import Checkbox from './Checkbox.twig';
+import Radio from './Radio.twig';
 import './checkbox.css';
 
 export default {
   title: 'Example/Form'
 };
 
-export const checkbox = {
-  render: (args) => Checkbox(args),
+const commonProps = {
   args: {
     error: false,
     disabled: false
@@ -18,14 +18,22 @@ export const checkbox = {
     disabled: {
       control: { type: 'boolean' }
     }
-  },
-  play: ({ canvasElement }) => {
+  }
+};
+
+export const checkbox = {
+  render: (args) => Checkbox(args),
+
+  play: ({ canvasElement, ...props }) => {
     const checkbox = canvasElement.querySelector(
       '.Checkbox.indeterminate input'
     );
     checkbox.indeterminate = true;
+  },
+  ...commonProps
+};
 
-    const focusInput = canvasElement.querySelector('input:checked');
-    focusInput.focus();
-  }
+export const radio = {
+  render: (args) => Radio(args),
+  ...commonProps
 };

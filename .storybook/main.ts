@@ -11,6 +11,7 @@ const config: StorybookConfig = {
     '@chromatic-com/storybook',
     '@storybook/addon-interactions',
     '@storybook/addon-styling-webpack',
+    'storybook-addon-pseudo-states',
     {
       name: '@storybook/addon-styling-webpack',
 

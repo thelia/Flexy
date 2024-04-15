@@ -32,6 +32,7 @@
     "postcss-loader": "^7.3.3",
     "postcss-nested": "^6.0.1",
     "storybook": "^8.0.4",
+    "storybook-addon-pseudo-states": "^3.0.1",
     "style-loader": "^3.3.4",
     "twig-loader": "https://github.com/fourkitchens/twig-loader",
     "webpack": "^5.88.2",
