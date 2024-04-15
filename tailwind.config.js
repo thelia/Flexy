@@ -31,7 +31,8 @@ module.exports = {
         informative: 'var(--informative)',
         'informative-lightest': 'var(--informative-lightest)',
         processing: 'var(--processing)',
-        'processing-lightest': 'var(--processing-lightest)'
+        'processing-lightest': 'var(--processing-lightest)',
+        'checkbox-focus': 'var(--checkbox-focus)'
       }
     }
   },

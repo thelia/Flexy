@@ -30,7 +30,7 @@
     "postcss": "^8.4.38",
     "postcss-import": "^16.1.0",
     "postcss-loader": "^7.3.3",
-    "postcss-nesting": "^12.1.1",
+    "postcss-nested": "^6.0.1",
     "storybook": "^8.0.4",
     "style-loader": "^3.3.4",
     "twig-loader": "https://github.com/fourkitchens/twig-loader",

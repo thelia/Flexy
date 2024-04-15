@@ -5,7 +5,7 @@ export default {
   title: 'Example/Icon'
 };
 
-export const twig = {
+export const list = {
   render: (args) => Icon({ ...args, icons }),
   args: {
     color: 'text-theme',

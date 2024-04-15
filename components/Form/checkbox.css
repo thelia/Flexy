@@ -1,0 +1,87 @@
+.Checkbox {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  gap: 0.5rem;
+  --current-checkbox-color: var(--black);
+  --current-checkbox-hover: var(--grey-dark);
+  --current-checkbox-disabled: var(--grey-lighter);
+  &.error {
+    --current-checkbox-color: var(--error-light);
+    --current-checkbox-hover: var(--error-dark);
+  }
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:checked {
+      & ~ .Checkbox-checkmark {
+        background-color: var(--current-checkbox-color);
+        span {
+          display: block;
+        }
+      }
+      &:disabled {
+        & ~ .Checkbox-checkmark {
+          background-color: var(--current-checkbox-disabled);
+        }
+      }
+    }
+    &:indeterminate {
+      ~ .Checkbox-checkmark {
+        &:after {
+          content: "";
+          position: absolute;
+          width: 8px;
+          height: 2px;
+          left: 3px;
+          top: 6px;
+          background: var(--current-checkbox-color);
+        }
+      }
+      &:disabled {
+        & ~ .Checkbox-checkmark:after {
+          background: var(--current-checkbox-disabled);
+        }
+      }
+    }
+    &:focus {
+      & ~ .Checkbox-checkmark {
+        outline: var(--checkbox-focus) solid 1px;
+        outline-offset: 1px;
+      }
+    }
+  }
+  &-checkmark {
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--current-checkbox-color);
+    border-radius: 2px;
+    position: relative;
+    span {
+      display: none;
+    }
+  }
+  input:disabled  ~ .Checkbox-checkmark {
+    border: 1px solid var(--current-checkbox-disabled);
+  }
+
+  &:hover {
+    input:not(:disabled) ~ .Checkbox-checkmark {
+      border: 1px solid var(--current-checkbox-hover);
+    }
+    input:checked:not(:disabled) ~ .Checkbox-checkmark {
+      background-color: var(--current-checkbox-hover);
+    }
+    input:indeterminate:not(:disabled) ~ .Checkbox-checkmark {
+      background-color: var(--grey-lightest);
+      &:after {
+        background: var(--current-checkbox-hover);
+      }
+    }
+  }
+}
