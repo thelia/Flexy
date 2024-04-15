@@ -1,0 +1,118 @@
+.Fonts {
+  display: grid;
+  > div {
+    display: flex;
+    align-items: flex-end;
+    border-bottom: 1px solid var(--grey-lighter);
+    padding: 1rem 0;
+  }
+}
+
+.h1-desktop {
+  font-size: var(--font-size-h1-d);
+  font-weight: var(--font-weight-h1);
+  line-height: var(--line-height-h1-d);
+}
+.h1-mobile {
+  font-size: var(--font-size-h1-m);
+  font-weight: var(--font-weight-h1);
+  line-height: var(--line-height-h1-m);
+}
+
+.h2-desktop {
+  font-size: var(--font-size-h2-d);
+  font-weight: var(--font-weight-h2);
+  line-height: var(--line-height-h2-d);
+}
+.h2-mobile {
+  font-size: var(--font-size-h2-m);
+  font-weight: var(--font-weight-h2);
+  line-height: var(--line-height-h2-m);
+}
+
+.h3-desktop {
+  font-size: var(--font-size-h3-d);
+  font-weight: var(--font-weight-h3);
+  line-height: var(--line-height-h3-d);
+}
+.h3-mobile {
+  font-size: var(--font-size-h3-m);
+  font-weight: var(--font-weight-h3);
+  line-height: var(--line-height-h3-m);
+}
+
+.h4-desktop {
+  font-size: var(--font-size-h4-d);
+  font-weight: var(--font-weight-h4);
+  line-height: var(--line-height-h4-d);
+}
+.h4-mobile {
+  font-size: var(--font-size-h4-m);
+  font-weight: var(--font-weight-h4);
+  line-height: var(--line-height-h4-m);
+}
+
+.h5-desktop {
+  font-size: var(--font-size-h5-d);
+  font-weight: var(--font-weight-h5);
+  line-height: var(--line-height-h5-d);
+}
+.h5-mobile {
+  font-size: var(--font-size-h5-m);
+  font-weight: var(--font-weight-h5);
+  line-height: var(--line-height-h5-m);
+}
+
+.h6-desktop {
+  font-size: var(--font-size-h6-d);
+  font-weight: var(--font-weight-h6);
+  line-height: var(--line-height-h6-d);
+}
+.h6-mobile {
+  font-size: var(--font-size-h6-m);
+  font-weight: var(--font-weight-h6);
+  line-height: var(--line-height-h6-m);
+}
+
+.paragraph-1 {
+  font-size: var(--font-size-paragraph-1);
+  font-family: var(--font-family-paragraph-1);
+  line-height: var(--line-height-paragraph-1);
+}
+.paragraph-2 {
+  font-size: var(--font-size-paragraph-2);
+  font-family: var(--font-family-paragraph-2);
+  line-height: var(--line-height-paragraph-2);
+}
+.paragraph-3 {
+  font-size: var(--font-size-paragraph-3);
+  font-family: var(--font-family-paragraph-3);
+  line-height: var(--line-height-paragraph-3);
+}
+.paragraph-4 {
+  font-size: var(--font-size-paragraph-4);
+  font-family: var(--font-family-paragraph-4);
+  line-height: var(--line-height-paragraph-4);
+}
+.paragraph-5 {
+  font-size: var(--font-size-paragraph-5);
+  font-family: var(--font-family-paragraph-5);
+  line-height: var(--line-height-paragraph-5);
+}
+.paragraph-6 {
+  font-size: var(--font-size-paragraph-6);
+  font-family: var(--font-family-paragraph-6);
+  line-height: var(--line-height-paragraph-6);
+  &.font-bold {
+    font-weight: 500;
+  }
+}
+
+.paragraph-7 {
+  font-size: var(--font-size-paragraph-7);
+  font-family: var(--font-family-paragraph-7);
+  line-height: var(--line-height-paragraph-7);
+  &.font-bold {
+    font-weight: 500;
+  }
+}

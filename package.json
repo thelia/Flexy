@@ -31,6 +31,7 @@
     "postcss-import": "^16.1.0",
     "postcss-loader": "^7.3.3",
     "postcss-nested": "^6.0.1",
+    "postcss-rem": "^3.0.0",
     "storybook": "^8.0.4",
     "storybook-addon-pseudo-states": "^3.0.1",
     "style-loader": "^3.3.4",

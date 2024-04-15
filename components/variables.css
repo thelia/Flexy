@@ -37,4 +37,61 @@
   --processing-lightest: #FCEEFD;
 
   --checkbox-focus: #dc2626;
+
+  --font-weight-h1: 800;
+  --font-weight-h2: 700;
+  --font-weight-h3: 700;
+  --font-weight-h4: 700;
+  --font-weight-h5: 600;
+  --font-weight-h6: 400;
+
+  --font-size-h1-d: rem-convert(38px);
+  --font-size-h1-m: rem-convert(28px);
+  --font-size-h2-d: rem-convert(36px);
+  --font-size-h2-m: rem-convert(26px);
+  --font-size-h3-d: rem-convert(32px);
+  --font-size-h3-m: rem-convert(22px);
+  --font-size-h4-d: rem-convert(24px);
+  --font-size-h4-m: rem-convert(20px);
+  --font-size-h5-d: rem-convert(20px);
+  --font-size-h5-m: rem-convert(18px);
+  --font-size-h6-d: rem-convert(20px);
+  --font-size-h6-m: rem-convert(18px);
+
+  --line-height-h1-d: rem-convert(57px);
+  --line-height-h1-m: rem-convert(42px);
+  --line-height-h2-d: rem-convert(54px);
+  --line-height-h2-m: rem-convert(39px);
+  --line-height-h3-d: rem-convert(48px);
+  --line-height-h3-m: rem-convert(33px);
+  --line-height-h4-d: rem-convert(30px);
+  --line-height-h4-m: rem-convert(32px);
+  --line-height-h5-d: rem-convert(28px);
+  --line-height-h5-m: rem-convert(26px);
+  --line-height-h6-d: rem-convert(28px);
+  --line-height-h6-m: rem-convert(26px);
+
+  --font-size-paragraph-1: rem-convert(18px);
+  --font-size-paragraph-2: rem-convert(16px);
+  --font-size-paragraph-3: rem-convert(16px);
+  --font-size-paragraph-4: rem-convert(14px);
+  --font-size-paragraph-5: rem-convert(14px);
+  --font-size-paragraph-6: rem-convert(14px);
+  --font-size-paragraph-7: rem-convert(12px);
+
+  --line-height-paragraph-1: rem-convert(27px);
+  --line-height-paragraph-2: rem-convert(24px);
+  --line-height-paragraph-3: rem-convert(24px);
+  --line-height-paragraph-4: rem-convert(20px);
+  --line-height-paragraph-5: rem-convert(20px);
+  --line-height-paragraph-6: rem-convert(16.4px);
+  --line-height-paragraph-7: rem-convert(14.4px);
+
+  --font-family-paragraph-1: 'Poppins';
+  --font-family-paragraph-2: 'Poppins';
+  --font-family-paragraph-3: 'Roboto';
+  --font-family-paragraph-4: 'Poppins';
+  --font-family-paragraph-5: 'Roboto';
+  --font-family-paragraph-6: 'Roboto Condensed';
+  --font-family-paragraph-7: 'Roboto Condensed';
 }

@@ -1,0 +1,19 @@
+{% set classes = '' %}
+{% if bold %}
+  {% set classes = classes ~ ' font-bold' %}
+{% endif %}
+{% if italic %}
+  {% set classes = classes ~ ' italic' %}
+{% endif %}
+{% if lineThrough %}
+  {% set classes = classes ~ ' line-through' %}
+{% endif %}
+<div class='Fonts'>
+  <div class='paragraph-1 {{ classes }}'>Paragraphe 1 : Portez ce vieux whisky au juge blond qui fume.</div>
+  <div class='paragraph-2 {{ classes }}'>Paragraphe 2 : Portez ce vieux whisky au juge blond qui fume.</div>
+  <div class='paragraph-3 {{ classes }}'>Paragraphe 3 : Portez ce vieux whisky au juge blond qui fume.</div>
+  <div class='paragraph-4 {{ classes }}'>Paragraphe 4 : Portez ce vieux whisky au juge blond qui fume.</div>
+  <div class='paragraph-5 {{ classes }}'>Paragraphe 5 : Portez ce vieux whisky au juge blond qui fume.</div>
+  <div class='paragraph-6 {{ classes }}'>Paragraphe 6 : Portez ce vieux whisky au juge blond qui fume.</div>
+  <div class='paragraph-7 {{ classes }}'>Paragraphe 7 : Portez ce vieux whisky au juge blond qui fume.</div>
+</div>
