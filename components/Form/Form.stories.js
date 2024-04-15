@@ -5,7 +5,7 @@ import './checkbox.css';
 import './toggle.css';
 
 export default {
-  title: 'Example/Form'
+  title: 'Design System/Atoms/Form'
 };
 
 const commonProps = {

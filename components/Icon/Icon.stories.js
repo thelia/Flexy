@@ -2,7 +2,7 @@ import Icon from './Icon.twig';
 import icons from './icons.json';
 
 export default {
-  title: 'Example/Icon'
+  title: 'Design System/Atoms/Icons'
 };
 
 export const list = {
