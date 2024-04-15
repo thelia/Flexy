@@ -1,0 +1,68 @@
+.ToggleButton {
+  --on-color: var(--black);
+  --off-color: var(--grey);
+  --on-color-hover: var(--grey-dark);
+  --off-color-hover: var(--black);
+  --color-disabled: var(--grey-lighter);
+
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 0.5rem;
+  &-wrapper {
+    background: var(--off-color);
+    width: 25px;
+    height: 14px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+    border-color: transparent;
+    @apply rounded-full transition-colors duration-200 ease-in-out;
+    span {
+      width: 10px;
+      height: 10px;
+      display: inline-block;
+      background: var(--white);
+      @apply translate-x-[0.1rem];
+      @apply rounded-full transition duration-200 ease-in-out;
+    }
+  }
+  input {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
+  input:checked {
+    & ~ .ToggleButton {
+      &-wrapper {
+        background: var(--on-color);
+        span {
+          @apply translate-x-[0.8rem];
+        }
+      }
+    }
+  }
+  input:focus {
+    & ~ .ToggleButton-wrapper {
+      outline: var(--checkbox-focus) solid 1px;
+      outline-offset: 1px;
+    }
+  }
+  input:disabled {
+    & ~ .ToggleButton-wrapper {
+      background: var(--color-disabled);
+    }
+  }
+  &:hover {
+    .ToggleButton-wrapper {
+      background: var(--off-color-hover);
+    }
+    input:checked {
+      & ~ .ToggleButton-wrapper {
+        background: var(--on-color-hover);
+      }
+    }
+  }
+}

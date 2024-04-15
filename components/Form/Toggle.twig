@@ -1,0 +1,17 @@
+<label class="ToggleButton {{ error ? 'error'  : ''}}">
+  <input type="checkbox" {% if disabled %}disabled{% endif %} >
+  <span class="ToggleButton-uncheckedLabel">Off</span>
+  <span class="ToggleButton-wrapper">
+    <span></span>
+  </span>
+  <span class="ToggleButton-checkedLabel">On</span>
+</label>
+
+<div class="mt-5">
+  <label class="ToggleButton">
+    <input type="checkbox" checked="checked" {% if disabled %}disabled{% endif %} />
+    <span class="ToggleButton-wrapper">
+      <span></span>
+    </span>
+  </label>
+</div>

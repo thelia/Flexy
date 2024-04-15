@@ -1,6 +1,8 @@
 import Checkbox from './Checkbox.twig';
 import Radio from './Radio.twig';
+import Toggle from './Toggle.twig';
 import './checkbox.css';
+import './toggle.css';
 
 export default {
   title: 'Example/Form'
@@ -36,4 +38,16 @@ export const checkbox = {
 export const radio = {
   render: (args) => Radio(args),
   ...commonProps
+};
+
+export const toggle = {
+  render: (args) => Toggle(args),
+  args: {
+    disabled: false
+  },
+  argTypes: {
+    disabled: {
+      control: { type: 'boolean' }
+    }
+  }
 };
