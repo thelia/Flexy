@@ -148,6 +148,9 @@
     text-align: center;
     width: rem-convert(80px);
   }
+  &:hover:not(:focus):not(.disabled) {
+    background: var(--grey-dark);
+  }
   &:hover input {
     background: var(--grey-dark);
   }
@@ -155,7 +158,7 @@
     padding-left: 3px;
     padding-right: 3px;
   }
-  &[aria-disabled="true"], &[aria-disabled="true"]:hover {
+  &.disabled, &.disabled:hover {
     cursor: default;
     background: var(--grey-lighter);
     input {
@@ -168,7 +171,7 @@
       background: var(--white);
       color: var(--black);
     }
-    &:hover:not(:focus):not([aria-disabled="true"]) {
+    &:hover:not(:focus):not(.disabled) {
       background: var(--black);
       color: var(--white);
       input {
@@ -177,7 +180,7 @@
       }
     }
 
-    &[aria-disabled="true"], &[aria-disabled="true"]:hover {
+    &.disabled, &.disabled:hover {
       background: var(--white);
       color: var(--grey-lighter);
       border: var(--grey-lighter) solid 1px;
