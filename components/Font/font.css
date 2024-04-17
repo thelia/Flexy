@@ -116,3 +116,57 @@
     font-weight: 500;
   }
 }
+
+.typo-button {
+  &-large {
+    font-size: var(--font-size-button-large);
+    font-family: var(--font-family-button-large);
+    font-weight: var(--font-weight-button-large);
+  }
+  &-medium {
+    font-size: var(--font-size-button-medium);
+    font-family: var(--font-family-button-medium);
+    font-weight: var(--font-weight-button-medium);
+  }
+  &-small {
+    font-size: var(--font-size-button-small);
+    font-family: var(--font-family-button-small);
+    font-weight: var(--font-weight-button-small);
+  }
+}
+
+
+a {
+  text-decoration: underline;
+}
+
+
+.link {
+  font-size: var(--font-size-link-medium);
+  font-family: var(--font-family-link-medium);
+  font-weight: var(--font-weight-link-medium);
+  text-decoration: underline;
+
+  &-large {
+    font-size: var(--font-size-link-large);
+    font-family: var(--font-family-link-large);
+    font-weight: var(--font-weight-link-large);
+  }
+  &-small {
+    font-size: var(--font-size-link-small);
+    font-family: var(--font-family-link-small);
+    font-weight: var(--font-weight-link-small);
+  }
+}
+
+.indication {
+  text-transform: uppercase;
+  font-family: var(--font-family-indication);
+  font-weight: var(--font-weight-indication);
+  font-size: var(--font-size-indication);
+  letter-spacing: var(--letter-spacing-indication);
+  &-small {
+    font-size: var(--font-size-indication-small);
+    letter-spacing: var(--letter-spacing-indication-small);
+  }
+}

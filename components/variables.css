@@ -94,4 +94,40 @@
   --font-family-paragraph-5: 'Roboto';
   --font-family-paragraph-6: 'Roboto Condensed';
   --font-family-paragraph-7: 'Roboto Condensed';
+
+  --font-size-button-large: rem-convert(16px);
+  --font-size-button-medium: rem-convert(14px);
+  --font-size-button-small: rem-convert(12px);
+
+  --font-weight-button-large: 500;
+  --font-weight-button-medium: 500;
+  --font-weight-button-small: 400;
+
+
+  --font-family-button-large: 'Poppins';
+  --font-family-button-medium: 'Poppins';
+  --font-family-button-small: 'Poppins';
+
+  --font-size-link-large: rem-convert(16px);
+  --font-size-link-medium: rem-convert(14px);
+  --font-size-link-small: rem-convert(12px);
+
+  --font-weight-link-large: 500;
+  --font-weight-link-medium: 500;
+  --font-weight-link-small: 400;
+
+
+  --font-family-link-large: 'Poppins';
+  --font-family-link-medium: 'Poppins';
+  --font-family-link-small: 'Poppins';
+
+  --font-family-indication: 'Roboto Condensed';
+
+  --font-size-indication: rem-convert(14px);
+  --font-size-indication-small: rem-convert(12px);
+
+  --font-weight-indication: 400;
+
+  --letter-spacing-indication: rem-convert(0.7px);
+  --letter-spacing-indication-small: rem-convert(0.6px);
 }

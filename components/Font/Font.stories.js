@@ -1,5 +1,6 @@
-import Title from '../Font/Title.twig';
-import Paragraph from '../Font/Paragraph.twig';
+import Title from './Title.twig';
+import Paragraph from './Paragraph.twig';
+import Other from './Other.twig';
 import './font.css';
 
 export default {
@@ -7,6 +8,7 @@ export default {
 };
 
 export const titles = () => Title();
+
 export const paragraphs = {
   render: (args) => Paragraph(args),
   args: {
@@ -26,3 +28,5 @@ export const paragraphs = {
     }
   }
 };
+
+export const others = () => Other();
