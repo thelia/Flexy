@@ -1,0 +1,80 @@
+{% set classes = '' %}
+{% if type != 'primary' %}{% set classes = classes ~ ' Button--' ~ type %}{% endif %}
+{% if isFill %}{% set classes = classes ~ ' Button--fill'%}{% endif %}
+{% if isRectangle %}{% set classes = classes ~ ' Button--rectangle'%}{% endif %}
+
+<div>
+  <div class='h4-desktop mb-5'>Large</div>
+  <div  class='flex gap-4'>
+    <button class='Button Button--large {{ classes }}'>
+      {% if hasIconLeft %}
+        <span class='w-5 h-5'>{{ source("/icons/chevron-left.svg") }}</span>
+      {% endif %}
+      {{ customText }}
+      {% if hasIconRight %}
+        <span class='w-5 h-5'>{{ source("/icons/chevron-right.svg") }}</span>
+      {% endif %}
+    </button>
+    <button class='Button Button--large {{ classes }}' disabled>
+      {% if hasIconLeft %}
+        <span class='w-5 h-5'>{{ source("/icons/chevron-left.svg") }}</span>
+      {% endif %}
+      {{ customText }}
+
+      {% if hasIconRight %}
+        <span class='w-5 h-5'>{{ source("/icons/chevron-right.svg") }}</span>
+      {% endif %}
+    </button>
+  </div>
+</div>
+
+<div>
+  <div class='h4-desktop my-5'>Medium</div>
+  <div  class='flex gap-4'>
+    <button class='Button {{ classes }}'>
+      {% if hasIconLeft %}
+        <span class='w-5 h-5'>{{ source("/icons/chevron-left.svg") }}</span>
+      {% endif %}
+      {{ customText }}
+
+      {% if hasIconRight %}
+        <span class='w-5 h-5'>{{ source("/icons/chevron-right.svg") }}</span>
+      {% endif %}
+    </button>
+    <button class='Button {{ classes }}' disabled>
+      {% if hasIconLeft %}
+        <span class='w-5 h-5'>{{ source("/icons/chevron-left.svg") }}</span>
+      {% endif %}
+      {{ customText }}
+
+      {% if hasIconRight %}
+        <span class='w-5 h-5'>{{ source("/icons/chevron-right.svg") }}</span>
+      {% endif %}
+    </button>
+  </div>
+</div>
+
+<div>
+  <div class='h4-desktop my-5'>Small</div>
+  <div  class='flex gap-4'>
+    <button class='Button Button--small {{ classes }}'>
+      {% if hasIconLeft %}
+        <span class='w-5 h-5'>{{ source("/icons/chevron-left.svg") }}</span>
+      {% endif %}
+      {{ customText }}
+
+      {% if hasIconRight %}
+        <span class='w-5 h-5'>{{ source("/icons/chevron-right.svg") }}</span>
+      {% endif %}
+    </button>
+    <button class='Button Button--small {{ classes }}' disabled>
+      {% if hasIconLeft %}
+        <span class='w-5 h-5'>{{ source("/icons/chevron-left.svg") }}</span>
+      {% endif %}
+      {{ customText }}
+      {% if hasIconRight %}
+        <span class='w-5 h-5'>{{ source("/icons/chevron-right.svg") }}</span>
+      {% endif %}
+    </button>
+  </div>
+</div>
