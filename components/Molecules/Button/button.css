@@ -33,7 +33,7 @@
     transform: scaleX(-1);
   }
 
-  &:not(.Button--minimal):not(.Button--secondary):not(.Button--error) {
+  &:not(.Button--minimal):not(.Button--secondary):not(.Button--error):not(.Button-quantity) {
     &:hover:not(:focus):not(:disabled) {
       background: var(--grey-dark);
     }
@@ -127,5 +127,64 @@
 
   &--rectangle {
     border-radius: rem-convert(7px);
+  }
+}
+
+
+.Button-quantity {
+  input {
+    -moz-appearance: textfield;
+    &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    &:focus,&:focus-visible {
+      --tw-ring-color: transparent;
+      outline: 0;
+    }
+    background: var(--black);
+    padding: 0;
+    border: none;
+    text-align: center;
+    width: rem-convert(80px);
+  }
+  &:hover input {
+    background: var(--grey-dark);
+  }
+  button {
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+  &[aria-disabled="true"], &[aria-disabled="true"]:hover {
+    cursor: default;
+    background: var(--grey-lighter);
+    input {
+      background: var(--grey-lighter);
+    }
+  }
+
+  &.Button--secondary {
+    input {
+      background: var(--white);
+      color: var(--black);
+    }
+    &:hover:not(:focus):not([aria-disabled="true"]) {
+      background: var(--black);
+      color: var(--white);
+      input {
+        background: var(--black);
+        color: var(--white);
+      }
+    }
+
+    &[aria-disabled="true"], &[aria-disabled="true"]:hover {
+      background: var(--white);
+      color: var(--grey-lighter);
+      border: var(--grey-lighter) solid 1px;
+      input {
+        background: var(--white);
+        color: var(--grey-lighter);
+      }
+    }
   }
 }
