@@ -1,0 +1,14 @@
+{% set classes = '' %}
+{% if size %}
+   {% set classes = classes ~ 'Tab--' ~ size %}
+{% endif %}
+
+<button class='Tab {{ classes }}' {% if disabled %}disabled{% endif %}>
+  {% if iconLeft %}
+    <span class='Tab-icon'>{{ source("/icons/" ~ iconLeft  ~".svg") }}</span>
+  {% endif %}
+  {{ customText }}
+  {% if iconRight %}
+    <span class='Tab-icon'>{{ source("/icons/" ~ iconRight  ~".svg") }}</span>
+  {% endif %}
+</button>
