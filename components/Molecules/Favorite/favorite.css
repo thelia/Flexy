@@ -1,0 +1,21 @@
+.Favorite {
+  display: flex;
+  align-items: center;
+  gap: rem-convert(6px);
+  background: var(--white);
+  padding: rem-convert(4px) rem-convert(8px);
+  border-radius: rem-convert(8px);
+
+  .star {
+    width: rem-convert(16px);
+    height: rem-convert(16px);
+    color: var(--grey-lighter);
+  }
+  .text {
+    @apply indication indication-small;
+  }
+
+  &.selected .star{
+    color: var(--theme);
+  }
+}
