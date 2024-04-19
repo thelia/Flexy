@@ -1,8 +1,26 @@
-{% set classes = '' %}
+{% set classes = 'Button--round' %}
 {% if type != 'primary' %}{% set classes = classes ~ ' Button--' ~ type %}{% endif %}
 
-<div  class='flex gap-4'>
-  <button class='Button Button--round {{ classes }}'>
-    <span>{{ source("/icons/" ~ icon ~ ".svg") }}</span>
-  </button>
+<div>
+  <div class='h4-desktop mb-5'>Large</div>
+  <div  class='flex gap-4'>
+    {% include './Button.twig' with
+      {classes:classes ~ ' Button--large',
+        icon_left: icon} %}
+    {% include './Button.twig' with
+      {disabled: true, classes:classes ~ ' Button--large',
+        icon_left: icon} %}
+  </div>
+</div>
+
+<div class='mt-5'>
+  <div class='h4-desktop mb-5'>Small</div>
+  <div  class='flex gap-4'>
+    {% include './Button.twig' with
+      {classes:classes ~ ' Button--small',
+        icon_left: icon} %}
+    {% include './Button.twig' with
+      {disabled: true, classes:classes ~ ' Button--small',
+        icon_left: icon} %}
+  </div>
 </div>

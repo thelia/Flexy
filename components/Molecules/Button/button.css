@@ -206,4 +206,14 @@
   border-radius: 9999px;
   padding: 0;
   gap:0;
+
+  &.Button--small {
+    width: rem-convert(40px);
+    height: rem-convert(40px);
+
+    & > span {
+      color: var(--white);
+      @apply w-4 h-4;
+    }
+  }
 }
