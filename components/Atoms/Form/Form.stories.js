@@ -1,6 +1,6 @@
-import Checkbox from './Checkbox.twig';
-import Radio from './Radio.twig';
-import Toggle from './Toggle.twig';
+import Checkbox from './Checkboxs.twig';
+import Radio from './Radios.twig';
+import Toggle from './Toggles.twig';
 import './checkbox.css';
 import './toggle.css';
 

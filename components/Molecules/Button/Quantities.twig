@@ -1,0 +1,26 @@
+
+<div>
+  <div class='h4-desktop mb-5'>Large</div>
+  <div  class='flex gap-4'>
+    {% include './Quantity.twig' with {disabled: false, value:1, classes:'Button--large'} %}
+    {% include './Quantity.twig' with {disabled: true, value:1, classes:'Button--large'} %}
+  </div>
+
+  <div class='h4-desktop my-5'>Medium</div>
+  <div  class='flex gap-4'>
+    {% include './Quantity.twig' with {disabled: false, value:1} %}
+    {% include './Quantity.twig' with {disabled: true, value:1} %}
+  </div>
+
+  <div class='h4-desktop my-5'>Small</div>
+  <div  class='flex gap-4'>
+    {% include './Quantity.twig' with {disabled: false, value:1, classes:'Button--small'} %}
+    {% include './Quantity.twig' with {disabled: true, value:1, classes:'Button--small'} %}
+  </div>
+
+  <div class='h4-desktop my-5'>Secondary</div>
+  <div  class='flex gap-4'>
+    {% include './Quantity.twig' with {disabled: false, value:1, classes:'Button--secondary'} %}
+    {% include './Quantity.twig' with {disabled: true, value:1, classes:'Button--secondary'} %}
+  </div>
+</div>

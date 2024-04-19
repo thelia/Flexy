@@ -1,5 +1,5 @@
 import Compact from './Classic.twig';
-import Quantity from './Quantity.twig';
+import Quantities from './Quantities.twig';
 
 export default {
   title: 'Design System/Molecules/Button'
@@ -36,7 +36,7 @@ export const classic = {
 };
 
 export const quantity = {
-  render: () => Quantity(),
+  render: () => Quantities(),
   play: ({ canvasElement }) => {
     const minusButtons = canvasElement.querySelectorAll(
       'button[data-qty="minus"]'

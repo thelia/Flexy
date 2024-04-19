@@ -1,19 +1,11 @@
-<div>
-  <label class="Radio {{ error ? 'error'  : ''}}">
-    <input type="radio" name="radio" {% if disabled %}disabled{% endif %}>
-    <div class="checkmark"></div>
-    <span>Radio 1</span>
-  </label>
-
-  <label class="Radio {{ error ? 'error'  : ''}}">
-    <input type="radio" name="radio" checked="checked" {% if disabled %}disabled{% endif %}>
-    <div class="checkmark"></div>
-    <span>Radio 2</span>
-  </label>
-
-  <label class="Radio {{ error ? 'error'  : ''}}">
-    <input type="radio" name="radio" {% if disabled %}disabled{% endif %}>
-    <div class="checkmark"></div>
-    <span>Radio 3</span>
-  </label>
-</div>
+<label class="Radio {{ classes|default('') }} {{ error ? 'error'  : ''}}">
+  <input
+    type="radio"
+    name='{{ name }}'
+    value='{{ value }}'
+    {% if disabled %}disabled{% endif %}
+    {% if checked %}checked{% endif %}
+  >
+  <div class="checkmark"></div>
+  <span>{{ label }}</span>
+</label>

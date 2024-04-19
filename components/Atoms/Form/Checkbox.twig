@@ -1,25 +1,12 @@
-<div>
-  <label class="Checkbox {{ error ? 'error'  : ''}}">
-    <input type="checkbox" {% if disabled %}disabled{% endif %}>
-    <div class="checkmark">
-      <span>{{ source("/icons/checkbox.svg") }}</span>
-    </div>
-    <span>Unchecked</span>
-  </label>
-
-  <label class="Checkbox {{ error ? 'error'  : ''}}">
-    <input type="checkbox" checked="checked" {% if disabled %}disabled{% endif %}>
-    <div class="checkmark">
-      <span>{{ source("/icons/checkbox.svg") }}</span>
-    </div>
-    <span>Checked</span>
-  </label>
-
-  <label class="Checkbox indeterminate {{ error ? 'error'  : ''}}">
-    <input type="checkbox" {% if disabled %}disabled{% endif %}>
-    <div class="checkmark">
-      <span>{{ source("/icons/checkbox.svg") }}</span>
-    </div>
-    <span>Undefined</span>
-  </label>
-</div>
+<label class="Checkbox {{ classes|default('') }} {{ error ? 'error'  : ''}}">
+  <input type="checkbox"
+         name='{{ name }}'
+         value='{{ value }}'
+         {% if disabled %}disabled{% endif %}
+         {% if checked %}checked{% endif %}
+  >
+  <div class="checkmark">
+    <span>{{ source("/icons/checkbox.svg") }}</span>
+  </div>
+  <span>{{ label }}</span>
+</label>
