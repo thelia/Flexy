@@ -13,22 +13,30 @@
   font-family: var(--font-family-button-medium);
   font-weight: var(--font-weight-button-medium);
 
+  & > span {
+    color: var(--white);
+    @apply w-5 h-5;
+  }
+
   &--large {
     padding: rem-convert(16px) rem-convert(24px);
     font-size: var(--font-size-button-large);
     font-family: var(--font-family-button-large);
     font-weight: var(--font-weight-button-large);
+    & > span {
+      @apply w-6 h-6;
+    }
   }
   &--small {
     padding: rem-convert(8px) rem-convert(12px);
     font-size: var(--font-size-button-small);
     font-family: var(--font-family-button-small);
     font-weight: var(--font-weight-button-small);
+    & > span {
+      @apply w-3 h-3;
+    }
   }
 
- span {
-   color: var(--white);
-  }
   &:after {
     transform: scaleX(-1);
   }
@@ -190,4 +198,12 @@
       }
     }
   }
+}
+
+.Button--round {
+  width: rem-convert(48px);
+  height: rem-convert(48px);
+  border-radius: 9999px;
+  padding: 0;
+  gap:0;
 }

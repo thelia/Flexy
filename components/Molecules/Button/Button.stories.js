@@ -1,9 +1,13 @@
 import Compact from './Classic.twig';
 import Quantities from './Quantities.twig';
+import Rounds from './Rounds.twig';
 
 export default {
   title: 'Design System/Molecules/Button'
 };
+
+const types = ['primary', 'secondary', 'minimal', 'error'];
+const icons = ['chevron-left', 'cart', 'zoom', 'close-big'];
 
 export const classic = {
   render: (args) => Compact(args),
@@ -12,19 +16,21 @@ export const classic = {
     type: 'primary',
     isFill: false,
     isRectangle: false,
-    hasIconLeft: false,
-    hasIconRight: false
+    icon_left: 'none',
+    icon_right: 'none'
   },
   argTypes: {
     type: {
-      options: ['primary', 'secondary', 'minimal', 'error'],
+      options: types,
       control: { type: 'radio' }
     },
-    hasIconLeft: {
-      control: { type: 'boolean' }
+    icon_left: {
+      options: ['none', ...icons],
+      control: { type: 'radio' }
     },
-    hasIconRight: {
-      control: { type: 'boolean' }
+    icon_right: {
+      options: ['none', ...icons],
+      control: { type: 'radio' }
     },
     isFill: {
       control: { type: 'boolean' }
@@ -50,6 +56,24 @@ export const quantity = {
     plusButtons.forEach((plus) => {
       plus.addEventListener('click', () => plusMinusInput(plus));
     });
+  }
+};
+
+export const rounds = {
+  render: (args) => Rounds(args),
+  args: {
+    type: 'primary',
+    icon: 'chevron-left'
+  },
+  argTypes: {
+    type: {
+      options: types,
+      control: { type: 'radio' }
+    },
+    icon: {
+      options: icons,
+      control: { type: 'radio' }
+    }
   }
 };
 

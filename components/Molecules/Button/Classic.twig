@@ -2,79 +2,46 @@
 {% if type != 'primary' %}{% set classes = classes ~ ' Button--' ~ type %}{% endif %}
 {% if isFill %}{% set classes = classes ~ ' Button--fill'%}{% endif %}
 {% if isRectangle %}{% set classes = classes ~ ' Button--rectangle'%}{% endif %}
-
+{% set iconLeft =  icon_left == 'none' ? '' : icon_left %}
+{% set iconRight =  icon_right == 'none' ? '' : icon_right %}
 <div>
   <div class='h4-desktop mb-5'>Large</div>
   <div  class='flex gap-4'>
-    <button class='Button Button--large {{ classes }}'>
-      {% if hasIconLeft %}
-        <span class='w-5 h-5'>{{ source("/icons/chevron-left.svg") }}</span>
-      {% endif %}
-      {{ customText }}
-      {% if hasIconRight %}
-        <span class='w-5 h-5'>{{ source("/icons/chevron-right.svg") }}</span>
-      {% endif %}
-    </button>
-    <button class='Button Button--large {{ classes }}' disabled>
-      {% if hasIconLeft %}
-        <span class='w-5 h-5'>{{ source("/icons/chevron-left.svg") }}</span>
-      {% endif %}
-      {{ customText }}
-
-      {% if hasIconRight %}
-        <span class='w-5 h-5'>{{ source("/icons/chevron-right.svg") }}</span>
-      {% endif %}
-    </button>
+    {% include './Button.twig' with
+      {disabled: false, classes:classes ~ ' Button--large', text:customText,
+        icon_left: iconLeft,
+        icon_right: iconRight} %}
+    {% include './Button.twig' with
+      {disabled: true, classes:classes ~ ' Button--large', text:customText,
+        icon_left: iconLeft,
+        icon_right: iconRight} %}
   </div>
 </div>
 
 <div>
   <div class='h4-desktop my-5'>Medium</div>
   <div  class='flex gap-4'>
-    <button class='Button {{ classes }}'>
-      {% if hasIconLeft %}
-        <span class='w-5 h-5'>{{ source("/icons/chevron-left.svg") }}</span>
-      {% endif %}
-      {{ customText }}
-
-      {% if hasIconRight %}
-        <span class='w-5 h-5'>{{ source("/icons/chevron-right.svg") }}</span>
-      {% endif %}
-    </button>
-    <button class='Button {{ classes }}' disabled>
-      {% if hasIconLeft %}
-        <span class='w-5 h-5'>{{ source("/icons/chevron-left.svg") }}</span>
-      {% endif %}
-      {{ customText }}
-
-      {% if hasIconRight %}
-        <span class='w-5 h-5'>{{ source("/icons/chevron-right.svg") }}</span>
-      {% endif %}
-    </button>
+    {% include './Button.twig' with
+      {disabled: false, classes:classes, text:customText,
+        icon_left: iconLeft,
+        icon_right: iconRight} %}
+    {% include './Button.twig' with
+      {disabled: true, classes:classes, text:customText,
+        icon_left: iconLeft,
+        icon_right: iconRight} %}
   </div>
 </div>
 
 <div>
   <div class='h4-desktop my-5'>Small</div>
   <div  class='flex gap-4'>
-    <button class='Button Button--small {{ classes }}'>
-      {% if hasIconLeft %}
-        <span class='w-5 h-5'>{{ source("/icons/chevron-left.svg") }}</span>
-      {% endif %}
-      {{ customText }}
-
-      {% if hasIconRight %}
-        <span class='w-5 h-5'>{{ source("/icons/chevron-right.svg") }}</span>
-      {% endif %}
-    </button>
-    <button class='Button Button--small {{ classes }}' disabled>
-      {% if hasIconLeft %}
-        <span class='w-5 h-5'>{{ source("/icons/chevron-left.svg") }}</span>
-      {% endif %}
-      {{ customText }}
-      {% if hasIconRight %}
-        <span class='w-5 h-5'>{{ source("/icons/chevron-right.svg") }}</span>
-      {% endif %}
-    </button>
+    {% include './Button.twig' with
+      {disabled: false, classes:classes ~ ' Button--small', text:customText,
+        icon_left: iconLeft,
+        icon_right: iconRight} %}
+    {% include './Button.twig' with
+      {disabled: true, classes:classes ~ ' Button--small', text:customText,
+        icon_left: iconLeft,
+        icon_right: iconRight} %}
   </div>
 </div>

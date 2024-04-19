@@ -1,0 +1,9 @@
+<button class='Button {{ classes }}' {% if disabled %}disabled{% endif %}>
+  {% if icon_left %}
+    <span>{{ source("/icons/"~ icon_left ~".svg") }}</span>
+  {% endif %}
+  {{ text }}
+  {% if icon_right %}
+    <span>{{ source("/icons/"~ icon_right ~".svg") }}</span>
+  {% endif %}
+</button>
