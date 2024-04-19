@@ -103,18 +103,12 @@
   font-size: var(--font-size-paragraph-6);
   font-family: var(--font-family-paragraph-6);
   line-height: var(--line-height-paragraph-6);
-  &.font-bold {
-    font-weight: 500;
-  }
 }
 
 .paragraph-7 {
   font-size: var(--font-size-paragraph-7);
   font-family: var(--font-family-paragraph-7);
   line-height: var(--line-height-paragraph-7);
-  &.font-bold {
-    font-weight: 500;
-  }
 }
 
 .typo-button {

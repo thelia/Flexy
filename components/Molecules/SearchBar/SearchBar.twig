@@ -1,0 +1,14 @@
+<label
+  class="SearchBar {{ classes }}"
+  aria-label="Recherche"
+>
+  <button>{{ source("/icons/search.svg") }}</button>
+
+  <input
+    type="text"
+    name="query"
+    placeholder="Ex. Chaussures, tee-shirt, ..."
+    autocomplete='off'
+    value="{{ value|default('') }}"
+  />
+</label>

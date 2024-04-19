@@ -1,0 +1,59 @@
+.SearchBar {
+  display: flex;
+  align-items: center;
+  color: var(--grey);
+  border: 1px solid var(--grey-lighter);
+  border-radius: rem-convert(50px);
+  padding: rem-convert(2px) rem-convert(10px) rem-convert(2px) rem-convert(6px);
+
+  button {
+    width: rem-convert(44px);
+    height: rem-convert(44px);
+    color: var(--black);
+  }
+  &,input {
+    background: var(--grey-lightest);
+  }
+  input {
+    flex-grow: 1;
+    font-weight: var(--font-size-paragraph-2);
+    line-height: var(--line-height-paragraph-2);
+    font-family: var(--font-family-paragraph-2);
+    color: var(--black);
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      font-style: italic;
+      color: var(--grey);
+    }
+  }
+
+  &:focus-within {
+    border: 2px solid var(--theme);
+  }
+  &:hover {
+    &,input {
+      background: var(--white);
+    }
+  }
+
+  &--white {
+    border: 1px solid var(--theme-medium);
+    &,input {
+      background: var(--white);
+    }
+    &:hover {
+      &,input {
+        background: var(--grey-lightest);
+        border-color: var(--theme-medium);
+      }
+    }
+    &:focus-within {
+      border-width: 2px;
+    }
+  }
+  @screen md {
+    padding: rem-convert(6px) rem-convert(10px) rem-convert(6px) rem-convert(6px);
+  }
+}
