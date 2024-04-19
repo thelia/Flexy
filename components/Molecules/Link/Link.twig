@@ -1,0 +1,14 @@
+{% set classes = '' %}
+{% if size %}
+   {% set classes = classes ~ 'Link--' ~ size %}
+{% endif %}
+
+<a href="{{ href }}" {% if target %}target="{{ target }}"{% endif %} class='Link {{ classes }}' {% if disabled %}disabled{% endif %}>
+  {% if iconLeft %}
+    <span class='Link-icon'>{{ source("/icons/" ~ iconLeft  ~".svg") }}</span>
+  {% endif %}
+  {{ customText }}
+  {% if iconRight %}
+    <span class='Link-icon'>{{ source("/icons/" ~ iconRight  ~".svg") }}</span>
+  {% endif %}
+</a>
