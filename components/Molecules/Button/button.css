@@ -154,7 +154,7 @@
     padding: 0;
     border: none;
     text-align: center;
-    width: rem-convert(80px);
+    width: rem-convert(60px);
   }
   &:hover:not(:focus):not(.disabled) {
     background: var(--grey-dark);
@@ -171,6 +171,22 @@
     background: var(--grey-lighter);
     input {
       background: var(--grey-lighter);
+    }
+  }
+
+  &.Button--large {
+    input {
+      width: rem-convert(80px);
+    }
+  }
+  &.Button--small {
+    input {
+      width: rem-convert(50px);
+    }
+    &.Button--xsmall {
+      input {
+        width: rem-convert(40px);
+      }
     }
   }
 
@@ -214,6 +230,35 @@
     & > span {
       color: var(--white);
       @apply w-4 h-4;
+    }
+  }
+}
+
+.Button-quantityButton {
+  display: flex;
+
+  button.Button {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    position: relative;
+    border-left: 1px solid var(--white);
+    &:after {
+      content: "";
+      position: absolute;
+
+    }
+  }
+  .Button-quantity {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  &:hover {
+    .Button {
+      background: var(--grey-dark);
+      input {
+        background: var(--grey-dark);
+      }
     }
   }
 }
