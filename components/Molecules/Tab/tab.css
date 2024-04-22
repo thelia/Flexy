@@ -19,7 +19,7 @@
   &:hover:focus {
     color: var(--grey-dark);
   }
-  
+
   &:active:not([disabled]) {
     background: var(--black);
     color: var(--white);

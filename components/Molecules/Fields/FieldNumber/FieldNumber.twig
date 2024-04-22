@@ -1,0 +1,34 @@
+{% set classes = '' %}
+{% if error %}
+   {% set classes = classes ~ ' FieldNumber--error' %}
+{% endif %}
+
+<div class='FieldNumber{{ classes }}' {% if disabled %}disabled{% endif %}>
+    <input
+      class='FieldNumber-input'
+      type='number'
+      name='{{ name }}'
+      id='{{ name }}'
+      placeholder='_'
+      {% if value %}value='{{ value }}'{% endif %}
+      {% if required %}required{% endif %}
+      {% if min %}minlength='{{ min }}'{% endif %}
+      {% if max %}maxlength='{{ max }}'{% endif %}
+    />
+  {% if error %}<span class='FieldNumber-error'>{{ error }}</span>{% endif %}
+</div>
+
+{# TODO: fichier js ? #}
+{% block javascript %}
+  <script>
+    const input = document.querySelector("input");
+
+    input.addEventListener('input', function() {
+      if (input.value.trim() !== '') {
+        input.classList.add('FieldNumber-input--filled');
+      } else {
+        input.classList.remove('FieldNumber-input--filled');
+      }
+    });
+  </script>
+{% endblock %} 

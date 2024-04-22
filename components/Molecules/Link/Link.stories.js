@@ -8,8 +8,7 @@ const commonProps = {
   args: {
     customText: "Link",
     href: "",
-    target: '',
-    disabled: false
+    target: ''
   },
   argTypes: {
     disabled: {
