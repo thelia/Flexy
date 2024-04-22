@@ -8,13 +8,27 @@
   color: var(--black);
   @apply typo-button-large;
 
-  &--small {
-    padding-right: rem-convert(20px);
-  }
 
   & > div {
     display: flex;
     gap: rem-convert(6px);
+  }
+
+  &--small {
+    padding-right: rem-convert(20px);
+  }
+  &--mobile {
+    padding: 0;
+    flex: 1 1 0px;
+    justify-content: center;
+    padding-top: rem-convert(8px);
+    padding-bottom: rem-convert(8px);
+    @apply typo-button-small;
+    & > div {
+      flex-direction: column;
+      align-items: center;
+      gap:0;
+    }
   }
 
   &:hover {
