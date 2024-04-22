@@ -1,0 +1,68 @@
+.HeaderButton {
+  background: var(--theme-medium);
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: rem-convert(20px);
+  padding-right: rem-convert(30px);
+  color: var(--black);
+  @apply typo-button-large;
+
+  &--small {
+    padding-right: rem-convert(20px);
+  }
+
+  & > div {
+    display: flex;
+    gap: rem-convert(6px);
+  }
+
+  &:hover {
+    background: var(--theme-light);
+  }
+
+  &:focus {
+    box-shadow:0 0 0 1px var(--theme) inset;
+  }
+
+  &-icon {
+    width: rem-convert(24px);
+    height: rem-convert(24px);
+    padding-top: rem-convert(4px);
+    padding-bottom: rem-convert(4px);
+  }
+
+  &-sub {
+    @apply paragraph-6;
+    font-weight: 400;
+  }
+
+  &--inactive {
+    background: var(--theme-light);
+    &:hover {
+      background: var(--theme-medium);
+    }
+  }
+
+  &--dark {
+    background: var(--black);
+    color: var(--white);
+    box-shadow: 0 -1px 0 0 var(--grey-lighter) inset;
+
+
+    &:hover {
+      background: var(--grey-darker);
+    }
+  }
+
+  &--light {
+    background: var(--white);
+    color: var(--black);
+    box-shadow: 0 -1px 0 0 var(--grey-lighter) inset;
+
+
+    &:hover {
+      background: var(--grey-lightest);
+    }
+  }
+}
