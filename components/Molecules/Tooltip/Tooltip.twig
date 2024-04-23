@@ -1,0 +1,27 @@
+{% set classes = '' %}
+{% set classes = classes ~ ' Tooltip-text--' ~ (position|default('top')) %}
+
+<div class='Tooltip'>
+  <span class='Tooltip-icon'>{{ source("/icons/help.svg") }}</span>
+  <span class='Tooltip-text{{ classes }}'>
+    <span class='Tooltip-close'>{{ source("/icons/close.svg") }}</span>
+    {{ tooltip }}
+  </span>
+</div>
+
+{# TODO: fichier js ? #}
+{% block javascript %}
+<script>
+  const icon = document.querySelector('.Tooltip-icon')
+  const tooltip = document.querySelector(".Tooltip-text");
+  const close = document.querySelector('.Tooltip-close');
+
+  icon.addEventListener('click', function() {
+    tooltip.classList.add('Tooltip-text--show');
+  });
+
+  close.addEventListener('click', function() {
+    tooltip.classList.remove('Tooltip-text--show');
+  });
+</script>
+{% endblock %} 
