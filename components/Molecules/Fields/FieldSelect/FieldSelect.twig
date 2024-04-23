@@ -14,11 +14,8 @@
     <label for='{{ name }}' class='FieldSelect-label'>
       {{ label }}{% if required and label %} *{% endif %}
     </label>
-    {# TODO: en attente du composant tooltip #}
     {% if tooltip %}
-      <span class='FieldSelect-help'>
-        {{ source("/icons/help.svg") }}
-      </span>
+      {% include '../../Tooltip/Tooltip.twig' with {tooltip: tooltip, position: 'bottom'} %}
     {% endif %}
   </div>
   <select

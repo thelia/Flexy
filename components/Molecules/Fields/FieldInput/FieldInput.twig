@@ -14,11 +14,8 @@
     <label for='{{ name }}' class='FieldInput-label'>
       {{ label }}{% if required and label %} *{% endif %}
     </label>
-    {# TODO: en attente du composant tooltip #}
     {% if tooltip %}
-      <span class='FieldInput-help'>
-        {{ source("/icons/help.svg") }}
-      </span>
+        {% include '../../Tooltip/Tooltip.twig' with {tooltip: tooltip, position: 'bottom'} %}
     {% endif %}
   </div>
   <div class='FieldInput-blockInput'>
