@@ -7,8 +7,6 @@ export default {
 const commonProps = {
   args: {
     customText: "Tabulation",
-    disabled: false,
-    classes: '',
   },
   argTypes: {
     disabled: {

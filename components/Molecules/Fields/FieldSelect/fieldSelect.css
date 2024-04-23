@@ -1,0 +1,120 @@
+.FieldSelect {
+  display: flex;
+  flex-direction: column;
+  gap: rem-convert(4px);
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-label {
+    color: var(--black);
+    font-size: var(--font-size-paragraph-5);
+    font-family: var(--font-family-paragraph-5);
+    line-height: var(--line-height-paragraph-5);
+  }
+
+  &-help {
+    width: rem-convert(18px);
+    height: rem-convert(18px);
+    color: var(--black);
+  }
+
+  &-select {
+    border: 1px solid var(--theme-medium);
+    border-radius: 8px;
+    color: var(--grey-dark);
+    font-style: italic;
+    width: 100%;
+    padding: rem-convert(16px) rem-convert(10px);
+    font-size: var(--font-size-paragraph-4);
+    font-family: var(--font-family-paragraph-4);
+    line-height: var(--line-height-paragraph-4);
+    appearance: none;
+    background: url('/assets/icons/chevron-small-down.svg');
+    background-repeat: no-repeat;
+    background-position: right 0 top 50%;
+    background-size: rem-convert(40px) auto;
+    transition: 0.2s ease all;
+
+    &:hover {
+      background-color: var(--theme-lightest);
+    }
+
+    &:focus {
+      outline-offset: 2px;
+      outline: 1px solid var(--theme);
+    }
+
+    &--filled {
+      border-color: var(--theme);
+      color: var(--black);
+      font-style: normal;
+    }
+  }
+
+  &-placeholder {
+    color: var(--grey-dark);
+    font-style: italic;
+  }
+
+  &--small {
+    .FieldSelect-select {
+      padding: rem-convert(10px);
+    }
+  }
+
+  &--error {
+    .FieldSelect-label {
+      color: var(--error-dark);
+    }
+
+    .FieldSelect-select {
+      border: 1px solid var(--error-light);
+      color: var(--error);
+
+      &:hover {
+        background-color: var(--error-lightest);
+      }
+
+      &:focus {
+        outline: 1px solid var(--error-dark);
+      }
+    }
+  }
+
+  &-error {
+    color: var(--error-dark);
+    font-style: italic;
+    font-size: var(--font-size-paragraph-5);
+    font-family: var(--font-family-paragraph-5);
+    line-height: var(--line-height-paragraph-5);
+  }
+
+  &--success {
+    .FieldSelect-select {
+      border: 1px solid var(--success);
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" fill="none"><path d="m26.648 19.113-6.33 6.524a1.176 1.176 0 0 1-1.698 0l-3.268-3.368a1.265 1.265 0 0 1 0-1.75 1.176 1.176 0 0 1 1.698 0l2.419 2.493 5.481-5.65a1.176 1.176 0 0 1 1.698 0 1.265 1.265 0 0 1 0 1.751Z" fill="%2337E17B"></path></svg>');
+      background-repeat: no-repeat;
+      background-position: right 0 top 50%;
+    }
+  }
+
+  &[disabled] {
+    .FieldSelect-label {
+      color: var(--grey);
+    }
+
+    .FieldSelect-select {
+      border: 1px solid var(--grey);
+      color: var(--grey);
+      cursor: not-allowed;
+      background-color: var(--grey-lightest);
+    }
+
+    .FieldSelect-help {
+      color: var(--grey);
+    }
+  }
+}

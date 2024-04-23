@@ -1,0 +1,54 @@
+{% set classes = '' %}
+{% if error %}
+   {% set classes = classes ~ ' FieldInput--error' %}
+{% endif %}
+{% if success %}
+   {% set classes = classes ~ ' FieldInput--success' %}
+{% endif %}
+{% if size %}
+   {% set classes = classes ~ ' FieldInput--' ~ size %}
+{% endif %}
+
+<div class='FieldInput{{ classes }}' {% if disabled %}disabled{% endif %}>
+  <div class='FieldInput-header'>
+    <label for='{{ name }}' class='FieldInput-label'>
+      {{ label }}{% if required and label %} *{% endif %}
+    </label>
+    {# TODO: en attente du composant tooltip #}
+    {% if tooltip %}
+      <span class='FieldInput-help'>
+        {{ source("/icons/help.svg") }}
+      </span>
+    {% endif %}
+  </div>
+  <div class='FieldInput-blockInput'>
+    <input
+      class='FieldInput-input{% if unit %} FieldInput-input--unit{% endif %}'
+      type='{{ type|default('text') }}'
+      name='{{ name }}'
+      id='{{ name }}'
+      {% if value %}value='{{ value }}'{% endif %}
+      {% if required %}required{% endif %}
+      {% if placeholder %}placeholder='{{ placeholder }}{% if required and  not label %} *{% endif %}'{% endif %}
+      {% if min %}minlength='{{ min }}'{% endif %}
+      {% if max %}maxlength='{{ max }}'{% endif %}
+    />
+    {% if unit %}<span class="FieldInput-unit">{{ unit }}</span>{% endif %}
+  </div>
+  {% if error %}<span class='FieldInput-error'>{{ error }}</span>{% endif %}
+</div>
+
+{# TODO: fichier js ? #}
+{% block javascript %}
+  <script>
+    const input = document.querySelector("input");
+
+    input.addEventListener('input', function() {
+      if (input.value.trim() !== '') {
+        input.classList.add('FieldInput-input--filled');
+      } else {
+        input.classList.remove('FieldInput-input--filled');
+      }
+    });
+  </script>
+{% endblock %} 
