@@ -1,0 +1,40 @@
+.Breadcrumb {
+  color: var(--grey);
+  font-size: var(--font-size-paragraph-4);
+  line-height: var(--line-height-paragraph-4);
+  font-family: var(--font-family-paragraph-4);
+  text-decoration: none;
+  outline: none;
+
+  &:active,
+  a&:hover {
+    color: var(--black);
+    text-decoration: underline;
+  }
+
+  &:active&:hover {
+    color: var(--grey-dark);
+  }
+
+  &:focus {
+    background-color: var(--theme-light);
+  }
+
+  &--compressed {
+    background-color: var(--grey-lightest);
+    width: rem-convert(16px);
+    height: rem-convert(16px);
+    display: inline-flex;
+    justify-content: center;
+    line-height: rem-convert(8px);
+
+    &:focus {
+      background-color: var(--grey-lightest);
+      border: solid 1px var(--theme-medium);
+    }
+
+    &:hover {
+      background-color: var(--theme-lightest);
+    }
+  }
+}
