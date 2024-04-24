@@ -1,0 +1,19 @@
+{% set classes = '' %}
+{% if isPrev %}
+   {% set classes = classes ~ ' Pagination--isPrev' %}
+{% endif %}
+{% if isNext %}
+   {% set classes = classes ~ ' Pagination--isNext' %}
+{% endif %}
+
+<a class="Pagination{{ classes }}" href="{{ href }}">
+  {% if isPrev %}
+    <span class='Pagination-icon'>{{ source("/icons/chevron-left.svg") }}</span>
+    <span class='Pagination-text'>{{ prevText }}</span>
+  {% elseif isNext %}
+    <span class='Pagination-text'>{{ nextText }}</span>
+    <span class='Pagination-icon'>{{ source("/icons/chevron-right.svg") }}</span>
+  {% else %}
+    {{ number }}
+  {% endif %}
+</a>
