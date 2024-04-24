@@ -1,0 +1,37 @@
+{% set classes = '' %}
+{% set classes = classes ~ ' Tag--' ~ (variant|default('validated')) %}
+{% if closeOnClick %}
+   {% set classes = classes ~ ' Tag--close' %}
+{% endif %}
+
+{% if not closeOnClick and not href and not onClick %}
+  <span class="Tag{{ classes }}">
+    {% if icon %}
+      <span class="Tag-icon">{{ source("/icons/" ~ icon  ~".svg") }}</span>
+    {% endif %}
+    {{ customText }}
+  </span>
+{% else %}
+  <button class="Tag{{ classes }} Tag--action" {% if href %}href="{{ href }}"{% endif %} {% if onClick %}onclick=onClick{% endif %}>
+    {% if icon %}
+      <span class="Tag-icon">{{ source("/icons/" ~ icon  ~".svg") }}</span>
+    {% endif %}
+    {{ customText }}
+    {% if closeOnClick %}
+      <span class='Tag-iconClose'>{{ source("/icons/close.svg") }}</span>
+    {% endif %}
+  </button>
+{% endif %}
+
+{# TODO: fichier js ? #}
+{% block javascript %}
+  <script>
+    const close = document.querySelector('.Tag-iconClose');
+
+    if (close) {
+      close.addEventListener('click', function() {
+        this.parentNode.style.display = 'none';
+      });
+    };
+  </script>
+{% endblock %} 
