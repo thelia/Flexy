@@ -3,6 +3,9 @@
 {% if closeOnClick %}
    {% set classes = classes ~ ' Tag--close' %}
 {% endif %}
+{% if icon %}
+   {% set classes = classes ~ ' Tag--withIcon' %}
+{% endif %}
 
 {% if not closeOnClick and not href and not onClick %}
   <span class="Tag{{ classes }}">
