@@ -1,0 +1,13 @@
+
+{% set classes = '' %}
+{% set classes = classes ~ ' UserMenu--' ~ (variant|default('vermillon')) %}
+{% if icon %}
+   {% set classes = classes ~ ' UserMenu--withIcon' %}
+{% endif %}
+
+<a href="{{ href }}" class='UserMenu {{ classes }}'>
+  {{ customText }}
+  {% if icon %}
+    <span class='UserMenu-icon'>{{ source("/icons/chevron-right.svg") }}</span>
+  {% endif %}
+</a>

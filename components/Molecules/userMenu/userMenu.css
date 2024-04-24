@@ -1,0 +1,43 @@
+.UserMenu {
+  font-size: var(--font-size-paragraph-2);
+  line-height: var(--line-height-paragraph-2);
+  font-family: var(--font-family-paragraph-2);
+  color: var(--black);
+  text-decoration: none;
+  outline: none;
+  padding: rem-convert(20px) rem-convert(24px);
+  border-radius: rem-convert(8px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+
+  &--vermillon {
+    background-color: var(--theme-lighter);
+
+    &:focus,
+    &:hover {
+      background-color: var(--theme-light);
+    }
+  }
+
+  &--white {
+    background-color: var(--white);
+
+    &:focus,
+    &:hover {
+      background-color: var(--theme-lightest);
+    }
+  }
+
+  &--withIcon {
+    padding: rem-convert(20px) rem-convert(8px) rem-convert(20px)
+      rem-convert(24px);
+  }
+
+  &-icon {
+    width: rem-convert(28px);
+    height: rem-convert(28px);
+    display: inline-block;
+  }
+}
