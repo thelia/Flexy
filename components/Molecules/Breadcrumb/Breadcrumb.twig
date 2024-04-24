@@ -1,0 +1,14 @@
+{% set classes = '' %}
+{% if compressed %}
+   {% set classes = classes ~ ' Breadcrumb--compressed' %}
+{% endif %}
+
+{% if href %}
+  <a class="Breadcrumb{{ classes }}" href="{{ href }}">
+    {{ compressed ? '...' : customText }}
+  </a>
+{% else %}
+  <span class="Breadcrumb{{ classes }}">
+    {{ compressed ? '...' : customText }}
+  </span>
+{% endif %}
