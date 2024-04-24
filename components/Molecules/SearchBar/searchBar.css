@@ -7,11 +7,11 @@
   padding: rem-convert(2px) rem-convert(10px) rem-convert(2px) rem-convert(6px);
 
   button {
-    width: rem-convert(44px);
-    height: rem-convert(44px);
+    margin-right: rem-convert(10px);
     color: var(--black);
   }
-  &,input {
+  &,
+  input {
     background: var(--grey-lightest);
   }
   input {
@@ -31,18 +31,21 @@
     border: 2px solid var(--theme);
   }
   &:hover {
-    &,input {
+    &,
+    input {
       background: var(--white);
     }
   }
 
   &--white {
     border: 1px solid var(--theme-medium);
-    &,input {
+    &,
+    input {
       background: var(--white);
     }
     &:hover {
-      &,input {
+      &,
+      input {
         background: var(--grey-lightest);
         border-color: var(--theme-medium);
       }
@@ -52,6 +55,7 @@
     }
   }
   @screen md {
-    padding: rem-convert(6px) rem-convert(10px) rem-convert(6px) rem-convert(6px);
+    padding: rem-convert(6px) rem-convert(10px) rem-convert(6px)
+      rem-convert(6px);
   }
 }
