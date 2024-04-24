@@ -41,13 +41,15 @@
 {% block javascript %}
   <script>
     const select = document.querySelector("select");
-
-    select.addEventListener('change', function() {
-      if (select.value.trim() !== '') {
-        select.classList.add('FieldSelect-select--filled');
-      } else {
-        select.classList.remove('FieldSelect-select--filled');
-      }
-    });
+    
+    if (select) {
+      select.addEventListener('change', function() {
+        if (select.value.trim() !== '') {
+          select.classList.add('FieldSelect-select--filled');
+        } else {
+          select.classList.remove('FieldSelect-select--filled');
+        }
+      });
+    }
   </script>
 {% endblock %} 

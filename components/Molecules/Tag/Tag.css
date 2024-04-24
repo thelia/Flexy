@@ -1,0 +1,66 @@
+.Tag {
+  font-size: var(--font-size-paragraph-3);
+  font-family: var(--font-family-paragraph-3);
+  line-height: var(--line-height-paragraph-3);
+  padding: rem-convert(4px) rem-convert(11px) rem-convert(4px) rem-convert(4px);
+  border-radius: rem-convert(4px);
+  display: inline-flex;
+  align-items: center;
+
+  &--action {
+    border: 0.5px solid;
+    outline: none;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  &--validated {
+    background-color: var(--validated-lightest);
+    color: var(--black);
+    border: 0.5px solid var(--validated);
+
+    &:focus {
+      border: 1px solid var(--validated);
+    }
+
+    .Tag-icon {
+      color: var(--validated);
+    }
+  }
+
+  &--error {
+    background-color: var(--error-lightest);
+    color: var(--error-light);
+    border-color: var(--error);
+
+    &:focus {
+      border: 1px solid var(--error-dark);
+    }
+  }
+
+  &--vermillon {
+    background-color: var(--theme-light);
+    color: var(--theme-dark);
+    border-color: var(--theme);
+
+    &:focus {
+      border: 1px solid var(--theme-dark);
+    }
+  }
+
+  &-icon {
+    width: rem-convert(20px);
+    height: rem-convert(20px);
+    display: inline-block;
+    margin-right: rem-convert(2px);
+  }
+
+  &-iconClose {
+    width: rem-convert(22px);
+    height: rem-convert(22px);
+    display: inline-block;
+    margin-left: rem-convert(6px);
+  }
+}

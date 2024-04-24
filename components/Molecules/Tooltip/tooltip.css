@@ -1,9 +1,13 @@
 .Tooltip {
   position: relative;
-  display: inline-block;
-  width: rem-convert(20px);
-  height: rem-convert(20px);
-  color: var(--black);
+
+  &-icon {
+    display: inline-block;
+    cursor: pointer;
+    width: rem-convert(20px);
+    height: rem-convert(20px);
+    color: var(--black);
+  }
 
   &-text {
     visibility: hidden;
@@ -36,27 +40,27 @@
     }
 
     &--top {
-      bottom: 28px;
+      bottom: 34px;
       right: 0px;
       transform: translate(10px);
 
       &:after {
         top: 100%;
         right: 0;
-        transform: translate(-15px);
+        transform: translate(-16px);
         border-color: var(--black) transparent transparent transparent;
       }
     }
 
     &--bottom {
-      top: 28px;
+      top: 34px;
       right: 0;
       transform: translate(10px);
 
       &:after {
         bottom: 100%;
         right: 0;
-        transform: translate(-15px);
+        transform: translate(-16px);
         border-color: transparent transparent var(--black) transparent;
       }
     }
@@ -64,6 +68,7 @@
 
   &-close {
     display: block;
+    cursor: pointer;
     width: rem-convert(28px);
     height: rem-convert(28px);
     position: absolute;
