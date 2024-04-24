@@ -2,10 +2,20 @@
   font-size: var(--font-size-paragraph-3);
   font-family: var(--font-family-paragraph-3);
   line-height: var(--line-height-paragraph-3);
-  padding: rem-convert(4px) rem-convert(11px) rem-convert(4px) rem-convert(4px);
+  padding: rem-convert(4px) rem-convert(12px);
   border-radius: rem-convert(4px);
   display: inline-flex;
   align-items: center;
+
+  @media screen and (max-width: 767px) {
+    font-size: var(--font-size-paragraph-6);
+    line-height: var(--line-height-paragraph-5);
+  }
+
+  &--withIcon {
+    padding: rem-convert(4px) rem-convert(12px) rem-convert(4px)
+      rem-convert(4px);
+  }
 
   &--action {
     border: 0.5px solid;
