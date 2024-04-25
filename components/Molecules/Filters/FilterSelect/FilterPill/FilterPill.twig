@@ -1,0 +1,40 @@
+{% set classes = '' %}
+{% if selected %}
+   {% set classes = classes ~ ' FilterPill--selected' %}
+{% endif %}
+{% if icon %}
+   {% set classes = classes ~ ' FilterPill--withIcon' %}
+{% endif %}
+
+{% if not selected %}
+  <span class="FilterPill{{ classes }}" {% if disabled %}disabled{% endif %}>
+    {% if icon %}
+      <span class="FilterPill-icon">{{ source("/icons/" ~ icon  ~".svg") }}</span>
+    {% endif %}
+    {{ customText }}
+  </span>
+{% else %}
+  <button class="FilterPill{{ classes }}" {% if onClickClose %}onclick=onClickClose{% endif %} {% if disabled %}disabled{% endif %}>
+    {% if icon %}
+      <span class="FilterPill-icon">{{ source("/icons/" ~ icon  ~".svg") }}</span>
+    {% endif %}
+    {{ customText }}
+    {% if selected %}
+      <span class='FilterPill-iconClose'>{{ source("/icons/close.svg") }}</span>
+    {% endif %}
+  </button>
+{% endif %}
+
+{# TODO: fichier js ? #}
+{% block javascript %}
+  <script>
+    const close = document.querySelector('.FilterPill--selected');
+
+    if (close) {
+      close.addEventListener('click', function() {
+        this.parentNode.style.display = 'none';
+        onClickClose();
+      });
+    };
+  </script>
+{% endblock %} 
