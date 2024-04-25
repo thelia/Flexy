@@ -1,0 +1,92 @@
+.FilterSelect {
+  position: relative;
+
+  &-current {
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid var(--grey-lighter);
+
+    &:focus + .FilterSelect-list {
+      opacity: 1;
+    }
+
+    &:focus + .FilterSelect-list .FilterSelect-option {
+      cursor: pointer;
+    }
+
+    &:focus .FilterSelect-icon {
+      transform: translateY(-50%) rotate(180deg);
+    }
+  }
+
+  &-icon {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    height: 28px;
+    width: 28px;
+    color: var(--black);
+  }
+
+  &-value {
+    display: flex;
+  }
+
+  &-input {
+    display: none;
+
+    &:checked + .FilterSelect-text {
+      display: flex;
+    }
+  }
+
+  &-text {
+    display: none;
+    width: 100%;
+    padding: rem-convert(16px) rem-convert(44px) rem-convert(16px)
+      rem-convert(16px);
+    align-items: center;
+    color: var(--black);
+    font-size: var(--font-size-paragraph-4);
+    font-family: var(--font-family-paragraph-4);
+    line-height: var(--line-height-paragraph-4);
+  }
+
+  &-list {
+    position: absolute;
+    width: 100%;
+    list-style: none;
+    opacity: 0;
+    transition: 0.2s ease all;
+    box-shadow: 0px 4px 8px 0px rgba(40, 40, 40, 0.15);
+  }
+
+  &-option {
+    padding: rem-convert(16px) rem-convert(44px) rem-convert(16px)
+      rem-convert(16px);
+    display: flex;
+    align-items: center;
+    color: var(--black);
+    font-size: var(--font-size-paragraph-4);
+    font-family: var(--font-family-paragraph-4);
+    line-height: var(--line-height-paragraph-4);
+
+    &:hover,
+    &:focus {
+      background-color: var(--grey-lightest);
+    }
+  }
+
+  .colorRounded {
+    --default-bg-color: #ffffff;
+
+    width: 21px;
+    height: 21px;
+    display: block;
+    border-radius: 50%;
+    background-color: var(--default-bg-color);
+    margin-right: 8px;
+  }
+}
