@@ -1,0 +1,32 @@
+
+<div class="FilterSelect">
+  <div class="FilterSelect-current" tabindex="1">
+    {% for option in options %}
+      <div class="FilterSelect-value">
+        <input class="FilterSelect-input" type="radio" id="{{ option.id }}" value="{{ option.value }}" name="{{ id }}" {% if loop.index == 1 %}checked="checked"{% endif %}/>
+        <p class="FilterSelect-text">{{ option.label }}</p>
+      </div>
+    {% endfor %}
+     <span class='FilterSelect-icon'>{{ source("/icons/chevron-down.svg") }}</span>
+  </div>
+  <ul class="FilterSelect-list">
+    {% for option in options %}
+      <li>
+        <label class="FilterSelect-option" for="{{ option.id }}" aria-hidden="true">{{ option.label }}</label>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{# TODO: fichier js ? #}
+{% block javascript %}
+  <script>
+    const elements = document.querySelectorAll(".colorRounded");
+    elements.forEach(function(element) {
+        const bgColor = element.getAttribute("data-bg-color");
+        if (bgColor) {
+            element.style.setProperty("--default-bg-color", bgColor);
+        }
+    });
+  </script>
+{% endblock %} 
