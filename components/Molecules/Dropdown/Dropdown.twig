@@ -1,0 +1,23 @@
+<div class="Dropdown">
+  <div class="Dropdown-current" tabindex="1">
+    {% if placeholder %}
+      <div class="Dropdown-value">
+        <input class="Dropdown-input" type="radio" value="" name="{{ id }}" checked="checked"/>
+        <p class="Dropdown-text">{{ placeholder }}</p>
+      </div>
+    {% endif %}
+    {% for option in options %}
+      <div class="Dropdown-value">
+        <input class="Dropdown-input" type="radio" id="{{ option.value }}" value="{{ option.value }}" name="{{ id }}" {% if not placeholder and loop.index == 1 %}checked="checked"{% endif %}/>
+        <p class="Dropdown-text">{{ option.label }}</p>
+      </div>
+    {% endfor %}
+  </div>
+  <ul class="Dropdown-list">
+    {% for option in options %}
+      <li>
+        <label tabindex="1" class="Dropdown-option" for="{{ option.value }}" aria-hidden="true">{{ option.label }}</label>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

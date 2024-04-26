@@ -1,4 +1,4 @@
-.FilterSelect {
+.Dropdown {
   position: relative;
   background-color: var(--white);
 
@@ -6,30 +6,19 @@
     position: relative;
     cursor: pointer;
     outline: none;
-    border: 1px solid var(--grey-lighter);
 
-    &:focus + .FilterSelect-list {
+    &:hover {
+      background-color: var(--theme-light);
+    }
+
+    &:focus + .Dropdown-list {
       opacity: 1;
       animation-name: none;
     }
 
-    &:focus + .FilterSelect-list .FilterSelect-option {
+    &:focus + .Dropdown-list .Dropdown-option {
       cursor: pointer;
     }
-
-    &:focus .FilterSelect-icon {
-      transform: translateY(-50%) rotate(180deg);
-    }
-  }
-
-  &-icon {
-    position: absolute;
-    top: 50%;
-    right: 8px;
-    transform: translateY(-50%);
-    height: 28px;
-    width: 28px;
-    color: var(--black);
   }
 
   &-value {
@@ -39,7 +28,7 @@
   &-input {
     display: none;
 
-    &:checked + .FilterSelect-text {
+    &:checked + .Dropdown-text {
       display: flex;
     }
   }
@@ -83,19 +72,8 @@
 
     &:hover,
     &:focus {
-      background-color: var(--grey-lightest);
+      background-color: var(--theme-light);
     }
-  }
-
-  .colorRounded {
-    --default-bg-color: #ffffff;
-
-    width: 21px;
-    height: 21px;
-    display: block;
-    border-radius: 50%;
-    background-color: var(--default-bg-color);
-    margin-right: 8px;
   }
 }
 

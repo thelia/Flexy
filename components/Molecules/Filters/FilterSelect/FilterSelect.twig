@@ -1,8 +1,14 @@
 <div class="FilterSelect">
   <div class="FilterSelect-current" tabindex="1">
+      {% if placeholder %}
+      <div class="Dropdown-value">
+        <input class="Dropdown-input" type="radio" value="" name="{{ id }}" checked="checked"/>
+        <p class="Dropdown-text">{{ placeholder }}</p>
+      </div>
+    {% endif %}
     {% for option in options %}
       <div class="FilterSelect-value">
-        <input class="FilterSelect-input" type="radio" id="{{ option.id }}" value="{{ option.value }}" name="{{ id }}" {% if loop.index == 1 %}checked="checked"{% endif %}/>
+        <input class="FilterSelect-input" type="radio" id="{{ option.value }}" value="{{ option.value }}" name="{{ id }}" {% if not placeholder and loop.index == 1 %}checked="checked"{% endif %}/>
         <p class="FilterSelect-text">{{ option.label }}</p>
       </div>
     {% endfor %}
@@ -11,7 +17,7 @@
   <ul class="FilterSelect-list">
     {% for option in options %}
       <li>
-        <label class="FilterSelect-option" for="{{ option.id }}" aria-hidden="true">{{ option.label }}</label>
+        <label class="FilterSelect-option" for="{{ option.value }}" aria-hidden="true">{{ option.label }}</label>
       </li>
     {% endfor %}
   </ul>
