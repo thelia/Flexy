@@ -49,14 +49,15 @@ const config: StorybookConfig = {
       test: /\.twig$/,
       use: [
         {
-          loader: 'twig-loader'
+          loader: 'twig-loader',
+          options: {
+            namespaces: {
+              subpath: configType === 'PRODUCTION' ? '/Flexy' : ''
+            }
+          }
         }
       ]
     });
-
-    if (configType === 'PRODUCTION' && config?.output?.publicPath) {
-      config.output.publicPath = '/Flexy/';
-    }
 
     return config;
   },
