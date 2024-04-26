@@ -1,13 +1,17 @@
 .HeaderButton {
-  background: var(--theme-medium);
+  --header-button-bg: var(--theme-light);
+  --header-button-color: var(--black);
+  --header-button-bg-hover: var(--theme-medium);
+
+  background: var(--header-button-bg);
+  color: var(--header-button-color);
+
   display: flex;
   align-items: center;
   height: 100%;
   padding-left: rem-convert(20px);
-  padding-right: rem-convert(30px);
-  color: var(--black);
+  padding-right: rem-convert(20px);
   @apply typo-button-large;
-
 
   & > div {
     display: flex;
@@ -17,6 +21,7 @@
   &--small {
     padding-right: rem-convert(20px);
   }
+
   &--mobile {
     padding: 0;
     flex: 1 1 0px;
@@ -27,16 +32,16 @@
     & > div {
       flex-direction: column;
       align-items: center;
-      gap:0;
+      gap: 0;
     }
   }
 
   &:hover {
-    background: var(--theme-light);
+    --header-button-bg: var(--header-button-bg-hover);
   }
 
   &:focus {
-    box-shadow:0 0 0 1px var(--theme) inset;
+    box-shadow: 0 0 0 1px var(--theme) inset;
   }
 
   &-icon {
@@ -52,31 +57,28 @@
   }
 
   &--inactive {
-    background: var(--theme-light);
+    --header-button-bg: var(--theme-light);
+
     &:hover {
-      background: var(--theme-medium);
+      --header-button-bg: var(--theme-medium);
     }
   }
 
   &--dark {
-    background: var(--black);
-    color: var(--white);
-    box-shadow: 0 -1px 0 0 var(--grey-lighter) inset;
-
+    --header-button-bg: var(--black);
+    --header-button-color: var(--white);
 
     &:hover {
-      background: var(--grey-darker);
+      --header-button-bg: var(--grey-darker);
     }
   }
 
   &--light {
-    background: var(--white);
-    color: var(--black);
-    box-shadow: 0 -1px 0 0 var(--grey-lighter) inset;
-
+    --header-button-bg: var(--white);
+    --header-button-color: var(--black);
 
     &:hover {
-      background: var(--grey-lightest);
+      --header-button-bg: var(--grey-lightest);
     }
   }
 }

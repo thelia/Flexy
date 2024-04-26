@@ -3,13 +3,12 @@
     {% if icon %}
       <span class='HeaderButton-icon'>{{ source("/icons/" ~ icon ~ ".svg") }}</span>
     {% endif %}
-    {% if not small or mobile %}
-    <div class='flex flex-col items-start'>
+
+    <div class='flex flex-col items-start HeaderButton--text'>
       <span>{{ text }}</span>
       {% if subText and not mobile %}
         <span class='HeaderButton-sub'>{{ subText }}</span>
       {% endif %}
     </div>
-    {% endif %}
   </div>
 </button>

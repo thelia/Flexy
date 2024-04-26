@@ -111,6 +111,16 @@
   line-height: var(--line-height-paragraph-7);
 }
 
+.paragraph {
+  &--semibold {
+    font-weight: 600;
+  }
+
+  &--bold {
+    font-weight: 700;
+  }
+}
+
 .typo-button {
   &-large {
     font-size: var(--font-size-button-large);
@@ -129,11 +139,9 @@
   }
 }
 
-
 a {
   text-decoration: underline;
 }
-
 
 .link {
   font-size: var(--font-size-link-medium);
