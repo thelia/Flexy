@@ -1,4 +1,5 @@
 import Tag from './Tag.twig';
+import tagFunction from './Tag.js';
 
 export default {
   title: 'Design System/Molecules/Tag'
@@ -20,6 +21,9 @@ export const Base = {
 
 export const Action = {
   render: (args) => Tag(args),
+  play: () => {
+    tagFunction()
+  },
   args: {
     customText: "Commande validée",
     icon: "carbone",

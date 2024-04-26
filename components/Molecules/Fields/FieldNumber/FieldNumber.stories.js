@@ -1,4 +1,5 @@
 import FieldNumber from './FieldNumber.twig';
+import fieldNumberFunction from './FieldNumber.js';
 
 export default {
   title: 'Design System/Molecules/Fields/FieldNumber'
@@ -6,6 +7,9 @@ export default {
 
 export const Base = {
   render: (args) => FieldNumber(args),
+  play: () => {
+    fieldNumberFunction();
+  },
   args: {
     name: "Indication",
     min: "",

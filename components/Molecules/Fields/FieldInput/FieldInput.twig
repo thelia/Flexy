@@ -34,20 +34,3 @@
   </div>
   {% if error %}<span class='FieldInput-error'>{{ error }}</span>{% endif %}
 </div>
-
-{# TODO: fichier js ? #}
-{% block javascript %}
-  <script>
-    const input = document.querySelector("input");
-
-    if (input) {
-      input.addEventListener('input', function() {
-        if (input.value.trim() !== '') {
-          input.classList.add('FieldInput-input--filled');
-        } else {
-          input.classList.remove('FieldInput-input--filled');
-        }
-      });
-    }
-  </script>
-{% endblock %} 

@@ -1,4 +1,5 @@
 import FieldSelect from './FieldSelect.twig';
+import fieldSelectFunction from './FieldSelect.js';
 
 export default {
   title: 'Design System/Molecules/Fields/FieldSelect'
@@ -6,6 +7,9 @@ export default {
 
 export const Base = {
   render: (args) => FieldSelect(args),
+  play: () => {
+    fieldSelectFunction();
+  },
   args: {
     name: "Indication",
     options: [{ value: 1, label: "selecteur 1" }, { value: 2, label: "selecteur 2" }, { value: 3, label: "selecteur 3" }],
