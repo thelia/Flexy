@@ -7,6 +7,7 @@ node_modules
 
 # Storybook
 .out
+storybook-static
 
 # System
 .DS_Store
