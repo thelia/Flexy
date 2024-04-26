@@ -1,4 +1,4 @@
-<header class='Header py-[15px] flex md:justify-between md:py-0 md:pl-[30px] h-[80px]'>
+<header class='Header flex sm:justify-between justify-center sm:pl-[30px] h-[80px] py-px'>
   <div class='flex'>
     {% if type == "searchbar" %}  
       <div class='hidden lg:block xl:hidden'>
@@ -25,13 +25,23 @@
     </div>
   {% endif %}
 
-  <div class='flex'>
-    {% include '../../Molecules/HeaderButton/HeaderButton.twig' with {icon: 'search', classes: 'HeaderButton--light', text: 'Search', small: true } %}
-    {% include '../../Molecules/HeaderButton/HeaderButton.twig' with {icon: 'heart-fill', classes: 'HeaderButton--light', text: 'Wishlist', small: true } %}
-    {% include '../../Molecules/HeaderButton/HeaderButton.twig' with {icon: 'account', classes: 'HeaderButton--light', text: 'Login', small: true } %}
-    {% include '../../Molecules/HeaderButton/HeaderButton.twig' with {icon: 'cart', text: 'Cart', classes: 'HeaderButton--light', small: true } %}
-    <div class='block lg:hidden'>
-      {% include '../../Molecules/HeaderButton/HeaderButton.twig' with {icon: 'menu', text: 'Cart', classes: 'HeaderButton--light', small: true } %}
-    </div>
+  <div class='hidden sm:flex'>
+    {% if type != "searchbar" %}
+      {% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'search', classes: 'HeaderButton--search', text: 'Search' } %}
+    {% endif %}
+    {% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'heart-fill', classes: 'HeaderButton--wishlist', text: 'Wishlist' } %}
+    {% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'account', classes: 'HeaderButton--account', text: 'Login' } %}
+    {% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'cart', text: 'Cart', classes: 'HeaderButton--cart' } %}
+    {% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'menu', text: 'Cart', classes: 'HeaderButton--menu lg:hidden' } %}
   </div>
 </header>
+
+{% if type == "searchbar" %}
+  <nav class='hidden xl:flex xl:gap-[30px] bg-grey-lightest xl:justify-center xl:items-center'>
+    {% include '../../Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
+    {% include '../../Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
+    {% include '../../Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
+    {% include '../../Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
+    {% include '../../Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
+  </nav>
+{% endif %}

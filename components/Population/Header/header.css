@@ -2,3 +2,65 @@
 .HeaderCheckout {
   box-shadow: 0 -1px 0 0 var(--grey-lighter) inset;
 }
+
+.Header {
+  .HeaderButton {
+    &--text {
+      @apply sr-only xl:not-sr-only;
+    }
+
+    &--search,
+    &--menu {
+      .HeaderButton--text {
+        @apply sr-only;
+      }
+    }
+
+    &--account {
+      --header-button-bg: var(--white);
+      --header-button-color: var(--black);
+
+      @screen lg {
+        --header-button-bg: var(--theme-light);
+        --header-button-color: var(--black);
+      }
+
+      &:hover {
+        --header-button-bg: var(--grey-lightest);
+
+        @screen lg {
+          --header-button-bg: var(--theme-medium);
+        }
+      }
+    }
+
+    &--cart {
+      --header-button-bg: var(--white);
+      --header-button-color: var(--black);
+
+      @screen lg {
+        --header-button-bg: var(--black);
+        --header-button-color: var(--white);
+      }
+
+      &:hover {
+        --header-button-bg: var(--grey-lightest);
+
+        @screen lg {
+          --header-button-bg: var(--grey-darker);
+        }
+      }
+    }
+
+    &--search,
+    &--menu,
+    &--wishlist {
+      --header-button-bg: var(--white);
+      --header-button-color: var(--black);
+
+      &:hover {
+        --header-button-bg: var(--grey-lightest);
+      }
+    }
+  }
+}
