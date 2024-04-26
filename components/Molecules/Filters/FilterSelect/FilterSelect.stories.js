@@ -1,4 +1,5 @@
 import FilterSelect from './FilterSelect.twig';
+import filterSelectFunction from './FilterSelect.js';
 
 export default {
   title: 'Design System/Molecules/Filters/FilterSelect'
@@ -15,6 +16,9 @@ export const Base = {
 
 export const Color = {
   render: (args) => FilterSelect(args),
+  play: () => {
+    filterSelectFunction()
+  },
   args: {
     id: "colorFilterSelect",
     options: [{ value: 1, label: "<span class='colorRounded' data-bg-color='#6969B3'></span>State Blue" }, { value: 2, label: "<span class='colorRounded' data-bg-color='#FFB698'></span>Vermillon" }, { value: 3, label: "<span class='colorRounded' data-bg-color='#767676'></span>Grey" }],

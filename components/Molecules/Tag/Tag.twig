@@ -25,16 +25,3 @@
     {% endif %}
   </button>
 {% endif %}
-
-{# TODO: fichier js ? #}
-{% block javascript %}
-  <script>
-    const close = document.querySelector('.Tag-iconClose');
-
-    if (close) {
-      close.addEventListener('click', function() {
-        this.parentNode.style.display = 'none';
-      });
-    };
-  </script>
-{% endblock %} 

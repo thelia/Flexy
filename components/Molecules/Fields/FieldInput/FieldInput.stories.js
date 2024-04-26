@@ -1,4 +1,5 @@
 import FieldInput from './FieldInput.twig';
+import fieldInputFunction from './FieldInput.js';
 
 export default {
   title: 'Design System/Molecules/Fields/FieldInput'
@@ -6,6 +7,9 @@ export default {
 
 export const Base = {
   render: (args) => FieldInput(args),
+  play: () => {
+    fieldInputFunction()
+  },
   args: {
     name: "Indication",
     type: "",

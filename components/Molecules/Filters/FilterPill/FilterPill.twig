@@ -24,17 +24,3 @@
     {% endif %}
   </button>
 {% endif %}
-
-{# TODO: fichier js ? #}
-{% block javascript %}
-  <script>
-    const close = document.querySelector('.FilterPill--selected');
-
-    if (close) {
-      close.addEventListener('click', function() {
-        this.parentNode.style.display = 'none';
-        onClickClose();
-      });
-    };
-  </script>
-{% endblock %} 
