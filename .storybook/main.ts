@@ -44,21 +44,15 @@ const config: StorybookConfig = {
     name: '@storybook/html-webpack5',
     options: {}
   },
-  webpackFinal: async (config, { configType }) => {
+  webpackFinal: async (config) => {
     config?.module?.rules?.push({
       test: /\.twig$/,
       use: [
         {
-          loader: 'twig-loader',
-          options: {
-            namespaces: {
-              subpath: configType === 'PRODUCTION' ? '/Flexy' : ''
-            }
-          }
+          loader: 'twig-loader'
         }
       ]
     });
-
     return config;
   },
   docs: {

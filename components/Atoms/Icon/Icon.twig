@@ -5,7 +5,7 @@
     {% for icon in line %}
    <div class='flex flex-col items-center {{ color }}'>
      <div class='{{ size }} '>
-       {{ source("@subpath/icons/" ~ icon  ~".svg") }}
+       {{ source("/icons/" ~ icon  ~".svg") }}
      </div>
      <div class='text-xs'>{{ icon }}</div>
    </div>

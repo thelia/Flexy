@@ -1,0 +1,30 @@
+# Workflow name
+name: 'Chromatic Publish'
+
+on:
+  push:
+    branches:
+      - flexy
+  pull_request:
+
+# List of jobs
+jobs:
+  test:
+    # Operating System
+    runs-on: ubuntu-latest
+    # Job steps
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'yarn'
+      - run: yarn
+      #👇 Adds Chromatic as a step in the workflow
+      - uses: chromaui/action@v1
+        # Options required for Chromatic's GitHub Action
+        with:
+          #👇 Chromatic projectToken,
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
