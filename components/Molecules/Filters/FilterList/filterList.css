@@ -1,0 +1,55 @@
+.FilterList {
+  display: inline-flex;
+  width: 100%;
+  outline: 0;
+  border-radius: 4px;
+
+  &:focus {
+    outline: 1px solid var(--theme);
+  }
+
+  &-input {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
+
+  &-label {
+    font-size: var(--font-size-paragraph-3);
+    font-family: var(--font-family-paragraph-3);
+    line-height: var(--line-height-paragraph-3);
+    color: var(--black);
+    background-color: #fff;
+    border-radius: 4px;
+    width: 100%;
+    padding: rem-convert(12px) rem-convert(56px) rem-convert(12px)
+      rem-convert(16px);
+    cursor: pointer;
+
+    @media screen and (max-width: 767px) {
+      font-size: var(--font-size-paragraph-4);
+      line-height: var(--line-height-paragraph-4);
+    }
+
+    &:hover {
+      background-color: var(--grey-lightest);
+    }
+  }
+
+  &:has(.FilterList-input:checked) label {
+    background-color: var(--theme-light);
+    background-image: url('/assets/icons/checkmark.svg');
+    background-repeat: no-repeat;
+    background-position: right 8px top 50%;
+    background-size: rem-convert(36px) auto;
+
+    @media screen and (max-width: 767px) {
+      background-size: rem-convert(32px) auto;
+    }
+  }
+
+  &:hover:has(.FilterList-input:checked) label {
+    background-color: var(--theme-medium);
+  }
+}
