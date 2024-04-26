@@ -44,7 +44,7 @@ const config: StorybookConfig = {
     name: '@storybook/html-webpack5',
     options: {}
   },
-  webpackFinal: async (config) => {
+  webpackFinal: async (config, { configType }) => {
     config?.module?.rules?.push({
       test: /\.twig$/,
       use: [
@@ -53,6 +53,11 @@ const config: StorybookConfig = {
         }
       ]
     });
+
+    if (configType === 'PRODUCTION' && config?.output?.publicPath) {
+      config.output.publicPath = '/Flexy/';
+    }
+
     return config;
   },
   docs: {
