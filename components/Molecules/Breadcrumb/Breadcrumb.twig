@@ -1,14 +1,29 @@
-{% set classes = '' %}
-{% if compressed %}
-   {% set classes = classes ~ ' Breadcrumb--compressed' %}
-{% endif %}
+<nav class="Breadcrumb{{ classes }}" aria-label="Fil d'Ariane">
+  <ol class="Breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
+    {% if items.length > 3 %}
+      <li id="Breadcrumb-compressed" class="Breadcrumb-item Breadcrumb-item--isLink">
+        <button class="Breadcrumb-item-link Breadcrumb-compressed">...</button>
+      </li>
+    {% endif %}
 
-{% if href %}
-  <a class="Breadcrumb{{ classes }}" href="{{ href }}">
-    {{ compressed ? '...' : customText }}
-  </a>
-{% else %}
-  <span class="Breadcrumb{{ classes }}">
-    {{ compressed ? '...' : customText }}
-  </span>
-{% endif %}
+    {% for item in items %}
+      <li class="Breadcrumb-item{% if item.href %} Breadcrumb-item--isLink{% endif %}{% if loop.index <= (items.length - 3) %} hide{% endif %}" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        {% if item.href %}
+          <a class="Breadcrumb-item-link" href="{{ item.href }}" itemprop="item">
+            <span itemprop="name">{{ item.label }}</span>
+          </a>
+          <meta itemprop="position" content="{{ loop.index + 1 }}" />
+        {% else %}
+          <span itemProp="name" aria-current="page">
+            {{ item.label }}
+          </span>
+          <meta itemprop="position" content="{{ loop.index + 1 }}" />
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+</nav>
+
+
+
+
