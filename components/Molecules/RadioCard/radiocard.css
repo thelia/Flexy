@@ -1,0 +1,81 @@
+.RadioCard {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  gap: 0.5rem;
+  --current-checkbox-color: var(--black);
+  --current-checkbox-hover: var(--grey-dark);
+  --current-checkbox-disabled: var(--grey-lighter);
+  padding: rem-convert(16px) rem-convert(24px);
+  border: 1px solid var(--current-checkbox-disabled);
+  border-radius: rem-convert(8px);
+  width: fit-content;
+
+  &:hover {
+    background-color: var(--grey-lightest);
+    border: 1px solid var(--grey);
+  }
+
+  &:has(.RadioCard-input:focus-visible) {
+    border: 1px solid var(--theme-medium);
+  }
+
+  &:has(.RadioCard-input[disabled]) {
+    border: 1px solid var(--current-checkbox-disabled);
+    cursor: not-allowed;
+
+    .RadioCard-label {
+      color: var(--current-checkbox-disabled);
+    }
+
+    .RadioCard-checkmark {
+      border: 1px solid var(--current-checkbox-disabled);
+    }
+
+    &:hover {
+      background-color: transparent;
+    }
+
+    .RadioCard-checkmark:after {
+      background-color: var(--current-checkbox-disabled);
+    }
+  }
+
+  &-input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:checked {
+      & ~ .RadioCard-checkmark:after {
+        content: '';
+        position: absolute;
+        border-radius: 50%;
+        top: 2px;
+        bottom: 2px;
+        left: 2px;
+        right: 2px;
+        background-color: var(--current-checkbox-color);
+      }
+    }
+  }
+
+  &-label {
+    font-size: var(--font-size-button-large);
+    font-weight: var(--font-weight-button-large);
+    font-family: var(--font-family-button-large);
+    color: var(--current-checkbox-color);
+  }
+
+  &-checkmark {
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    border: 1px solid var(--current-checkbox-color);
+    position: relative;
+    background-color: var(--white);
+  }
+}
