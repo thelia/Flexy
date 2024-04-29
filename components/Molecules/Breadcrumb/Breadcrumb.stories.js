@@ -1,4 +1,5 @@
 import Breadcrumb from './Breadcrumb.twig';
+import breadcrumbFunction from './Breadcrumb.js';
 
 export default {
   title: 'Design System/Molecules/Breadcrumb'
@@ -7,12 +8,27 @@ export default {
 export const Base = {
   render: (args) => Breadcrumb(args),
   args: {
-    customText: 'Homepage',
-    href: ''
+    items: [
+      { label: 'Page parante', href: '#' },
+      { label: 'Page mère', href: '#' },
+      { label: 'Page actuelle' }
+    ]
+  }
+};
+
+export const Lengthy = {
+  render: (args) => Breadcrumb(args),
+  play: () => {
+    breadcrumbFunction()
   },
-  argTypes: {
-    compressed: {
-      control: { type: 'boolean' }
-    }
-  },
+  args: {
+    items: [
+      { label: 'Non visible', href: '#' },
+      { label: 'Non visible', href: '#' },
+      { label: 'Page parante', href: '#' },
+      { label: 'Page mère', href: '#' },
+      { label: 'Page actuelle' }
+    ]
+
+  }
 };
