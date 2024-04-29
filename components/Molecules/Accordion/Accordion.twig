@@ -1,0 +1,12 @@
+{% set classes = '' %}
+{% set classes = classes ~ ' Accordion--' ~ (variant|default('text')) %}
+
+<details class='Accordion{{ classes }}'>
+  <summary class='Accordion-summary'>
+    {{ title }}
+    <span class='Accordion-icon'>{{ source("/icons/chevron-down.svg") }}</span>
+  </summary>
+  <div class="Accordion-content">
+    {{ content }}
+  </div>
+</details>

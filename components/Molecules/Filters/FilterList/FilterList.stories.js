@@ -8,9 +8,10 @@ export const Base = {
   render: (args) => FilterList(args),
   args: {
     label: 'Item filtre et tri',
-    value: 1
+    value: 1,
+    onClick: {},
   },
   parameters: {
-    backgrounds: { default: 'grey' },
+    backgrounds: { default: 'grey-lighter' },
   },
 };

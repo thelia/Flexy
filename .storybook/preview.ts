@@ -21,6 +21,10 @@ const preview: Preview = {
           value: '#F5F5F5'
         },
         {
+          name: 'grey-lighter',
+          value: '#D6D6D6'
+        },
+        {
           name: 'white',
           value: '#FFFFFF'
         }
