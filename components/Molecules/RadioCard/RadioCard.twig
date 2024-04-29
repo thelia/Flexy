@@ -1,0 +1,11 @@
+<label class="RadioCard {{ classes|default('') }}">
+  <input
+    type="radio"
+    class="RadioCard-input"
+    name='{{ name }}'
+    value='{{ value }}'
+    {% if disabled %}disabled{% endif %}
+  >
+    <span class="RadioCard-checkmark"></span>
+    <span class="RadioCard-label">{{ label }}</span>
+</label>
