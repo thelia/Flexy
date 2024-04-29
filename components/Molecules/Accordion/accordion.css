@@ -1,0 +1,77 @@
+.Accordion {
+  &-summary {
+    padding: rem-convert(14px) rem-convert(16px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--grey-lighter);
+    font-size: var(--font-size-paragraph-2);
+    line-height: var(--line-height-paragraph-2);
+    font-family: var(--font-family-paragraph-2);
+    color: var(--black);
+
+    &::marker {
+      font-size: 0;
+    }
+  }
+
+  &-icon {
+    height: rem-convert(28px);
+    width: rem-convert(28px);
+    color: var(--black);
+    transform: rotate(0);
+    transition: 0.2s ease all;
+  }
+
+  &-content {
+    padding: rem-convert(18px) rem-convert(28px) rem-convert(30px)
+      rem-convert(16px);
+    border-bottom: 1px solid var(--grey-lighter);
+    font-size: var(--font-size-paragraph-5);
+    line-height: var(--line-height-paragraph-5);
+    font-family: var(--font-family-paragraph-5);
+    color: var(--black);
+  }
+
+  &[open] {
+    .Accordion-summary {
+      border-bottom: none;
+    }
+
+    .Accordion-icon {
+      transform: rotate(-180deg);
+      transition: 0.2s ease all;
+    }
+  }
+
+  &--bold {
+    .Accordion-summary {
+      font-weight: 600;
+      font-size: var(--font-size-paragraph-4);
+      line-height: var(--line-height-paragraph-4);
+      border-bottom: none;
+    }
+
+    .Accordion-content {
+      border-bottom: none;
+      padding: rem-convert(0px) rem-convert(16px) rem-convert(20px)
+        rem-convert(16px);
+    }
+  }
+
+  &--vermillon {
+    background-color: var(--theme-lightest);
+
+    .Accordion-summary {
+      font-size: var(--font-size-paragraph-4);
+      line-height: var(--line-height-paragraph-4);
+      border-bottom: none;
+    }
+
+    .Accordion-content {
+      border-bottom: none;
+      padding: rem-convert(0px) rem-convert(16px) rem-convert(20px)
+        rem-convert(16px);
+    }
+  }
+}
