@@ -1,22 +1,10 @@
-const filterSelectFunction = () => {
-  // Gestion de la couleur des pastilles
-  const elements = document.querySelectorAll(".colorRounded");
-
-  if (elements.length) {
-    elements.forEach(function (element) {
-      const bgColor = element.getAttribute("data-bg-color");
-      if (bgColor) {
-        element.style.setProperty("--default-bg-color", bgColor);
-      }
-    });
-  }
-
+const dropdownFunction = () => {
   let focusActive = false;
-  const currentOption = document.querySelector(".FilterSelect-current");
-  const options = document.querySelectorAll(".FilterSelect-option");
-  const liOptions = document.querySelectorAll(".FilterSelect-listItem");
+  const currentOption = document.querySelector(".Dropdown-current");
+  const options = document.querySelectorAll(".Dropdown-option");
+  const liOptions = document.querySelectorAll(".Dropdown-listItem");
 
-  // Supprimer le focus de l'option pour refermer le filtre
+  // Supprimer le focus de l'option pour refermer le dropdown
   options.forEach(function (option) {
     option.addEventListener("click", function () {
       if (focusActive) {
@@ -37,7 +25,7 @@ const filterSelectFunction = () => {
     });
   });
 
-  // Refermer le filtre si on reclic sur l'option currente (en-tête)
+  // Refermer le dropdown si on reclic sur l'option currente (en-tête)
   currentOption.addEventListener("click", function () {
     if (focusActive) {
       currentOption.blur();
@@ -46,4 +34,4 @@ const filterSelectFunction = () => {
   });
 }
 
-export default filterSelectFunction;
+export default dropdownFunction;

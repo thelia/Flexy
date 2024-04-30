@@ -7,6 +7,9 @@ export default {
 
 export const Base = {
   render: (args) => FilterSelect(args),
+  play: () => {
+    filterSelectFunction()
+  },
   args: {
     id: "filterSelect",
     placeholder: 'Taille',
