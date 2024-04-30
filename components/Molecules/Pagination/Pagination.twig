@@ -1,8 +1,8 @@
 {# Nombre de pages à afficher de chaque côté de la page actuelle #}
 {% set range = 2 %} 
 
-<nav class="Pagination">
-  {% if totalPages > 1 %}
+{% if totalPages > 1 %}
+  <nav class="Pagination">
     <ul class="Pagination-list">
       {% if currentPage != 1 %}
         <li class="Pagination-listItemPrev">
@@ -23,11 +23,11 @@
         <li><span class="Pagination-item">...</span></li>
       {% endif %}
         
-      {% for i in 1..totalPages %}
-        {% if i == currentPage %}
-          <li><span class="Pagination-item Pagination-item--active">{{ i }}</span></li>
-        {% elseif i > currentPage - range and i < currentPage + range %}
-          <li><a href="?page={{ i }}" class="Pagination-item">{{ i }}</a></li>
+      {% for page in 1..totalPages %}
+        {% if page == currentPage %}
+          <li><span class="Pagination-item Pagination-item--active">{{ page }}</span></li>
+        {% elseif page > currentPage - range and page < currentPage + range %}
+          <li><a href="?page={{ page }}" class="Pagination-item">{{ page }}</a></li>
         {% endif %}
       {% endfor %}
         
@@ -35,7 +35,7 @@
         <li><span class="Pagination-item">...</span></li>
       {% endif %}
 
-      {% if currentPage != totalPages and currentPage + 1 != 12  %}
+      {% if currentPage != totalPages and currentPage + 1 != totalPages  %}
         <li>
           <a href="?page={{ totalPages }}" class="Pagination-item">{{ totalPages }}</a>
         </li>
@@ -50,5 +50,5 @@
         </li>
       {% endif %}
     </ul>
-  {% endif %}
-</nav>
+  </nav>
+{% endif %}
