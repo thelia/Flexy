@@ -1,19 +1,54 @@
-{% set classes = '' %}
-{% if isPrev %}
-   {% set classes = classes ~ ' Pagination--isPrev' %}
-{% endif %}
-{% if isNext %}
-   {% set classes = classes ~ ' Pagination--isNext' %}
-{% endif %}
+{# Nombre de pages à afficher de chaque côté de la page actuelle #}
+{% set range = 2 %} 
 
-<a class="Pagination{{ classes }}" href="{{ href }}">
-  {% if isPrev %}
-    <span class='Pagination-icon'>{{ source("/icons/chevron-left.svg") }}</span>
-    <span class='Pagination-text'>{{ prevText }}</span>
-  {% elseif isNext %}
-    <span class='Pagination-text'>{{ nextText }}</span>
-    <span class='Pagination-icon'>{{ source("/icons/chevron-right.svg") }}</span>
-  {% else %}
-    {{ number }}
+<nav class="Pagination">
+  {% if totalPages > 1 %}
+    <ul class="Pagination-list">
+      {% if currentPage != 1 %}
+        <li class="Pagination-listItemPrev">
+          <a href="?page={{ currentPage - 1 }}" class="Pagination-item Pagination-item--isPrev">
+            <span class='Pagination-icon'>{{ source("/icons/chevron-left.svg") }}</span>
+            <span class='Pagination-text'>{{ prevText }}</span>
+          </a>
+        </li>
+      {% endif %}
+
+      {% if currentPage != 1 and currentPage - 1 != 1 %}
+        <li>
+          <a href="?page=1" class="Pagination-item">1</a>
+        </li>
+      {% endif %}
+        
+      {% if currentPage > range + 1 %}
+        <li><span class="Pagination-item">...</span></li>
+      {% endif %}
+        
+      {% for i in 1..totalPages %}
+        {% if i == currentPage %}
+          <li><span class="Pagination-item Pagination-item--active">{{ i }}</span></li>
+        {% elseif i > currentPage - range and i < currentPage + range %}
+          <li><a href="?page={{ i }}" class="Pagination-item">{{ i }}</a></li>
+        {% endif %}
+      {% endfor %}
+        
+      {% if totalPages > currentPage + range %}
+        <li><span class="Pagination-item">...</span></li>
+      {% endif %}
+
+      {% if currentPage != totalPages and currentPage + 1 != 12  %}
+        <li>
+          <a href="?page={{ totalPages }}" class="Pagination-item">{{ totalPages }}</a>
+        </li>
+      {% endif %}
+
+      {% if currentPage != totalPages %}
+        <li class="Pagination-listItemNext">
+          <a href="?page={{ currentPage + 1 }}" class="Pagination-item Pagination-item--isNext">
+            <span class='Pagination-text'>{{ nextText }}</span>
+            <span class='Pagination-icon'>{{ source("/icons/chevron-right.svg") }}</span>
+          </a>
+        </li>
+      {% endif %}
+    </ul>
   {% endif %}
-</a>
+</nav>

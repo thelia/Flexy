@@ -1,26 +1,60 @@
 .Pagination {
-  font-size: var(--font-size-button-medium);
-  font-weight: var(--font-weight-button-medium);
-  font-family: var(--font-family-button-medium);
-  color: var(--black);
-  text-decoration: none;
-  min-width: rem-convert(45px);
-  height: rem-convert(45px);
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-
-  &:hover {
-    background-color: var(--grey-lightest);
-    color: var(--grey);
+  &-list {
+    display: flex;
+    align-items: center;
+    gap: 12px;
   }
 
-  &:active {
-    color: var(--theme-dark);
+  &-item {
+    font-size: var(--font-size-button-medium);
+    font-weight: var(--font-weight-button-medium);
+    font-family: var(--font-family-button-medium);
+    color: var(--black);
+    text-decoration: none;
+    min-width: rem-convert(45px);
+    height: rem-convert(45px);
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    a&:hover {
+      background-color: var(--grey-lightest);
+      color: var(--grey);
+    }
+
+    &:focus {
+      outline: var(--theme-medium) solid 2px;
+    }
+
+    &--active {
+      color: var(--theme-dark);
+    }
+
+    @media screen and (min-width: 768px) {
+      &--isPrev {
+        padding: 0 rem-convert(12px) 0 rem-convert(4px);
+
+        .Pagination-text {
+          margin-left: 6px;
+        }
+      }
+
+      &--isNext {
+        padding: 0 rem-convert(4px) 0 rem-convert(12px);
+
+        .Pagination-text {
+          margin-right: 6px;
+        }
+      }
+    }
   }
 
-  &:focus {
-    outline: var(--theme-medium) solid 2px;
+  &-listItemPrev {
+    margin-right: 12px;
+  }
+
+  &-listItemNext {
+    margin-left: 12px;
   }
 
   &-icon {
@@ -28,24 +62,6 @@
     height: rem-convert(21px);
     display: inline-block;
     color: var(--black);
-  }
-
-  @media screen and (min-width: 768px) {
-    &--isPrev {
-      padding: 0 rem-convert(12px) 0 rem-convert(4px);
-
-      .Pagination-text {
-        margin-left: 6px;
-      }
-    }
-
-    &--isNext {
-      padding: 0 rem-convert(4px) 0 rem-convert(12px);
-
-      .Pagination-text {
-        margin-right: 6px;
-      }
-    }
   }
 
   @media screen and (max-width: 767px) {

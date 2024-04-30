@@ -7,10 +7,10 @@ export default {
 export const Base = {
   render: (args) => Pagination(args),
   args: {
-    number: '1',
     prevText: 'Précédent',
     nextText: 'Suivant',
-    href: '',
+    currentPage: 2,
+    totalPages: 12,
   },
   argTypes: {
     isPrev: {
