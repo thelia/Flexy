@@ -4,7 +4,12 @@
 <details class='Accordion{{ classes }}'>
   <summary class='Accordion-summary'>
     {{ title }}
-    <span class='Accordion-icon'>{{ source("/icons/chevron-down.svg") }}</span>
+    {% if variant == 'faq' %}
+      <span class='Accordion-icon Accordion-icon--plus'>{{ source("/icons/plus.svg") }}</span>
+      <span class='Accordion-icon Accordion-icon--minus'>{{ source("/icons/minus.svg") }}</span>
+    {% else %}
+      <span class='Accordion-icon'>{{ source("/icons/chevron-down.svg") }}</span>
+    {% endif %}
   </summary>
   <div class="Accordion-content">
     {{ content }}
