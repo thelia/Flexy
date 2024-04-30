@@ -9,9 +9,15 @@
     line-height: var(--line-height-paragraph-2);
     font-family: var(--font-family-paragraph-2);
     color: var(--black);
+    outline: 0;
 
     &::marker {
       font-size: 0;
+    }
+
+    &:focus-visible {
+      outline: var(--theme) solid 1px;
+      border-bottom: 0px solid transparent;
     }
   }
 
@@ -44,7 +50,7 @@
     }
   }
 
-  &--bold {
+  &--promo {
     .Accordion-summary {
       font-weight: 600;
       font-size: var(--font-size-paragraph-4);
@@ -59,7 +65,7 @@
     }
   }
 
-  &--vermillon {
+  &--filter {
     background-color: var(--theme-lightest);
 
     .Accordion-summary {
@@ -72,6 +78,39 @@
       border-bottom: none;
       padding: rem-convert(0px) rem-convert(16px) rem-convert(20px)
         rem-convert(16px);
+    }
+  }
+
+  &--faq {
+    .Accordion-summary {
+      font-weight: var(--font-weight-h4);
+      font-size: var(--font-size-h4-d);
+      padding: rem-convert(18px) rem-convert(10px) rem-convert(18px) 0;
+
+      @media screen and (max-width: 767px) {
+        font-size: var(--font-size-h4-m);
+        padding: rem-convert(14px) rem-convert(10px) rem-convert(14px) 0;
+      }
+    }
+
+    .Accordion-content {
+      padding: 0 0 rem-convert(20px) 0;
+      font-size: var(--font-size-paragraph-2);
+      line-height: var(--line-height-paragraph-2);
+    }
+
+    .Accordion-icon--minus {
+      display: none;
+    }
+
+    &[open] {
+      .Accordion-icon--minus {
+        display: block;
+      }
+
+      .Accordion-icon--plus {
+        display: none;
+      }
     }
   }
 }
