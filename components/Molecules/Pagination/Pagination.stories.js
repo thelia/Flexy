@@ -10,14 +10,6 @@ export const Base = {
     prevText: 'Précédent',
     nextText: 'Suivant',
     currentPage: 2,
-    totalPages: 12,
-  },
-  argTypes: {
-    isPrev: {
-      control: { type: 'boolean' }
-    },
-    isNext: {
-      control: { type: 'boolean' }
-    }
-  },
+    totalPages: 3,
+  }
 };
