@@ -68,6 +68,12 @@
     animation-delay: 0.2s;
     animation-fill-mode: forwards;
     animation-timing-function: step-start;
+
+    /* Navigation au clavier */
+    &:has(.FilterSelect-option:focus) {
+      opacity: 1;
+      animation-name: none;
+    }
   }
 
   &-option {
@@ -80,6 +86,7 @@
     font-size: var(--font-size-paragraph-4);
     font-family: var(--font-family-paragraph-4);
     line-height: var(--line-height-paragraph-4);
+    outline: none;
 
     &:hover,
     &:focus {

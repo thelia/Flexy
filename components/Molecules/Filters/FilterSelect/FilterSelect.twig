@@ -16,8 +16,8 @@
   </div>
   <ul class="FilterSelect-list">
     {% for option in options %}
-      <li>
-        <label class="FilterSelect-option" for="{{ option.value }}" aria-hidden="true">{{ option.label }}</label>
+      <li class="FilterSelect-listItem">
+        <label tabindex="1" class="FilterSelect-option" for="{{ option.value }}" aria-hidden="true">{{ option.label }}</label>
       </li>
     {% endfor %}
   </ul>
