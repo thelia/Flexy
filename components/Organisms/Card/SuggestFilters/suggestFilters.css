@@ -1,0 +1,11 @@
+.SuggestFilters {
+  max-width: rem-convert(370px);
+  text-align: center;
+  background-color: var(--theme-lightest);
+  padding: rem-convert(24px);
+
+  &-desc {
+    @apply paragraph-2;
+    margin-bottom: rem-convert(8px);
+  }
+}
