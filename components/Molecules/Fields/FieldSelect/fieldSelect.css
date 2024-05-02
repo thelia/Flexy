@@ -9,10 +9,8 @@
   }
 
   &-label {
+    @apply paragraph-5;
     color: var(--black);
-    font-size: var(--font-size-paragraph-5);
-    font-family: var(--font-family-paragraph-5);
-    line-height: var(--line-height-paragraph-5);
   }
 
   &-help {
@@ -22,15 +20,13 @@
   }
 
   &-select {
+    @apply paragraph-4;
     border: 1px solid var(--theme-medium);
     border-radius: 8px;
     color: var(--grey-dark);
     font-style: italic;
     width: 100%;
     padding: rem-convert(16px) rem-convert(10px);
-    font-size: var(--font-size-paragraph-4);
-    font-family: var(--font-family-paragraph-4);
-    line-height: var(--line-height-paragraph-4);
     appearance: none;
     background: url('/assets/icons/chevron-small-down.svg');
     background-repeat: no-repeat;
@@ -85,11 +81,9 @@
   }
 
   &-error {
+    @apply paragraph-5;
     color: var(--error-dark);
     font-style: italic;
-    font-size: var(--font-size-paragraph-5);
-    font-family: var(--font-family-paragraph-5);
-    line-height: var(--line-height-paragraph-5);
   }
 
   &--success {

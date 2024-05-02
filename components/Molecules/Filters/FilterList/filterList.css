@@ -16,9 +16,7 @@
   }
 
   &-label {
-    font-size: var(--font-size-paragraph-3);
-    font-family: var(--font-family-paragraph-3);
-    line-height: var(--line-height-paragraph-3);
+    @apply paragraph-4;
     color: var(--black);
     border-radius: 4px;
     width: 100%;
@@ -26,9 +24,8 @@
       rem-convert(16px);
     cursor: pointer;
 
-    @media screen and (max-width: 767px) {
-      font-size: var(--font-size-paragraph-4);
-      line-height: var(--line-height-paragraph-4);
+    @media screen and (min-width: 768px) {
+      @apply paragraph-3;
     }
 
     &:hover {
@@ -41,10 +38,10 @@
     background-image: url('/assets/icons/checkmark.svg');
     background-repeat: no-repeat;
     background-position: right 8px top 50%;
-    background-size: rem-convert(36px) auto;
+    background-size: rem-convert(32px) auto;
 
-    @media screen and (max-width: 767px) {
-      background-size: rem-convert(32px) auto;
+    @media screen and (min-width: 768px) {
+      background-size: rem-convert(36px) auto;
     }
   }
 

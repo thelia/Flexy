@@ -1,7 +1,5 @@
 .FilterPill {
-  font-size: var(--font-size-paragraph-4);
-  font-family: var(--font-family-paragraph-4);
-  line-height: var(--line-height-paragraph-4);
+  @apply paragraph-4;
   padding: rem-convert(8px) rem-convert(10px);
   border-radius: 4px;
   display: inline-flex;

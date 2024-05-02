@@ -64,9 +64,7 @@
   }
 
   &-label {
-    font-size: var(--font-size-button-large);
-    font-weight: var(--font-weight-button-large);
-    font-family: var(--font-family-button-large);
+    @apply typo-button-large;
     color: var(--current-checkbox-color);
   }
 

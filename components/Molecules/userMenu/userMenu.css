@@ -1,7 +1,5 @@
 .UserMenu {
-  font-size: var(--font-size-paragraph-2);
-  line-height: var(--line-height-paragraph-2);
-  font-family: var(--font-family-paragraph-2);
+  @apply paragraph-2;
   color: var(--black);
   text-decoration: none;
   outline: none;

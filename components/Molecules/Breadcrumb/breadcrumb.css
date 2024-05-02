@@ -7,10 +7,8 @@
   }
 
   &-item {
+    @apply paragraph-4;
     color: var(--black);
-    font-size: var(--font-size-paragraph-4);
-    line-height: var(--line-height-paragraph-4);
-    font-family: var(--font-family-paragraph-4);
     display: flex;
     gap: rem-convert(8px);
 

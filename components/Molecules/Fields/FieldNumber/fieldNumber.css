@@ -4,13 +4,11 @@
   gap: rem-convert(4px);
 
   &-input {
+    @apply paragraph-4;
     border: 1px solid var(--theme-medium);
     border-radius: 8px;
     color: var(--black);
     padding: rem-convert(16px) rem-convert(10px);
-    font-size: var(--font-size-paragraph-4);
-    font-family: var(--font-family-paragraph-4);
-    line-height: var(--line-height-paragraph-4);
     transition: 0.2s ease all;
     width: rem-convert(48px);
     text-align: center;
@@ -54,11 +52,9 @@
   }
 
   &-error {
+    @apply paragraph-5;
     color: var(--error-dark);
     font-style: italic;
-    font-size: var(--font-size-paragraph-5);
-    font-family: var(--font-family-paragraph-5);
-    line-height: var(--line-height-paragraph-5);
   }
 
   &[disabled] {
