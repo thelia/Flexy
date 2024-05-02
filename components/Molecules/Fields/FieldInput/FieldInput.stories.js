@@ -11,7 +11,7 @@ export const Base = {
     fieldInputFunction()
   },
   args: {
-    name: "Indication",
+    name: "indication",
     type: "",
     label: "Indication",
     placeholder: "Ex. Nom",
@@ -20,6 +20,39 @@ export const Base = {
     error: "",
     unit: "",
     tooltip: "",
+  },
+  argTypes: {
+    disabled: {
+      control: { type: 'boolean' }
+    },
+    required: {
+      control: { type: 'boolean' }
+    },
+    success: {
+      control: { type: 'boolean' }
+    },
+    size: {
+      options: ['large', 'small'],
+      control: { type: 'select' },
+    }
+  }
+};
+
+export const WithButton = {
+  render: (args) => FieldInput(args),
+  play: () => {
+    fieldInputFunction()
+  },
+  args: {
+    name: "promoCode",
+    type: "text",
+    label: "",
+    placeholder: "Code Promo",
+    min: "",
+    max: "",
+    error: "",
+    tooltip: "",
+    button: "Appliquer"
   },
   argTypes: {
     disabled: {

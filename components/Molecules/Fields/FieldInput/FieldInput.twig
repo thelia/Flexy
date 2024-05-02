@@ -8,6 +8,10 @@
 {% if size %}
    {% set classes = classes ~ ' FieldInput--' ~ size %}
 {% endif %}
+{% if button %}
+   {% set classes = classes ~ ' FieldInput--withButton' %}
+{% endif %}
+
 
 <div class='FieldInput{{ classes }}' {% if disabled %}disabled{% endif %}>
   <div class='FieldInput-header'>
@@ -31,6 +35,11 @@
       {% if max %}maxlength='{{ max }}'{% endif %}
     />
     {% if unit %}<span class="FieldInput-unit">{{ unit }}</span>{% endif %}
+    {% if button %}
+      <div class="FieldInput-button">
+        {% include '../../Button/Button.twig' with {text: button, rectangle: true, type: "submit", classes: size == 'small' ? ' Button--small' : ''} %}
+      </div>
+    {% endif %}
   </div>
   {% if error %}<span class='FieldInput-error'>{{ error }}</span>{% endif %}
 </div>
