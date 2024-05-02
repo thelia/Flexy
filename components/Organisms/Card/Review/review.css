@@ -1,0 +1,41 @@
+.Review {
+  background-color: var(--white);
+  padding: rem-convert(16px);
+  border-radius: 8px;
+
+  &-author {
+    @apply paragraph-5;
+    margin-bottom: rem-convert(8px);
+    color: var(--grey);
+  }
+
+  &-review {
+    @apply paragraph-3;
+    margin-bottom: rem-convert(16px);
+  }
+
+  &-footer {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-note {
+    display: flex;
+    gap: rem-convert(5px);
+  }
+
+  &-star {
+    width: rem-convert(14px);
+    height: rem-convert(14px);
+    color: var(--black);
+
+    &--empty {
+      color: var(--grey-lighter);
+    }
+  }
+
+  &-date {
+    @apply indication;
+    color: var(--grey);
+  }
+}
