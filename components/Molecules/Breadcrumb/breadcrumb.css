@@ -2,7 +2,7 @@
   &-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: rem-convert(8px);
     align-items: center;
   }
 
@@ -12,7 +12,7 @@
     line-height: var(--line-height-paragraph-4);
     font-family: var(--font-family-paragraph-4);
     display: flex;
-    gap: 8px;
+    gap: rem-convert(8px);
 
     &--isLink {
       &::after {
@@ -42,7 +42,7 @@
     justify-content: center;
     line-height: rem-convert(8px);
     text-decoration: none;
-    margin-top: 2px;
+    margin-top: rem-convert(2px);
 
     &:focus {
       background-color: var(--grey-lightest);

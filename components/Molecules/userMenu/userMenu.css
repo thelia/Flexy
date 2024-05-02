@@ -10,7 +10,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 64px;
+  height: rem-convert(64px);
 
   &--vermillon {
     background-color: var(--theme-lighter);

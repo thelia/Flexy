@@ -50,13 +50,13 @@
     }
 
     &--unit {
-      padding-right: 50px;
+      padding-right: rem-convert(50px);
     }
   }
 
   &-unit {
     position: absolute;
-    right: 10px;
+    right: rem-convert(10px);
     bottom: 0;
     top: 0;
     display: flex;
@@ -72,7 +72,7 @@
       padding: rem-convert(10px);
 
       &--unit {
-        padding-right: 50px;
+        padding-right: rem-convert(50px);
       }
     }
   }
