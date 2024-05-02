@@ -138,6 +138,19 @@
     }
   }
 
+  &--withButton {
+    .FieldInput-input {
+      padding-right: 25%;
+    }
+  }
+
+  &-button {
+    position: absolute;
+    top: 50%;
+    right: 4px;
+    transform: translateY(-50%);
+  }
+
   ::placeholder {
     color: var(--grey-dark);
     font-style: italic;
