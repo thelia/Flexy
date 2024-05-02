@@ -2,7 +2,7 @@
   &-list {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: rem-convert(12px);
   }
 
   &-item {
@@ -35,7 +35,7 @@
         padding: 0 rem-convert(12px) 0 rem-convert(4px);
 
         .Pagination-text {
-          margin-left: 6px;
+          margin-left: rem-convert(6px);
         }
       }
 
@@ -43,18 +43,18 @@
         padding: 0 rem-convert(4px) 0 rem-convert(12px);
 
         .Pagination-text {
-          margin-right: 6px;
+          margin-right: rem-convert(6px);
         }
       }
     }
   }
 
   &-listItemPrev {
-    margin-right: 12px;
+    margin-right: rem-convert(12px);
   }
 
   &-listItemNext {
-    margin-left: 12px;
+    margin-left: rem-convert(12px);
   }
 
   &-icon {

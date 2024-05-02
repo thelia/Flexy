@@ -72,8 +72,8 @@
 
   &-checkmark {
     border-radius: 50%;
-    width: 12px;
-    height: 12px;
+    width: rem-convert(12px);
+    height: rem-convert(12px);
     border: 1px solid var(--current-checkbox-color);
     position: relative;
     background-color: var(--white);

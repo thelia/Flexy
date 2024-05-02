@@ -25,10 +25,10 @@
   &-icon {
     position: absolute;
     top: 50%;
-    right: 8px;
+    right: rem-convert(8px);
     transform: translateY(-50%);
-    height: 28px;
-    width: 28px;
+    height: rem-convert(28px);
+    width: rem-convert(28px);
     color: var(--black);
   }
 
@@ -97,12 +97,12 @@
   .colorRounded {
     --default-bg-color: #ffffff;
 
-    width: 21px;
-    height: 21px;
+    width: rem-convert(21px);
+    height: rem-convert(21px);
     display: block;
     border-radius: 50%;
     background-color: var(--default-bg-color);
-    margin-right: 8px;
+    margin-right: rem-convert(8px);
   }
 }
 

@@ -3,7 +3,7 @@
   font-family: var(--font-family-paragraph-3);
   line-height: var(--line-height-paragraph-3);
   padding: rem-convert(4px) rem-convert(12px);
-  border-radius: rem-convert(4px);
+  border-radius: 4px;
   display: inline-flex;
   align-items: center;
 
