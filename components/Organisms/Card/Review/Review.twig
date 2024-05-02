@@ -1,0 +1,17 @@
+<div class="Review">
+  <div class="Review-author">{{ author }}</div>
+  <div class="Review-review">{{ review }}</div>
+  <div class="Review-footer">
+    <div class="Review-note">
+      {% for star in 1..note %}
+        <span class="Review-star">{{ source("/icons/star.svg") }}</span>
+      {% endfor %}
+      {% if note < maxNote %}
+        {% for star in 1..(maxNote - note) %}
+          <span class="Review-star Review-star--empty">{{ source("/icons/star.svg") }}</span>
+        {% endfor %}
+      {% endif %}
+    </div>
+    <div class="Review-date">{{ date }}</div>
+  </div>
+</div>

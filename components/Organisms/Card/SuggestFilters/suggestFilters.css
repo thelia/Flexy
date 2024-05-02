@@ -3,6 +3,7 @@
   text-align: center;
   background-color: var(--theme-lightest);
   padding: rem-convert(24px);
+  border-radius: 8px;
 
   &-desc {
     @apply paragraph-2;
