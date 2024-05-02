@@ -1,7 +1,5 @@
 .Link {
-  font-size: var(--font-size-link-large);
-  font-family: var(--font-family-link-large);
-  font-weight: var(--font-weight-link-large);
+  @apply link-large;
   color: var(--black);
   display: inline-flex;
   align-items: center;
@@ -27,9 +25,7 @@
   }
 
   &--medium {
-    font-size: var(--font-size-link-medium);
-    font-family: var(--font-family-link-medium);
-    font-weight: var(--font-weight-link-medium);
+    @apply link;
   }
 
   &-icon {

@@ -1,8 +1,6 @@
 .OrderTag {
+  @apply paragraph-4;
   color: var(--black);
-  font-size: var(--font-size-paragraph-4);
-  font-family: var(--font-family-paragraph-4);
-  line-height: var(--line-height-paragraph-4);
   padding: rem-convert(6px) rem-convert(16px) rem-convert(6px) rem-convert(14px);
   border-radius: 48px;
   display: inline-flex;

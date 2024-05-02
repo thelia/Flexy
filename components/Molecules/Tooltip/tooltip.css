@@ -10,15 +10,13 @@
   }
 
   &-text {
+    @apply paragraph-4;
     visibility: hidden;
     max-width: 292px;
     width: max-content;
     background-color: var(--black);
     color: var(--white);
     text-align: center;
-    font-size: var(--font-size-paragraph-4);
-    font-family: var(--font-family-paragraph-4);
-    line-height: var(--line-height-paragraph-4);
     padding: rem-convert(22px) rem-convert(34px) rem-convert(22px)
       rem-convert(20px);
     border-radius: 8px;

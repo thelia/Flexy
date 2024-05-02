@@ -45,15 +45,13 @@
   }
 
   &-text {
+    @apply paragraph-4;
     display: none;
     width: 100%;
     padding: rem-convert(16px) rem-convert(44px) rem-convert(16px)
       rem-convert(16px);
     align-items: center;
     color: var(--black);
-    font-size: var(--font-size-paragraph-4);
-    font-family: var(--font-family-paragraph-4);
-    line-height: var(--line-height-paragraph-4);
   }
 
   &-list {
@@ -77,15 +75,13 @@
   }
 
   &-option {
+    @apply paragraph-4;
     background-color: var(--white);
     padding: rem-convert(16px) rem-convert(44px) rem-convert(16px)
       rem-convert(16px);
     display: flex;
     align-items: center;
     color: var(--black);
-    font-size: var(--font-size-paragraph-4);
-    font-family: var(--font-family-paragraph-4);
-    line-height: var(--line-height-paragraph-4);
     outline: none;
 
     &:hover,
