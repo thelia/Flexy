@@ -1,4 +1,10 @@
-<button class='Button {{ classes }}' {% if disabled %}disabled{% endif %}>
+{% set classes = classes|default('') %}
+{% if variant != 'primary' %}{% set classes = classes ~ ' Button--' ~ variant %}{% endif %}
+{% if fill %}{% set classes = classes ~ ' Button--fill'%}{% endif %}
+{% if rectangle %}{% set classes = classes ~ ' Button--rectangle'%}{% endif %}
+{% if round %}{% set classes = classes ~ ' Button--round'%}{% endif %}
+
+<button class='Button {{ classes }}' {% if disabled %}disabled{% endif %} type='{{ type|default('button') }}'>
   {% if icon_left %}
     <span>{{ source("/icons/"~ icon_left ~".svg") }}</span>
   {% endif %}

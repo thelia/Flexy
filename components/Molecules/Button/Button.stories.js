@@ -13,14 +13,14 @@ export const classic = {
   render: (args) => Compact(args),
   args: {
     customText: 'Button',
-    type: 'primary',
-    isFill: false,
-    isRectangle: false,
+    variant: 'primary',
+    fill: false,
+    rectangle: false,
     icon_left: 'none',
     icon_right: 'none'
   },
   argTypes: {
-    type: {
+    variant: {
       options: types,
       control: { type: 'radio' }
     },
@@ -32,10 +32,10 @@ export const classic = {
       options: ['none', ...icons],
       control: { type: 'radio' }
     },
-    isFill: {
+    fill: {
       control: { type: 'boolean' }
     },
-    isRectangle: {
+    rectangle: {
       control: { type: 'boolean' }
     }
   }
@@ -62,11 +62,11 @@ export const quantity = {
 export const rounds = {
   render: (args) => Rounds(args),
   args: {
-    type: 'primary',
+    variant: 'primary',
     icon: 'chevron-left'
   },
   argTypes: {
-    type: {
+    variant: {
       options: types,
       control: { type: 'radio' }
     },
