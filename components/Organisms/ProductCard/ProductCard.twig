@@ -1,8 +1,11 @@
 {% set productThumbnailUrl = base_url ~ "/images/placeholder.png" %}
-{% set productThumbnailTitle = "placeholder" %}
+{% set productTumbnailTitle = "placeholder" %}
+{% set classes = classes|default('') %}
+{% set width = width|default(300) %}
+{% set height = height|default(300) %}
+{% set displayWishButton = displayWishButton|default(false) %}
 
-<div class="ProductCard">
-  <div>
+<div class="ProductCard {{ classes }}">
    <div class="ProductCard-header">
      <div class="ProductCard-tagList">
         {% if isNew|default(0) %}
@@ -13,27 +16,28 @@
         {% endif %}
       </div>
 
-      <button
-        type="button"
-        class="ButtonWishList {% if inWishlist %} in-wishlist {% endif %}"
-      >
-          <span class="in-wishlist-icon">
-              <span>{{ source("/icons/heart-fill.svg") }}</span>
-          </span>
-          <span class="not-in-wishlist-icon">
-              <span>{{ source("/icons/heart.svg") }}</span>
-          </span>
-      </button>
-
+      {% if displayWishButton %}
+        <button
+          type="button"
+          class="ButtonWishList {% if inWishlist %} in-wishlist {% endif %}"
+        >
+            <span class="in-wishlist-icon">
+                <span>{{ source("/icons/heart-fill.svg") }}</span>
+            </span>
+            <span class="not-in-wishlist-icon">
+                <span>{{ source("/icons/heart.svg") }}</span>
+            </span>
+        </button>
+      {% endif %}
    </div>
     <a href="#">
       <figure  class="ProductCard-img">
         {% if productThumbnailUrl %}
           <img src="{{ productThumbnailUrl }}" alt="{{ productTumbnailTitle }}"
-                  title="{{ productTumbnailTitle }}"  loading="lazy" width="400" height="280">
+                  title="{{ productTumbnailTitle }}"  loading="lazy" width="{{ width }}" height="{{ height }}">
         {% else %}
             <img src="{{ source("/images/placeholder.svg") }}" alt="{{ productTumbnailTitle }}"
-                  title="{{ productTumbnailTitle }}"  loading="lazy" width="400" height="280">
+                  title="{{ productTumbnailTitle }}"  loading="lazy" width="{{ width }}" height="{{ height }}">
         {% endif %}
       </figure>
     </a>

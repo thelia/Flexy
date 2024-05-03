@@ -1,11 +1,12 @@
-import ProductCard from './ProductCard.twig';
+import Standard from './Standard.twig';
+import Search from './Search.twig';
 
 export default {
   title: 'Design System/Organisms/ProductCard'
 };
 
-export const Base = {
-  render: (args) => ProductCard(args),
+export const standard = {
+  render: (args) => Standard(args),
   args: {
     productTitle: 'Nom du produit',
     secondaryTitle: 'Titre secondaire',
@@ -39,5 +40,13 @@ export const Base = {
     hasColors: {
       control: { type: 'boolean' }
     }
+  }
+};
+
+export const search = {
+  render: (args) => Search(args),
+  args: {
+    productTitle: 'Nom du produit',
+    price: '1000,00€'
   }
 };

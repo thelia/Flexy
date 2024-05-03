@@ -17,6 +17,53 @@
     max-width: 400px;
   }
 
+  &.ProductCardSearch {
+    &--horizontal {
+      display: flex;
+      flex-direction: row;
+      max-width: 331px;
+      align-items: center;
+
+      .ProductCard-header {
+        display: none;
+      }
+
+      .ProductCard-img {
+        height: 97px;
+        width: 97px;
+      }
+
+      .ProductCard-desc {
+        margin-right: auto;
+      }
+    }
+    &--vertical {
+      max-width: 185px;
+
+      .ProductCard-img {
+        height: 185px;
+        width: 100%;
+      }
+    }
+    .ProductCard-desc {
+      padding: 16px;
+      background-color: var(--white);
+    }
+    .ProductCard-title {
+      font-size: var(--font-size-paragraph-2);
+      line-height: var(--line-height-paragraph-2);
+    }
+    .ProductCard-price {
+      font-size: rem-convert(14px);
+      line-height: rem-convert(20px);
+      font-weight: 400;
+      font-family: 'Roboto';
+    }
+    .ProductCard-footer {
+      margin-top: 3px;
+    }
+  }
+
   .ButtonWishList {
     transition: 0.2s;
     display: none;
