@@ -1,0 +1,16 @@
+
+<div class='Reinsurance'>
+  {% for reinsurance in data %}
+    <div>
+      {% if reinsurance.icon %}
+        <span class='Reinsurance-icon'>{{ source("/icons/" ~ reinsurance.icon  ~".svg") }}</span>
+      {% endif %}
+      <span>
+        {% if reinsurance.strongText %}
+          <strong>{{ reinsurance.strongText }}</strong>
+        {% endif %}
+        {{ reinsurance.text }}
+      </span>
+    </div>
+  {% endfor %}
+</div>

@@ -1,0 +1,35 @@
+.Reinsurance {
+  background: var(--theme-lighter);
+  max-width: rem-convert(400px);
+  padding-top: rem-convert(20px);
+  padding-bottom: rem-convert(20px);
+  padding-left: rem-convert(32px);
+  padding-right: rem-convert(30px);
+  border-radius: rem-convert(4px);
+  @apply paragraph-4;
+  strong {
+    font-weight: 600;
+  }
+  > div {
+    display: flex;
+    align-items: center;
+    gap:  rem-convert(10px);
+    border-bottom: 0.5px solid var(--theme-medium);
+    padding-bottom: rem-convert(14px);
+    padding-top: rem-convert(14px);
+  }
+  > div:first-child {
+    padding-top: 0;
+  }
+  > div:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  &-icon {
+    display: inline-block;
+    width: rem-convert(21px);
+    height: rem-convert(21px);
+    color: var(--theme);
+  }
+}
