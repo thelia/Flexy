@@ -4,6 +4,7 @@
 {% set width = width|default(300) %}
 {% set height = height|default(300) %}
 {% set displayWishButton = displayWishButton|default(false) %}
+{% set isOrderCard = isOrderCard|default(false) %}
 
 <div class="ProductCard {{ classes }}">
    <div class="ProductCard-header">
@@ -43,7 +44,16 @@
     </a>
     <div class="ProductCard-desc">
       <a href="#" class="ProductCard-title">{{ productTitle }}</a>
-      <div class="ProductCard-subTitle">{{ secondaryTitle }}</div>
+      {% if secondaryTitle %}
+        <div class="ProductCard-subTitle">{{ secondaryTitle }}</div>
+      {% endif %}
+      {% if isOrderCard %}
+        <div class="ProductCard-orderInfos">
+          <span>{{ orderSecondaryTitle }}</span>
+          <span>Taille : {{ size }}</span>
+          <span>Quantié : {{ quantity }}</span>
+        </div>
+      {% endif %}
       <div class="ProductCard-footer">
         {% if hasReviews or hasColors %} 
           <div class="ProductCard-footerLeft">

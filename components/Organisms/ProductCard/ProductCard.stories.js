@@ -1,5 +1,6 @@
 import Standard from './Standard.twig';
 import Search from './Search.twig';
+import Order from './Order.twig';
 
 export default {
   title: 'Design System/Organisms/ProductCard'
@@ -48,5 +49,16 @@ export const search = {
   args: {
     productTitle: 'Nom du produit',
     price: '1000,00€'
+  }
+};
+
+export const order = {
+  render: (args) => Order(args),
+  args: {
+    productTitle: 'Nom du produit',
+    orderSecondaryTitle: 'Titre secondaire',
+    size: 'S-34/36',
+    quantity: 1,
+    price: '50,00€'
   }
 };

@@ -64,6 +64,76 @@
     }
   }
 
+  &.ProductCardOrder {
+    background-color: var(--theme-lighter);
+    display: flex;
+    flex-direction: row;
+    max-width: initial;
+    align-items: center;
+    border: 1px solid var(--theme);
+    padding: 8px;
+    @screen sm {
+      max-width: 540px;
+    }
+
+    .ProductCard-img {
+      height: 130px;
+      width: 112px;
+      @screen sm {
+        height: 112px;
+      }
+    }
+
+    .ProductCard-desc {
+      margin-right: auto;
+      padding: 0;
+      margin-left: 19px;
+    }
+
+    .ProductCard-header {
+      display: none;
+    }
+    .ProductCard-title {
+      font-size: var(--font-size-paragraph-2);
+      line-height: var(--line-height-paragraph-2);
+      margin-bottom: 5px;
+    }
+    .ProductCard-orderInfos {
+      font-size: var(--font-size-paragraph-6);
+      font-family: var(--font-family-paragraph-6);
+      line-height: var(--line-height-paragraph-6);
+      color: var(--grey);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      @screen sm {
+        flex-direction: row;
+      }
+
+      & span {
+        &:not(:last-child) {
+          &:after {
+            content: '';
+          }
+          @screen sm {
+            &:after {
+              content: ',';
+            }
+          }
+        }
+      }
+    }
+    .ProductCard-price {
+      font-size: var(--font-size-paragraph-4);
+      line-height: var(--line-height-paragraph-4);
+      font-weight: 600;
+      font-family: 'Roboto';
+    }
+    .ProductCard-footer {
+      margin-top: 10px;
+    }
+  }
+
   .ButtonWishList {
     transition: 0.2s;
     display: none;
@@ -240,6 +310,7 @@
     line-height: var(--line-height-h5-m);
     text-decoration: none;
     transition: inherit;
+    display: block;
 
     @screen sm {
       font-size: var(--font-size-h5-d);
