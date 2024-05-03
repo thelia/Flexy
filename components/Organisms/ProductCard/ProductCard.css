@@ -1,0 +1,246 @@
+.ProductCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  background: var(--white);
+  transition: none;
+  max-width: 187px;
+  @apply rounded-md;
+
+  @screen sm {
+    max-width: 340px;
+  }
+
+  @screen lg {
+    max-width: 400px;
+  }
+
+  .ButtonWishList {
+    transition: 0.2s;
+    display: none;
+
+    @screen sm {
+      display: block;
+    }
+    svg {
+      max-width: 35px;
+    }
+    &:focus {
+      outline: none;
+    }
+
+    .in-wishlist-icon {
+      display: none;
+
+      &:hover {
+        svg {
+          color: var(--theme-medium);
+        }
+      }
+    }
+
+    .not-in-wishlist-icon {
+      display: inline-block;
+
+      &:hover {
+        svg {
+          color: var(--theme);
+        }
+      }
+    }
+
+    &.in-wishlist {
+      .in-wishlist-icon {
+        display: inline-block;
+      }
+
+      .not-in-wishlist-icon {
+        display: none;
+      }
+    }
+  }
+
+  &-header {
+    margin-bottom: 0.5rem;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    z-index: 9;
+  }
+
+  &-tagList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+
+  &-img {
+    overflow: hidden;
+    height: 187px;
+    @screen sm {
+      height: initial;
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: all cubic-bezier(0, 0, 0, 0.7) 0.3s;
+    }
+  }
+
+  &-footer {
+    margin-top: rem-convert(20px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    &Left {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 13px;
+
+      @screen sm {
+        margin-bottom: 0;
+        gap: 10px;
+      }
+    }
+
+    &Right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .Colors {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+
+    &-item {
+      border-radius: 100%;
+      width: 12px;
+      height: 12px;
+    }
+
+    &-others {
+      margin-left: 2px;
+    }
+  }
+
+  .Rating {
+    display: flex;
+    gap: 11px;
+    align-items: center;
+
+    &-mark {
+      display: flex;
+      gap: 4px;
+      max-width: 93px;
+      svg {
+        color: var(--black);
+      }
+      .star-empty {
+        svg {
+          color: var(--grey-lighter);
+        }
+      }
+    }
+    &-reviewCount {
+      margin-top: 4px;
+      text-transform: uppercase;
+      color: var(--grey);
+      font-family: var(--font-family-indication);
+      font-size: var(--font-size-indication-small);
+      font-weight: var(--font-weight-indication);
+      letter-spacing: var(--letter-spacing-indication-small);
+
+      @screen sm {
+        font-size: var(--font-size-indication);
+        letter-spacing: var(--letter-spacing-indication);
+      }
+    }
+  }
+
+  &-desc {
+    padding: 16px;
+    @screen sm {
+      padding: 24px;
+    }
+  }
+
+  &-ref {
+    margin-top: 8px;
+  }
+
+  &-title {
+    color: var(--black);
+    font-size: var(--font-size-h5-m);
+    font-weight: var(--font-weight-h5);
+    line-height: var(--line-height-h5-m);
+    text-decoration: none;
+    transition: inherit;
+
+    @screen sm {
+      font-size: var(--font-size-h5-d);
+      line-height: var(--line-height-h5-d);
+    }
+  }
+
+  &-subTitle {
+    font-size: var(--font-size-paragraph-3);
+    font-weight: var(--font-weight-paragraph-3);
+    line-height: var(--line-height-paragraph-3);
+    color: var(--grey);
+  }
+
+  &-price {
+    @apply inline-flex items-baseline gap-2 font-semibold;
+    color: var(--black);
+    position: relative;
+    line-height: normal;
+    font-size: var(--font-size-h5-m);
+
+    @screen lg {
+      font-size: var(--font-size-h5-d);
+    }
+  }
+
+  &-originalPrice {
+    color: var(--black);
+    font-size: var(--font-size-paragraph-7);
+    text-decoration-line: line-through;
+    font-family: var(--font-family-paragraph-6);
+  }
+
+  &:hover,
+  &:focus {
+    .ProductCard-img {
+      img {
+        transform: scale(1.075);
+      }
+    }
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+
+    .ProductCard-img {
+      outline: 2px solid theme('colors.gray.400');
+    }
+  }
+}
