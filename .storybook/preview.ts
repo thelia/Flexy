@@ -27,6 +27,10 @@ const preview: Preview = {
         {
           name: 'white',
           value: '#FFFFFF'
+        },
+        {
+          name: 'theme-lightest',
+          value: '#FFF5F1'
         }
       ]
     }

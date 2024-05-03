@@ -1,0 +1,98 @@
+{% set productThumbnailUrl = base_url ~ "/images/placeholder.png" %}
+{% set productThumbnailTitle = "placeholder" %}
+
+<div class="ProductCard">
+  <div>
+   <div class="ProductCard-header">
+     <div class="ProductCard-tagList">
+        {% if isNew|default(0) %}
+          {% include '../../Molecules/Tag/Tag.twig' with {customText: 'Nouveau', variant: 'vermillon'} %}
+        {% endif %}
+        {% if isPromo|default(0) %}
+          {% include '../../Molecules/Tag/Tag.twig' with {customText: '-15%', variant: 'error'} %}
+        {% endif %}
+      </div>
+
+      <button
+        type="button"
+        class="ButtonWishList {% if inWishlist %} in-wishlist {% endif %}"
+      >
+          <span class="in-wishlist-icon">
+              <span>{{ source("/icons/heart-fill.svg") }}</span>
+          </span>
+          <span class="not-in-wishlist-icon">
+              <span>{{ source("/icons/heart.svg") }}</span>
+          </span>
+      </button>
+
+   </div>
+    <a href="#">
+      <figure  class="ProductCard-img">
+        {% if productThumbnailUrl %}
+          <img src="{{ productThumbnailUrl }}" alt="{{ productTumbnailTitle }}"
+                  title="{{ productTumbnailTitle }}"  loading="lazy" width="400" height="280">
+        {% else %}
+            <img src="{{ source("/images/placeholder.svg") }}" alt="{{ productTumbnailTitle }}"
+                  title="{{ productTumbnailTitle }}"  loading="lazy" width="400" height="280">
+        {% endif %}
+      </figure>
+    </a>
+    <div class="ProductCard-desc">
+      <a href="#" class="ProductCard-title">{{ productTitle }}</a>
+      <div class="ProductCard-subTitle">{{ secondaryTitle }}</div>
+      <div class="ProductCard-footer">
+        {% if hasReviews or hasColors %} 
+          <div class="ProductCard-footerLeft">
+            {% if hasReviews %}
+              <div class="Rating">
+                <div class="Rating-mark">
+                  {% for i in 1..5 %}
+                    {% if rate >= i %}
+                      <div>
+                        {{ source("/icons/star-full.svg") }}
+                      </div>
+                    {% elseif rate <= i and rate > i - 1 %}
+                      <div>
+                        {{ source("/icons/star-half-empty.svg") }}
+                      </div>
+                    {% else %}
+                      <div class="star-empty">
+                        {{ source("/icons/star-full.svg") }}
+                      </div>
+                    {% endif %}
+                  {% endfor %}
+                </div>
+                <span class="Rating-reviewCount">
+                  {{reviewCount}} Avis
+                </span>
+              </div>
+            {% endif %}
+            {% if hasColors %}
+              <div class="Colors">
+                {% set limit = 6 %}
+                {% set count = 0 %}
+                {% for color in colors %}
+                    {% if count < limit %}
+                        <a href="#" class="Colors-item" style="background-color:{{ color }}">
+                        </a>
+                        {% set count = count + 1 %}
+                    {% else %}
+                        <div class="Colors-others">...</div>
+                    {% endif %}
+                {% endfor %}  
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+        {% if isPromo|default(0) %}
+          <div class="ProductCard-footerRight">
+            <div class="ProductCard-price">{{ promoPrice }}</div>
+            <div class="ProductCard-originalPrice">{{ price }}</div>
+          </div>
+        {% else %}
+          <div class="ProductCard-price">{{ price }}</div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
