@@ -1,8 +1,8 @@
 {% set productThumbnailUrl = base_url ~ "/images/placeholder.png" %}
 {% set productTumbnailTitle = "placeholder" %}
 {% set classes = classes|default('') %}
-{% set width = width|default(300) %}
-{% set height = height|default(300) %}
+{% set imgWidth = imgWidth|default(300) %}
+{% set imgHeight = imgHeight|default(300) %}
 {% set displayWishButton = displayWishButton|default(false) %}
 {% set isOrderCard = isOrderCard|default(false) %}
 
@@ -35,10 +35,10 @@
       <figure  class="ProductCard-img">
         {% if productThumbnailUrl %}
           <img src="{{ productThumbnailUrl }}" alt="{{ productTumbnailTitle }}"
-                  title="{{ productTumbnailTitle }}"  loading="lazy" width="{{ width }}" height="{{ height }}">
+                  title="{{ productTumbnailTitle }}"  loading="lazy" imgWidth="{{ imgWidth }}" imgHeight="{{ imgHeight }}">
         {% else %}
             <img src="{{ source("/images/placeholder.svg") }}" alt="{{ productTumbnailTitle }}"
-                  title="{{ productTumbnailTitle }}"  loading="lazy" width="{{ width }}" height="{{ height }}">
+                  title="{{ productTumbnailTitle }}"  loading="lazy" imgWidth="{{ imgWidth }}" imgHeight="{{ imgHeight }}">
         {% endif %}
       </figure>
     </a>
