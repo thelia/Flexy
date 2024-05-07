@@ -17,7 +17,7 @@
     max-width: 400px;
   }
 
-  &.ProductCardSearch {
+  &Search {
     &--horizontal {
       display: flex;
       flex-direction: row;
@@ -26,6 +26,11 @@
 
       .ProductCard-header {
         display: none;
+      }
+
+      .ProductCard-mainContent {
+        display: flex;
+        align-items: center;
       }
 
       .ProductCard-img {
@@ -45,26 +50,27 @@
         width: 100%;
       }
     }
+
+    .ProductCard-title {
+      @apply paragraph-2;
+    }
+
     .ProductCard-desc {
       padding: 16px;
       background-color: var(--white);
     }
-    .ProductCard-title {
-      font-size: var(--font-size-paragraph-2);
-      line-height: var(--line-height-paragraph-2);
-    }
+
     .ProductCard-price {
       font-size: rem-convert(14px);
       line-height: rem-convert(20px);
       font-weight: 400;
-      font-family: 'Roboto';
     }
     .ProductCard-footer {
       margin-top: 3px;
     }
   }
 
-  &.ProductCardOrder {
+  &Order {
     background-color: var(--theme-lighter);
     display: flex;
     flex-direction: row;
@@ -74,6 +80,15 @@
     padding: 8px;
     @screen sm {
       max-width: 540px;
+    }
+
+    .ProductCard-header {
+      display: none;
+    }
+
+    .ProductCard-mainContent {
+      display: flex;
+      align-items: center;
     }
 
     .ProductCard-img {
@@ -90,47 +105,169 @@
       margin-left: 19px;
     }
 
+    .ProductCard-title {
+      @apply paragraph-2;
+      margin-bottom: 5px;
+    }
+
+    .ProductCard-price {
+      @apply paragraph-4;
+      font-weight: 600;
+    }
     .ProductCard-header {
       display: none;
     }
-    .ProductCard-title {
-      font-size: var(--font-size-paragraph-2);
-      line-height: var(--line-height-paragraph-2);
-      margin-bottom: 5px;
+    .ProductCard-footer {
+      margin-top: 10px;
     }
-    .ProductCard-orderInfos {
-      font-size: var(--font-size-paragraph-6);
-      font-family: var(--font-family-paragraph-6);
-      line-height: var(--line-height-paragraph-6);
-      color: var(--grey);
+  }
+
+  &PurchaseFunnel {
+    background-color: var(--theme-lightest);
+    border-radius: 0;
+
+    @screen sm {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .ProductCard-header {
+      display: none;
+    }
+
+    .ProductCard-mainContent {
       display: flex;
+      padding: 16px;
+      padding-bottom: 23px;
       flex-direction: column;
-      gap: 3px;
       @screen sm {
         flex-direction: row;
+        padding: 8px;
+        column-gap: 16px;
       }
+      @screen lg {
+        align-items: center;
+      }
+    }
 
+    .ProductCard-imgLink {
+      display: flex;
+      @screen sm {
+        flex-basis: 120px;
+      }
+    }
+
+    .ProductCard-img {
+      height: 232px;
+      width: 100%;
+      @screen sm {
+        height: 112px;
+      }
+    }
+
+    .ProductCard-title {
+      margin-bottom: 5px;
+      @apply paragraph-2;
+    }
+
+    .ProductCard-desc {
+      flex-grow: 1;
+      padding: 0;
+      padding-top: 10px;
+
+      @screen sm {
+        padding: 0;
+        padding-right: 8px;
+      }
+    }
+
+    .ProductCard-orderInfos {
+      flex-direction: column;
+      @screen lg {
+        flex-direction: row;
+      }
       & span {
         &:not(:last-child) {
           &:after {
             content: '';
           }
-          @screen sm {
+          @screen lg {
             &:after {
-              content: ',';
+              content: '|';
             }
           }
         }
       }
     }
-    .ProductCard-price {
-      font-size: var(--font-size-paragraph-4);
-      line-height: var(--line-height-paragraph-4);
-      font-weight: 600;
-      font-family: 'Roboto';
-    }
+
     .ProductCard-footer {
       margin-top: 10px;
+      column-gap: 5px;
+      &Right {
+        flex-direction: column-reverse;
+      }
+    }
+
+    .ProductCard-price {
+      @apply paragraph-4;
+      font-weight: 600;
+    }
+
+    .ProductCard-quantity {
+      @screen sm {
+        input {
+          width: rem-convert(35px);
+        }
+      }
+    }
+
+    .ProductCard-unavailable {
+      font-family: 'Roboto';
+      font-weight: 400;
+      font-size: rem-convert(14px);
+      line-height: rem-convert(20px);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      &::before {
+        content: '';
+        background-color: var(--error-light);
+        border-radius: 100%;
+        width: 9px;
+        height: 9px;
+        display: block;
+      }
+    }
+
+    .ProductCard-purchaseFunnelCardBottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 50px;
+      border-top: 1px solid var(--grey-lighter);
+      flex-grow: 1;
+
+      & .Button {
+        border-radius: 0;
+        background-color: transparent;
+        display: flex;
+        color: var(--black);
+        &:first-child {
+          border-right: 1px solid var(--grey-lighter);
+        }
+
+        & > span {
+          width: 15px;
+          height: 15px;
+        }
+        & svg {
+          color: var(--black);
+        }
+        &:hover {
+          background-color: transparent !important;
+          text-decoration: underline;
+        }
+      }
     }
   }
 
@@ -196,6 +333,10 @@
     align-items: center;
   }
 
+  .ProductCard-mainContent {
+    width: 100%;
+  }
+
   &-img {
     overflow: hidden;
     height: 187px;
@@ -216,8 +357,31 @@
     }
   }
 
+  &-orderInfos {
+    color: var(--grey);
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    @screen sm {
+      flex-direction: row;
+    }
+
+    & span {
+      &:not(:last-child) {
+        &:after {
+          content: '';
+        }
+        @screen sm {
+          &:after {
+            content: ',';
+          }
+        }
+      }
+    }
+  }
+
   &-footer {
-    margin-top: rem-convert(20px);
+    margin-top: rem-convert(13px);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -280,10 +444,6 @@
       margin-top: 4px;
       text-transform: uppercase;
       color: var(--grey);
-      font-family: var(--font-family-indication);
-      font-size: var(--font-size-indication-small);
-      font-weight: var(--font-weight-indication);
-      letter-spacing: var(--letter-spacing-indication-small);
 
       @screen sm {
         font-size: var(--font-size-indication);
@@ -304,37 +464,27 @@
   }
 
   &-title {
+    @apply h5-mobile;
     color: var(--black);
-    font-size: var(--font-size-h5-m);
-    font-weight: var(--font-weight-h5);
-    line-height: var(--line-height-h5-m);
     text-decoration: none;
     transition: inherit;
     display: block;
 
     @screen sm {
-      font-size: var(--font-size-h5-d);
-      line-height: var(--line-height-h5-d);
+      @apply h5-desktop;
     }
   }
 
   &-subTitle {
-    font-size: var(--font-size-paragraph-3);
-    font-weight: var(--font-weight-paragraph-3);
-    line-height: var(--line-height-paragraph-3);
     color: var(--grey);
   }
 
   &-price {
-    @apply inline-flex items-baseline gap-2 font-semibold;
+    @apply paragraph-1;
+    font-weight: 600;
     color: var(--black);
     position: relative;
     line-height: normal;
-    font-size: var(--font-size-h5-m);
-
-    @screen lg {
-      font-size: var(--font-size-h5-d);
-    }
   }
 
   &-originalPrice {
@@ -360,5 +510,49 @@
     .ProductCard-img {
       outline: 2px solid theme('colors.gray.400');
     }
+  }
+
+  &Wrapper {
+    &--outOfStock {
+      background-color: var(--error-lightest);
+      padding: 16px;
+      border: 1px solid var(--error-dark);
+      display: flex;
+      flex-direction: column;
+      .ProductCard {
+        max-width: 100%;
+        background-color: var(--grey-lightest);
+      }
+    }
+    &-outOfStockMessage {
+      color: var(--black);
+      display: flex;
+      align-items: flex-start;
+      gap: 7px;
+      margin-bottom: 10px;
+
+      svg {
+        width: 20px;
+      }
+    }
+    &-outOfStockButton {
+      margin-top: 12px;
+      width: 100%;
+      @screen lg {
+        align-self: flex-end;
+        width: initial;
+      }
+    }
+  }
+}
+
+.purchase-funnel-card-width {
+  max-width: 267px;
+  @screen sm {
+    max-width: 334px;
+  }
+
+  @screen lg {
+    max-width: 540px;
   }
 }

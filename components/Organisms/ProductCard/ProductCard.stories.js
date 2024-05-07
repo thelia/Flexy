@@ -1,6 +1,7 @@
 import Standard from './Standard.twig';
 import Search from './Search.twig';
 import Order from './Order.twig';
+import PurchaseFunnel from './PurchaseFunnel.twig';
 
 export default {
   title: 'Design System/Organisms/ProductCard'
@@ -60,5 +61,25 @@ export const order = {
     size: 'S-34/36',
     quantity: 1,
     price: '50,00€'
+  }
+};
+
+export const purchaseFunnel = {
+  render: (args) => PurchaseFunnel(args),
+  args: {
+    productTitle: 'Nom du produit',
+    orderSecondaryTitle: 'Titre secondaire',
+    size: 'S-34/36',
+    quantityChoice: 1,
+    price: '1000,00€',
+    promoPrice: '900,00€'
+  },
+  argTypes: {
+    isOutOfStock: {
+      control: { type: 'boolean' }
+    },
+    isPromo: {
+      control: { type: 'boolean' }
+    }
   }
 };

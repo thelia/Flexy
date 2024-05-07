@@ -7,31 +7,32 @@
 {% set isOrderCard = isOrderCard|default(false) %}
 
 <div class="ProductCard {{ classes }}">
-   <div class="ProductCard-header">
-     <div class="ProductCard-tagList">
-        {% if isNew|default(0) %}
-          {% include '../../Molecules/Tag/Tag.twig' with {customText: 'Nouveau', variant: 'vermillon'} %}
-        {% endif %}
-        {% if isPromo|default(0) %}
-          {% include '../../Molecules/Tag/Tag.twig' with {customText: '-15%', variant: 'error'} %}
-        {% endif %}
-      </div>
-
-      {% if displayWishButton %}
-        <button
-          type="button"
-          class="ButtonWishList {% if inWishlist %} in-wishlist {% endif %}"
-        >
-            <span class="in-wishlist-icon">
-                <span>{{ source("/icons/heart-fill.svg") }}</span>
-            </span>
-            <span class="not-in-wishlist-icon">
-                <span>{{ source("/icons/heart.svg") }}</span>
-            </span>
-        </button>
+  <div class="ProductCard-header">
+    <div class="ProductCard-tagList">
+      {% if isNew|default(0) %}
+        {% include '../../Molecules/Tag/Tag.twig' with {customText: 'Nouveau', variant: 'vermillon'} %}
       {% endif %}
-   </div>
-    <a href="#">
+      {% if isPromo|default(0) %}
+        {% include '../../Molecules/Tag/Tag.twig' with {customText: '-15%', variant: 'error'} %}
+      {% endif %}
+    </div>
+
+    {% if displayWishButton %}
+      <button
+        type="button"
+        class="ButtonWishList {% if inWishlist %} in-wishlist {% endif %}"
+      >
+          <span class="in-wishlist-icon">
+              <span>{{ source("/icons/heart-fill.svg") }}</span>
+          </span>
+          <span class="not-in-wishlist-icon">
+              <span>{{ source("/icons/heart.svg") }}</span>
+          </span>
+      </button>
+    {% endif %}
+  </div>
+  <div class="ProductCard-mainContent">
+    <a class="ProductCard-imgLink" href="#">
       <figure  class="ProductCard-img">
         {% if productThumbnailUrl %}
           <img src="{{ productThumbnailUrl }}" alt="{{ productTumbnailTitle }}"
@@ -45,13 +46,13 @@
     <div class="ProductCard-desc">
       <a href="#" class="ProductCard-title">{{ productTitle }}</a>
       {% if secondaryTitle %}
-        <div class="ProductCard-subTitle">{{ secondaryTitle }}</div>
+        <div class="ProductCard-subTitle paragraph-3">{{ secondaryTitle }}</div>
       {% endif %}
-      {% if isOrderCard %}
-        <div class="ProductCard-orderInfos">
+      {% if isOrderCard or isPurchaseFunnelCard %}
+        <div class="ProductCard-orderInfos paragraph-6">
           <span>{{ orderSecondaryTitle }}</span>
           <span>Taille : {{ size }}</span>
-          <span>Quantié : {{ quantity }}</span>
+          {% if quantity %} <span>Quantié : {{ quantity }}</span> {% endif %}
         </div>
       {% endif %}
       <div class="ProductCard-footer">
@@ -76,7 +77,7 @@
                     {% endif %}
                   {% endfor %}
                 </div>
-                <span class="Rating-reviewCount">
+                <span class="Rating-reviewCount indication-small">
                   {{reviewCount}} Avis
                 </span>
               </div>
@@ -106,7 +107,24 @@
         {% else %}
           <div class="ProductCard-price">{{ price }}</div>
         {% endif %}
+        {% if isPurchaseFunnelCard|default(0) %}
+          {% if isOutOfStock %} 
+            <div class="ProductCard-unavailable">
+              Indisponible
+            </div>
+          {% else %}
+            <div class="ProductCard-quantity">
+              {% include '../../Molecules/Button/Quantity.twig' with {disabled: false, value:1, classes:'Button--small'} %}
+            </div>
+          {% endif %}
+        {% endif %}
       </div>
     </div>
   </div>
+  {% if isPurchaseFunnelCard|default(0) %}
+    <div class="ProductCard-purchaseFunnelCardBottom">
+      {% include '../../Molecules/Button/Button.twig' with {classes:'Button--small', text: "Voir le produit", rectangle: true, icon_left: "show"} %}
+      {% include '../../Molecules/Button/Button.twig' with {classes:'Button--small', text: "Supprimer", rectangle: true, icon_left: "delete"} %}
+    </div>
+  {% endif %}
 </div>

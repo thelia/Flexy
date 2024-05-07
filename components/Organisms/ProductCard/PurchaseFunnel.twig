@@ -1,0 +1,15 @@
+
+{% if isOutOfStock %} 
+    <div class="ProductCardWrapper ProductCardWrapper--outOfStock purchase-funnel-card-width">
+        <div class="ProductCardWrapper-outOfStockMessage">
+            <div>
+                {{ source("/icons/error.svg") }}
+            </div>
+            <p class="paragraph-4">{{ productTitle }} n’est plus disponible et ne pourra pas être commandé.</p>
+        </div>
+        {% include './ProductCard.twig' with {classes:'ProductCardPurchaseFunnel', isPurchaseFunnelCard: true, imgWidth:'232', imgHeight:'232'} %}
+        {% include '../../Molecules/Button/Button.twig' with { classes:"ProductCardWrapper-outOfStockButton", disabled: false, text:"Voir les produits similaires"} %}
+    </div>
+{% else %}
+    {% include './ProductCard.twig' with {classes:'ProductCardPurchaseFunnel purchase-funnel-card-width', isPurchaseFunnelCard: true, imgWidth:'232', imgHeight:'232'} %}
+{% endif %}
