@@ -1,12 +1,16 @@
-{% set productThumbnailUrl = base_url ~ "/images/placeholder.png" %}
+{% set productThumbnailUrl = base_url ~ "/images/placeholder2.webp" %}
 {% set productTumbnailTitle = "placeholder" %}
 {% set classes = classes|default('') %}
 {% set imgWidth = imgWidth|default(300) %}
 {% set imgHeight = imgHeight|default(300) %}
 {% set displayWishButton = displayWishButton|default(false) %}
 {% set isOrderCard = isOrderCard|default(false) %}
+{% set isAddToCartConfirmation = isAddToCartConfirmation|default(false) %}
 
 <div class="ProductCard {{ classes }}">
+  {% if isAddToCartConfirmation|default(0) %}
+    <span class='ProductCard-iconClose'>{{ source("/icons/close.svg") }}</span>
+  {% endif %}
   <div class="ProductCard-header">
     <div class="ProductCard-tagList">
       {% if isNew|default(0) %}
@@ -31,9 +35,14 @@
       </button>
     {% endif %}
   </div>
+  {% if isAddToCartConfirmation %}
+    <p class="ProductCard-addToCartTitle">
+      Votre produit a été ajouté au panier
+    </p>
+  {% endif %}
   <div class="ProductCard-mainContent">
     <a class="ProductCard-imgLink" href="#">
-      <figure  class="ProductCard-img">
+      <figure class="ProductCard-img">
         {% if productThumbnailUrl %}
           <img src="{{ productThumbnailUrl }}" alt="{{ productTumbnailTitle }}"
                   title="{{ productTumbnailTitle }}"  loading="lazy" imgWidth="{{ imgWidth }}" imgHeight="{{ imgHeight }}">
@@ -48,10 +57,10 @@
       {% if secondaryTitle %}
         <div class="ProductCard-subTitle paragraph-3">{{ secondaryTitle }}</div>
       {% endif %}
-      {% if isOrderCard or isPurchaseFunnelCard %}
+      {% if isOrderCard or isPurchaseFunnelCard or isAddToCartConfirmation %}
         <div class="ProductCard-orderInfos paragraph-6">
-          <span>{{ orderSecondaryTitle }}</span>
-          <span>Taille : {{ size }}</span>
+          <span class="ProductCard-secondaryTitle">{{ orderSecondaryTitle }}</span>
+          <span class="ProductCard-secondarySize">Taille : {{ size }}</span>
           {% if quantity %} <span>Quantié : {{ quantity }}</span> {% endif %}
         </div>
       {% endif %}
@@ -114,7 +123,7 @@
             </div>
           {% else %}
             <div class="ProductCard-quantity">
-              {% include '../../Molecules/Button/Quantity.twig' with {disabled: false, value:1, classes:'Button--small'} %}
+              {% include '../../Molecules/Button/Quantity.twig' with {disabled: false, value:quantityChoice, classes:'Button--small'} %}
             </div>
           {% endif %}
         {% endif %}
@@ -125,6 +134,12 @@
     <div class="ProductCard-purchaseFunnelCardBottom">
       {% include '../../Molecules/Button/Button.twig' with {classes:'Button--small', text: "Voir le produit", rectangle: true, icon_left: "show"} %}
       {% include '../../Molecules/Button/Button.twig' with {classes:'Button--small', text: "Supprimer", rectangle: true, icon_left: "delete"} %}
+    </div>
+  {% endif %}
+  {% if isAddToCartConfirmation|default(0) %}
+    <div class="ProductCard-ProductCardAddToCartBottom">
+      {% include '../../Molecules/Button/Button.twig' with {classes:'Button--medium', variant: "primary", text: "Voir mon panier" } %}
+      {% include '../../Molecules/Button/Button.twig' with {classes:'Button--medium', variant: "secondary", text: "Poursuivre mes achats" } %}
     </div>
   {% endif %}
 </div>

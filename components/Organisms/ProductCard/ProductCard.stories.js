@@ -2,6 +2,7 @@ import Standard from './Standard.twig';
 import Search from './Search.twig';
 import Order from './Order.twig';
 import PurchaseFunnel from './PurchaseFunnel.twig';
+import AddToCartConfirmation from './AddToCartConfirmation.twig';
 
 export default {
   title: 'Design System/Organisms/ProductCard'
@@ -81,5 +82,15 @@ export const purchaseFunnel = {
     isPromo: {
       control: { type: 'boolean' }
     }
+  }
+};
+
+export const addToCartConfirmation = {
+  render: (args) => AddToCartConfirmation(args),
+  args: {
+    productTitle: 'Nom du produit',
+    orderSecondaryTitle: 'Titre secondaire',
+    size: 'S-34/36',
+    quantity: 1
   }
 };
