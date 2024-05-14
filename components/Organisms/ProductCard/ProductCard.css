@@ -272,7 +272,8 @@
     }
   }
 
-  &AddToCart {
+  &AddToCart,
+  &RemoveProduct {
     border-radius: 8px;
     padding: 48px 40px;
     width: 100%;
@@ -424,6 +425,68 @@
     }
   }
 
+  &RemoveProduct {
+    background-color: var(--grey-lightest);
+    overflow: hidden;
+    padding: 8px;
+    padding-right: 20px;
+    max-width: 334px;
+    height: fit-content;
+    top: 30px;
+    right: 30px;
+    left: auto;
+    @screen sm {
+      max-width: 540px;
+    }
+    .ProductCard-iconClose {
+      top: 3px;
+      right: 3px;
+      width: 23px;
+    }
+    .ProductCard-mainContent {
+      margin-bottom: 5px;
+      column-gap: 18px;
+      align-items: center;
+      flex-direction: row;
+    }
+    .ProductCard-imgLink {
+      display: flex;
+      flex-basis: 120px;
+      @screen sm {
+        flex-basis: 88px;
+      }
+    }
+    .ProductCard-img {
+      display: flex;
+      height: 88px;
+    }
+    .ProductCard-desc {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+    }
+    .ProductCard-progressBar {
+      height: 6px;
+      width: 100%;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background-color: var(--grey-lighter);
+      &Inner {
+        background-color: var(--grey-dark);
+        height: 100%;
+        border-radius: 0 0 10px 10px;
+      }
+    }
+
+    .ProductCard-removeProductMessage {
+      font-family: 'Roboto';
+      font-size: rem-convert(14px);
+      line-height: rem-convert(20px);
+    }
+  }
+
   .ButtonWishList {
     transition: 0.2s;
     display: none;
@@ -494,7 +557,7 @@
     overflow: hidden;
     height: 187px;
     @screen sm {
-      height: initial;
+      height: 280px;
     }
 
     &:focus-visible {

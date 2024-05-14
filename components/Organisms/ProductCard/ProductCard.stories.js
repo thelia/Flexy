@@ -3,6 +3,8 @@ import Search from './Search.twig';
 import Order from './Order.twig';
 import PurchaseFunnel from './PurchaseFunnel.twig';
 import AddToCartConfirmation from './AddToCartConfirmation.twig';
+import RemoveProduct from './RemoveProduct.twig';
+import progressBar from './RemoveProduct.js';
 
 export default {
   title: 'Design System/Organisms/ProductCard'
@@ -92,5 +94,15 @@ export const addToCartConfirmation = {
     orderSecondaryTitle: 'Titre secondaire',
     size: 'S-34/36',
     quantity: 1
+  }
+};
+
+export const removeProduct = {
+  render: (args) => RemoveProduct(args),
+  play: () => {
+    progressBar();
+  },
+  args: {
+    productTitle: 'Nom du produit'
   }
 };
