@@ -1,11 +1,17 @@
-import ProductCard from './ProductCard.twig';
+import Standard from './Standard.twig';
+import Search from './Search.twig';
+import Order from './Order.twig';
+import PurchaseFunnel from './PurchaseFunnel.twig';
+import AddToCartConfirmation from './AddToCartConfirmation.twig';
+import RemoveProduct from './RemoveProduct.twig';
+import progressBar from './RemoveProduct.js';
 
 export default {
   title: 'Design System/Organisms/ProductCard'
 };
 
-export const Base = {
-  render: (args) => ProductCard(args),
+export const standard = {
+  render: (args) => Standard(args),
   args: {
     productTitle: 'Nom du produit',
     secondaryTitle: 'Titre secondaire',
@@ -39,5 +45,64 @@ export const Base = {
     hasColors: {
       control: { type: 'boolean' }
     }
+  }
+};
+
+export const search = {
+  render: (args) => Search(args),
+  args: {
+    productTitle: 'Nom du produit',
+    price: '1000,00€'
+  }
+};
+
+export const order = {
+  render: (args) => Order(args),
+  args: {
+    productTitle: 'Nom du produit',
+    orderSecondaryTitle: 'Titre secondaire',
+    size: 'S-34/36',
+    quantity: 1,
+    price: '50,00€'
+  }
+};
+
+export const purchaseFunnel = {
+  render: (args) => PurchaseFunnel(args),
+  args: {
+    productTitle: 'Nom du produit',
+    orderSecondaryTitle: 'Titre secondaire',
+    size: 'S-34/36',
+    quantityChoice: 1,
+    price: '1000,00€',
+    promoPrice: '900,00€'
+  },
+  argTypes: {
+    isOutOfStock: {
+      control: { type: 'boolean' }
+    },
+    isPromo: {
+      control: { type: 'boolean' }
+    }
+  }
+};
+
+export const addToCartConfirmation = {
+  render: (args) => AddToCartConfirmation(args),
+  args: {
+    productTitle: 'Nom du produit',
+    orderSecondaryTitle: 'Titre secondaire',
+    size: 'S-34/36',
+    quantity: 1
+  }
+};
+
+export const removeProduct = {
+  render: (args) => RemoveProduct(args),
+  play: () => {
+    progressBar();
+  },
+  args: {
+    productTitle: 'Nom du produit'
   }
 };

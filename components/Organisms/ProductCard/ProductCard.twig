@@ -1,18 +1,27 @@
-{% set productThumbnailUrl = base_url ~ "/images/placeholder.png" %}
-{% set productThumbnailTitle = "placeholder" %}
+{% set productThumbnailUrl = base_url ~ "/images/placeholder2.webp" %}
+{% set productTumbnailTitle = "placeholder" %}
+{% set classes = classes|default('') %}
+{% set imgWidth = imgWidth|default(300) %}
+{% set imgHeight = imgHeight|default(300) %}
+{% set displayWishButton = displayWishButton|default(false) %}
+{% set isOrderCard = isOrderCard|default(false) %}
+{% set isAddToCartConfirmation = isAddToCartConfirmation|default(false) %}
 
-<div class="ProductCard">
-  <div>
-   <div class="ProductCard-header">
-     <div class="ProductCard-tagList">
-        {% if isNew|default(0) %}
-          {% include '../../Molecules/Tag/Tag.twig' with {customText: 'Nouveau', variant: 'vermillon'} %}
-        {% endif %}
-        {% if isPromo|default(0) %}
-          {% include '../../Molecules/Tag/Tag.twig' with {customText: '-15%', variant: 'error'} %}
-        {% endif %}
-      </div>
+<div class="ProductCard {{ classes }}">
+  {% if isAddToCartConfirmation or isRemoveProduct %}
+    <span class='ProductCard-iconClose'>{{ source("/icons/close.svg") }}</span>
+  {% endif %}
+  <div class="ProductCard-header">
+    <div class="ProductCard-tagList">
+      {% if isNew|default(0) %}
+        {% include '../../Molecules/Tag/Tag.twig' with {customText: 'Nouveau', variant: 'vermillon'} %}
+      {% endif %}
+      {% if isPromo|default(0) %}
+        {% include '../../Molecules/Tag/Tag.twig' with {customText: '-15%', variant: 'error'} %}
+      {% endif %}
+    </div>
 
+    {% if displayWishButton %}
       <button
         type="button"
         class="ButtonWishList {% if inWishlist %} in-wishlist {% endif %}"
@@ -24,22 +33,45 @@
               <span>{{ source("/icons/heart.svg") }}</span>
           </span>
       </button>
-
-   </div>
-    <a href="#">
-      <figure  class="ProductCard-img">
+    {% endif %}
+  </div>
+  {% if isAddToCartConfirmation %}
+    <p class="ProductCard-addToCartTitle">
+      Votre produit a été ajouté au panier
+    </p>
+  {% endif %}
+  <div class="ProductCard-mainContent">
+    <a class="ProductCard-imgLink" href="#">
+      <figure class="ProductCard-img">
         {% if productThumbnailUrl %}
           <img src="{{ productThumbnailUrl }}" alt="{{ productTumbnailTitle }}"
-                  title="{{ productTumbnailTitle }}"  loading="lazy" width="400" height="280">
+                  title="{{ productTumbnailTitle }}"  loading="lazy" imgWidth="{{ imgWidth }}" imgHeight="{{ imgHeight }}">
         {% else %}
             <img src="{{ source("/images/placeholder.svg") }}" alt="{{ productTumbnailTitle }}"
-                  title="{{ productTumbnailTitle }}"  loading="lazy" width="400" height="280">
+                  title="{{ productTumbnailTitle }}"  loading="lazy" imgWidth="{{ imgWidth }}" imgHeight="{{ imgHeight }}">
         {% endif %}
       </figure>
     </a>
     <div class="ProductCard-desc">
-      <a href="#" class="ProductCard-title">{{ productTitle }}</a>
-      <div class="ProductCard-subTitle">{{ secondaryTitle }}</div>
+      {% if not isRemoveProduct %}
+        <a href="#" class="ProductCard-title">{{ productTitle }}</a>
+      {% endif %}
+      {% if secondaryTitle %}
+        <div class="ProductCard-subTitle paragraph-3">{{ secondaryTitle }}</div>
+      {% endif %}
+      {% if isOrderCard or isPurchaseFunnelCard or isAddToCartConfirmation %}
+        <div class="ProductCard-orderInfos paragraph-6">
+          <span class="ProductCard-secondaryTitle">{{ orderSecondaryTitle }}</span>
+          <span class="ProductCard-secondarySize">Taille : {{ size }}</span>
+          {% if quantity %} <span>Quantié : {{ quantity }}</span> {% endif %}
+        </div>
+      {% endif %}
+      {% if isRemoveProduct %}
+        <div class="ProductCard-removeProductMessage">
+          {{ productTitle }} a été supprimé de votre panier.
+        </div>
+        {% include '../../Molecules/Button/Button.twig' with {classes:'Button--small', text: "Restaurer", icon_left: "restore" } %}
+      {% endif %}
       <div class="ProductCard-footer">
         {% if hasReviews or hasColors %} 
           <div class="ProductCard-footerLeft">
@@ -62,7 +94,7 @@
                     {% endif %}
                   {% endfor %}
                 </div>
-                <span class="Rating-reviewCount">
+                <span class="Rating-reviewCount indication-small">
                   {{reviewCount}} Avis
                 </span>
               </div>
@@ -92,7 +124,36 @@
         {% else %}
           <div class="ProductCard-price">{{ price }}</div>
         {% endif %}
+        {% if isPurchaseFunnelCard|default(0) %}
+          {% if isOutOfStock %} 
+            <div class="ProductCard-unavailable">
+              Indisponible
+            </div>
+          {% else %}
+            <div class="ProductCard-quantity">
+              {% include '../../Molecules/Button/Quantity.twig' with {disabled: false, value:quantityChoice, classes:'Button--small'} %}
+            </div>
+          {% endif %}
+        {% endif %}
       </div>
     </div>
   </div>
+  {% if isPurchaseFunnelCard|default(0) %}
+    <div class="ProductCard-purchaseFunnelCardBottom">
+      {% include '../../Molecules/Button/Button.twig' with {classes:'Button--small', text: "Voir le produit", rectangle: true, icon_left: "show"} %}
+      {% include '../../Molecules/Button/Button.twig' with {classes:'Button--small', text: "Supprimer", rectangle: true, icon_left: "delete"} %}
+    </div>
+  {% endif %}
+  {% if isAddToCartConfirmation %}
+    <div class="ProductCard-ProductCardAddToCartBottom">
+      {% include '../../Molecules/Button/Button.twig' with {classes:'Button--medium', variant: "primary", text: "Voir mon panier" } %}
+      {% include '../../Molecules/Button/Button.twig' with {classes:'Button--medium', variant: "secondary", text: "Poursuivre mes achats" } %}
+    </div>
+  {% endif %}
+  {% if isRemoveProduct|default(0) %}
+    <div class="ProductCard-progressBar">
+        <div class="ProductCard-progressBarInner">
+        </div>
+    </div>
+  {% endif %}
 </div>
