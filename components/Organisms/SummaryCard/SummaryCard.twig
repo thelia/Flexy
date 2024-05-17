@@ -1,0 +1,56 @@
+<div class='SummaryCard'>
+  <div class='SummaryCard-list'>
+    <div class='SummaryCard-line'>
+      <div>Sous-total <span class='paragraph-6 font-normal	'>(2 articles)</span></div>
+      <div>2 050,00€</div>
+    </div>
+    <div class='SummaryCard-line'>
+      <div>Livraison</div>
+      <div>Calculée à l’étape suivante</div>
+    </div>
+    <div class='SummaryCard-line'>
+      <div>
+        Code Promo
+        {% if promo %}
+          <div class='paragraph-6 font-normal'>{{ promo.code }}</div>
+        {% endif %}
+      </div>
+      {% if promo %}
+        <div>
+          {% include '../../Molecules/Filters/FilterPill/FilterPill.twig' with
+            {selected: true, customText:promo.reduction, icon:'price-tag'} %}
+        </div>
+      {% else %}
+      <div>Aucun code Promo</div>
+      {% endif %}
+    </div>
+    {% if giftCard %}
+    <div class='SummaryCard-line'>
+      <div>
+        Carte cadeau
+        <div class='paragraph-6 font-normal'>{{ giftCard.code }}</div>
+      </div>
+      {% if giftCard %}
+        <div>
+          {% include '../../Molecules/Filters/FilterPill/FilterPill.twig' with
+            {selected: true, customText:giftCard.reduction, icon:'gift'} %}
+        </div>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+  <div class='SummaryCard-footer'>
+    <div class='SummaryCard-total'>
+      <div>Total TTC</div>
+      <div>2 000,00€</div>
+    </div>
+    <div class='italic'>
+      Taxes de 5,05 € incluse
+    </div>
+    {% if cgv %}
+      <div class='mt-2'>
+        En payant votre commande, vous acceptez nos <a href='#'>conditions générales de vente</a> .
+      </div>
+    {% endif %}
+  </div>
+</div>
