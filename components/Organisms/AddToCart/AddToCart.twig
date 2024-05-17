@@ -1,0 +1,14 @@
+<div class='AddToCart'>
+  <div>
+    <div class='price{% if discount %}-promo{% endif %}'>{{ price }}</div>
+    {% if discount %}<div class='price'>{{ discount }}</div>{% endif %}
+  </div>
+  <div>
+    {% if unavailable %}
+      <span class='typo-button-large'>Produit indisponible</span>
+    {% else %}
+      {% include '../../Molecules/Button/Button.twig' with
+        {classes:'', variant:'primary', text:'Ajouter au panier'} %}
+    {% endif %}
+  </div>
+</div>

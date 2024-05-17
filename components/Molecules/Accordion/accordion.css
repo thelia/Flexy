@@ -77,11 +77,10 @@
 
   &--faq {
     .Accordion-summary {
-      @apply h4-mobile;
+      @apply h4;
       padding: rem-convert(14px) rem-convert(10px) rem-convert(14px) 0;
 
       @media screen and (min-width: 768px) {
-        @apply h4-desktop;
         padding: rem-convert(18px) rem-convert(10px) rem-convert(18px) 0;
       }
     }

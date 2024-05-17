@@ -34,7 +34,16 @@ module.exports = {
         'processing-lightest': 'var(--processing-lightest)',
         'checkbox-focus': 'var(--checkbox-focus)'
       }
-    }
+    },
+    screens: {
+      xs: '320px',
+      sm: '390px',
+      md: '768px',
+      lg: '1024px',
+      xl: '1366px',
+      '2xl': '1680px',
+      '3xl': '1920px',
+    },
   },
   plugins: []
 };
