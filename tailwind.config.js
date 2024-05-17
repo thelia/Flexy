@@ -44,6 +44,17 @@ module.exports = {
       '2xl': '1680px',
       '3xl': '1920px',
     },
+    fontSize: {
+      '2xs': 'var(--font-size-2xs)',
+      xs: 'var(--font-size-xs)',
+      sm: 'var(--font-size-sm)',
+      base: 'var(--font-size-base)',
+      lg: 'var(--font-size-lg)',
+      xl: 'var(--font-size-xl)',
+      '2xl': 'var(--font-size-2xl)',
+      '3xl': 'var(--font-size-3xl)',
+      '4xl': 'var(--font-size-4xl)',
+    }
   },
   plugins: []
 };
