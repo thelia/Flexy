@@ -33,6 +33,9 @@ const preview: Preview = {
           value: '#FFF5F1'
         }
       ]
+    },
+    viewport: {
+      defaultViewport: 'desktop'
     }
   }
 };

@@ -1,0 +1,58 @@
+.SnackBar {
+  border-radius: 8px;
+  border: 1px solid var(--black);
+  padding-bottom: rem-convert(20px);
+  padding-top: rem-convert(20px);
+  &-content {
+    display: flex;
+  }
+  &-icon {
+    width: rem-convert(20px);
+    height: rem-convert(20px);
+    margin-right: rem-convert(8px);
+    flex-shrink: 0;
+  }
+  &-small {
+    width: rem-convert(334px);
+    padding-right: rem-convert(30px);
+    padding-left: rem-convert(24px);
+
+    .SnackBar-button {
+      margin-top: rem-convert(10px);
+    }
+  }
+  &-large {
+    display: flex;
+    gap: 10px;
+    width: rem-convert(661px);
+    padding-right: rem-convert(24px);
+    padding-left: rem-convert(24px);
+  }
+
+
+  &--neutral-light {
+    background: var(--theme-lightest);
+    border-color: var(--theme-medium);
+  }
+  &--neutral-dark {
+    background: var(--theme-light);
+    border-color: var(--theme-medium);
+  }
+
+  &--error {
+    background: var(--error-lightest);
+    border-color: var(--error);
+  }
+  &--warning {
+    background: var(--warning-lightest);
+    border-color: var(--warning);
+  }
+  &--validated {
+    background: var(--validated-lightest);
+    border-color: var(--validated);
+  }
+  &--informative {
+    background: var(--informative-lightest);
+    border-color: var(--informative);
+  }
+}

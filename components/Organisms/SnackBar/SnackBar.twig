@@ -1,0 +1,20 @@
+{% set icon = '' %}
+{% if variant|default('theme-light') == 'error' %}{% set icon = 'error' %}{% endif %}
+{% if variant|default('theme-light') == 'warning' %}{% set icon = 'warning' %}{% endif %}
+{% if variant|default('theme-light') == 'validated' %}{% set icon = 'check' %}{% endif %}
+{% if variant|default('theme-light') == 'informative' %}{% set icon = 'info' %}{% endif %}
+
+<div class='SnackBar SnackBar-{{ size|default('small') }} SnackBar--{{ variant|default('theme-light') }}'>
+  <div class='SnackBar-content'>
+    {% if withIcon and icon %}
+    <div class='SnackBar-icon'>{{ source("/icons/" ~ icon  ~".svg") }}</div>
+    {% endif %}
+    <div class='SnackBar-message'>{{ text }}</div>
+  </div>
+  {% if button %}
+  <div class='SnackBar-button'>
+    {% include '../../Molecules/Button/Button.twig' with
+      {classes:'', variant:'secondary', text:button} %}
+  </div>
+  {% endif %}
+</div>
