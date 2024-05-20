@@ -18,7 +18,7 @@ const address = {
 };
 
 export const Base = {
-  render: (args) => `<div class='w-[309px]'>${AddressCard(args)}</div>`,
+  render: (args) => `<div class='max-w-[309px]'>${AddressCard(args)}</div>`,
   play: () => {
     addressCard();
   },

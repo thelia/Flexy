@@ -12,5 +12,8 @@ export const Base = {
     date: 'JJ/MM',
     price: '7,80€',
     img: {alt: 'Logo Chronopost', src: "/images/chronopost.svg"}
+  },
+  argTypes: {
+    date: {control: { type: 'text' }}
   }
 };
