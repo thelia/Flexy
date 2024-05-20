@@ -1,0 +1,47 @@
+.Transporter {
+  background: var(--theme-lightest);
+  border: 1px solid var(--theme-lightest);
+  border-radius: rem-convert(8px);
+  padding: rem-convert(16px);
+
+  &.selected {
+    background: var(--theme-lighter);
+    border: 1px solid var(--theme-medium);
+  }
+  label  {
+    cursor: pointer;
+  }
+  &-content {
+    display: flex;
+    align-items: flex-start;
+    span {
+      display: block;
+    }
+    > span:last-child {
+      flex-grow: 1;
+    }
+    .Radio {
+      margin-top: 4px;
+      margin-right: 8px;
+    }
+
+    .Transporter-bottom {
+      padding-top: rem-convert(16px);
+      @apply paragraph-4;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  &-title {
+    @apply paragraph-2;
+    font-weight: 600;
+    color: var(--black);
+  }
+  &-description {
+    @apply paragraph-6;
+    font-weight: 400;
+    color: var(--grey);
+  }
+}

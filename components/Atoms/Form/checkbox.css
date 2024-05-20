@@ -28,6 +28,7 @@
   .checkmark {
     width: 16px;
     height: 16px;
+    background: var(--white);
     border: 1px solid var(--current-checkbox-color);
     border-radius: 2px;
     position: relative;
