@@ -11,6 +11,7 @@ export const Base = {
     addressCard();
   },
   args: {
+    purchaseFunnel: false,
     address: {
       title: "Domicile",
       name: "Eleanor Shellstrop",
@@ -24,5 +25,10 @@ export const Base = {
     isDefault: true,
     selected: true,
     radio: false,
+  },
+  argTypes: {
+    radio: {if: { arg: 'purchaseFunnel', truthy: false }},
+    selected: {if: { arg: 'purchaseFunnel', truthy: false }},
+    isDefault: {if: { arg: 'purchaseFunnel', truthy: false }},
   }
 };
