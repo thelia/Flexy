@@ -139,9 +139,15 @@
     </div>
   </div>
   {% if isPurchaseFunnelCard|default(0) %}
-    <div class="ProductCard-purchaseFunnelCardBottom">
-      {% include '../../Molecules/Button/Button.twig' with {classes:'Button--small', text: "Voir le produit", rectangle: true, icon_left: "show"} %}
-      {% include '../../Molecules/Button/Button.twig' with {classes:'Button--small', text: "Supprimer", rectangle: true, icon_left: "delete"} %}
+    <div class="bottom-card-buttons">
+      <button {% if disabled %}disabled{% endif %} type='button'>
+        <span>{{ source("/icons/show.svg") }}</span>
+        Voir le produit
+      </button>
+      <button {% if disabled %}disabled{% endif %} type='button'>
+        <span>{{ source("/icons/delete.svg") }}</span>
+        Supprimer
+      </button>
     </div>
   {% endif %}
   {% if isAddToCartConfirmation %}

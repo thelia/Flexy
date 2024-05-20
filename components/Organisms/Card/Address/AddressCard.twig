@@ -1,0 +1,30 @@
+<div class='AddressCard {% if selected %}selected{% endif %}'>
+  <div class='AddressCard-top'>
+    {% include '../../../Molecules/Favorite/Favorite.twig' with {text: 'Favori', selected: isDefault} %}
+  </div>
+
+  <label class='AddressCard-content'>
+    {% include '../../../Atoms/Form/Radio.twig' with {classes:radio ? "" : "invisible max-w-0", type:"span", name:"test", value:1, checked:selected} %}
+
+    <span>
+      <span class='AddressCard-title'>{{ address.title }}</span>
+      <span class='AddressCard-name'>{{ address.name }}</span>
+      <span class='AddressCard-address'>
+        {{ address.address1 }},{% if address.address2 %} {{ address.address2 }},{% endif %}<br>
+        {{ address.zipCode }} {{ address.city }}, {{ address.country }}<br>
+        {{ address.phone }}
+      </span>
+    </span>
+  </label>
+
+  <div class="bottom-card-buttons">
+    <button {% if disabled %}disabled{% endif %} type='button'>
+      <span>{{ source("/icons/edit.svg") }}</span>
+      Modifier
+    </button>
+    <button {% if disabled %}disabled{% endif %} type='button'>
+      <span>{{ source("/icons/delete.svg") }}</span>
+      Supprimer
+    </button>
+  </div>
+</div>

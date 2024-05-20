@@ -18,24 +18,6 @@
     height: 0;
     width: 0;
 
-    &:indeterminate {
-      ~ .checkmark {
-        &:after {
-          content: "";
-          position: absolute;
-          width: 8px;
-          height: 2px;
-          left: 3px;
-          top: 6px;
-          background: var(--current-checkbox-color);
-        }
-      }
-      &:disabled {
-        & ~ .checkmark:after {
-          background: var(--current-checkbox-disabled);
-        }
-      }
-    }
     &:focus {
       & ~ .checkmark {
         outline: var(--checkbox-focus) solid 1px;
@@ -72,6 +54,24 @@
 
 .Checkbox {
   input {
+    &:indeterminate {
+      ~ .checkmark {
+        &:after {
+          content: "";
+          position: absolute;
+          width: 8px;
+          height: 2px;
+          left: 3px;
+          top: 6px;
+          background: var(--current-checkbox-color);
+        }
+      }
+      &:disabled {
+        & ~ .checkmark:after {
+          background: var(--current-checkbox-disabled);
+        }
+      }
+    }
     &:checked {
       & ~ .checkmark {
         background-color: var(--current-checkbox-color);
