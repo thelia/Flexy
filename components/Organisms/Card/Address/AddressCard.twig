@@ -1,6 +1,8 @@
+{% set contentType = "label" %}
 {% if purchaseFunnel %}
   {% set radio = false %}
   {% set selected = false %}
+  {% set contentType = "div" %}
 {% endif %}
 <div class='AddressCard {% if selected %}selected{% endif %}'>
   {% if not purchaseFunnel %}
@@ -8,19 +10,19 @@
       {% include '../../../Molecules/Favorite/Favorite.twig' with {text: 'Favori', selected: isDefault} %}
     </div>
   {% endif %}
-  <label class='AddressCard-content'>
+  <{{ contentType }} class='AddressCard-content'>
     {% include '../../../Atoms/Form/Radio.twig' with {classes:radio ? "" : "invisible max-w-0", type:"span", name:"test", value:1, checked:selected} %}
 
     <span>
       <span class='AddressCard-title'>{% if not purchaseFunnel %}{{ address.title }}{% else %}Adresse de livraison{% endif %}</span>
       <span class='AddressCard-name'>{{ address.name }}</span>
       <span class='AddressCard-address'>
-        {{ address.address1 }},{% if address.address2 %} {{ address.address2 }},{% endif %}<br>
-        {{ address.zipCode }} {{ address.city }}, {{ address.country }}<br>
-        {{ address.phone }}
+        <span>{{ address.address1 }},{% if address.address2 %} {{ address.address2 }},{% endif %}</span>
+        <span>{{ address.zipCode }} {{ address.city }}, {{ address.country }}</span>
+        <span class='AddressCard-phone'>{{ address.phone }}</span>
       </span>
     </span>
-  </label>
+  </{{ contentType }}>
 
   {% if not purchaseFunnel %}
     <div class="bottom-card-buttons">
