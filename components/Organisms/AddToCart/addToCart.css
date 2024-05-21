@@ -1,0 +1,27 @@
+.AddToCart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--theme-medium);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-bottom: rem-convert(16px);
+  padding-top: rem-convert(16px);
+  padding-right: rem-convert(14px);
+  padding-left: rem-convert(23px);
+  .price {
+    @apply h3;
+    color: var(--black);
+    &-promo {
+      @apply paragraph-4;
+      text-decoration: line-through;
+    }
+  }
+  .Button {
+    @screen sm {
+      @apply Button--large;
+    }
+  }
+}
