@@ -1,0 +1,60 @@
+.AddressCard {
+  background: var(--theme-lightest);
+  border: 1px solid var(--theme-medium);
+  border-radius: rem-convert(8px);
+  position: relative;
+  &--client-information {
+    border: none;
+  }
+  &.selected {
+    background: var(--white);
+  }
+  &-top {
+    position: absolute;
+    padding: rem-convert(10px);
+    right: 0;
+    top:0;
+  }
+  label  {
+    cursor: pointer;
+  }
+  &-content {
+    display: flex;
+    padding: rem-convert(24px);
+    align-items: flex-start;
+    span {
+      display: block;
+    }
+   .Radio {
+      margin-top: 4px;
+      margin-right: 8px;
+    }
+  }
+  &-title {
+    @apply paragraph-2;
+    font-weight: 600;
+    color: var(--black);
+    padding-bottom: rem-convert(8px);
+  }
+  &-name {
+    @apply paragraph-4;
+    font-weight: 600;
+    color: var(--grey-dark);
+  }
+  &-address {
+    @apply paragraph-4;
+    font-weight: 400;
+    color: var(--grey-dark);
+    @screen md {
+      span:not(.AddressCard-phone) {
+        display: inline;
+      }
+    }
+  }
+  &-bottom {
+    padding-bottom: rem-convert(31px);
+    padding-right: rem-convert(24px);
+    padding-left: rem-convert(24px);
+    text-align: right;
+  }
+}

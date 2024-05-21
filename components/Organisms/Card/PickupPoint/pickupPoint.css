@@ -1,0 +1,103 @@
+.PickupPoint {
+  background: var(--theme-lightest);
+  border: 1px solid var(--theme-lightest);
+  border-radius: rem-convert(8px);
+  padding: rem-convert(16px);
+
+  &.selected {
+    background: var(--white);
+    border: 1px solid var(--theme-medium);
+  }
+  label  {
+    cursor: pointer;
+  }
+  &-content {
+    display: flex;
+    align-items: flex-start;
+    span {
+      display: block;
+    }
+    > span:last-child {
+      flex-grow: 1;
+    }
+    .Radio {
+      margin-top: 4px;
+      margin-right: 8px;
+      visibility: hidden;
+      max-width: 0;
+      @screen md {
+        visibility: visible;
+        max-width: initial;
+      }
+    }
+  }
+
+
+  &-hoursListing, &-bottom {
+    @screen md {
+      margin-left: rem-convert(22px);
+    }
+  }
+  &-bottom {
+    padding-top: rem-convert(16px);
+    @apply paragraph-4;
+    font-weight: 600;
+    display: none;
+    @screen md {
+      display: flex;
+    }
+    justify-content: space-between;
+    align-items: center;
+  }
+  &-hoursListing {
+    margin-top: rem-convert(16px);
+    padding-top:  rem-convert(16px);
+    border-top: 1px solid var(--grey-lighter);
+    @apply paragraph-4;
+    td:first-child {
+      padding-right: rem-convert(40px);
+    }
+  }
+  &-hours {
+    display: flex;
+    gap: rem-convert(6px);
+    align-items: center;
+    text-decoration: underline;
+    svg {
+      width: rem-convert(18px);
+      height: rem-convert(18px);
+    }
+  }
+  &-title {
+    @apply paragraph-2;
+    font-weight: 600;
+    color: var(--black);
+  }
+  &-description {
+    @apply paragraph-6;
+    font-weight: 400;
+    color: var(--grey);
+  }
+  &-opening, &-address {
+    padding-top: rem-convert(13px);
+    @apply paragraph-4;
+    font-weight: 400;
+    color: var(--grey-dark);
+  }
+  .PickupPoint-opening {
+    display: flex;
+    align-items: center;
+    &:before {
+      content: '';
+      display: inline-block;
+      width: rem-convert(9px);
+      height: rem-convert(9px);
+      border-radius: 999px;
+      background: var(--success-dark);
+      margin-right: rem-convert(4px);
+    }
+    &.closed:before {
+      background: var(--error-dark);
+    }
+  }
+}

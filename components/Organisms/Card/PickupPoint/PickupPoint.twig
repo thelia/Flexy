@@ -1,0 +1,36 @@
+<div class='PickupPoint {% if selected %}selected{% endif %}'>
+  <label class='PickupPoint-content'>
+    {% include '../../../Atoms/Form/Radio.twig' with {type:"span", name:"PickupPoint", value:1, checked:selected} %}
+
+    <span>
+        <span class='PickupPoint-title'>{{ title }}</span>
+        <span class='PickupPoint-description'>Livraison estimée le {{ date }}</span>
+        <span class='PickupPoint-opening {% if closed %}closed{% endif %}'>{% if closed %}Fermé{% else %}Ouvert{% endif %} actuellement</span>
+        <span class='PickupPoint-address'>
+          <span>{{ address.address1 }},</span>
+          {% if address.address2 %}<span>{{ address.address2 }},</span>{% endif %}
+          <span>{{ address.zipCode }} {{ address.city }}</span>
+        </span>
+
+    </span>
+  </label>
+  <div class='PickupPoint-bottom'>
+          <button class='PickupPoint-hours'>{{ source("/icons/clock.svg") }}Horaires</button>
+          {% if img.src %}
+            <img src="{{ img.src }}" alt="{{ img.alt|default('Logo Pickup') }}" loading="lazy">
+          {% endif %}
+  </div>
+  <div class='PickupPoint-hoursListing md:hidden'>
+    <table>
+      {% for hour in hours %}
+        <tr>
+          <td>{{ hour.day }}</td>
+          <td>{{ hour.hours }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+  <div class='md:hidden mt-4'>
+    {% include '../../../Molecules/Button/Button.twig' with {text: 'Choisir ce point relais', classes:'Button--fill'} %}
+  </div>
+</div>

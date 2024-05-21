@@ -6,10 +6,10 @@
 
 <button class='Button {{ classes }}' {% if disabled %}disabled{% endif %} type='{{ type|default('button') }}'>
   {% if icon_left %}
-    <span>{{ source("/icons/"~ icon_left ~".svg") }}</span>
+    <span class='icon icon-left'>{{ source("/icons/"~ icon_left ~".svg") }}</span>
   {% endif %}
-  {{ text }}
+  {{ text|striptags('<span>')|raw }}
   {% if icon_right %}
-    <span>{{ source("/icons/"~ icon_right ~".svg") }}</span>
+    <span class='icon icon-right'>{{ source("/icons/"~ icon_right ~".svg") }}</span>
   {% endif %}
 </button>

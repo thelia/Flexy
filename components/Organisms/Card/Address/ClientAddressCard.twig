@@ -1,0 +1,26 @@
+<div class='AddressCard AddressCard--client-information'>
+  <div class='AddressCard-content'>
+    {% if undefined %}
+      <div class='paragraph-2 font-bold'>
+        Veuillez ajouter une adresse de facturation pour finaliser votre commande
+      </div>
+    {% else %}
+      <div>
+        <div class='AddressCard-name'>{{ address.name }}</div>
+        <div class='AddressCard-address'>
+          <span>{{ address.address1 }},{% if address.address2 %} {{ address.address2 }},{% endif %}</span>
+          <span>{{ address.zipCode }} {{ address.city }}, {{ address.country }}</span>
+          <span class='AddressCard-phone'>{{ address.phone }}</span>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+  <div class='AddressCard-bottom'>
+    {% include '../../../Molecules/Button/Button.twig' with
+      {text:
+        undefined ? 'Ajouter une adresse de facturation' : 'Modifier l’adresse<span class="md:inline hidden">&nbsp;de facturation</span>',
+        variant: undefined? 'primary' : 'secondary',
+        classes:'Button--fill md:Button--unfill'
+      } %}
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class='Transporter {% if selected %}selected{% endif %}'>
+  <label class='Transporter-content'>
+    {% include '../../../Atoms/Form/Radio.twig' with {type:"span", name:"transporter", value:1, checked:selected} %}
+
+    <span>
+        <span class='Transporter-title'>{{ title }}</span>
+        <span class='Transporter-description'>Livraison estimée le {{ date }}</span>
+        <span class='Transporter-bottom'>
+          <span>{{ price }}</span>
+          {% if img.src %}
+            <img src="{{ img.src }}" alt="{{ img.alt|default('Logo transporteur') }}" loading="lazy">
+          {% endif %}
+        </span>
+    </span>
+  </label>
+</div>

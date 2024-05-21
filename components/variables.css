@@ -45,18 +45,28 @@
   --font-weight-h5: 600;
   --font-weight-h6: 400;
 
-  --font-size-h1-d: rem-convert(38px);
+  --font-size-2xs: rem-convert(12px);
+  --font-size-xs: rem-convert(14px);
+  --font-size-sm: rem-convert(16px);
+  --font-size-base: rem-convert(18px);
+  --font-size-lg: rem-convert(20px);
+  --font-size-xl: rem-convert(24px);
+  --font-size-2xl: rem-convert(32px);
+  --font-size-3xl: rem-convert(36px);
+  --font-size-4xl: rem-convert(38px);
+
+  --font-size-h1-d: var(--font-size-4xl);
   --font-size-h1-m: rem-convert(28px);
-  --font-size-h2-d: rem-convert(36px);
+  --font-size-h2-d: var(--font-size-3xl);
   --font-size-h2-m: rem-convert(26px);
-  --font-size-h3-d: rem-convert(32px);
+  --font-size-h3-d: var(--font-size-2xl);
   --font-size-h3-m: rem-convert(22px);
-  --font-size-h4-d: rem-convert(24px);
-  --font-size-h4-m: rem-convert(20px);
-  --font-size-h5-d: rem-convert(20px);
-  --font-size-h5-m: rem-convert(18px);
-  --font-size-h6-d: rem-convert(20px);
-  --font-size-h6-m: rem-convert(18px);
+  --font-size-h4-d: var(--font-size-xl);
+  --font-size-h4-m: var(--font-size-lg);
+  --font-size-h5-d: var(--font-size-lg);
+  --font-size-h5-m: var(--font-size-base);
+  --font-size-h6-d: var(--font-size-lg);
+  --font-size-h6-m: var(--font-size-base);
 
   --line-height-h1-d: rem-convert(57px);
   --line-height-h1-m: rem-convert(42px);
@@ -71,13 +81,13 @@
   --line-height-h6-d: rem-convert(28px);
   --line-height-h6-m: rem-convert(26px);
 
-  --font-size-paragraph-1: rem-convert(18px);
-  --font-size-paragraph-2: rem-convert(16px);
-  --font-size-paragraph-3: rem-convert(16px);
-  --font-size-paragraph-4: rem-convert(14px);
-  --font-size-paragraph-5: rem-convert(14px);
-  --font-size-paragraph-6: rem-convert(14px);
-  --font-size-paragraph-7: rem-convert(12px);
+  --font-size-paragraph-1: var(--font-size-base);
+  --font-size-paragraph-2: var(--font-size-sm);
+  --font-size-paragraph-3: var(--font-size-sm);
+  --font-size-paragraph-4: var(--font-size-xs);
+  --font-size-paragraph-5: var(--font-size-xs);
+  --font-size-paragraph-6: var(--font-size-xs);
+  --font-size-paragraph-7: var(--font-size-2xs);
 
   --line-height-paragraph-1: rem-convert(27px);
   --line-height-paragraph-2: rem-convert(24px);
@@ -95,9 +105,9 @@
   --font-family-paragraph-6: 'Roboto Condensed';
   --font-family-paragraph-7: 'Roboto Condensed';
 
-  --font-size-button-large: rem-convert(16px);
-  --font-size-button-medium: rem-convert(14px);
-  --font-size-button-small: rem-convert(12px);
+  --font-size-button-large: var(--font-size-sm);
+  --font-size-button-medium: var(--font-size-xs);
+  --font-size-button-small: var(--font-size-2xs);
 
   --font-weight-button-large: 500;
   --font-weight-button-medium: 500;
@@ -108,9 +118,9 @@
   --font-family-button-medium: 'Poppins';
   --font-family-button-small: 'Poppins';
 
-  --font-size-link-large: rem-convert(16px);
-  --font-size-link-medium: rem-convert(14px);
-  --font-size-link-small: rem-convert(12px);
+  --font-size-link-large: var(--font-size-sm);
+  --font-size-link-medium: var(--font-size-xs);
+  --font-size-link-small: var(--font-size-2xs);
 
   --font-weight-link-large: 500;
   --font-weight-link-medium: 500;
@@ -123,8 +133,8 @@
 
   --font-family-indication: 'Roboto Condensed';
 
-  --font-size-indication: rem-convert(14px);
-  --font-size-indication-small: rem-convert(12px);
+  --font-size-indication: var(--font-size-xs);
+  --font-size-indication-small: var(--font-size-2xs);
 
   --font-weight-indication: 400;
 

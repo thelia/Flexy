@@ -1,0 +1,29 @@
+.Article {
+  height: 98px;
+  display: flex;
+  &-img {
+    border-top-left-radius: rem-convert(8px);
+    border-bottom-left-radius: rem-convert(8px);
+  }
+  &-content {
+    padding-right: rem-convert(16px);
+    padding-left: rem-convert(16px);
+    padding-top: rem-convert(13px);
+    padding-bottom: rem-convert(13px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--white);
+    border-top-right-radius: rem-convert(8px);
+    border-bottom-right-radius: rem-convert(8px);
+    flex-grow: 1;
+  }
+  &-title {
+    @apply paragraph-2;
+    font-weight: 700;
+  }
+  &-date {
+    @apply paragraph-6;
+    color: var(--grey);
+  }
+}

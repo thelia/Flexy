@@ -3,7 +3,6 @@
   padding: rem-convert(12px) rem-convert(24px);
   align-items: center;
   justify-content: center;
-  gap: rem-convert(6px);
   border-radius: rem-convert(50px);
   background: var(--black);
   color: var(--white);
@@ -13,9 +12,15 @@
   font-family: var(--font-family-button-medium);
   font-weight: var(--font-weight-button-medium);
 
-  & > span {
+  & > span.icon {
     color: var(--white);
     @apply w-5 h-5;
+    &-left {
+      padding-right: rem-convert(6px);
+    }
+    &-right {
+      padding-left: rem-convert(6px);
+    }
   }
 
   &--large {
@@ -126,10 +131,16 @@
     }
   }
 
-  &--fill {
-    width: 100%;
-    &:before {
-      display: none;
+  @layer utilities {
+    &--fill {
+      width: 100%;
+
+      &:before {
+        display: none;
+      }
+    }
+    &--unfill {
+      width: initial;
     }
   }
 
