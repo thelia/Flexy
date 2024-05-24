@@ -1,4 +1,5 @@
 .Tooltip {
+  display: inline-flex; /* Prevents the div from taking more height than the content */
   position: relative;
 
   &-icon {
