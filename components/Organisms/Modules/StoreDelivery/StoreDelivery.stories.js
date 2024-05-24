@@ -2,7 +2,7 @@ import StoreDelivery from './StoreDelivery.twig';
 import { storeDelivery } from './StoreDelivery';
 
 export default {
-  title: 'Design System/Organisms/Card/StoreDelivery'
+  title: 'Design System/Organisms/Modules/StoreDelivery'
 };
 
 const address = {

@@ -48,5 +48,6 @@
 
   &-bottom {
     border-radius: 0 0 rem-convert(8px) rem-convert(8px);
+    padding: rem-convert(16px);
   }
 }

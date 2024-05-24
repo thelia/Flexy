@@ -2,7 +2,7 @@ import HomeDelivery from './HomeDelivery.twig';
 import { homeDelivery } from './HomeDelivery';
 
 export default {
-  title: 'Design System/Organisms/Card/HomeDelivery'
+  title: 'Design System/Organisms/Modules/HomeDelivery'
 };
 
 const address = {

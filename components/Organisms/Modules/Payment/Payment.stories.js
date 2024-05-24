@@ -1,7 +1,7 @@
 import Payment from './Payment.twig';
 
 export default {
-  title: 'Design System/Organisms/Card/Payment'
+  title: 'Design System/Organisms/Modules/Payment'
 };
 
 export const Base = {
