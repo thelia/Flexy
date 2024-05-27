@@ -1,8 +1,8 @@
-import PickupPoint from './PickupPoint.twig';
-import { pickupPoint } from './PickupPoint';
+import StoreDelivery from './StoreDelivery.twig';
+import { storeDelivery } from './StoreDelivery';
 
 export default {
-  title: 'Design System/Organisms/Card/PickupPoint'
+  title: 'Design System/Organisms/Modules/StoreDelivery'
 };
 
 const address = {
@@ -12,6 +12,7 @@ const address = {
   city: 'Clermont-Ferrand',
   country: 'Ville-Sur-Fleuve'
 };
+
 const hours = [
   { day: 'lundi', hours: '14h - 19h' },
   { day: 'mardi', hours: '14h - 20h' },
@@ -23,17 +24,19 @@ const hours = [
 ];
 
 export const Base = {
-  render: (args) => `<div class='max-w-[340px]'>${PickupPoint(args)}</div>`,
+  render: (args) => StoreDelivery(args),
   play: () => {
-    pickupPoint();
+    storeDelivery();
   },
   args: {
     selected: false,
     closed: false,
-    title: 'Nom du point relais',
+    registeredClient: false,
+    newClient: false,
+    title: 'Retrait en magasin',
     date: 'JJ/MM',
     address: address,
-    price: '7,80€',
+    price: 'Gratuit',
     img: { alt: 'Logo Mondial Relay', src: '/images/mondialRelay.svg' },
     hours
   },
