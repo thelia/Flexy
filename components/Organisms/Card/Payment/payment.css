@@ -1,0 +1,27 @@
+.PaymentCard {
+  position: relative;
+  border-radius: rem-convert(8px);
+  border: 1px solid var(--theme-medium);
+  background: var(--theme-lightest);
+  padding: rem-convert(24px);
+  &-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: rem-convert(20px);
+    span {
+      display: block;
+      width: rem-convert(38px);
+      height: rem-convert(38px);
+      color: var(--theme-light);
+    }
+  }
+  &-title {
+    @apply paragraph-2;
+    font-weight: 600;
+    color: var(--black);
+  }
+  &-content {
+    @apply paragraph-4;
+  }
+}

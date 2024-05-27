@@ -1,0 +1,23 @@
+<div class='PaymentCard'>
+  <div class='PaymentCard-icon'><span>{{ source("/icons/calendar.svg") }}</span></div>
+  <div class='PaymentCard-title'>{{ title }}</div>
+ <div class='{% if not expired %}flex flex-cols items-end justify-between {% endif %}'>
+   <div class='PaymentCard-content'>
+     <div class='font-semibold'>{{ cardType }}</div>
+     <div>N° {{ number }}</div>
+     {% if expired %}
+       <div class='font-bold text-error-dark'>Expirée</div>
+     {% else %}
+       <div>Expire le {{ date }}</div>
+     {% endif %}
+   </div>
+   {% if not withoutButton %}
+     <div class='{% if expired %}mt-2 flex gap-2{% endif %}'>
+       {% include '../../../Molecules/Button/Button.twig' with {classes: 'Button--small',text:'Supprimer', icon_left: 'delete'} %}
+       {% if expired %}
+         {% include '../../../Molecules/Button/Button.twig' with {classes: 'Button--small', variant:'secondary', text:'Mettre à jour'} %}
+       {% endif %}
+     </div>
+   {% endif %}
+ </div>
+</div>
