@@ -1,0 +1,37 @@
+.MobileDrawer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding-left: rem-convert(40px);
+  padding-right: rem-convert(40px);
+  background: var(--white);
+  padding-top: rem-convert(50px);
+  padding-bottom: rem-convert(42px);
+  border-radius: rem-convert(20px) rem-convert(20px) 0px 0px;
+  @apply transition-transform translate-y-full;
+  &:before {
+    content: "";
+    position: absolute;
+    top: rem-convert(16px);
+    left: calc(50% - 21px);
+    height: rem-convert(5px);
+    width: rem-convert(42px);
+    border-radius: rem-convert(50px);
+    background-color: var(--grey);
+  }
+
+  &-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: rem-convert(10px);
+  }
+  &-close {
+    width: rem-convert(38px);
+    height: rem-convert(38px);
+  }
+  &-show {
+    @apply translate-y-0;
+  }
+}

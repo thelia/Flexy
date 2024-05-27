@@ -1,0 +1,27 @@
+<div class='MobileDrawer' id='PickupPointDrawer'>
+  <div class='MobileDrawer-header'>
+    <button class='MobileDrawer-close' type='button' data-drawer-close>{{ source("/icons/close.svg") }}</button>
+  </div>
+  <div>
+    <div class='PickupPointDrawer-title'>{{ title }}</div>
+    <div class='PickupPointDrawer-address'>
+          <div>{{ address.address1 }},</div>
+          {% if address.address2 %}<div>{{ address.address2 }},</div>{% endif %}
+          <div>{{ address.zipCode }} {{ address.city }}</div>
+        </div>
+  </div>
+  <div class='PickupPoint-hoursListing'>
+    <table>
+      {% for hour in hours %}
+        <tr>
+          <td>{{ hour.day }}</td>
+          <td>{{ hour.hours }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  </div>
+  <div class='mt-4'>
+    {% include '../../../Molecules/Button/Button.twig' with
+      {classes:'Button--large', variant:'primary', text:'Choisir ce point relais', fill:true} %}
+  </div>
+</div>

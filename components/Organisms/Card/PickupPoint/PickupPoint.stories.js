@@ -1,5 +1,7 @@
 import PickupPoint from './PickupPoint.twig';
 import { pickupPoint } from './PickupPoint';
+import PickupPointDrawer from './PickupPointDrawer.twig';
+import MobileDrawerInit from '../../../../assets/js/mobileDrawer';
 
 export default {
   title: 'Design System/Organisms/Card/PickupPoint'
@@ -39,5 +41,25 @@ export const Base = {
   },
   argTypes: {
     date: { control: { type: 'text' } }
+  }
+};
+
+export const MobileDrawer = {
+  render: (args) =>
+    `<div class='text-center'><button class='Button Button--secondary' data-drawer-toggle='#PickupPointDrawer' type='button'>Test Drawer</button></div>${PickupPointDrawer(args)}`,
+  play: () => {
+    MobileDrawerInit();
+  },
+  args: {
+    title: 'Nom du point relais',
+    address: address,
+    hours,
+    id: 'PickupPointDrawer'
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'mobile1'
+    },
+    backgrounds: { default: 'grey' }
   }
 };

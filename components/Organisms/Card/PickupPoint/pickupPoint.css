@@ -101,3 +101,14 @@
     }
   }
 }
+
+.PickupPointDrawer {
+  &-title {
+    @apply h4;
+    font-weight: 700;
+    color: var(--black);
+  }
+  &-address {
+    @apply paragraph-2;
+  }
+}
