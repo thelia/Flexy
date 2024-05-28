@@ -1,0 +1,59 @@
+.StoreInfo {
+  max-width: rem-convert(540px);
+  background: var(--theme-lightest);
+  padding: rem-convert(24px);
+
+  &-title {
+    color: var(--black);
+    @apply paragraph-2;
+    font-weight: 700;
+  }
+  &-address {
+    @apply paragraph-2;
+    span {
+      display: block;
+      @screen lg {
+        display: inline;
+      }
+    }
+  }
+  &-hours {
+    display: flex;
+    gap: rem-convert(6px);
+    align-items: center;
+    text-decoration: underline;
+    margin-top: rem-convert(10px);
+    margin-bottom: rem-convert(10px);
+    svg {
+      width: rem-convert(18px);
+      height: rem-convert(18px);
+    }
+  }
+  &-hoursListing {
+    @apply paragraph-5;
+    display: inline-grid;
+    grid-template-columns: repeat(2, auto);
+    div:nth-child(2n + 1) {
+      font-weight: 700;
+      padding-right: rem-convert(30px);
+    }
+    @screen lg {
+      margin-top: rem-convert(24px);
+      grid-template-columns: repeat(4, auto);
+      div:nth-child(2n + 1) {
+        font-weight: 700;
+        padding-right: rem-convert(30px);
+      }
+      div:nth-child(4n + 2) {
+        padding-right: rem-convert(30px);
+        border-right: 1px solid var(--grey-lighter);
+      }
+      div:nth-child(4n + 3) {
+        padding-left: rem-convert(30px);
+      }
+    }
+    &.hidden {
+      display: none;
+    }
+  }
+}
