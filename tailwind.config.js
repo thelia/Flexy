@@ -33,16 +33,24 @@ module.exports = {
         processing: 'var(--processing)',
         'processing-lightest': 'var(--processing-lightest)',
         'checkbox-focus': 'var(--checkbox-focus)'
+      },
+      screens: {
+        xs: '320px',
+        '3xl': '1920px',
+        max2xl: { max: '1680px' },
+        maxXl: { max: '1366px' },
+        maxLg: { max: '1024px' },
+        maxMd: { max: '768px' },
+        maxSm: { max: '390px' },
+        maxXs: { max: '321px' }
       }
     },
     screens: {
-      xs: '320px',
       sm: '390px',
       md: '768px',
       lg: '1024px',
       xl: '1366px',
-      '2xl': '1680px',
-      '3xl': '1920px',
+      '2xl': '1680px'
     },
     fontSize: {
       '2xs': 'var(--font-size-2xs)',
@@ -53,7 +61,7 @@ module.exports = {
       xl: 'var(--font-size-xl)',
       '2xl': 'var(--font-size-2xl)',
       '3xl': 'var(--font-size-3xl)',
-      '4xl': 'var(--font-size-4xl)',
+      '4xl': 'var(--font-size-4xl)'
     }
   },
   plugins: []

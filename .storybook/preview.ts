@@ -1,4 +1,5 @@
 import { Preview } from '@storybook/html';
+import { MINIMAL_VIEWPORTS } from '@storybook/addon-viewport';
 import Twig from 'twig';
 
 import '../components/base.css';
@@ -35,6 +36,16 @@ const preview: Preview = {
       ]
     },
     viewport: {
+      viewports: {
+        ...MINIMAL_VIEWPORTS,
+        largeDesktop: {
+          name: 'Large desktop',
+          styles: {
+            width: '1681px',
+            height: '801px'
+          }
+        }
+      },
       defaultViewport: 'desktop'
     }
   }

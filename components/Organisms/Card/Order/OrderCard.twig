@@ -1,0 +1,30 @@
+<div class='OrderCard'>
+  <div class='2xl:flex justify-between'>
+    <div>
+      <div class='OrderCard-title'>Commande N° {{ orderNumber }}</div>
+      <div class='OrderCard-date'>du {{ date }}</div>
+    </div>
+    <div class='flex 2xl:block 2xl:mt-0 justify-between mt-1'>
+      <div class='text-black paragraph-3'>{{ nbItems }} article{% if nbItems > 1 %}s{% endif %}</div>
+      <div class='text-black paragraph-1 font-semibold'>{{ price }}</div>
+    </div>
+  </div>
+
+  <div class='2xl:flex 2xl:items-center 2xl:gap-4 2xl:mb-4 2xl:mt-2'>
+    <div class='mt-1 mb-2 2xl:mt-0 2xl:mb-0'>
+      {% include '../../../Molecules/OrderTag/OrderTag.twig' with {customText: 'Commande expédiée', variant:'validated'} %}
+    </div>
+    <div class='OrderCard-delivery'>Livraison prévue le {{ deliveryDate }}</div>
+  </div>
+  <div class='OrderCard-images'>
+    {%  for img in productImages %}
+      <div class='OrderCard-image'>
+        <img src='{{ img.src }}' alt='{{ img.alt }}' />
+      </div>
+    {% endfor %}
+    <div class='OrderCard-nbImages'></div>
+  </div>
+  <div class='text-center md:text-left mt-6'>
+    {% include '../../../Molecules/Button/Button.twig' with {text: 'Voir le détail de la commande'} %}
+  </div>
+</div>
