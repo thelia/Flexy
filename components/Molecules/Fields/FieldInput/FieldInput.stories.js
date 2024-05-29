@@ -8,18 +8,19 @@ export default {
 export const Base = {
   render: (args) => FieldInput(args),
   play: () => {
-    fieldInputFunction()
+    fieldInputFunction();
   },
   args: {
-    name: "indication",
-    type: "",
-    label: "Indication",
-    placeholder: "Ex. Nom",
-    min: "",
-    max: "",
-    error: "",
-    unit: "",
-    tooltip: "",
+    name: 'indication',
+    type: '',
+    label: 'Indication',
+    placeholder: 'Ex. Nom',
+    min: '',
+    max: '',
+    error: '',
+    unit: '',
+    tooltip: '',
+    iconButton: ''
   },
   argTypes: {
     disabled: {
@@ -33,7 +34,7 @@ export const Base = {
     },
     size: {
       options: ['large', 'small'],
-      control: { type: 'select' },
+      control: { type: 'select' }
     }
   }
 };
@@ -41,18 +42,18 @@ export const Base = {
 export const WithButton = {
   render: (args) => FieldInput(args),
   play: () => {
-    fieldInputFunction()
+    fieldInputFunction();
   },
   args: {
-    name: "promoCode",
-    type: "text",
-    label: "",
-    placeholder: "Code Promo",
-    min: "",
-    max: "",
-    error: "",
-    tooltip: "",
-    button: "Appliquer"
+    name: 'promoCode',
+    type: 'text',
+    label: '',
+    placeholder: 'Code Promo',
+    min: '',
+    max: '',
+    error: '',
+    tooltip: '',
+    button: 'Appliquer'
   },
   argTypes: {
     disabled: {
@@ -66,7 +67,7 @@ export const WithButton = {
     },
     size: {
       options: ['large', 'small'],
-      control: { type: 'select' },
+      control: { type: 'select' }
     }
   }
 };

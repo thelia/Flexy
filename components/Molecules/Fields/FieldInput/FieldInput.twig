@@ -35,6 +35,11 @@
       {% if max %}maxlength='{{ max }}'{% endif %}
     />
     {% if unit %}<span class="FieldInput-unit">{{ unit }}</span>{% endif %}
+    {% if iconButton %}
+      <div class="FieldInput-button FieldInput-buttonIcon">
+        <button type='submit'>{{ source("/icons/"~ iconButton ~".svg") }}</button>
+      </div>
+    {% endif %}
     {% if button %}
       <div class="FieldInput-button">
         {% include '../../Button/Button.twig' with {text: button, rectangle: true, type: "submit", classes: size == 'small' ? ' Button--small' : ''} %}

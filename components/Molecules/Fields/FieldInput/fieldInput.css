@@ -15,6 +15,7 @@
 
   &-help {
     width: rem-convert(18px);
+    width: rem-convert(18px);
     height: rem-convert(18px);
     color: var(--black);
   }
@@ -143,6 +144,15 @@
     top: 50%;
     right: 4px;
     transform: translateY(-50%);
+  }
+
+  &-buttonIcon {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: rem-convert(20px);
+    height: rem-convert(20px);
   }
 
   ::placeholder {
