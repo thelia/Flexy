@@ -15,7 +15,7 @@
     </span>
   </label>
   <div class='PickupPoint-bottom'>
-          <button class='PickupPoint-hours'>{{ source("/icons/clock.svg") }}Horaires</button>
+          <button class='PickupPoint-hours underline-with-icon' type='button'>{{ source("/icons/clock.svg") }}Horaires</button>
           {% if img.src %}
             <img src="{{ img.src }}" alt="{{ img.alt|default('Logo Pickup') }}" loading="lazy">
           {% endif %}

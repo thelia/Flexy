@@ -41,3 +41,16 @@ svg {
     }
   }
 }
+
+.underline-with-icon {
+  display: flex;
+  gap: rem-convert(6px);
+  align-items: center;
+  text-decoration: underline;
+  margin-top: rem-convert(10px);
+  margin-bottom: rem-convert(10px);
+  svg {
+    width: rem-convert(18px);
+    height: rem-convert(18px);
+  }
+}

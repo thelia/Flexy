@@ -13,7 +13,6 @@
   font-weight: var(--font-weight-button-medium);
 
   & > span.icon {
-    color: var(--white);
     @apply w-5 h-5;
     &-left {
       padding-right: rem-convert(6px);
@@ -146,6 +145,9 @@
 
   &--rectangle {
     border-radius: rem-convert(7px);
+  }
+  &--sharp {
+    border-radius:0;
   }
 }
 

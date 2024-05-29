@@ -1,0 +1,55 @@
+<div class='PickupPointModule {% if selected %}selected{% endif %}'>
+  <label class='PickupPointModule-content'>
+    {% include '../../../Atoms/Form/Radio.twig' with {type:"span", name:"PickupPoint", value:1, checked:selected} %}
+  <span>
+      <span class='PickupPointModule-top'>
+      <span>
+        <span class='PickupPointModule-title'>{{ title }}</span>
+        <span class='PickupPointModule-description'>Livraison estimée le {{ date }}</span>
+      </span>
+      <span class="w-12 h-12 text-theme-medium">
+        {{ source("/icons/reinsurance-pickup.svg") }}
+      </span>
+    </span>
+    <div class='flex items-center justify-between mt-6'>
+      <span class='PickupPointModule-price'>{{ price }}</span>
+      {% include '../../../Molecules/Tag/Tag.twig' with { icon: "carbone", customText: carbone } %}
+    </div>
+  </span>
+  </label>
+  <div class='PickupPointModule-searchZone'>
+    <div>
+      {% include '../../../Molecules/Fields/FieldInput/FieldInput.twig' with { label: "Rechercher un lieu de livraison", placeholder: "Ex : Ville, Code postal", iconButton: "search" } %}
+    </div>
+    <div>
+      <button class='underline-with-icon text-black' type='button'>{{ source("/icons/pin-circle.svg") }}Sélectionner sur la carte</button>
+    </div>
+    <div class='flex gap-1 md:gap-5'>
+      {% include '../../../Molecules/Button/Button.twig' with {classes: 'PickupPointModule-buttonView', text: 'Vue carte', sharp:true, icon_left: 'list', variant: 'secondary'} %}
+      {% include '../../../Molecules/Button/Button.twig' with {classes: 'PickupPointModule-buttonView', text: 'Vue carte', sharp:true, icon_left: 'pin-circle'} %}
+    </div>
+    <div class='paragraph-6 mt-5'>3 points relais trouvés</div>
+    <div class='mt-3 text-black xl:flex gap-10'>
+      {% for pickupService in pickupServices %}
+        <label class="Checkbox">
+          <input type="checkbox"
+                 name='pickup'
+                 value='{{ pickupService.value }}'
+          >
+          <div class="checkmark">
+            <span>{{ source("/icons/checkbox.svg") }}</span>
+          </div>
+          <span>{{ pickupService.name }}</span>
+          {% if pickupService.img %}
+            <span><img src='{{ pickupService.img }}' alt='Logo {{ pickupService.name }}'></span>
+          {% endif %}
+        </label>
+      {% endfor %}
+    </div>
+    <div class='mt-6 flex flex-col gap-2'>
+      {% for pickup in pickups %}
+      {% include '../../Card/PickupPoint/PickupPoint.twig' with pickup %}
+      {% endfor %}
+    </div>
+  </div>
+</div>

@@ -16,6 +16,7 @@ export const classic = {
     variant: 'primary',
     fill: false,
     rectangle: false,
+    sharp: false,
     icon_left: 'none',
     icon_right: 'none'
   },

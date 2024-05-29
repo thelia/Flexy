@@ -1,6 +1,6 @@
 .PickupPoint {
-  background: var(--theme-lightest);
-  border: 1px solid var(--theme-lightest);
+  background: var(--theme-lighter);
+  border: 1px solid var(--theme-lighter);
   border-radius: rem-convert(8px);
   padding: rem-convert(16px);
 
@@ -56,16 +56,6 @@
     @apply paragraph-4;
     td:first-child {
       padding-right: rem-convert(40px);
-    }
-  }
-  &-hours {
-    display: flex;
-    gap: rem-convert(6px);
-    align-items: center;
-    text-decoration: underline;
-    svg {
-      width: rem-convert(18px);
-      height: rem-convert(18px);
     }
   }
   &-title {

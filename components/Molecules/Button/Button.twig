@@ -2,6 +2,7 @@
 {% if variant != 'primary' %}{% set classes = classes ~ ' Button--' ~ variant %}{% endif %}
 {% if fill %}{% set classes = classes ~ ' Button--fill'%}{% endif %}
 {% if rectangle %}{% set classes = classes ~ ' Button--rectangle'%}{% endif %}
+{% if sharp %}{% set classes = classes ~ ' Button--sharp'%}{% endif %}
 {% if round %}{% set classes = classes ~ ' Button--round'%}{% endif %}
 
 <button class='Button {{ classes }}' {% if disabled %}disabled{% endif %} type='{{ type|default('button') }}'>

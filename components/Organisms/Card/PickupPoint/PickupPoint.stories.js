@@ -1,5 +1,5 @@
 import PickupPoint from './PickupPoint.twig';
-import { pickupPoint } from './PickupPoint';
+import { pickupPointHours, pickupPoint } from './PickupPoint';
 import PickupPointDrawer from './PickupPointDrawer.twig';
 import MobileDrawerInit from '../../../../assets/js/mobileDrawer';
 
@@ -27,6 +27,7 @@ const hours = [
 export const Base = {
   render: (args) => `<div class='max-w-[340px]'>${PickupPoint(args)}</div>`,
   play: () => {
+    pickupPointHours();
     pickupPoint();
   },
   args: {
