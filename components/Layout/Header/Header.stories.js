@@ -2,7 +2,7 @@ import Header from './Header.twig';
 import HeaderCheckout from './HeaderCheckout.twig';
 
 export default {
-  title: 'Design System/Population/Header'
+  title: 'Design System/Layout/Header'
 };
 
 const types = ['generic', 'sticky', 'searchbar'];

@@ -2,7 +2,7 @@ import Footer from './Footer.twig';
 import FooterCheckout from './FooterCheckout.twig';
 
 export default {
-  title: 'Design System/Population/Footer'
+  title: 'Design System/Layout/Footer'
 };
 
 export const base = {
