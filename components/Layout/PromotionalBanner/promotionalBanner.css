@@ -1,0 +1,44 @@
+.PromotionalBanner {
+  position: relative;
+  padding: rem-convert(32px) rem-convert(24px);
+  background: var(--theme-medium);
+  display: flex;
+  justify-content: center;
+  &.hidden {
+    display: none;
+  }
+  &-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: rem-convert(4px);
+  }
+  &-close {
+    width: rem-convert(32px);
+    height: rem-convert(32px);
+  }
+
+  &-content {
+    color: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: rem-convert(16px);
+    @screen md {
+      flex-direction: row;
+      gap: rem-convert(48px);
+      max-width: rem-convert(1110px);
+    }
+  }
+
+  &-button {
+    flex-grow: 1;
+    flex-shrink: 0;
+    max-width: rem-convert(200px);
+  }
+
+  &-message {
+    @apply h6;
+  }
+}
