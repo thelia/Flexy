@@ -64,5 +64,52 @@ module.exports = {
       '4xl': 'var(--font-size-4xl)'
     }
   },
-  plugins: []
+  plugins: [
+    function ({ addComponents }) {
+      addComponents({
+        '.container': {
+          maxWidth: '100%',
+          '@screen xs': {
+            maxWidth: '272px'
+          },
+          '@screen sm': {
+            maxWidth: '340px'
+          },
+          '@screen md': {
+            maxWidth: '664px'
+          },
+          '@screen lg': {
+            maxWidth: '864px'
+          },
+          '@screen xl': {
+            maxWidth: '1206px'
+          }
+        },
+        '.container-medium': {
+          maxWidth: '100%',
+          '@screen xs': {
+            maxWidth: '272px'
+          },
+          '@screen sm': {
+            maxWidth: '340px'
+          },
+          '@screen md': {
+            maxWidth: '540px'
+          }
+        },
+        '.container-small': {
+          maxWidth: '100%',
+          '@screen xs': {
+            maxWidth: '272px'
+          },
+          '@screen sm': {
+            maxWidth: '340px'
+          },
+          '@screen md': {
+            maxWidth: '400px'
+          }
+        }
+      });
+    }
+  ]
 };

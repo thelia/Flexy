@@ -21,17 +21,18 @@
   &-content {
     color: var(--black);
     display: flex;
-    align-items: center;
     justify-content: center;
     flex-direction: column;
     gap: rem-convert(16px);
+    align-items: flex-start;
+
     @screen md {
       flex-direction: row;
       gap: rem-convert(48px);
       max-width: rem-convert(1110px);
+      align-items: center;
     }
   }
-
   &-button {
     flex-grow: 1;
     flex-shrink: 0;

@@ -27,6 +27,7 @@ export const Color = {
   render: (args) => FilterSelect(args),
   play: () => {
     filterSelectFunction();
+    MobileDrawer();
   },
   args: {
     id: 'colorFilterSelect',

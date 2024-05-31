@@ -1,0 +1,22 @@
+<div class='ReinsuranceModule'>
+  <div class='ReinsuranceModule-wrapper'>
+    {% for reinsurance in data %}
+      <div>
+        {% if reinsurance.icon %}
+          <span class='ReinsuranceModule-icon'>{{ source("/icons/" ~ reinsurance.icon  ~".svg") }}</span>
+        {% endif %}
+        <div>
+          {% if reinsurance.strongText %}
+            <strong>{{ reinsurance.strongText }}</strong>
+          {% endif %}
+          <div class='ReinsuranceModule-text'>{{ reinsurance.text }}</div>
+          {% if reinsurance.link %}
+            <div class='ReinsuranceModule-link'>
+              <a class='link-small' href='{{ reinsurance.link }}'>{{ reinsurance.linkLabel }}</a>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

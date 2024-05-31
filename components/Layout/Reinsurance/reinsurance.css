@@ -1,0 +1,51 @@
+.ReinsuranceModule {
+  background: var(--white);
+  &-wrapper {
+    max-width: rem-convert(1082px);
+    margin-right: auto;
+    margin-left: auto;
+    padding: rem-convert(25px)  rem-convert(40px);
+    color: var(--grey);
+    @screen md {
+      display: flex;
+    }
+    strong {
+      @apply paragraph-4;
+      font-weight: 700;
+      display: block;
+      color: var(--black);
+    }
+    > div {
+      display: flex;
+      gap:  rem-convert(12px);
+      border-bottom: 0.5px solid var(--grey-lighter);
+      padding-bottom: rem-convert(24px);
+      padding-top: rem-convert(24px);
+      @screen md {
+        flex: 1 1 0;
+        border-bottom: 0;
+        padding: 0 rem-convert(10px);
+        border-right: 0.5px solid var(--grey-lighter);
+      }
+    }
+    > div:first-child {
+      padding-top: 0;
+    }
+    > div:last-child {
+      padding-bottom: 0;
+      border-right:0;
+      border-bottom: none;
+    }
+  }
+  &-text {
+    @apply paragraph-6;
+  }
+
+  &-icon {
+    display: inline-block;
+    width: rem-convert(36px);
+    height: rem-convert(36px);
+    color: var(--grey);
+    flex-shrink: 0;
+  }
+}
