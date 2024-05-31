@@ -497,7 +497,7 @@
     svg {
       max-width: 35px;
     }
-    &:focus {
+    &:focus-visible{
       outline: none;
     }
 
@@ -706,7 +706,7 @@
   }
 
   &:hover,
-  &:focus {
+  &:focus-visible{
     .ProductCard-img {
       img {
         transform: scale(1.075);

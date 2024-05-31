@@ -8,16 +8,16 @@
     outline: none;
     border: 1px solid var(--grey-lighter);
 
-    &:focus + .FilterSelect-list {
+    &:focus-visible+ .FilterSelect-list {
       opacity: 1;
       animation-name: none;
     }
 
-    &:focus + .FilterSelect-list .FilterSelect-option {
+    &:focus-visible+ .FilterSelect-list .FilterSelect-option {
       cursor: pointer;
     }
 
-    &:focus .FilterSelect-icon {
+    &:focus-visible.FilterSelect-icon {
       transform: translateY(-50%) rotate(180deg);
     }
   }
@@ -85,7 +85,7 @@
     outline: none;
 
     &:hover,
-    &:focus {
+    &:focus-visible{
       background-color: var(--grey-lightest);
     }
   }

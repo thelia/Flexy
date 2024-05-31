@@ -18,7 +18,7 @@
     flex-grow: 1;
     @apply paragraph-2;
     color: var(--black);
-    &:focus {
+    &:focus-visible{
       outline: none;
     }
     &::placeholder {

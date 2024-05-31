@@ -11,12 +11,12 @@
       background-color: var(--theme-light);
     }
 
-    &:focus + .Dropdown-list {
+    &:focus+ .Dropdown-list {
       opacity: 1;
       animation-name: none;
     }
 
-    &:focus + .Dropdown-list .Dropdown-option {
+    &:focus+ .Dropdown-list .Dropdown-option {
       cursor: pointer;
     }
   }
@@ -74,7 +74,7 @@
     outline: none;
 
     &:hover,
-    &:focus {
+    &:focus-visible{
       background-color: var(--theme-light);
     }
   }

@@ -19,7 +19,7 @@
     background-color: var(--grey-lightest);
   }
 
-  &:focus {
+  &:focus-visible{
     outline: var(--theme-medium) solid 1px;
     border-bottom: 0;
   }

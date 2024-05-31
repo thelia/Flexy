@@ -44,7 +44,7 @@
       }
     }
   }
-  input:focus {
+  input:focus-visible{
     & ~ .ToggleButton-wrapper {
       outline: var(--checkbox-focus) solid 1px;
       outline-offset: 1px;

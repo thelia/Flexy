@@ -50,7 +50,7 @@
       background: var(--grey-dark);
     }
   }
-  &:focus {
+  &:focus-visible, &:has(:focus-visible) {
     outline: var(--theme-medium) solid 2px;
   }
   &:disabled {
@@ -71,7 +71,7 @@
         color: var(--white);
       }
     }
-    &:focus {
+    &:focus-visible, &:has(:focus-visible){
       background: var(--white);
       border: transparent solid 1px;
       &:hover {
@@ -122,7 +122,7 @@
     &:hover:not(:focus):not(:disabled) {
       background: var(--error-light);
     }
-    &:focus {
+    &:focus-visible, &:has(:focus-visible){
       outline: var(--error-dark) solid 2px;
     }
     &:disabled {

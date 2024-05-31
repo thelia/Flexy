@@ -11,7 +11,7 @@
     color: var(--grey);
   }
 
-  &:focus {
+  &:focus-visible{
     background-color: var(--grey-lightest);
   }
 

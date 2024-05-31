@@ -18,7 +18,7 @@
     height: 0;
     width: 0;
 
-    &:focus {
+    &:focus-visible{
       & ~ .checkmark {
         outline: var(--checkbox-focus) solid 1px;
         outline-offset: 1px;

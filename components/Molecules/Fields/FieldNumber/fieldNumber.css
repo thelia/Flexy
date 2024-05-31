@@ -17,7 +17,7 @@
       background-color: var(--theme-lightest);
     }
 
-    &:focus {
+    &:focus-visible{
       outline-offset: 2px;
       outline: 1px solid var(--theme);
     }
@@ -41,7 +41,7 @@
         background-color: var(--error-lightest);
       }
 
-      &:focus {
+      &:focus-visible{
         outline: 1px solid var(--error-dark);
       }
     }

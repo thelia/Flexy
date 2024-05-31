@@ -29,7 +29,7 @@
     color: var(--black);
     border: 0.5px solid var(--validated);
 
-    &:focus {
+    &:focus-visible{
       border: 1px solid var(--validated);
     }
 
@@ -43,7 +43,7 @@
     color: var(--error-light);
     border-color: var(--error);
 
-    &:focus {
+    &:focus-visible{
       border: 1px solid var(--error-dark);
     }
   }
@@ -53,7 +53,7 @@
     color: var(--theme-dark);
     border-color: var(--theme);
 
-    &:focus {
+    &:focus-visible{
       border: 1px solid var(--theme-dark);
     }
   }
