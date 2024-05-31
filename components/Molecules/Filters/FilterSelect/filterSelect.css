@@ -8,16 +8,18 @@
     outline: none;
     border: 1px solid var(--grey-lighter);
 
-    &:focus-visible+ .FilterSelect-list {
-      opacity: 1;
-      animation-name: none;
+    @screen md {
+      &:focus+ .FilterSelect-list {
+        opacity: 1;
+        animation-name: none;
+      }
     }
 
-    &:focus-visible+ .FilterSelect-list .FilterSelect-option {
+    &:focus+ .FilterSelect-list .FilterSelect-option {
       cursor: pointer;
     }
 
-    &:focus-visible.FilterSelect-icon {
+    &:focus.FilterSelect-icon {
       transform: translateY(-50%) rotate(180deg);
     }
   }
@@ -67,10 +69,12 @@
     animation-fill-mode: forwards;
     animation-timing-function: step-start;
 
-    /* Navigation au clavier */
-    &:has(.FilterSelect-option:focus) {
-      opacity: 1;
-      animation-name: none;
+    @screen md {
+      /* Navigation au clavier */
+      &:has(.FilterSelect-option:focus) {
+        opacity: 1;
+        animation-name: none;
+      }
     }
   }
 
@@ -85,21 +89,24 @@
     outline: none;
 
     &:hover,
-    &:focus-visible{
+    &:focus{
       background-color: var(--grey-lightest);
     }
   }
 
-  .colorRounded {
-    --default-bg-color: #ffffff;
+  &,  &-mobileDrawer {
+    .colorRounded {
+      --default-bg-color: #ffffff;
 
-    width: rem-convert(21px);
-    height: rem-convert(21px);
-    display: block;
-    border-radius: 50%;
-    background-color: var(--default-bg-color);
-    margin-right: rem-convert(8px);
+      width: rem-convert(21px);
+      height: rem-convert(21px);
+      display: block;
+      border-radius: 50%;
+      background-color: var(--default-bg-color);
+      margin-right: rem-convert(8px);
+    }
   }
+
 }
 
 @keyframes HideList {

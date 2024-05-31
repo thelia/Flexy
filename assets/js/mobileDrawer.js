@@ -4,7 +4,11 @@ export default function MobileDrawer() {
 
   toggleDrawers.forEach(function (drawer) {
     drawer.addEventListener('click', () => {
+      if (!drawer.dataset?.drawerToggle) return;
+      console.log({ data: drawer.dataset?.drawerToggle });
       const currentDrawer = document.querySelector(drawer.dataset.drawerToggle);
+      console.log({ currentDrawer });
+
       if (!currentDrawer) return;
       currentDrawer.classList.toggle('MobileDrawer-show');
     });

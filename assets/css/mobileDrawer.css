@@ -35,6 +35,11 @@
     @apply translate-y-0;
   }
 
+  /* Navigation au clavier */
+  &:has(label:focus) {
+    @apply translate-y-0;
+  }
+
   @screen md {
     display: none;
   }

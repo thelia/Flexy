@@ -1,4 +1,4 @@
-<div class="FilterSelect">
+<div class="FilterSelect" data-drawer-toggle='#FilterSelectDrawer'>
   <div class="FilterSelect-current" tabindex="1">
       {% if placeholder %}
       <div class="Dropdown-value">
@@ -21,4 +21,20 @@
       </li>
     {% endfor %}
   </ul>
+</div>
+
+
+<div class='MobileDrawer FilterSelect-mobileDrawer' id='FilterSelectDrawer'>
+  <div class='MobileDrawer-header'>
+    <button class='MobileDrawer-close' type='button' data-drawer-close>{{ source("/icons/close.svg") }}</button>
+  </div>
+  <div>
+    <ul class="FilterSelect-mobileList">
+      {% for option in options %}
+        <li class="FilterSelect-ListItem">
+          <label tabindex="1" class="FilterSelect-option" for="{{ option.value }}" aria-hidden="true">{{ option.label }}</label>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
 </div>
