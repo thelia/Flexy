@@ -1,7 +1,7 @@
 import SubheaderSearch from './SubheaderSearch.twig';
 
 export default {
-  title: 'Design System/Layout/Subheader/SearchResults'
+  title: 'Design System/Layout/Subheader/Search Results'
 };
 
 export const base = {
