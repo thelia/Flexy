@@ -1,8 +1,10 @@
-<div class='AddToCart'>
-  <div>
-    <div class='price{% if discount %}-promo{% endif %}'>{{ price }}</div>
-    {% if discount %}<div class='price'>{{ discount }}</div>{% endif %}
-  </div>
+<div class='AddToCart {% if not price %}AddToCart--center{% endif %}'>
+  {% if price %}
+    <div>
+      <div class='price{% if discount %}-promo{% endif %}'>{{ price }}</div>
+      {% if discount %}<div class='price'>{{ discount }}</div>{% endif %}
+    </div>
+  {% endif %}
   <div>
     {% if unavailable %}
       <span class='typo-button-large'>Produit indisponible</span>

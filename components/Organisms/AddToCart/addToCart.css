@@ -11,6 +11,9 @@
   padding-top: rem-convert(16px);
   padding-right: rem-convert(14px);
   padding-left: rem-convert(23px);
+  &--center {
+    justify-content: center;
+  }
   .price {
     @apply h3;
     color: var(--black);
