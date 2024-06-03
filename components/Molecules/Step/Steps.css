@@ -17,7 +17,7 @@
     padding: 35px 20px;
     align-items: center;
 
-    @screen sm {
+    @screen md {
       display: initial;
       width: initial;
     }
@@ -27,13 +27,13 @@
       width: 55px;
       cursor: pointer;
 
-      @screen sm {
+      @screen md {
         display: none;
       }
     }
 
     .StepProgressBar {
-      @screen sm {
+      @screen md {
         display: none;
       }
       &-inner {
@@ -75,7 +75,7 @@
       width: 100%;
       justify-content: center;
 
-      @screen sm {
+      @screen md {
         flex-direction: initial;
         gap: 0;
         justify-content: space-between;
@@ -126,7 +126,7 @@
           color: var(--black);
           font-size: rem-convert(14px);
           font-weight: 600;
-          @screen sm {
+          @screen md {
             font-weight: 400;
             display: block !important;
           }
@@ -159,7 +159,7 @@
           }
         }
 
-        @screen sm {
+        @screen md {
           z-index: 2;
           display: flex !important;
           margin: 0 22px;
@@ -201,7 +201,7 @@
       color: var(--black);
       width: inherit;
 
-      @screen sm {
+      @screen md {
         display: none;
       }
 
