@@ -6,15 +6,28 @@
   align-items: center;
   color: var(--grey-dark);
   border: 1.5px solid var(--theme-light);
+  cursor: pointer;
 
   &--withIcon {
     padding: rem-convert(8px) rem-convert(10px) rem-convert(8px)
       rem-convert(4px);
   }
 
-  &--selected {
+
+
+  &-iconClose {
+    width: rem-convert(21px);
+    height: rem-convert(21px);
+    display: none;
+    margin-left: rem-convert(4px);
+  }
+
+  &:has(:checked) {
     background-color: var(--theme-light);
     border: 1.5px solid var(--theme-medium);
+    .FilterPill-iconClose {
+      display: inline-block;
+    }
   }
 
   &-icon {
@@ -22,14 +35,6 @@
     height: rem-convert(21px);
     display: inline-block;
     margin-right: rem-convert(4px);
-    color: var(--grey-dark);
-  }
-
-  &-iconClose {
-    width: rem-convert(21px);
-    height: rem-convert(21px);
-    display: inline-block;
-    margin-left: rem-convert(4px);
   }
 
   &[disabled] {

@@ -15,6 +15,7 @@ export const Base = {
   args: {
     id: 'filterSelect',
     placeholder: 'Taille',
+    isRounded: false,
     options: [
       { value: 1, label: 'S - 34/36' },
       { value: 2, label: 'M - 38/40' },

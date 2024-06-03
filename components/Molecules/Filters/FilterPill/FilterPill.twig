@@ -6,21 +6,13 @@
    {% set classes = classes ~ ' FilterPill--withIcon' %}
 {% endif %}
 
-{% if not selected %}
-  <span class="FilterPill{{ classes }}" {% if disabled %}disabled{% endif %}>
-    {% if icon %}
-      <span class="FilterPill-icon">{{ source("/icons/" ~ icon  ~".svg") }}</span>
-    {% endif %}
-    {{ customText }}
-  </span>
-{% else %}
-  <button class="FilterPill{{ classes }}" {% if onClickClose %}onclick=onClickClose{% endif %} {% if disabled %}disabled{% endif %}>
-    {% if icon %}
-      <span class="FilterPill-icon">{{ source("/icons/" ~ icon  ~".svg") }}</span>
-    {% endif %}
-    {{ customText }}
-    {% if selected %}
-      <span class='FilterPill-iconClose'>{{ source("/icons/close.svg") }}</span>
-    {% endif %}
-  </button>
-{% endif %}
+<label class="FilterPill{{ classes }}" {% if disabled %}disabled{% endif %}>
+  <input type='{{ inputType|default('checkbox') }}' class='hidden' value='{{ value }}' name='{{ name }}' />
+  {% if icon %}
+    <span class="FilterPill-icon" {% if iconColor %}style="color:{{ iconColor }}"{% endif %}>{{ source("/icons/" ~ icon  ~".svg") }}</span>
+  {% endif %}
+  {{ customText }}
+  {% if closeButton %}
+    <span class='FilterPill-iconClose'>{{ source("/icons/close.svg") }}</span>
+  {% endif %}
+</label>

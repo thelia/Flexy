@@ -1,5 +1,4 @@
 import FilterPill from './FilterPill.twig';
-import filterPillFunction from './FilterPill.js';
 
 export default {
   title: 'Design System/Molecules/Filters/FilterPill'
@@ -7,13 +6,15 @@ export default {
 
 export const Base = {
   render: (args) => FilterPill(args),
-  play: () => {
-    filterPillFunction()
-  },
   args: {
-    customText: "Commande validée",
-    icon: "carbone",
+    customText: 'Commande validée',
+    icon: 'carbone',
+    iconColor: '',
+    inputType: 'checkbox',
+    value: 1,
+    name: 'test',
     onClickClose: {},
+    closeButton: true
   },
   argTypes: {
     selected: {
@@ -21,6 +22,6 @@ export const Base = {
     },
     disabled: {
       control: { type: 'boolean' }
-    },
-  },
+    }
+  }
 };

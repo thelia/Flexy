@@ -1,12 +1,15 @@
 .FilterSelect {
   position: relative;
   background-color: var(--white);
-
   &-current {
     position: relative;
     cursor: pointer;
     outline: none;
     border: 1px solid var(--grey-lighter);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
 
     @screen md {
       &:focus+ .FilterSelect-list {
@@ -25,17 +28,19 @@
   }
 
   &-icon {
-    position: absolute;
-    top: 50%;
-    right: rem-convert(8px);
-    transform: translateY(-50%);
+    display: block;
+    padding-right: rem-convert(8px);
     height: rem-convert(28px);
     width: rem-convert(28px);
     color: var(--black);
   }
 
   &-value {
-    display: flex;
+    display: none;
+    &:has(:checked) {
+      display: inline-flex;
+
+    }
   }
 
   &-input {
@@ -50,8 +55,7 @@
     @apply paragraph-4;
     display: none;
     width: 100%;
-    padding: rem-convert(16px) rem-convert(44px) rem-convert(16px)
-      rem-convert(16px);
+    padding: rem-convert(16px);
     align-items: center;
     color: var(--black);
   }
@@ -107,6 +111,21 @@
     }
   }
 
+  .Dropdown-text {
+    padding: rem-convert(16px);
+  }
+
+  &--isRounded {
+    .Dropdown-text {
+      justify-content: center;
+    }
+    .FilterSelect-current {
+      border-color: #000;
+      border-radius: 50px;
+      justify-content: center;
+
+    }
+  }
 }
 
 @keyframes HideList {

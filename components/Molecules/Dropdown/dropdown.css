@@ -22,7 +22,7 @@
   }
 
   &-value {
-    display: flex;
+    display: inline-flex;
   }
 
   &-input {
