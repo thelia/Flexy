@@ -21,6 +21,7 @@
 
     &-link {
       outline: none;
+      text-decoration: underline;
 
       a&:hover {
         color: var(--grey);
