@@ -1,0 +1,13 @@
+<div class='Subheader Subheader--search'>
+  <div class='container mx-auto flex flex-col'>
+    <h1 class='Subheader-title Subheader-title--search'>{{ title }}</h1>
+    <div>
+      {% include '../../../Molecules/SearchBar/SearchBar.twig' with { label: "Rechercher un lieu de livraison", classes: 'SearchBar--white ',placeholder: "Ex : Ville, Code postal",iconButtonLeft:true, iconButton: "search" } %}
+
+    </div>
+    <div class='Subheader-searchInfo'>
+      <div>16 produit(s)</div>
+      {% include '../../../Molecules/Button/Button.twig' with {text: 'Filtrer & trier',icon_left:'filter', variant: 'secondary'} %}
+    </div>
+  </div>
+</div>

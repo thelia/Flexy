@@ -7,7 +7,13 @@ export default {
 export const base = {
   render: (args) => SubheaderOrders(args),
   args: {
-    title: 'Mes commandes'
+    title: 'Mes commandes',
+    selected: 'in_progress'
   },
-  argTypes: {}
+  argTypes: {
+    selected: {
+      options: ['in_progress', 'history'],
+      control: { type: 'select' }
+    }
+  }
 };

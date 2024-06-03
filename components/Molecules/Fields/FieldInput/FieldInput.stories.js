@@ -15,6 +15,7 @@ export const Base = {
     type: '',
     label: 'Indication',
     placeholder: 'Ex. Nom',
+    iconButtonLeft: false,
     min: '',
     max: '',
     error: '',

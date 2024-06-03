@@ -98,6 +98,15 @@
     }
   }
 
+  &-mobileDrawer {
+    .FilterSelect-ListItem {
+      border-bottom: 1px solid var(--grey-lighter);
+      &:last-child {
+        border-bottom: 0;
+      }
+    }
+  }
+
   &,  &-mobileDrawer {
     .colorRounded {
       --default-bg-color: #ffffff;

@@ -159,4 +159,14 @@
     color: var(--grey-dark);
     font-style: italic;
   }
+
+  &-blockInputIconLeft {
+    .FieldInput-buttonIcon {
+      right: 0;
+      left: 10px;
+    }
+    .FieldInput-input {
+      padding-left: rem-convert(40px);
+    }
+  }
 }

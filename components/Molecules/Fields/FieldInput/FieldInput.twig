@@ -22,7 +22,7 @@
         {% include '../../Tooltip/Tooltip.twig' with {tooltip: tooltip, position: 'bottom'} %}
     {% endif %}
   </div>
-  <div class='FieldInput-blockInput'>
+  <div class='FieldInput-blockInput {% if iconButton and iconButtonLeft %}FieldInput-blockInputIconLeft{% endif %}'>
     <input
       class='FieldInput-input{% if unit %} FieldInput-input--unit{% endif %}'
       type='{{ type|default('text') }}'
