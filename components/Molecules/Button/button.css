@@ -12,6 +12,8 @@
   font-family: var(--font-family-button-medium);
   font-weight: var(--font-weight-button-medium);
 
+  text-decoration: none;
+
   & > span.icon {
     @apply w-5 h-5;
     &-left {

@@ -38,6 +38,9 @@ export const classic = {
     },
     rectangle: {
       control: { type: 'boolean' }
+    },
+    href: {
+      control: { type: 'text' }
     }
   }
 };

@@ -1,11 +1,13 @@
 {% set classes = classes|default('') %}
-{% if variant != 'primary' %}{% set classes = classes ~ ' Button--' ~ variant %}{% endif %}
+{% if variant and variant != 'primary' %}{% set classes = classes ~ ' Button--' ~ variant %}{% endif %}
 {% if fill %}{% set classes = classes ~ ' Button--fill'%}{% endif %}
 {% if rectangle %}{% set classes = classes ~ ' Button--rectangle'%}{% endif %}
 {% if sharp %}{% set classes = classes ~ ' Button--sharp'%}{% endif %}
 {% if round %}{% set classes = classes ~ ' Button--round'%}{% endif %}
+{% set tag = 'button' %}
+{% if href %}{% set tag = 'a' %}{% endif %}
 
-<button class='Button {{ classes }}' {% if disabled %}disabled{% endif %} type='{{ type|default('button') }}'>
+<{{ tag }} class='Button {{ classes }}' {% if disabled %}disabled{% endif %} {% if href %}href='{{ href }}'{% else %}type='{{ type|default('button') }}'{% endif %}>
   {% if icon_left %}
     <span class='icon icon-left'>{{ source("/icons/"~ icon_left ~".svg") }}</span>
   {% endif %}
@@ -13,4 +15,4 @@
   {% if icon_right %}
     <span class='icon icon-right'>{{ source("/icons/"~ icon_right ~".svg") }}</span>
   {% endif %}
-</button>
+</{{ tag }}>
