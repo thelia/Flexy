@@ -1,0 +1,9 @@
+<h2 class='h2 text-black pb-6'>Nos catégories de produits</h2>
+
+<div class='flex flex-col gap-10'>
+  {% set additionalVariables = { displayWishButton: true, product:product} %}
+  {% for category in categories %}
+    {% set allVariables = category|merge(additionalVariables) %}
+    {% include '../../Organisms/CategoryCard/CategoryCard.twig' with allVariables %}
+  {% endfor %}
+</div>

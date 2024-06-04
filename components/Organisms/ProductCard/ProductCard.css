@@ -3,19 +3,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
   background: var(--white);
-  transition: none;
-  max-width: 187px;
-  @apply rounded-md;
-
-  @screen sm {
-    max-width: 340px;
-  }
-
-  @screen lg {
-    max-width: 400px;
-  }
+  @apply rounded-lg;
 
   &Search {
     &--horizontal {
