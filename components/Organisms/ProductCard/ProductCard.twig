@@ -45,10 +45,10 @@
       <figure class="ProductCard-img">
         {% if productThumbnailUrl %}
           <img src="{{ productThumbnailUrl }}" alt="{{ productTumbnailTitle }}"
-                  title="{{ productTumbnailTitle }}"  loading="lazy" imgWidth="{{ imgWidth }}" imgHeight="{{ imgHeight }}">
+                  title="{{ productTumbnailTitle }}"  loading="lazy">
         {% else %}
             <img src="{{ source("/images/placeholder.svg") }}" alt="{{ productTumbnailTitle }}"
-                  title="{{ productTumbnailTitle }}"  loading="lazy" imgWidth="{{ imgWidth }}" imgHeight="{{ imgHeight }}">
+                  title="{{ productTumbnailTitle }}"  loading="lazy">
         {% endif %}
       </figure>
     </a>
@@ -73,7 +73,7 @@
         {% include '../../Molecules/Button/Button.twig' with {classes:'Button--small', text: "Restaurer", icon_left: "restore" } %}
       {% endif %}
       <div class="ProductCard-footer">
-        {% if hasReviews or hasColors %} 
+        {% if hasReviews or hasColors %}
           <div class="ProductCard-footerLeft">
             {% if hasReviews %}
               <div class="Rating">
@@ -111,7 +111,7 @@
                     {% else %}
                         <div class="Colors-others">...</div>
                     {% endif %}
-                {% endfor %}  
+                {% endfor %}
               </div>
             {% endif %}
           </div>
@@ -125,7 +125,7 @@
           <div class="ProductCard-price">{{ price }}</div>
         {% endif %}
         {% if isPurchaseFunnelCard|default(0) %}
-          {% if isOutOfStock %} 
+          {% if isOutOfStock %}
             <div class="ProductCard-unavailable">
               Indisponible
             </div>

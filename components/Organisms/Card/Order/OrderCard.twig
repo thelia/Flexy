@@ -19,7 +19,7 @@
   <div class='OrderCard-images'>
     {%  for img in productImages %}
       <div class='OrderCard-image'>
-        <img src='{{ img.src }}' alt='{{ img.alt }}' />
+        <img src='{{ img.src }}' alt='{{ img.alt }}' loading="lazy" />
       </div>
     {% endfor %}
     <div class='OrderCard-nbImages'></div>

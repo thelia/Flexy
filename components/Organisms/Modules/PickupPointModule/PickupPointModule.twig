@@ -41,7 +41,7 @@
           </div>
           <span>{{ pickupService.name }}</span>
           {% if pickupService.img %}
-            <span><img src='{{ pickupService.img }}' alt='Logo {{ pickupService.name }}'></span>
+            <span><img src='{{ pickupService.img }}' alt='Logo {{ pickupService.name }}' loading="lazy"></span>
           {% endif %}
         </label>
       {% endfor %}
