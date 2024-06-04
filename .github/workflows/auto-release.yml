@@ -1,0 +1,23 @@
+name: 'Release'
+
+on:
+  push:
+    branches:
+      - test-workflow
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: rickstaa/action-create-tag@v1
+        id: 'tag_create'
+        with:
+          tag: 'latest'
+          tag_exists_error: false
+          message: 'Latest release'
+      - name: Create Release
+        uses: ncipollo/release-action@v1.12.0
+        with:
+          tag: ${{ steps.tag_create.outputs.tag }}
+          skipIfReleaseExists: true
