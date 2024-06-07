@@ -20,6 +20,10 @@
     font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: rem-convert(20px);
+    margin-bottom: rem-convert(24px);
+    @screen md {
+      margin-bottom: rem-convert(10px);
+    }
   }
 
   &-images {

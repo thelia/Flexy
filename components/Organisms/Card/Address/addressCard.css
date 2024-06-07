@@ -5,6 +5,7 @@
   position: relative;
   &--client-information {
     border: none;
+    color: var(--black);
   }
   &.selected {
     background: var(--white);
