@@ -1,0 +1,13 @@
+<div class='xl:container xl:mx-auto'>
+  <div class='h4 text-black pb-6'>{{ title }}</div>
+</div>
+
+<div class='SimilarContents slider'>
+  {% for similarContent in similarContents %}
+    {% include '../../Organisms/SimilarContentCard/SimilarContentCard.twig' with similarContent %}
+  {% endfor %}
+</div>
+
+<div class='xl:container xl:mx-auto mt-5'>
+  {% include '../../Molecules/Button/Button.twig' with {text: button.label, href: button.href,icon_right:'chevron-right', variant:'secondary'} %}
+</div>

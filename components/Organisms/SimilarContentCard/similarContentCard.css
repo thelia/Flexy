@@ -1,0 +1,30 @@
+.SimilarContentCard {
+  display: flex;
+  background: var(--white);
+  border-radius: rem-convert(8px);
+  &-img {
+    width: rem-convert(98px);
+    height: 100%;
+    img {
+      border-top-left-radius: rem-convert(8px);
+      border-bottom-left-radius: rem-convert(8px);
+      object-fit: cover;
+      height: 100%;
+    }
+  }
+  &-title {
+    @apply paragraph-2;
+    font-weight: 700;
+    color: var(--black);
+  }
+  &-footer {
+    @apply paragraph-6;
+    color: var(--grey);
+  }
+  &-desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: rem-convert(13px) rem-convert(16px);
+  }
+}

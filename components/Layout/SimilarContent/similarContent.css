@@ -1,0 +1,30 @@
+.SimilarContents {
+  display: flex;
+  flex-direction: column;
+  gap: rem-convert(16px);
+  @screen md {
+    flex-direction: row;
+    overflow: hidden;
+    cursor: grab;
+    &:active {
+      cursor: grabbing;
+    }
+    .SimilarContentCard {
+      width: 340px;
+      flex-shrink: 0;
+    }
+  }
+  @screen lg {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    cursor: initial;
+    .SimilarContentCard {
+      width: initial;
+    }
+  }
+  @screen xl {
+    @apply container mx-auto;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}

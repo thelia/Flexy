@@ -1,0 +1,24 @@
+{% set productThumbnailUrl = base_url ~ "/images/placeholder2.webp" %}
+{% set productTumbnailTitle = "placeholder" %}
+{% set classes = classes|default('') %}
+<div class="SimilarContentCard {{ classes }}">
+  <div class="SimilarContentCard-imgLink" href="#">
+    <figure class="SimilarContentCard-img">
+      {% if productThumbnailUrl %}
+        <img src="{{ productThumbnailUrl }}" alt="{{ productTumbnailTitle }}"
+             title="{{ productTumbnailTitle }}"  loading="lazy">
+      {% else %}
+        <img src="{{ source("/images/placeholder.svg") }}" alt="{{ productTumbnailTitle }}"
+             title="{{ productTumbnailTitle }}"  loading="lazy">
+      {% endif %}
+    </figure>
+  </div>
+  <div class="SimilarContentCard-desc">
+
+    <a href="#" class="SimilarContentCard-title">{{ title }}</a>
+
+    <div class="SimilarContentCard-footer">
+      {{ date }}
+    </div>
+  </div>
+</div>

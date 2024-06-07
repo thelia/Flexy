@@ -3,9 +3,7 @@
 </div>
 
 <div class='flex flex-col gap-10  lg:grid lg:grid-cols-3 xl:container xl:mx-auto'>
-  {% set additionalVariables = { displayWishButton: true, product:product} %}
   {% for category in categories %}
-    {% set allVariables = category|merge(additionalVariables) %}
-    {% include '../../Organisms/CategoryCard/CategoryCard.twig' with allVariables %}
+    {% include '../../Organisms/CategoryCard/CategoryCard.twig' with category %}
   {% endfor %}
 </div>
