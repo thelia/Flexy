@@ -1,0 +1,30 @@
+.Reviews {
+  display: flex;
+  flex-direction: column;
+  gap: rem-convert(16px);
+  @screen md {
+    flex-direction: row;
+    overflow: hidden;
+    .Review {
+      width: 271px;
+      flex-shrink: 0;
+    }
+  }
+  @screen lg {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    cursor: initial;
+    .Review {
+      width: initial;
+      &:active {
+        cursor: initial;
+      }
+    }
+  }
+  @screen xl {
+    @apply container mx-auto;
+    gap: rem-convert(32px);
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
