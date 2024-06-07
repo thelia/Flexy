@@ -26,11 +26,11 @@
 
   {% if not purchaseFunnel %}
     <div class="bottom-card-buttons">
-      <button {% if disabled %}disabled{% endif %} type='button'>
+      <button {% if disabled %}disabled{% endif %} class='hover:text-theme' type='button'>
         <span>{{ source("/icons/edit.svg") }}</span>
         Modifier
       </button>
-      <button {% if disabled %}disabled{% endif %} type='button'>
+      <button {% if disabled %}disabled{% endif %} class='hover:text-theme' type='button'>
         <span>{{ source("/icons/delete.svg") }}</span>
         Supprimer
       </button>

@@ -26,5 +26,4 @@
     gap: rem-convert(32px);
     grid-template-columns: repeat(3, 1fr);
   }
-
 }
