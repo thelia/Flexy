@@ -1,0 +1,35 @@
+.CrossSelling {
+  display: flex;
+  gap: rem-convert(16px);
+  overflow: hidden;
+
+  .ProductCard {
+    flex-shrink: 0;
+    width: rem-convert(187px);
+    @screen md {
+      width: rem-convert(288px);
+    }
+    @screen lg {
+      width: rem-convert(288px);
+    }
+  }
+
+
+  @screen lg {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: rem-convert(24px);
+    cursor: initial;
+    .ProductCard {
+      width: initial;
+      &:active {
+        cursor: initial;
+      }
+    }
+  }
+
+  @screen xl {
+    @apply container mx-auto;
+  }
+
+}

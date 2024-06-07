@@ -1,5 +1,5 @@
 import SimilarContent from './SimilarContent.twig';
-import { similarContent } from './similarContent';
+import { slider } from '../../../assets/js/slider';
 
 export default {
   title: 'Design System/Layout/SimilarContent'
@@ -24,7 +24,7 @@ export const base = {
     button: { href: '#', label: 'Voir toutes les actualités' }
   },
   play: () => {
-    similarContent();
+    slider();
   },
   parameters: {
     backgrounds: { default: 'grey' }

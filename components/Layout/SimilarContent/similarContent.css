@@ -5,10 +5,6 @@
   @screen md {
     flex-direction: row;
     overflow: hidden;
-    cursor: grab;
-    &:active {
-      cursor: grabbing;
-    }
     .SimilarContentCard {
       width: 340px;
       flex-shrink: 0;
@@ -20,10 +16,14 @@
     cursor: initial;
     .SimilarContentCard {
       width: initial;
+      &:active {
+        cursor: initial;
+      }
     }
   }
   @screen xl {
     @apply container mx-auto;
+    gap: rem-convert(32px);
     grid-template-columns: repeat(3, 1fr);
   }
 

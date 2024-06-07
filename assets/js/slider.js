@@ -1,4 +1,4 @@
-export function similarContent() {
+export function slider() {
   const slider = document.querySelector('.slider');
   let isDown = false;
   let startX;
