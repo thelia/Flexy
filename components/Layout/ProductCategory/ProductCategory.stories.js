@@ -18,7 +18,8 @@ for (let i = 0; i < 5; i++) {
 export const base = {
   render: (args) => ProductCategory(args),
   args: {
-    categories: categories
+    categories: categories,
+    title: 'Nos catégories de produits'
   },
   argTypes: {}
 };

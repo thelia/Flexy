@@ -1,11 +1,11 @@
 {% set productThumbnailUrl = base_url ~ "/images/placeholder2.webp" %}
 {% set productTumbnailTitle = "placeholder" %}
 {% set classes = classes|default('') %}
-<div class="ProductCard {{ classes }}">
+<div class="CategoryCard {{ classes }}">
 
-  <div class="ProductCard-mainContent">
-    <a class="ProductCard-imgLink" href="#">
-      <figure class="ProductCard-img">
+  <div class="CategoryCard-mainContent">
+    <a class="CategoryCard-imgLink" href="#">
+      <figure class="CategoryCard-img">
         {% if productThumbnailUrl %}
           <img src="{{ productThumbnailUrl }}" alt="{{ productTumbnailTitle }}"
                title="{{ productTumbnailTitle }}"  loading="lazy">
@@ -15,14 +15,12 @@
         {% endif %}
       </figure>
     </a>
-    <div class="ProductCard-desc">
+    <div class="CategoryCard-desc">
 
-      <a href="#" class="ProductCard-title">{{ title }}</a>
+      <a href="#" class="CategoryCard-title">{{ title }}</a>
 
-      <div class="ProductCard-footer">
-        {% include '../../Molecules/Button/Button.twig' with {text: button.label, href: '#',icon_right:'chevron-right'} %}
-
-
+      <div class="CategoryCard-footer">
+        {% include '../../Molecules/Button/Button.twig' with {text: button.label, href: button.href,icon_right:'chevron-right'} %}
 
       </div>
     </div>

@@ -1,6 +1,8 @@
-<h2 class='h2 text-black pb-6'>Nos catégories de produits</h2>
+<div class='xl:container xl:mx-auto'>
+  <h2 class='h2 text-black pb-6'>{{ title }}</h2>
+</div>
 
-<div class='flex flex-col gap-10'>
+<div class='flex flex-col gap-10  lg:grid lg:grid-cols-3 xl:container xl:mx-auto'>
   {% set additionalVariables = { displayWishButton: true, product:product} %}
   {% for category in categories %}
     {% set allVariables = category|merge(additionalVariables) %}
