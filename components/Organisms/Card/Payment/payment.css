@@ -20,6 +20,7 @@
     @apply paragraph-2;
     font-weight: 600;
     color: var(--black);
+    padding-bottom: rem-convert(8px);
   }
   &-content {
     @apply paragraph-4;
