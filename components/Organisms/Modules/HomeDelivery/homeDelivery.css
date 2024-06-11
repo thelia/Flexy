@@ -21,12 +21,21 @@
     @apply paragraph-2;
     font-weight: 600;
     color: var(--black);
+    margin-bottom: rem-convert(2px);
   }
 
   &-description {
     @apply paragraph-6;
     font-weight: 400;
     color: var(--grey);
+  }
+
+  &-noAddress {
+    @apply paragraph-2;
+    font-weight: 700;
+    @screen md {
+      @apply paragraph-1;
+    }
   }
 
   &-content {
