@@ -6,12 +6,12 @@
     <div>{{ address.zipCode }} {{ address.city }}</div>
   </div>
   <div class='lg:flex justify-between align-center'>
-    <button class='StoreInfo-hours'>{{ source("/icons/clock.svg") }}Horaires</button>
+    <button class='StoreInfo-hours'>{{ source("/icons/clock.svg") }}Horaires du magasin</button>
     <div class='hidden lg:block'>
       {% include '../../../Molecules/Button/Button.twig' with {text: 'Choisir ce magasin', classes:'Button--fill lg:Button--unfill'} %}
     </div>
   </div>
-  <div class='StoreInfo-hoursListing hidden'>
+  <div class='StoreInfo-hoursListing {% if not displayHours|default(false) %}hidden{% endif %}'>
       {% for hour in hours %}
         <div>{{ hour.day }}</div>
         <div>{{ hour.hours }}</div>

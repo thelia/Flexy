@@ -31,6 +31,7 @@ export const Base = {
   },
   args: {
     storeName: 'Nom du magasin',
+    displayHours: false,
     address,
     hours
   }

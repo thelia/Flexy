@@ -2,11 +2,13 @@
   max-width: rem-convert(540px);
   background: var(--theme-lightest);
   padding: rem-convert(24px);
+  border-radius: rem-convert(8px);
 
   &-title {
     color: var(--black);
     @apply paragraph-2;
     font-weight: 700;
+    margin-bottom: rem-convert(8px);
   }
   &-address {
     @apply paragraph-2;
@@ -24,6 +26,7 @@
     text-decoration: underline;
     margin-top: rem-convert(10px);
     margin-bottom: rem-convert(10px);
+    color: var(--black);
     svg {
       width: rem-convert(18px);
       height: rem-convert(18px);

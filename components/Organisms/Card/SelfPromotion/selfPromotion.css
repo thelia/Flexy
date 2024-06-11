@@ -17,6 +17,7 @@
     @apply paragraph-2;
     font-weight: 600;
     color: var(--black);
+    margin-bottom:  rem-convert(2px);
   }
 
   &-desc {
