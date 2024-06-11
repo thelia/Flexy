@@ -14,8 +14,8 @@ const address = {
 };
 
 const hours = [
-  { day: 'lundi', hours: '14h - 19h' },
-  { day: 'mardi', hours: '14h - 20h' },
+  { day: 'Lundi', hours: '14h - 19h' },
+  { day: 'Mardi', hours: '14h - 20h' },
   { day: 'Mercredi', hours: '14h - 20h' },
   { day: 'Jeudi', hours: '14h - 20h' },
   { day: 'Vendredi', hours: '14h - 20h' },
