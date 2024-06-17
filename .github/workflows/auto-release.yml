@@ -13,10 +13,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Read version from composer.json
+      - name: Read version from package.json
         id: read_version
         run: |
-          VERSION=$(jq -r '.version' composer.json)
+          VERSION=$(jq -r '.version' package.json)
           echo "version=$VERSION" >> $GITHUB_ENV
 
       - name: Create GitHub Release
