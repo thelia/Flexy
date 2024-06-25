@@ -1,13 +1,13 @@
 <div class='xl:container xl:mx-auto'>
-  <div class='h2 text-black pb-6'>{{ title }}</div>
+	<div class='pb-6 text-black h2'>{{ title }}</div>
 </div>
 
 <div class='CrossSelling slider'>
-  {% for product in products %}
-    {% include '../../Organisms/ProductCard/ProductCard.twig' with product %}
-  {% endfor %}
+	{% for product in products %}
+		{% include '../../Organisms/ProductCard/ProductCard.twig' with product %}
+	{% endfor %}
 </div>
 
-<div class='xl:container xl:mx-auto mt-5'>
-  {% include '../../Molecules/Button/Button.twig' with {text: button.label, href: button.href,icon_right:'chevron-right', variant:'secondary'} %}
+<div class='mt-5 xl:container xl:mx-auto'>
+	{% include '../../Molecules/Button/Button.twig' with {text: button.label, href: button.href,icon_right:'chevron-right', variant:'secondary'} %}
 </div>

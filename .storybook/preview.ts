@@ -30,6 +30,10 @@ const preview: Preview = {
           value: '#FFFFFF'
         },
         {
+          name: 'theme-lighter',
+          value: '#FFEDE5'
+        },
+        {
           name: 'theme-lightest',
           value: '#FFF5F1'
         }
