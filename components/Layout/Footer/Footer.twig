@@ -27,7 +27,7 @@
       {% include '../../Molecules/Button/Button.twig' with {text: 'Contactez nous', type: 'primary', icon_right: "email", isFill: true, classes: "w-full md:w-auto Button--secondary Button--large"} %}
     </div>
     <ul class='lg:pt-[100px] {{footerLinksClasses}}'>
-      {% set footerLinkClass = 'underline hover:no-underline focusno-underline hover:opacity-75 focus:opacity-75' %}
+      {% set footerLinkClass = 'underline hover:no-underline focus:no-underline hover:opacity-75 focus:opacity-75' %}
       <li class='paragraph-5'><a href='#' class="{{footerLinkClass}}">Plan du site</a></li>
       <li class='paragraph-5'><a href='#' class="{{footerLinkClass}}">Mentions légales</a></li>
       <li class='paragraph-5'><a href='#' class="{{footerLinkClass}}">Données personnelles</a></li>
@@ -58,6 +58,6 @@
       </div>
     </div>
 
-    <div class='text-grey indication indication-small'>© OpenStudio - 2024</div>
+    <div class='text-grey indication indication-small'>© OpenStudio - {{ 'now' | date('Y') }}</div>
   </div>
 </footer>

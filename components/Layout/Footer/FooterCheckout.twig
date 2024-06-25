@@ -1,12 +1,21 @@
-<footer class='flex flex-col px-6 xl:px-[120px] py-6 xl:flex-row xl:justify-between FooterCheckout bg-theme-lightest gap-9 sm:gap-3'>
-  <div class='flex flex-col gap-2 sm:gap-6 sm:flex-row'>
-    <div class='paragraph-5'><a href='#'>Plan du site</a></div>
-    <div class='paragraph-5'><a href='#'>Mentions légales</a></div>
-    <div class='paragraph-5'><a href='#'>Données personnelles</a></div>
-    <div class='paragraph-5'><a href='#'>Cookies</a></div>
-    <div class='paragraph-5'><a href='#'>Conditions générales de vente</a></div>
-  </div>
-  
-  <div class='paragraph-5'>© OpenStudio - 2024</div>
-  </div
-</footer>
+<footer class='flex flex-col px-6 xl:px-[120px] py-6 xl:flex-row xl:justify-between FooterCheckout bg-theme-lightest gap-9 md:gap-3 text-black'>
+	<ul class='flex flex-col gap-2 md:gap-6 md:flex-row'>
+		{% set footerLinkClass = 'underline hover:no-underline focus:no-underline hover:opacity-75 focus:opacity-75' %}
+		<li class='paragraph-5'>
+			<a href='#' class="{{footerLinkClass}}">Plan du site</a>
+		</li>
+		<li class='paragraph-5'>
+			<a href='#' class="{{footerLinkClass}}">Mentions légales</a>
+		</li>
+		<li class='paragraph-5'>
+			<a href='#' class="{{footerLinkClass}}">Données personnelles</a>
+		</li>
+		<li class='paragraph-5'>
+			<a href='#' class="{{footerLinkClass}}">Cookies</a>
+		</li>
+		<li class='paragraph-5'>
+			<a href='#' class="{{footerLinkClass}}">Conditions générales de vente</a>
+		</li>
+	</ul>
+	<span class='text-grey indication indication-small'>© OpenStudio - 2024</span>
+</div</footer>
