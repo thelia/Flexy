@@ -1,21 +1,21 @@
 {% set footerLinksClasses = 'flex flex-col gap-2 md:gap-6 md:flex-row lg:flex-col Footer-links mb-[30px] md:mb-0 md:pb-[70px] md:px-[50px] md:pt-[30px] md:border-t md:border-t-grey-lighter lg:border-none ' %}
 {% if withNewsletter %}
-  {% set footerLinksClasses = footerLinksClasses ~ 'md:col-span-2 lg:col-span-1' %}
-  {% set footerStoreInfosClasses = footerStoreInfosClasses ~ 'md:border-l md:border-l-grey-lighter lg:border-r lg:border-r-grey-lighter ' %}
-  {% set footerContainerClasses = 'md:grid-cols-2 lg:grid-cols-3' %}
+	{% set footerLinksClasses = footerLinksClasses ~ 'md:col-span-2 lg:col-span-1 text-black' %}
+	{% set footerStoreInfosClasses = footerStoreInfosClasses ~ 'md:border-l md:border-l-grey-lighter lg:border-r lg:border-r-grey-lighter ' %}
+	{% set footerContainerClasses = 'md:grid-cols-2 lg:grid-cols-3' %}
 {% else %}
-  {% set footerLinksClasses = 'flex flex-col gap-2 md:gap-6 Footer-links mb-[30px] md:mb-0 md:pb-[70px] md:pt-[50px] md:pl-[40px] ' %}
-  {% set footerStoreInfosClasses = footerStoreInfosClasses ~ 'md:border-r md:border-r-grey-lighter' %}
-  {% set footerContainerClasses = 'md:grid-cols-2' %}
+	{% set footerLinksClasses = 'flex flex-col gap-2 md:gap-6 Footer-links mb-[30px] md:mb-0 md:pb-[70px] md:pt-[50px] md:pl-[40px] text-black' %}
+	{% set footerStoreInfosClasses = footerStoreInfosClasses ~ 'md:border-r md:border-r-grey-lighter' %}
+	{% set footerContainerClasses = 'md:grid-cols-2' %}
 {% endif %}
 
 <footer class='Footer bg-theme-lightest px-6 md:px-0 pt-[50px] md:pt-0 pb-[34px] md:pb-[45px] flex flex-col'>
-  <div class='md:grid {{footerContainerClasses}}'>
-    {% if withNewsletter %}
-      <div class='Footer-newsletter mb-[50px] md:mb-0 md:pt-[50px] md:pl-[50px] lg:pt-[100px]'>
-        <div class='font-semibold paragraph-1'>Newsletter</div>
-        <div class='mb-4 paragraph-5'>Suivez nos dernières actualités & promotions</div>
-        {% include '../../Molecules/Button/Button.twig' with {text: 'Je m\'inscris', type: 'primary', isFill: true, classes: "Button--large w-full md:w-auto"} %}
+	<div class='md:grid {{footerContainerClasses}}'>
+		{% if withNewsletter %}
+			<div class='Footer-newsletter mb-[50px] md:mb-0 md:pt-[50px] md:pl-[50px] lg:pt-[100px]'>
+				<div class='font-semibold paragraph-1'>Newsletter</div>
+				<div class='mb-4 paragraph-5'>Suivez nos dernières actualités & promotions</div>
+				{% include '../../Molecules/Button/Button.twig' with {text: 'Je m\'inscris', type: 'primary', isFill: true, classes: "Button--large w-full md:w-auto"} %}
       </div>
     {% endif %}
     <div class='Footer-store-infos mb-[30px] md:py-[50px] md:pl-[40px] md:mb-0 lg:pt-[100px] lg:pb-[90px] {{footerStoreInfosClasses}}'>
@@ -26,13 +26,14 @@
       </div>
       {% include '../../Molecules/Button/Button.twig' with {text: 'Contactez nous', type: 'primary', icon_right: "email", isFill: true, classes: "w-full md:w-auto Button--secondary Button--large"} %}
     </div>
-    <div class='lg:pt-[100px] {{footerLinksClasses}}'>
-      <div class='paragraph-5'><a href='#'>Plan du site</a></div>
-      <div class='paragraph-5'><a href='#'>Mentions légales</a></div>
-      <div class='paragraph-5'><a href='#'>Données personnelles</a></div>
-      <div class='paragraph-5'><a href='#'>Cookies</a></div>
-      <div class='paragraph-5'><a href='#'>Conditions générales de vente</a></div>
-    </div>
+    <ul class='lg:pt-[100px] {{footerLinksClasses}}'>
+      {% set footerLinkClass = 'underline hover:no-underline focusno-underline hover:opacity-75 focus:opacity-75' %}
+      <li class='paragraph-5'><a href='#' class="{{footerLinkClass}}">Plan du site</a></li>
+      <li class='paragraph-5'><a href='#' class="{{footerLinkClass}}">Mentions légales</a></li>
+      <li class='paragraph-5'><a href='#' class="{{footerLinkClass}}">Données personnelles</a></li>
+      <li class='paragraph-5'><a href='#' class="{{footerLinkClass}}">Cookies</a></li>
+      <li class='paragraph-5'><a href='#' class="{{footerLinkClass}}">Conditions générales de vente</a></li>
+    </ul>
   </div>
 
   <div class='md:flex md:justify-between md:items-center md:border-t md:border-t-grey-lighter md:px-[50px] md:pt-[30px]'>
@@ -57,6 +58,6 @@
       </div>
     </div>
 
-    <div class='indication indication-small'>© OpenStudio - 2024</div>
+    <div class='text-grey indication indication-small'>© OpenStudio - 2024</div>
   </div>
 </footer>
