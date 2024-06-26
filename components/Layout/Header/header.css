@@ -12,7 +12,7 @@
 }
 
 .Header {
-  @apply h-[var(--header-height)] flex justify-center md:justify-between  sm:pl-[30px] py-px;
+  @apply h-[var(--header-height)] flex justify-center md:justify-between  sm:pl-[30px] py-px relative;
 
   .HeaderButton {
     &--search,
@@ -81,6 +81,10 @@
   &--withSearchBar {
     @screen sm {
       --header-height: 100px;
+    }
+
+    .HeaderButton--search {
+      @apply lg:hidden;
     }
   }
   &.is-sticky {

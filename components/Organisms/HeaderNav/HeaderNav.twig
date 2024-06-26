@@ -1,7 +1,5 @@
 <div class='HeaderNav'>
-	{% if type != "searchbar" %}
-		{% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'search', classes: 'HeaderNav-btn HeaderButton--search', text: 'Recherche' } %}
-	{% endif %}
+	{% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'search', classes: 'HeaderNav-btn HeaderButton--search', text: 'Recherche' } %}
 	{% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'heart-fill', classes: 'HeaderNav-btn HeaderButton--wishlist', text: 'Wishlist' } %}
 	{% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'account', classes: 'HeaderNav-btn HeaderButton--account', text: 'Compte' } %}
 	{% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'cart', text: 'Panier', classes: 'HeaderNav-btn HeaderButton--cart ',} %}

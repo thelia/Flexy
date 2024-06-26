@@ -12,7 +12,7 @@
 	</div>
 
 	{% if type == "searchbar" %}
-		<div class=' w-[500px] hidden lg:flex items-stretch flex-col justify-center'>
+		<div class='w-[500px] 2xl:w-[800px] hidden lg:flex items-stretch flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2'>
 			{% include '@components/Molecules/SearchBar/SearchBar.twig' %}
 		</div>
 	{% else %}
