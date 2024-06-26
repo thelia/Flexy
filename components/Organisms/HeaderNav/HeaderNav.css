@@ -1,0 +1,9 @@
+.HeaderNav {
+  @apply fixed border-t border-grey md:border-0 md:static bottom-0 left-0 w-screen md:w-auto flex h-[62px] md:h-auto items-center align-middle;
+
+  &-btn {
+    &:last-child {
+      @apply order-first md:order-1;
+    }
+  }
+}

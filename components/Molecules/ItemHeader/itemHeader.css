@@ -1,13 +1,14 @@
 .ItemHeader {
-  @apply paragraph-2;
-  color: var(--black);
-  text-decoration: none;
-  padding: rem-convert(27px) 0;
-  outline: 0;
+  @apply paragraph-2 no-underline outline-none text-black flex items-center justify-center relative;
 
+  &:after {
+    @apply h-[2px] w-full bg-theme-dark bottom-0 left-0 absolute;
+  }
   &:hover,
   &:focus,
   &:active {
-    border-bottom: 2px solid var(--theme-dark);
+    &:after {
+      content: '';
+    }
   }
 }

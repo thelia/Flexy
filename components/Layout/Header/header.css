@@ -1,14 +1,20 @@
+:root {
+  --header-height: 48px;
+
+  @screen sm {
+    --header-height: 80px;
+  }
+}
+
 .Header,
 .HeaderCheckout {
   box-shadow: 0 -1px 0 0 var(--grey-lighter) inset;
 }
 
 .Header {
-  .HeaderButton {
-    &--text {
-      @apply sr-only xl:not-sr-only;
-    }
+  @apply h-[var(--header-height)] flex justify-center md:justify-between  sm:pl-[30px] py-px;
 
+  .HeaderButton {
     &--search,
     &--menu {
       .HeaderButton--text {
@@ -61,6 +67,29 @@
       &:hover {
         --header-button-bg: var(--grey-lightest);
       }
+    }
+  }
+
+  &-logo {
+    @apply w-[60px] h-[18px] sm:w-[98px] sm:h-[30px];
+  }
+
+  &-navigation {
+    @apply hidden lg:flex items-stretch justify-center gap-[30px] xl:gap-[50px];
+  }
+
+  &--withSearchBar {
+    @screen sm {
+      --header-height: 100px;
+    }
+  }
+  &.is-sticky {
+    @screen sm {
+      --header-height: 60px;
+    }
+
+    .Header-logo {
+      @apply sm:w-[80px] sm:h-[24px];
     }
   }
 }

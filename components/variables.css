@@ -1,40 +1,40 @@
 :root {
-  --theme-dark: #FF4822;
-  --theme: #FF7036;
-  --theme-medium: #FFB698;
-  --theme-light: #FFE5DB;
-  --theme-lighter: #FFEDE5;
-  --theme-lightest: #FFF5F1;
+  --theme-dark: #ff4822;
+  --theme: #ff7036;
+  --theme-medium: #ffb698;
+  --theme-light: #ffe5db;
+  --theme-lighter: #ffede5;
+  --theme-lightest: #fff5f1;
 
   --black: #282828;
-  --white: #FFFFFF;
+  --white: #ffffff;
 
   --grey-darker: #424242;
   --grey-dark: #545454;
   --grey: #767676;
-  --grey-lighter: #D6D6D6;
-  --grey-lightest: #F5F5F5;
+  --grey-lighter: #d6d6d6;
+  --grey-lightest: #f5f5f5;
 
-  --error-dark: #B70101;
-  --error: #D00000;
-  --error-light: #EB0000;
-  --error-lightest: #FFE1E1;
+  --error-dark: #b70101;
+  --error: #d00000;
+  --error-light: #eb0000;
+  --error-lightest: #ffe1e1;
 
-  --success-dark: #08A65A;
-  --success: #37E17B;
-  --success-lightest: #F8FFFB;
+  --success-dark: #08a65a;
+  --success: #37e17b;
+  --success-lightest: #f8fffb;
 
-  --warning: #FFA800;
-  --warning-lightest: #FFF9EE;
+  --warning: #ffa800;
+  --warning-lightest: #fff9ee;
 
-  --validated: #40CAB1;
-  --validated-lightest: #EEFFFC;
+  --validated: #40cab1;
+  --validated-lightest: #eefffc;
 
-  --informative: #40B1CA;
-  --informative-lightest: #E9FBFF;
+  --informative: #40b1ca;
+  --informative-lightest: #e9fbff;
 
-  --processing: #A504B3;
-  --processing-lightest: #FCEEFD;
+  --processing: #a504b3;
+  --processing-lightest: #fceefd;
 
   --checkbox-focus: #dc2626;
 
@@ -113,7 +113,6 @@
   --font-weight-button-medium: 500;
   --font-weight-button-small: 400;
 
-
   --font-family-button-large: 'Poppins';
   --font-family-button-medium: 'Poppins';
   --font-family-button-small: 'Poppins';
@@ -125,7 +124,6 @@
   --font-weight-link-large: 500;
   --font-weight-link-medium: 500;
   --font-weight-link-small: 400;
-
 
   --font-family-link-large: 'Poppins';
   --font-family-link-medium: 'Poppins';

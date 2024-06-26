@@ -14,6 +14,7 @@ const preview: Preview = {
         date: /Date$/i
       }
     },
+    layout: 'fullscreen',
     backgrounds: {
       default: 'white',
       values: [
