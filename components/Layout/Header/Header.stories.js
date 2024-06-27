@@ -1,4 +1,5 @@
 import Header from './Header.twig';
+import HeaderScript from './Header.js';
 import HeaderCheckout from './HeaderCheckout.twig';
 
 export default {
@@ -9,6 +10,9 @@ const types = ['generic', 'sticky', 'searchbar'];
 
 export const base = {
   render: (args) => Header(args),
+  play: () => {
+    HeaderScript();
+  },
   args: {
     type: 'generic'
   },

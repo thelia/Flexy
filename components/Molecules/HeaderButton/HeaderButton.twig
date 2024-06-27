@@ -1,4 +1,4 @@
-<button class='HeaderButton {% if inactive %}HeaderButton--inactive{% endif %} {{ classes }} {% if small %}HeaderButton--small{% endif %}'>
+<button {% if id %} id="{{id}}" {% endif %} class='HeaderButton {% if inactive %}HeaderButton--inactive{% endif %} {{ classes }} {% if small %}HeaderButton--small{% endif %}'>
 	{% if icon %}
 		<span class='HeaderButton-icon'>{{ source("/icons/" ~ icon ~ ".svg") }}</span>
 	{% endif %}

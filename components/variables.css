@@ -138,4 +138,6 @@
 
   --letter-spacing-indication: rem-convert(0.7px);
   --letter-spacing-indication-small: rem-convert(0.6px);
+
+  --header-nav-height: 62px;
 }

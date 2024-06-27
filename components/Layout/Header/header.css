@@ -74,12 +74,15 @@
     @apply w-[60px] h-[18px] sm:w-[98px] sm:h-[30px];
   }
 
+  &-navWrap {
+    @apply flex justify-center bg-grey-lightest h-[78px];
+  }
   &-navigation {
-    @apply hidden lg:flex items-stretch justify-center gap-[30px] xl:gap-[50px];
+    @apply flex items-stretch justify-center gap-[30px] xl:gap-[50px] list-none h-full;
   }
 
   &--withSearchBar {
-    @screen sm {
+    & @screen sm {
       --header-height: 100px;
     }
 
