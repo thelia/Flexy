@@ -54,6 +54,9 @@ const config: StorybookConfig = {
       ]
     });
 
+    if (Array.isArray(config?.entry)) {
+      config.entry.push(path.resolve(__dirname, '../twig/custom-twig.ts'));
+    }
     config.resolve = {
       ...config.resolve,
       alias: {
