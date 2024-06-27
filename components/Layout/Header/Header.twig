@@ -2,7 +2,7 @@
   <div class='flex'>
     {% if type == "searchbar" %}  
       <div class='hidden lg:block xl:hidden'>
-        {% include '../../Molecules/HeaderButton/HeaderButton.twig' with {icon: 'menu', text: 'Cart', classes: 'HeaderButton--light', small: true } %}
+        {% include '@components/Molecules/HeaderButton/HeaderButton.twig' with {icon: 'menu', text: 'Cart', classes: 'HeaderButton--light', small: true } %}
       </div>
     {% endif %}
     
@@ -13,35 +13,35 @@
   
   {% if type == "searchbar" %}
     <div class='py-[22px] w-[500px] hidden lg:block'>
-      {% include '../../Molecules/SearchBar/SearchBar.twig' %}
+      {% include '@components/Molecules/SearchBar/SearchBar.twig' %}
     </div>
   {% else %}
     <div class='hidden lg:flex lg:gap-[30px]'>
-      {% include '../../Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
-      {% include '../../Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
-      {% include '../../Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
-      {% include '../../Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
-      {% include '../../Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
+      {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
+      {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
+      {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
+      {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
+      {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
     </div>
   {% endif %}
 
   <div class='hidden sm:flex'>
     {% if type != "searchbar" %}
-      {% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'search', classes: 'HeaderButton--search', text: 'Search' } %}
+      {% include '@components/Molecules/HeaderButton/HeaderButton.twig' with { icon: 'search', classes: 'HeaderButton--search', text: 'Search' } %}
     {% endif %}
-    {% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'heart-fill', classes: 'HeaderButton--wishlist', text: 'Wishlist' } %}
-    {% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'account', classes: 'HeaderButton--account', text: 'Login' } %}
-    {% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'cart', text: 'Cart', classes: 'HeaderButton--cart' } %}
-    {% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'menu', text: 'Cart', classes: 'HeaderButton--menu lg:hidden' } %}
+    {% include '@components/Molecules/HeaderButton/HeaderButton.twig' with { icon: 'heart-fill', classes: 'HeaderButton--wishlist', text: 'Wishlist' } %}
+    {% include '@components/Molecules/HeaderButton/HeaderButton.twig' with { icon: 'account', classes: 'HeaderButton--account', text: 'Login' } %}
+    {% include '@components/Molecules/HeaderButton/HeaderButton.twig' with { icon: 'cart', text: 'Cart', classes: 'HeaderButton--cart' } %}
+    {% include '@components/Molecules/HeaderButton/HeaderButton.twig' with { icon: 'menu', text: 'Cart', classes: 'HeaderButton--menu lg:hidden' } %}
   </div>
 </header>
 
 {% if type == "searchbar" %}
   <nav class='hidden xl:flex xl:gap-[30px] bg-grey-lightest xl:justify-center xl:items-center'>
-    {% include '../../Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
-    {% include '../../Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
-    {% include '../../Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
-    {% include '../../Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
-    {% include '../../Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
+    {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
+    {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
+    {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
+    {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
+    {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
   </nav>
 {% endif %}

@@ -49,10 +49,19 @@ const config: StorybookConfig = {
       test: /\.twig$/,
       use: [
         {
-          loader: 'twig-loader'
+          loader: 'twigjs-loader'
         }
       ]
     });
+
+    config.resolve = {
+      ...config.resolve,
+      alias: {
+        ...config.resolve?.alias,
+        '@components': path.resolve(__dirname, '../components'),
+        '@icons': path.resolve(__dirname, '../assets/icons')
+      }
+    };
     return config;
   },
   docs: {
