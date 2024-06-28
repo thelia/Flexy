@@ -6,41 +6,17 @@
   background: var(--header-button-bg);
   color: var(--header-button-color);
 
-  display: flex;
-  align-items: center;
-  height: 100%;
-  padding-left: rem-convert(20px);
-  padding-right: rem-convert(20px);
-  @apply typo-button-large;
-
-  & > div {
-    display: flex;
-    gap: rem-convert(6px);
-  }
+  @apply typo-button-large flex flex-col 2xl:flex-row items-center justify-center h-full gap-1 md:px-5 md:flex-initial flex-1;
 
   &--small {
     padding-right: rem-convert(20px);
-  }
-
-  &--mobile {
-    padding: 0;
-    flex: 1 1 0px;
-    justify-content: center;
-    padding-top: rem-convert(8px);
-    padding-bottom: rem-convert(8px);
-    @apply typo-button-small;
-    & > div {
-      flex-direction: column;
-      align-items: center;
-      gap: 0;
-    }
   }
 
   &:hover {
     --header-button-bg: var(--header-button-bg-hover);
   }
 
-  &:focus-visible{
+  &:focus-visible {
     outline: none;
     box-shadow: 0 0 0 1px var(--theme) inset;
   }
@@ -52,9 +28,12 @@
     padding-bottom: rem-convert(4px);
   }
 
-  &-sub {
-    @apply paragraph-6;
-    font-weight: 400;
+  &-text {
+    @apply paragraph-7 font-normal md:hidden 2xl:block;
+    font-family: var(--font-family-paragraph-1);
+  }
+  &-subText {
+    @apply paragraph-7 font-light;
   }
 
   &--inactive {
@@ -81,5 +60,9 @@
     &:hover {
       --header-button-bg: var(--grey-lightest);
     }
+  }
+
+  &--cart {
+    @apply bg-black md:bg-inherit text-white md:text-black lg:text-white lg:bg-black hover:bg-black hover:text-white;
   }
 }

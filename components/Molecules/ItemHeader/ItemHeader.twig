@@ -1,3 +1,29 @@
-<a href='{{ href }}' class='ItemHeader {{ classes }}'>
-  {{ customText }}
-</a>
+<li class="flex">
+	<a href='{{ href }}' class='ItemHeader {{ classes }}'>
+		{{ customText }}
+	</a>
+	{% if sub %}
+		<button type="button" data-menu-item="{{sub}}">{{ source("/icons/arrow-right.svg") }}</button>
+		<ul data-menu-sub="{{sub}}" data-menu-previous="0">
+			<li>
+				<a href="#0">Titre sous menu</a>
+				<button type="button" data-menu-item="5">{{ source("/icons/arrow-right.svg") }}</button>
+				<ul data-menu-sub="5" data-menu-previous="{{sub}}">
+					<li>
+						<a href="#0">Titre sous sous menu</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="#0">Titre sous menu</a>
+			</li>
+			<li>
+				<a href="#0">Titre sous menu</a>
+			</li>
+			<li>
+				<a href="#0">Titre sous menu</a>
+			</li>
+		</ul>
+	{% endif %}
+
+</li>

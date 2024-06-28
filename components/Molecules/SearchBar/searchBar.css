@@ -2,9 +2,9 @@
   display: flex;
   align-items: center;
   color: var(--grey);
-  border: 1px solid var(--grey-lighter);
+  outline: 1px solid var(--grey-lighter);
   border-radius: rem-convert(50px);
-  padding: rem-convert(2px) rem-convert(10px) rem-convert(2px) rem-convert(6px);
+  padding: 1rem 1.25rem;
 
   button {
     margin-right: rem-convert(10px);
@@ -16,19 +16,20 @@
   }
   input {
     flex-grow: 1;
-    @apply paragraph-2;
+    @apply paragraph-2 ml-4;
     color: var(--black);
-    &:focus-visible{
+    &:focus-visible {
       outline: none;
     }
     &::placeholder {
       font-style: italic;
       color: var(--grey);
+      font-weight: 300;
     }
   }
 
   &:focus-within {
-    border: 2px solid var(--theme);
+    outline: 2px solid var(--theme);
   }
   &:hover {
     &,
@@ -53,9 +54,5 @@
     &:focus-within {
       border-width: 2px;
     }
-  }
-  @screen md {
-    padding: rem-convert(6px) rem-convert(10px) rem-convert(6px)
-      rem-convert(6px);
   }
 }

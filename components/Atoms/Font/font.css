@@ -170,4 +170,8 @@ a {
     font-size: var(--font-size-indication-small);
     letter-spacing: var(--letter-spacing-indication-small);
   }
+
+  &-lower {
+    text-transform: lowercase;
+  }
 }

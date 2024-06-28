@@ -33,6 +33,7 @@
     "postcss-easy-import": "^4.0.0",
     "postcss-loader": "^7.3.3",
     "postcss-nested": "^6.0.1",
+    "postcss-nested-ancestors": "^3.0.0",
     "postcss-rem": "^3.0.0",
     "storybook": "^8.0.9",
     "storybook-addon-pseudo-states": "^3.0.1",

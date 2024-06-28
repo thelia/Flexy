@@ -1,14 +1,4 @@
-<label
-  class="SearchBar {{ classes }}"
-  aria-label="Recherche"
->
-  <button class='w-4 h-4'>{{ source("/icons/search.svg") }}</button>
-
-  <input
-    type="text"
-    name="query"
-    placeholder="Ex. Chaussures, tee-shirt, ..."
-    autocomplete='off'
-    value="{{ value|default('') }}"
-  />
+<label class="SearchBar {{ classes }}" aria-label="Recherche">
+	<button class='w-4 h-4'>{{ source("/icons/search.svg") }}</button>
+	<input type="text" name="query" placeholder="Ex. Chaussures, tee-shirt, ..." autocomplete='off' value="{{ value|default('') }}"/>
 </label>

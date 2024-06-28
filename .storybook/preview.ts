@@ -14,6 +14,7 @@ const preview: Preview = {
         date: /Date$/i
       }
     },
+    layout: 'fullscreen',
     backgrounds: {
       default: 'white',
       values: [
@@ -28,6 +29,10 @@ const preview: Preview = {
         {
           name: 'white',
           value: '#FFFFFF'
+        },
+        {
+          name: 'theme-lighter',
+          value: '#FFEDE5'
         },
         {
           name: 'theme-lightest',

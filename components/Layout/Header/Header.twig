@@ -1,48 +1,46 @@
-<header class='Header flex sm:justify-between justify-center sm:pl-[30px] h-[80px] py-px'>
-  <div class='flex'>
-    {% if type == "searchbar" %}  
-      <div class='hidden lg:block xl:hidden'>
+<header class='Header  {% if type == "sticky" %}is-sticky{% endif %} {% if type == "searchbar" %}Header--withSearchBar{% endif %}'>
+	<div class='flex'>
+		{% if type == "searchbar" %}
+			<div class='hidden lg:block xl:hidden'>
         {% include '@components/Molecules/HeaderButton/HeaderButton.twig' with {icon: 'menu', text: 'Cart', classes: 'HeaderButton--light', small: true } %}
-      </div>
-    {% endif %}
+			</div>
+		{% endif %}
 
+		<div class='flex items-center self-center h-full'>
+			<div class='Header-logo'>{{ svg('thelia') }}</div>
+		</div>
+	</div>
 
-    <div class='self-center h-full'>
-      <div class='mx-auto h-full py-[25px] md:mx-0 Header-icon'>{{ svg('thelia') }}</div>
-    </div>
-  </div>
-  
-  {% if type == "searchbar" %}
-    <div class='py-[22px] w-[500px] hidden lg:block'>
-      {% include '@components/Molecules/SearchBar/SearchBar.twig' %}
-    </div>
-  {% else %}
-    <div class='hidden lg:flex lg:gap-[30px]'>
-      {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
-      {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
-      {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
-      {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
-      {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
-    </div>
-  {% endif %}
+	{% if type == "searchbar" %}
+		<div class='w-[500px] 2xl:w-[800px] hidden lg:flex items-stretch flex-col justify-center absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2'>
+			{% include '@components/Molecules/SearchBar/SearchBar.twig' %}
+		</div>
+	{% else %}
+		<nav id="Menu">
+			<button type="button" data-menu-back="-1">{{ source("/icons/arrow-left.svg") }}</button>
+			<button type="button" data-menu-close>{{ source("/icons/close.svg") }}</button>
+			<ul class="Header-navigation" data-menu-sub="0">
+				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#", sub: 1 } %}
+				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
+				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
+				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
+				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
+			</ul>
+		</nav>
+	{% endif %}
 
-  <div class='hidden sm:flex'>
-    {% if type != "searchbar" %}
-      {% include '@components/Molecules/HeaderButton/HeaderButton.twig' with { icon: 'search', classes: 'HeaderButton--search', text: 'Search' } %}
-    {% endif %}
-    {% include '@components/Molecules/HeaderButton/HeaderButton.twig' with { icon: 'heart-fill', classes: 'HeaderButton--wishlist', text: 'Wishlist' } %}
-    {% include '@components/Molecules/HeaderButton/HeaderButton.twig' with { icon: 'account', classes: 'HeaderButton--account', text: 'Login' } %}
-    {% include '@components/Molecules/HeaderButton/HeaderButton.twig' with { icon: 'cart', text: 'Cart', classes: 'HeaderButton--cart' } %}
-    {% include '@components/Molecules/HeaderButton/HeaderButton.twig' with { icon: 'menu', text: 'Cart', classes: 'HeaderButton--menu lg:hidden' } %}
-  </div>
-</header>
+	{% include '@components/Organisms/HeaderNav/HeaderNav.twig' with {type: type} %}
 
-{% if type == "searchbar" %}
-  <nav class='hidden xl:flex xl:gap-[30px] bg-grey-lightest xl:justify-center xl:items-center'>
-    {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
-    {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
-    {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
-    {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
-    {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
-  </nav>
-{% endif %}
+	{% if type == "searchbar" %}
+		<nav id="Menu" class='Header-navWrap'>
+			<button type="button" data-menu-back="-1">{{ source("/icons/arrow-left.svg") }}</button>
+			<button type="button" data-menu-close>{{ source("/icons/close.svg") }}</button>
+			<ul class="Header-navigation">
+				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#",sub: 1 } %}
+				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
+				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
+				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
+				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
+			</ul>
+		</nav>
+	{% endif %}
