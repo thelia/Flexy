@@ -2,5 +2,8 @@
   "name": "thelia/flexy",
   "description": "thelia design system",
   "license": "LGPL-3.0+",
-  "require": {}
+  "require": {
+    "composer/installers": "~1.0",
+    "symfony/webpack-encore-bundle": "*"
+  }
 }
