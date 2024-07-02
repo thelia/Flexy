@@ -1,5 +1,6 @@
 {
   "name": "thelia/flexy",
+  "type": "thelia-frontoffice-template",
   "description": "thelia design system",
   "license": "LGPL-3.0+",
   "require": {
