@@ -1,5 +1,10 @@
+{% set customText = customText|default('') %}
+{% set variant = variant|default('informative') %}
+{% set type = type|default('outline') %}
+
+
 {% set classes = '' %}
-{% set classes = classes ~ ' OrderTag--' ~ (variant|default('informative')) %}
-{% set classes = classes ~ ' OrderTag--' ~ (type|default('outline')) %}
+{% set classes = classes ~ ' OrderTag--' ~ variant %}
+{% set classes = classes ~ ' OrderTag--' ~ type %}
 
 <span class="OrderTag{{ classes }}">{{ customText }}</span>

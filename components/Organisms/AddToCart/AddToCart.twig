@@ -1,3 +1,7 @@
+{% set price = price|default(null) %}
+{% set discount = discount|default(null) %}
+{% set unavailable = unavailable|default(false) %}
+
 <div class='AddToCart {% if not price %}AddToCart--center{% endif %}'>
   {% if price %}
     <div>

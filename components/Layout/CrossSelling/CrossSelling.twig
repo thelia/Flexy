@@ -1,3 +1,7 @@
+{% set title = title|default('') %}
+{% set products = products|default([]) %}
+{% set button = button|default({label:"", href:""}) %}
+
 <div class='xl:container xl:mx-auto'>
 	<div class='pb-6 text-black h2'>{{ title }}</div>
 </div>

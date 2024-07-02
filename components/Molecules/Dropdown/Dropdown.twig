@@ -1,3 +1,7 @@
+{% set placeholder = placeholder|default(false) %}
+{% set id = id|default('') %}
+{% set options = options|default([]) %}
+
 <div class="Dropdown">
   <div class="Dropdown-current" tabindex="1">
     {% if placeholder %}

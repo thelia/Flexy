@@ -1,3 +1,13 @@
+{% set value = value|default('') %}
+{% set name = name|default('') %}
+{% set customText = customText|default('') %}
+{% set selected = label|default(false) %}
+{% set disabled = disabled|default(false) %}
+{% set icon = icon|default(null) %}
+{% set closeButton = closeButton|default(null) %}
+{% set iconColor = iconColor|default(null) %}
+{% set inputType = inputType|default('checkbox') %}
+
 {% set classes = '' %}
 {% if selected %}
    {% set classes = classes ~ ' FilterPill--selected' %}
@@ -7,7 +17,7 @@
 {% endif %}
 
 <label class="FilterPill{{ classes }}" {% if disabled %}disabled{% endif %}>
-  <input type='{{ inputType|default('checkbox') }}' class='hidden' value='{{ value }}' name='{{ name }}' />
+  <input type='{{ inputType }}' class='hidden' value='{{ value }}' name='{{ name }}' />
   {% if icon %}
     <span class="FilterPill-icon" {% if iconColor %}style="color:{{ iconColor }}"{% endif %}>{{ source("/icons/" ~ icon  ~".svg") }}</span>
   {% endif %}

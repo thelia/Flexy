@@ -7,7 +7,8 @@ export default {
 export const base = {
   render: (args) => SubheaderSearch(args),
   args: {
-    title: 'Résultat de recherche'
+    title: 'Résultat de recherche',
+    nbProducts: 16
   },
   argTypes: {}
 };

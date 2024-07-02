@@ -1,3 +1,9 @@
+{% set size = size|default(null) %} {# size: 'large'|'small' #}
+{% set disabled = disabled|default(false) %}
+{% set iconLeft = iconLeft|default(null) %}
+{% set iconRight = iconRight|default(null) %}
+{% set customText = customText|default('') %}
+
 {% set classes = '' %}
 {% if size %}
    {% set classes = classes ~ 'Tab--' ~ size %}

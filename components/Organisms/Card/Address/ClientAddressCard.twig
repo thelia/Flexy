@@ -1,3 +1,15 @@
+{% set undefined = undefined|default(false) %}
+{% set address = address|default({
+  title: "",
+  name: "",
+  address1: "",
+  zipCode: '',
+  city: '',
+  country: '',
+  phone: '',
+}) %}
+
+
 <div class='AddressCard AddressCard--client-information'>
   <div class='AddressCard-content'>
     {% if undefined %}

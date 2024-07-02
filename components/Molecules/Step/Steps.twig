@@ -1,3 +1,8 @@
+{% set checkoutSteps = checkoutSteps|default([]) %}
+{% set currentStep = currentStep|default(1) %}
+{% set cartTotal = cartTotal|default('') %}
+{% set cartQuantity = cartQuantity|default('') %}
+
 {% set totalSteps = checkoutSteps|length %}
 {% set percent = (currentStep / totalSteps) * 100 %}
 <div class="Steps">

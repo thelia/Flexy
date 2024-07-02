@@ -1,3 +1,10 @@
+{% set orderNumber = orderNumber|default('') %}
+{% set date = date|default('') %}
+{% set nbItems = nbItems|default(0) %}
+{% set price = price|default('') %}
+{% set deliveryDate = deliveryDate|default('') %}
+{% set productImages = productImages|default([]) %}
+
 <div class='OrderCard'>
   <div class='2xl:flex justify-between'>
     <div>

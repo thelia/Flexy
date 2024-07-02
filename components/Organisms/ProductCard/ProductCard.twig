@@ -1,11 +1,27 @@
-{% set productThumbnailUrl = base_url ~ "/images/placeholder2.webp" %}
-{% set productTumbnailTitle = "placeholder" %}
 {% set classes = classes|default('') %}
+{% set productTitle = productTitle|default('') %}
+{% set orderSecondaryTitle = orderSecondaryTitle|default('') %}
+{% set price = price|default('') %}
+{% set promoPrice = promoPrice|default('') %}
+{% set size = size|default('') %}
+{% set quantity = quantity|default(null) %}
 {% set imgWidth = imgWidth|default(300) %}
 {% set imgHeight = imgHeight|default(300) %}
 {% set displayWishButton = displayWishButton|default(false) %}
+{% set inWishlist = inWishlist|default(false) %}
 {% set isOrderCard = isOrderCard|default(false) %}
 {% set isAddToCartConfirmation = isAddToCartConfirmation|default(false) %}
+{% set isRemoveProduct = isRemoveProduct|default(0) %}
+{% set disabled = disabled|default(0) %}
+{% set isPurchaseFunnelCard = isPurchaseFunnelCard|default(0) %}
+{% set isOutOfStock = isOutOfStock|default(0) %}
+{% set isNew = isNew|default(0) %}
+{% set isPromo = isPromo|default(0) %}
+{% set colors = colors|default([]) %} {# colors: ['#667761','#84DCC6',...] #}
+{% set rate = rate|default(null) %}
+{% set secondaryTitle = secondaryTitle|default(null) %}
+{% set img = img|default({url: '/images/placeholder2.webp', alt:''}) %}
+{% set quantityChoice = quantityChoice|default(1) %}
 
 <div class="ProductCard {{ classes }}">
   {% if isAddToCartConfirmation or isRemoveProduct %}
@@ -13,10 +29,10 @@
   {% endif %}
   <div class="ProductCard-header">
     <div class="ProductCard-tagList">
-      {% if isNew|default(0) %}
+      {% if isNew %}
         {% include '../../Molecules/Tag/Tag.twig' with {customText: 'Nouveau', variant: 'vermillon'} %}
       {% endif %}
-      {% if isPromo|default(0) %}
+      {% if isPromo %}
         {% include '../../Molecules/Tag/Tag.twig' with {customText: '-15%', variant: 'error'} %}
       {% endif %}
     </div>
@@ -43,13 +59,8 @@
   <div class="ProductCard-mainContent">
     <a class="ProductCard-imgLink" href="#">
       <figure class="ProductCard-img">
-        {% if productThumbnailUrl %}
-          <img src="{{ productThumbnailUrl }}" alt="{{ productTumbnailTitle }}"
-                  title="{{ productTumbnailTitle }}"  loading="lazy">
-        {% else %}
-            <img src="{{ source("/images/placeholder.svg") }}" alt="{{ productTumbnailTitle }}"
-                  title="{{ productTumbnailTitle }}"  loading="lazy">
-        {% endif %}
+        <img src="{{ img.url }}" alt="{{ img.alt }}"
+             title="{{ img.alt }}"  loading="lazy">
       </figure>
     </a>
     <div class="ProductCard-desc">
@@ -73,9 +84,9 @@
         {% include '../../Molecules/Button/Button.twig' with {classes:'Button--small', text: "Restaurer", icon_left: "restore" } %}
       {% endif %}
       <div class="ProductCard-footer">
-        {% if hasReviews or hasColors %}
+        {% if rate != null or colors.length > 0 %}
           <div class="ProductCard-footerLeft">
-            {% if hasReviews %}
+            {% if rate != null %}
               <div class="Rating">
                 <div class="Rating-mark">
                   {% for i in 1..5 %}
@@ -102,12 +113,10 @@
             {% if hasColors %}
               <div class="Colors">
                 {% set limit = 6 %}
-                {% set count = 0 %}
                 {% for color in colors %}
-                    {% if count < limit %}
+                    {% if loop.index0 < limit %}
                         <a href="#" class="Colors-item" style="background-color:{{ color }}">
                         </a>
-                        {% set count = count + 1 %}
                     {% else %}
                         <div class="Colors-others">...</div>
                     {% endif %}
@@ -116,7 +125,7 @@
             {% endif %}
           </div>
         {% endif %}
-        {% if isPromo|default(0) %}
+        {% if isPromo %}
           <div class="ProductCard-footerRight">
             <div class="ProductCard-price">{{ promoPrice }}</div>
             <div class="ProductCard-originalPrice">{{ price }}</div>
@@ -156,7 +165,7 @@
       {% include '../../Molecules/Button/Button.twig' with {classes:'Button--medium', variant: "secondary", text: "Poursuivre mes achats" } %}
     </div>
   {% endif %}
-  {% if isRemoveProduct|default(0) %}
+  {% if isRemoveProduct %}
     <div class="ProductCard-progressBar">
         <div class="ProductCard-progressBarInner">
         </div>

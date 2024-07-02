@@ -1,5 +1,7 @@
+{% set isOutOfStock = isOutOfStock|default(0) %}
+{% set productTitle = productTitle|default('') %}
 
-{% if isOutOfStock %} 
+{% if isOutOfStock %}
     <div class="ProductCardWrapper ProductCardWrapper--outOfStock purchase-funnel-card-width">
         <div class="ProductCardWrapper-outOfStockMessage">
             <div>

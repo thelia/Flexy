@@ -1,3 +1,11 @@
+{% set error = error|default(false) %}
+{% set disabled = disabled|default(false) %}
+{% set required = required|default(false) %}
+{% set name = name|default('') %}
+{% set value = value|default(null) %}
+{% set min = min|default(null) %}
+{% set max = max|default(null) %}
+
 {% set classes = '' %}
 {% if error %}
    {% set classes = classes ~ ' FieldNumber--error' %}

@@ -1,3 +1,7 @@
+{% set title = title|default('') %}
+{% set description = description|default('') %}
+{% set img = img|default({src:'/images/placeholder2.webp', alt:""}) %}
+
 <div class='Subheader Subheader--contentPage'>
   <div class='Subheader-image'>
     <img src='{{ img.src }}' alt='{{ img.alt }}'  loading="lazy" />

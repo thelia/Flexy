@@ -1,3 +1,5 @@
+{% set classes = classes|default('') %}
+
 <header class='HeaderCheckout flex justify-between items-center {{ classes }} h-12 xl:h-20 px-6  relative'>
 	<div class='xl:mx-auto Header-logo'>{{ source("/icons/thelia.svg") }}</div>
 	<div class='flex sm:absolute sm:right-6 HeaderCheckout-reassurance top-1/2 sm:-translate-y-1/2  items-center gap-[2px]'>

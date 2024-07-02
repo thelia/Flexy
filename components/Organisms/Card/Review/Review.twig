@@ -1,3 +1,9 @@
+{% set author = author|default('') %}
+{% set review = review|default('') %}
+{% set date = date|default('') %}
+{% set note = note|default(0) %}
+{% set maxNote = maxNote|default(5) %}
+
 <div class="Review">
   <div class="Review-author">{{ author }}</div>
   <div class="Review-review">{{ review }}</div>

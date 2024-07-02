@@ -1,3 +1,5 @@
+{% set options = options|default([]) %} {# options:  [{ value: 1, color: '#6969B3', label: 'State Blue' }, ...] #}
+
 {% set optionsColors = [] %}
 {% for option in options %}
   {% set optionsColors = optionsColors|merge([{

@@ -1,3 +1,17 @@
+{% set title = title|default('') %}
+{% set date = date|default('') %}
+{% set selected = selected|default(false) %}
+{% set closed = closed|default(false) %}
+{% set img = img|default({src: '/images/placeholder2.webp', alt:'Logo Pickup'}) %}
+{% set hours = hours|default([]) %} {# hours: [{ day: 'lundi', hours: '14h - 19h' }, ...] #}
+{% set address = address|default({
+  title: "",
+  name: "",
+  address1: "",
+  zipCode: '',
+  city: ''
+}) %}
+
 <div class='PickupPoint {% if selected %}selected{% endif %}'>
   <label class='PickupPoint-content'>
     {% include '../../../Atoms/Form/Radio.twig' with {type:"span", name:"PickupPoint", value:1, checked:selected} %}
@@ -17,7 +31,7 @@
   <div class='PickupPoint-bottom'>
           <button class='PickupPoint-hours underline-with-icon' type='button'>{{ source("/icons/clock.svg") }}Horaires</button>
           {% if img.src %}
-            <img src="{{ img.src }}" alt="{{ img.alt|default('Logo Pickup') }}" loading="lazy">
+            <img src="{{ img.src }}" alt="{{ img.alt }}" loading="lazy">
           {% endif %}
   </div>
   <div class='PickupPoint-hoursListing md:hidden'>

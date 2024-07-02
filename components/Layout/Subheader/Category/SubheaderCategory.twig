@@ -1,3 +1,7 @@
+{% set title = title|default('') %}
+{% set description = description|default('') %}
+{% set nbProducts = nbProducts|default(0) %}
+
 <div class='Subheader Subheader--category'>
   <div class='container mx-auto flex flex-col'>
     <h1 class='Subheader-title'>{{ title }}</h1>
@@ -8,7 +12,7 @@
       <a href='#' class='link-large'>Lire la suite</a>
     </div>
     <div class='Subheader-info Subheader-info--category'>
-      <div>16 produit(s)</div>
+      <div>{{ nbProducts }} produit(s)</div>
       {% include '../../../Molecules/Button/Button.twig' with {text: 'Filtrer & trier',icon_left:'filter', variant: 'secondary'} %}
     </div>
   </div>

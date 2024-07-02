@@ -1,18 +1,14 @@
-{% set productThumbnailUrl = base_url ~ "/images/placeholder2.webp" %}
-{% set productTumbnailTitle = "placeholder" %}
+{% set title = title|default('') %}
+{% set img = img|default({url: '/images/placeholder2.webp', alt:''}) %}
 {% set classes = classes|default('') %}
+{% set button = button|default({label: '', href:''}) %}
+
 <div class="CategoryCard {{ classes }}">
 
   <div class="CategoryCard-mainContent">
     <a class="CategoryCard-imgLink" href="#">
       <figure class="CategoryCard-img">
-        {% if productThumbnailUrl %}
-          <img src="{{ productThumbnailUrl }}" alt="{{ productTumbnailTitle }}"
-               title="{{ productTumbnailTitle }}"  loading="lazy">
-        {% else %}
-          <img src="{{ source("/images/placeholder.svg") }}" alt="{{ productTumbnailTitle }}"
-               title="{{ productTumbnailTitle }}"  loading="lazy">
-        {% endif %}
+        <img src="{{ img.url }}" alt="{{ img.alt }}" title="{{ img.alt }}"  loading="lazy">
       </figure>
     </a>
     <div class="CategoryCard-desc">

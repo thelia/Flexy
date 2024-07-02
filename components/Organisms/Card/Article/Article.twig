@@ -1,5 +1,9 @@
+{% set img = img|default({url: '/images/placeholder2.webp', alt:''}) %}
+{% set title = title|default('') %}
+{% set date = date|default('') %}
+
 <div class='Article'>
-  <img src="{{ img and img.url ? imag.url : '/images/placeholder2.webp' }}" alt="{{ img and img.alt ? img.alt : '' }}" loading="lazy" class="Article-img">
+  <img src="{{ imag.url}}" alt="{{ img.alt }}" loading="lazy" class="Article-img">
   <div class='Article-content'>
     <div class='Article-title'>{{ title }}</div>
     <div class='Article-date'>{{ date }}</div>

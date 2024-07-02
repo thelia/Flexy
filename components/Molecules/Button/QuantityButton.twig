@@ -1,3 +1,9 @@
+{% set classes = classes|default('') %}
+{% set value = value|default('') %}
+{% set disabled = disabled|default(false) %}
+{% set icon = icon|default(null) %}
+{% set text = text|default('') %}
+
 <div class='Button-quantityButton'>
   {% include './Quantity.twig' with {disabled: disabled, value:value, classes:classes} %}
   {% include './Button.twig' with {disabled: disabled, text:text, classes:classes, icon_left: icon} %}

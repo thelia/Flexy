@@ -1,4 +1,10 @@
-<label class="RadioCard {{ classes|default('') }}">
+{% set classes = classes|default('') %}
+{% set name = name|default('') %}
+{% set value = value|default('') %}
+{% set label = label|default('') %}
+{% set disabled = disabled|default(false) %}
+
+<label class="RadioCard {{ classes }}">
   <input
     type="radio"
     class="RadioCard-input"

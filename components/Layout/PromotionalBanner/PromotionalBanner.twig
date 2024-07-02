@@ -1,3 +1,8 @@
+{% set text = text|default('') %}
+{% set type = type|default('button') %}
+{% set linkLabel = type|default('') %}
+{% set link = type|default('') %}
+
 <div class='PromotionalBanner'>
   <div class='PromotionalBanner-header'>
     <button type='button' class='PromotionalBanner-close' data-promotional-banner-close>{{ source("/icons/close.svg") }}</button>

@@ -1,3 +1,18 @@
+{% set selected = selected|default(false) %}
+{% set title = title|default('') %}
+{% set date = date|default('') %}
+{% set price = price|default('') %}
+{% set noAddress = noAddress|default(false) %}
+{% set address = address|default({
+  title: "",
+  name: "",
+  address1: "",
+  zipCode: '',
+  city: '',
+  country: '',
+  phone: '',
+}) %}
+
 <div class='HomeDelivery {% if selected %}selected{% endif %}'>
   <label class='HomeDelivery-content'>
     {% include '../../../Atoms/Form/Radio.twig' with {type:"span", name:"HomeDelivery", value:1, checked:selected} %}

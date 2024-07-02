@@ -1,3 +1,7 @@
+{% set title = title|default('') %}
+{% set similarContents = similarContents|default([]) %}
+{% set button = button|default({label:"", href:""}) %}
+
 <div class='xl:container xl:mx-auto'>
   <div class='h4 text-black pb-6'>{{ title }}</div>
 </div>

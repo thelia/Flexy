@@ -1,3 +1,21 @@
+{% set selected = selected|default(false) %}
+{% set title = title|default('') %}
+{% set date = date|default('') %}
+{% set price = price|default('') %}
+{% set registeredClient = registeredClient|default(false) %}
+{% set newClient = newClient|default(false) %}
+{% set closed = closed|default(false) %}
+{% set address = address|default({
+  title: "",
+  name: "",
+  address1: "",
+  zipCode: '',
+  city: '',
+  country: '',
+  phone: '',
+}) %}
+{% set hours = hours|default([]) %} {# hours: [{ day: 'lundi', hours: '14h - 19h' }, ...] #}
+
 <div class='StoreDelivery {% if selected %}selected{% endif %}'>
   <label class='StoreDelivery-content'>
     {% include '../../../Atoms/Form/Radio.twig' with {type:"span", name:"StoreDelivery", value:1, checked:selected} %}

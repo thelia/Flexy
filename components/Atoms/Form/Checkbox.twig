@@ -1,4 +1,12 @@
-<label class="Checkbox {{ classes|default('') }} {{ error ? 'error'  : ''}}">
+{% set classes = classes|default('') %}
+{% set error = error|default('') %}
+{% set name = name|default('') %}
+{% set value = value|default('') %}
+{% set disabled = disabled|default(false) %}
+{% set checked = checked|default(false) %}
+{% set label = label|default('') %}
+
+<label class="Checkbox {{ classes }} {{ error ? 'error'  : ''}}">
   <input type="checkbox"
          name='{{ name }}'
          value='{{ value }}'

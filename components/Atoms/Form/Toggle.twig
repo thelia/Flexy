@@ -1,4 +1,14 @@
-<label class="ToggleButton  {{ classes|default('') }} {{ error ? 'error'  : ''}}">
+{% set classes = classes|default('') %}
+{% set error = error|default(0) %}
+{% set name = name|default('') %}
+{% set value = value|default('') %}
+{% set disabled = disabled|default(false) %}
+{% set checked = checked|default(false) %}
+{% set labelOff = labelOff|default(null) %}
+{% set labelOn = labelOn|default(null) %}
+
+
+<label class="ToggleButton  {{ classes }} {{ error ? 'error'  : ''}}">
   <input type="checkbox"
          name='{{ name }}'
          value='{{ value }}'

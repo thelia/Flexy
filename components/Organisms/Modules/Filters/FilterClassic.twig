@@ -1,3 +1,6 @@
+{% set options = options|default([]) %} {# options:  [{ value: 1, label: 'State Blue' }, ...] #}
+{% set isRounded = isRounded|default(false) %}
+
 <div class='hidden md:block'>
   {% for option in options %}
     {% include '../../../Molecules/Filters/FilterPill/FilterPill.twig' with {customText: option.label,inputType: 'radio', name: 'classic', value: option.value} %}

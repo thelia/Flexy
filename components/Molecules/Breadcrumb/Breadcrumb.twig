@@ -1,3 +1,6 @@
+{% set classes = classes|default('') %}
+{% set items = items|default([]) %}
+
 <nav class="Breadcrumb{{ classes }}" aria-label="Fil d'Ariane">
   <ol class="Breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
     {% if items.length > 3 %}
@@ -23,7 +26,3 @@
     {% endfor %}
   </ol>
 </nav>
-
-
-
-

@@ -1,3 +1,10 @@
+{% set href = href|default('') %}
+{% set customText = customText|default('') %}
+{% set disabled = disabled|default(false) %}
+{% set target = target|default(null) %}
+{% set iconLeft = iconLeft|default(null) %}
+{% set iconRight = iconRight|default(null) %}
+
 {% set classes = '' %}
 {% if size %}
    {% set classes = classes ~ 'Link--' ~ size %}

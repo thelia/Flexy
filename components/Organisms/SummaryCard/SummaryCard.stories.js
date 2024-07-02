@@ -7,7 +7,10 @@ export default {
 export const base = {
   render: (args) => `<div class='w-[334px]''>${SummaryCard(args)}</div>`,
   args: {
-    cgv: true,
+    cgvLink: '#',
+    nbArticles: 2,
+    subTotal: '2 150,00€',
+    total: '2 000,00€',
     promo: {
       code: '50JUIL23',
       reduction: '-50€'

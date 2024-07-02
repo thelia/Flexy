@@ -1,3 +1,9 @@
+{% set icon = icon|default(null) %}
+{% set closeOnClick = closeOnClick|default(false) %}
+{% set onClick = onClick|default(null) %}
+{% set customText = customText|default('') %}
+{% set href = href|default(null) %}
+
 {% set classes = '' %}
 {% set classes = classes ~ ' Tag--' ~ (variant|default('validated')) %}
 {% if closeOnClick %}

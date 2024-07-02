@@ -1,5 +1,8 @@
 {% set classes = '' %}
-{% set classes = classes ~ ' Accordion--' ~ (variant|default('text')) %}
+{% set variant = variant|default('text') %}
+{% set classes = classes ~ ' Accordion--' ~ variant %}
+{% set title = title|default('') %}
+{% set content = content|default('') %}
 
 <details class='Accordion{{ classes }}'>
   <summary class='Accordion-summary'>

@@ -1,3 +1,5 @@
+{% set withNewsletter = withNewsletter|default(false) %}
+
 {% set footerLinksClasses = 'flex flex-col gap-2 md:gap-6 md:flex-row lg:flex-col Footer-links mb-[30px] md:mb-0 md:pb-[70px] md:px-[50px] md:pt-[30px] md:border-t md:border-t-grey-lighter lg:border-none ' %}
 {% if withNewsletter %}
 	{% set footerLinksClasses = footerLinksClasses ~ 'md:col-span-2 lg:col-span-1 text-black' %}

@@ -1,12 +1,21 @@
-<button {% if id %} id="{{id}}" {% endif %} class='HeaderButton {% if inactive %}HeaderButton--inactive{% endif %} {{ classes }} {% if small %}HeaderButton--small{% endif %}'>
-	{% if icon %}
-		<span class='HeaderButton-icon'>{{ source("/icons/" ~ icon ~ ".svg") }}</span>
-	{% endif %}
+{% set id = id|default(null) %}
+{% set inactive = inactive|default(false) %}
+{% set classes = classes|default('') %}
+{% set small = small|default(false) %}
+{% set mobile = mobile|default(false) %}
+{% set subText = subText|default(null) %}
+{% set icon = icon|default(null) %}
+{% set text = text|default('') %}
 
-	<div class='flex flex-col items-start HeaderButton-text'>
-		<span class="HeaderButton-text">{{ text }}</span>
-		{% if subText and not mobile %}
-			<span class='HeaderButton-subText'>{{ subText }}</span>
-		{% endif %}
-	</div>
+<button {% if id %} id="{{id}}" {% endif %} class='HeaderButton {% if inactive %}HeaderButton--inactive{% endif %} {{ classes }} {% if small %}HeaderButton--small{% endif %}'>
+  {% if icon %}
+    <span class='HeaderButton-icon'>{{ source("/icons/" ~ icon ~ ".svg") }}</span>
+  {% endif %}
+
+  <div class='flex flex-col items-start HeaderButton-text'>
+    <span class="HeaderButton-text">{{ text }}</span>
+    {% if subText and not mobile %}
+      <span class='HeaderButton-subText'>{{ subText }}</span>
+    {% endif %}
+  </div>
 </button>

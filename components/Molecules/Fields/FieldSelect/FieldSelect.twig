@@ -1,3 +1,13 @@
+{% set error = error|default(false) %}
+{% set disabled = disabled|default(false) %}
+{% set required = required|default(false) %}
+{% set name = name|default('') %}
+{% set label = label|default('') %}
+{% set value = value|default(null) %}
+{% set tooltip = tooltip|default(null) %}
+{% set placeholder = placeholder|default(null) %}
+{% set options = options|default([]) %}
+
 {% set classes = '' %}
 {% if error %}
    {% set classes = classes ~ ' FieldSelect--error' %}

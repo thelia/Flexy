@@ -1,15 +1,32 @@
 {% set classes = '' %}
+{% set success = success|default(false) %}
+{% set size = size|default(false) %}  {# size: 'small'|'large' #}
+{% set disabled = disabled|default(false) %}
+{% set required = required|default(false) %}
+{% set tooltip = tooltip|default(false) %}
+{% set name = name|default('') %}
+{% set label = label|default('') %}
+{% set value = value|default(null) %}
+{% set placeholder = placeholder|default(null) %}
+{% set iconButton = iconButton|default(null) %}
+{% set iconButtonLeft = iconButtonLeft|default(null) %}
+{% set min = min|default(null) %}
+{% set max = max|default(null) %}
+{% set button = button|default(null) %}
+{% set error = error|default(null) %}
+{% set type = type|default('text') %}
+
 {% if error %}
-   {% set classes = classes ~ ' FieldInput--error' %}
+  {% set classes = classes ~ ' FieldInput--error' %}
 {% endif %}
 {% if success %}
-   {% set classes = classes ~ ' FieldInput--success' %}
+  {% set classes = classes ~ ' FieldInput--success' %}
 {% endif %}
 {% if size %}
-   {% set classes = classes ~ ' FieldInput--' ~ size %}
+  {% set classes = classes ~ ' FieldInput--' ~ size %}
 {% endif %}
 {% if button %}
-   {% set classes = classes ~ ' FieldInput--withButton' %}
+  {% set classes = classes ~ ' FieldInput--withButton' %}
 {% endif %}
 
 
@@ -19,13 +36,13 @@
       {{ label }}{% if required and label %} *{% endif %}
     </label>
     {% if tooltip %}
-        {% include '../../Tooltip/Tooltip.twig' with {tooltip: tooltip, position: 'bottom'} %}
+      {% include '../../Tooltip/Tooltip.twig' with {tooltip: tooltip, position: 'bottom'} %}
     {% endif %}
   </div>
   <div class='FieldInput-blockInput {% if iconButton and iconButtonLeft %}FieldInput-blockInputIconLeft{% endif %}'>
     <input
       class='FieldInput-input{% if unit %} FieldInput-input--unit{% endif %}'
-      type='{{ type|default('text') }}'
+      type='{{ type }}'
       name='{{ name }}'
       id='{{ name }}'
       {% if value %}value='{{ value }}'{% endif %}

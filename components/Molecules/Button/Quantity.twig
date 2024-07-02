@@ -1,4 +1,8 @@
-<div role="button" class='Button Button-quantity {{ classes|default('') }} {% if disabled %}disabled{% endif %}'>
+{% set classes = classes|default('') %}
+{% set value = value|default('') %}
+{% set disabled = disabled|default(false) %}
+
+<div role="button" class='Button Button-quantity {{ classes }} {% if disabled %}disabled{% endif %}'>
   <button data-qty='minus' {% if disabled %}disabled{% endif %}>-</button>
   <input type='number' {% if disabled %}disabled{% endif %} value='{{ value }}'>
   <button data-qty='plus' {% if disabled %}disabled{% endif %}>+</button>

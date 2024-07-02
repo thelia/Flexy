@@ -1,5 +1,8 @@
+{% set position = position|default('top') %}
+{% set tooltip = tooltip|default('') %}
+
 {% set classes = '' %}
-{% set classes = classes ~ ' Tooltip-text--' ~ (position|default('top')) %}
+{% set classes = classes ~ ' Tooltip-text--' ~ position %}
 
 <div class='Tooltip'>
   <span class='Tooltip-icon'>{{ source("/icons/help.svg") }}</span>

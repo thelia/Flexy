@@ -1,3 +1,5 @@
+{% set type = type|default("generic") %}
+
 <header class='Header  {% if type == "sticky" %}is-sticky{% endif %} {% if type == "searchbar" %}Header--withSearchBar{% endif %}'>
 	<div class='flex'>
 		{% if type == "searchbar" %}

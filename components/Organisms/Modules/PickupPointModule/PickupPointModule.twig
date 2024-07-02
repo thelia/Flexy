@@ -1,3 +1,11 @@
+{% set selected = selected|default(false) %}
+{% set title = title|default('') %}
+{% set date = date|default('') %}
+{% set price = price|default('') %}
+{% set carbone = carbone|default('') %}
+{% set pickupServices = pickupServices|default([]) %} {# pickupServices: [{name: 'Mondial relais', value: 'mondial_relais', img: '' }, ...] #}
+{% set pickups = pickups|default([]) %} {# pickups: [{ selected: false, closed: false, title: 'Nom du point relais', date: 'JJ/MM', address, price: '7,80€', img: { alt: 'Logo Mondial Relay', src: '/images/mondialRelay.svg' },hours}, ...] #}
+
 <div class='PickupPointModule {% if selected %}selected{% endif %}'>
   <label class='PickupPointModule-content'>
     {% include '../../../Atoms/Form/Radio.twig' with {type:"span", name:"PickupPoint", value:1, checked:selected} %}

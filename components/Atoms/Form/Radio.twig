@@ -1,9 +1,18 @@
+{% set classes = classes|default('') %}
+{% set error = error|default(0) %}
+{% set name = name|default('') %}
+{% set value = value|default('') %}
+{% set id = id|default(0) %}
+{% set disabled = disabled|default(false) %}
+{% set checked = checked|default(false) %}
+{% set label = label|default('') %}
 {% set type = type|default('label') %}
-<{{ type }} class="Radio {{ classes|default('') }} {{ error|default(0) ? 'error'  : ''}}">
+
+<{{ type }} class="Radio {{ classes }} {{ error ? 'error'  : ''}}">
   <input
     type="radio"
     name='{{ name }}'
-    value='{{ value|default('') }}'
+    value='{{ value }}'
     {% if id %}id='{{ id }}'{% endif %}
     {% if disabled %}disabled{% endif %}
     {% if checked %}checked{% endif %}

@@ -1,3 +1,6 @@
+{% set selected = selected|default(false) %}
+{% set title = title|default('') %}
+
 <div class='Payment {% if selected %}selected{% endif %}'>
   <label class='Payment-content'>
     {% include '../../../Atoms/Form/Radio.twig' with {type:"span", name:"Payment", value:1, checked:selected} %}

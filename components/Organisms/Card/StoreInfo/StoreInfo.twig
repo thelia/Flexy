@@ -1,3 +1,15 @@
+{% set storeName = storeName|default('') %}
+{% set displayHours = displayHours|default(false) %}
+{% set hours = hours|default([]) %} {# hours: [{ day: 'lundi', hours: '14h - 19h' }, ...] #}
+{% set address = address|default({
+  title: "",
+  name: "",
+  address1: "",
+  zipCode: '',
+  city: '',
+  country: ''
+}) %}
+
 <div class='StoreInfo'>
   <div class='StoreInfo-title'>{{ storeName }}</div>
   <div class='StoreInfo-address'>

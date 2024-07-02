@@ -1,3 +1,4 @@
+{% set data = data|default([]) %} {# data: [{strongText: 'Livraison gratuite',text: ' à partir de 50€',icon: 'reinsurance-delivery'},...] #}
 
 <div class='Reinsurance'>
   {% for reinsurance in data %}

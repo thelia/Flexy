@@ -1,3 +1,9 @@
+{% set totalPages = totalPages|default(1) %}
+{% set currentPage = currentPage|default(1) %}
+{% set prevText = prevText|default('') %}
+{% set nextText = nextText|default('') %}
+
+
 {# Nombre de pages à afficher de chaque côté de la page actuelle #}
 {% set range = 2 %} 
 

@@ -1,8 +1,15 @@
+{% set promo = promo|default(null) %}
+{% set giftCard = giftCard|default(null) %}
+{% set nbArticles = nbArticles|default(0) %}
+{% set subTotal = subTotal|default('') %}
+{% set total = total|default('') %}
+{% set cgvLink = cgvLink|default('') %}
+
 <div class='SummaryCard'>
   <div class='SummaryCard-list'>
     <div class='SummaryCard-line'>
-      <div>Sous-total <span class='paragraph-6 font-normal	'>(2 articles)</span></div>
-      <div>2 050,00€</div>
+      <div>Sous-total <span class='paragraph-6 font-normal	'>({{ nbArticles}} article{{ nbArticles > 1 ? 's' : '' }})</span></div>
+      <div>{{ subTotal }}</div>
     </div>
     <div class='SummaryCard-line'>
       <div>Livraison</div>
@@ -42,14 +49,14 @@
   <div class='SummaryCard-footer'>
     <div class='SummaryCard-total'>
       <div>Total TTC</div>
-      <div>2 000,00€</div>
+      <div>{{ total }}</div>
     </div>
     <div class='italic'>
       Taxes de 5,05 € incluse
     </div>
-    {% if cgv %}
+    {% if cgvLink %}
       <div class='mt-2'>
-        En payant votre commande, vous acceptez nos <a href='#'>conditions générales de vente</a> .
+        En payant votre commande, vous acceptez nos <a href='{{ cgvLink }}'>conditions générales de vente</a> .
       </div>
     {% endif %}
   </div>

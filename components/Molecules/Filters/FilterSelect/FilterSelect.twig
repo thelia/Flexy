@@ -1,3 +1,8 @@
+{% set isRounded = isRounded|default(false) %}
+{% set placeholder = placeholder|default(null) %}
+{% set id = id|default('') %}
+{% set options = options|default([]) %}
+
 <div class="FilterSelect {% if isRounded %}FilterSelect--isRounded{% endif %}" data-drawer-toggle='#FilterSelectDrawer'>
   <div class="FilterSelect-current" tabindex="1">
       {% if placeholder %}

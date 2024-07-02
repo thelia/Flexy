@@ -1,3 +1,8 @@
+{% set href = href|default('') %}
+{% set classes = classes|default('') %}
+{% set customText = customText|default('') %}
+{% set sub = sub|default(null) %}
+
 <li class="flex">
 	<a href='{{ href }}' class='ItemHeader {{ classes }}'>
 		{{ customText }}

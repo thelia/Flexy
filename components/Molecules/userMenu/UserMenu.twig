@@ -1,6 +1,10 @@
+{% set variant = variant|default('vermillon') %}
+{% set href = href|default('') %}
+{% set customText = customText|default('') %}
+{% set icon = icon|default(null) %}
 
 {% set classes = '' %}
-{% set classes = classes ~ ' UserMenu--' ~ (variant|default('vermillon')) %}
+{% set classes = classes ~ ' UserMenu--' ~ variant %}
 {% if icon %}
    {% set classes = classes ~ ' UserMenu--withIcon' %}
 {% endif %}

@@ -1,10 +1,16 @@
-{% set icon = '' %}
-{% if variant|default('theme-light') == 'error' %}{% set icon = 'error' %}{% endif %}
-{% if variant|default('theme-light') == 'warning' %}{% set icon = 'warning' %}{% endif %}
-{% if variant|default('theme-light') == 'validated' %}{% set icon = 'check' %}{% endif %}
-{% if variant|default('theme-light') == 'informative' %}{% set icon = 'info' %}{% endif %}
+{% set variant = variant|default('theme-light') %} {# variant: 'theme-light'|'error'|'warning'|'validated'|'informative' #}
+{% set size = size|default('small') %} {# size: 'small'|'large' #}
+{% set withIcon = withIcon|default(false) %}
+{% set text = text|default('') %}
+{% set button = button|default(null) %}
 
-<div class='SnackBar SnackBar-{{ size|default('small') }} SnackBar--{{ variant|default('theme-light') }}'>
+{% set icon = '' %}
+{% if variant == 'error' %}{% set icon = 'error' %}{% endif %}
+{% if variant == 'warning' %}{% set icon = 'warning' %}{% endif %}
+{% if variant == 'validated' %}{% set icon = 'check' %}{% endif %}
+{% if variant == 'informative' %}{% set icon = 'info' %}{% endif %}
+
+<div class='SnackBar SnackBar-{{ size }} SnackBar--{{ variant }}'>
   <div class='SnackBar-content'>
     {% if withIcon and icon %}
     <div class='SnackBar-icon'>{{ source("/icons/" ~ icon  ~".svg") }}</div>
