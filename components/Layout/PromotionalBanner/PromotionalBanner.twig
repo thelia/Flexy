@@ -4,21 +4,21 @@
 {% set link = type|default('') %}
 
 <div class='PromotionalBanner'>
-  <div class='PromotionalBanner-header'>
-    <button type='button' class='PromotionalBanner-close' data-promotional-banner-close>{{ svg("close") }}</button>
-  </div>
-  <div class='PromotionalBanner-content'>
-    <div class='PromotionalBanner-message'>{{ text }}</div>
-    {% if type == "button" %}
-      <div class='PromotionalBanner-button'>
-        <a href='{{ link }}' class='Button'>{{ linkLabel }}</a>
-      </div>
-    {% endif %}
-    {% if type == "link" %}
-      <div class='PromotionalBanner-button'>
-        <a href='{{ link }}' class='underline'>{{ linkLabel }}</a>
-      </div>
-    {% endif %}
-  </div>
+	<div class='PromotionalBanner-header'>
+		<button type='button' class='PromotionalBanner-close' data-promotional-banner-close>{{ source("/icons/close.svg") }}</button>
+	</div>
+	<div class='PromotionalBanner-content{% if type == "button" %} PromotionalBanner-content--button{% endif %}'>
+		<div class='PromotionalBanner-message'>{{ text }}</div>
+		{% if type == "button" %}
+			<div class='PromotionalBanner-button'>
+				<a href='{{ link }}' class='Button'>{{ linkLabel }}</a>
+			</div>
+		{% endif %}
+		{% if type == "link" %}
+			<div class='PromotionalBanner-button'>
+				<a href='{{ link }}' class='underline'>{{ linkLabel }}</a>
+			</div>
+		{% endif %}
+	</div>
 
 </div>
