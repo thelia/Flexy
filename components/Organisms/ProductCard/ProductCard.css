@@ -486,7 +486,7 @@
     svg {
       max-width: 35px;
     }
-    &:focus-visible{
+    &:focus-visible {
       outline: none;
     }
 
@@ -587,9 +587,15 @@
   &-footer {
     margin-top: rem-convert(13px);
     display: flex;
-    align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    gap: 20px;
+    flex-direction: column;
+
+    @screen md {
+      flex-direction: row;
+      align-items: center;
+    }
 
     &Left {
       display: flex;
@@ -628,13 +634,14 @@
 
   .Rating {
     display: flex;
-    gap: 11px;
+    gap: 10px;
     align-items: center;
+    flex-wrap: wrap;
 
     &-mark {
       display: flex;
       gap: 4px;
-      max-width: 93px;
+      max-width: 92px;
       svg {
         color: var(--black);
       }
@@ -649,7 +656,7 @@
       text-transform: uppercase;
       color: var(--grey);
 
-      @screen sm {
+      @screen md {
         font-size: var(--font-size-indication);
         letter-spacing: var(--letter-spacing-indication);
       }
@@ -658,6 +665,7 @@
 
   &-desc {
     padding: 16px;
+
     @screen sm {
       padding: 24px;
     }
@@ -685,6 +693,7 @@
     color: var(--black);
     position: relative;
     line-height: normal;
+    margin-top: 0;
   }
 
   &-originalPrice {
@@ -695,7 +704,7 @@
   }
 
   &:hover,
-  &:focus-visible{
+  &:focus-visible {
     .ProductCard-img {
       img {
         transform: scale(1.075);
