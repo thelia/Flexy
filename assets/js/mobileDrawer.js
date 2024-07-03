@@ -33,7 +33,7 @@ export default function MobileDrawer() {
 
       if (diffY > 50) {
         // close drawer after 50px
-        drawer.classList.remove('MobileDrawer-show');
+        closeDrawer(drawer);
       }
     });
   });

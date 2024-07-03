@@ -1,7 +1,7 @@
 <div class='HeaderNav'>
-	{% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'search', classes: 'HeaderNav-btn HeaderButton--search', text: 'Recherche' } %}
-	{% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'heart-fill', classes: 'HeaderNav-btn HeaderButton--wishlist', text: 'Wishlist' } %}
-	{% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'account', classes: 'HeaderNav-btn HeaderButton--account', text: 'Compte' } %}
-	{% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'cart', text: 'Panier', classes: 'HeaderNav-btn HeaderButton--cart '} %}
-	{% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'menu', id: "toggleMenu", classes: 'HeaderNav-btn HeaderButton--menu lg:hidden' } %}
+	{% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'search', classes: 'HeaderNav-btn HeaderButton--light', text: 'Recherche', small: true } %}
+	{% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'heart-fill', classes: 'HeaderNav-btn HeaderButton--light', text: 'Wishlist', small: true } %}
+	{% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'account', classes: 'HeaderNav-btn HeaderButton--theme', text: 'Compte', small: true } %}
+	{% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'cart', text: 'Panier', classes: 'HeaderNav-btn HeaderButton--dark ', small: true} %}
+	{% include '../../Molecules/HeaderButton/HeaderButton.twig' with { icon: 'menu', id: "toggleMenu", classes: 'HeaderNav-btn HeaderButton--light lg:hidden', text: 'Menu', small: true } %}
 </div></header>

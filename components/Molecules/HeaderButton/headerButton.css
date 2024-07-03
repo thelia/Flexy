@@ -1,16 +1,8 @@
 .HeaderButton {
-  --header-button-bg: var(--theme-light);
-  --header-button-color: var(--black);
-  --header-button-bg-hover: var(--theme-medium);
-
   background: var(--header-button-bg);
   color: var(--header-button-color);
 
-  @apply typo-button-large flex flex-col 2xl:flex-row items-center justify-center h-full gap-1 md:px-5 md:flex-initial flex-1;
-
-  &--small {
-    padding-right: rem-convert(20px);
-  }
+  @apply typo-button-large flex flex-col lg:flex-row items-center justify-center h-full gap-1 md:px-5 md:flex-initial flex-1;
 
   &:hover {
     --header-button-bg: var(--header-button-bg-hover);
@@ -29,19 +21,29 @@
   }
 
   &-text {
-    @apply paragraph-7 font-normal md:hidden 2xl:block;
+    @apply paragraph-7 font-normal;
     font-family: var(--font-family-paragraph-1);
+  }
+  &--small {
+    .HeaderButton-text {
+      @apply md:sr-only;
+    }
   }
   &-subText {
     @apply paragraph-7 font-light;
   }
 
-  &--inactive {
-    --header-button-bg: var(--theme-light);
 
-    &:hover {
-      --header-button-bg: var(--theme-medium);
+  &--theme {
+    --header-button-bg: var(--white);
+    --header-button-color: var(--black);
+    --header-button-bg-hover: var(--grey-lightest);
+    @screen md {
+      --header-button-bg: var(--theme-light);
+      --header-button-color: var(--black);
+      --header-button-bg-hover: var(--theme-medium);
     }
+
   }
 
   &--dark {
