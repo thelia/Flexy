@@ -10,6 +10,7 @@
   padding-bottom: rem-convert(42px);
   border-radius: rem-convert(20px) rem-convert(20px) 0px 0px;
   @apply transition-transform translate-y-full;
+  z-index: 20;
   &:before {
     content: "";
     position: absolute;
@@ -42,5 +43,16 @@
 
   @screen md {
     display: none;
+  }
+
+  &-overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--grey);
+    mix-blend-mode: multiply;
+    z-index: 10;
   }
 }
