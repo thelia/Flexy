@@ -243,8 +243,17 @@
     height: rem-convert(40px);
 
     & > span {
-      color: var(--white);
       @apply w-4 h-4;
+    }
+  }
+
+  & > span.icon {
+    @apply w-5 h-5;
+    &-left {
+      padding-right: 0;
+    }
+    &-right {
+      padding-left: 0;
     }
   }
 }
