@@ -27,7 +27,7 @@ export const Base = {
     disabled: {
       control: { type: 'boolean' }
     },
-    required: {
+    optional: {
       control: { type: 'boolean' }
     },
     success: {
@@ -60,7 +60,7 @@ export const WithButton = {
     disabled: {
       control: { type: 'boolean' }
     },
-    required: {
+    optional: {
       control: { type: 'boolean' }
     },
     success: {

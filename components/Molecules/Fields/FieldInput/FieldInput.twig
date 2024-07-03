@@ -2,7 +2,7 @@
 {% set success = success|default(false) %}
 {% set size = size|default(false) %}  {# size: 'small'|'large' #}
 {% set disabled = disabled|default(false) %}
-{% set required = required|default(false) %}
+{% set optional = optional|default(false) %}
 {% set tooltip = tooltip|default(false) %}
 {% set name = name|default('') %}
 {% set label = label|default('') %}
@@ -33,7 +33,7 @@
 <div class='FieldInput{{ classes }}' {% if disabled %}disabled{% endif %}>
   <div class='FieldInput-header'>
     <label for='{{ name }}' class='FieldInput-label'>
-      {{ label }}{% if required and label %} *{% endif %}
+      {{ label }}{% if optional and label %} Optionnel{% endif %}
     </label>
     {% if tooltip %}
       {% include '../../Tooltip/Tooltip.twig' with {tooltip: tooltip, position: 'bottom'} %}
@@ -46,8 +46,8 @@
       name='{{ name }}'
       id='{{ name }}'
       {% if value %}value='{{ value }}'{% endif %}
-      {% if required %}required{% endif %}
-      {% if placeholder %}placeholder='{{ placeholder }}{% if required and  not label %} *{% endif %}'{% endif %}
+      {% if not optional %}required{% endif %}
+      {% if placeholder %}placeholder='{{ placeholder }}{% if optional and  not label %} Optionnel{% endif %}'{% endif %}
       {% if min %}minlength='{{ min }}'{% endif %}
       {% if max %}maxlength='{{ max }}'{% endif %}
     />
