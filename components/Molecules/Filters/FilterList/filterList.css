@@ -4,7 +4,7 @@
   outline: 0;
   border-radius: 4px;
 
-  &:focus-visible{
+  &:focus-visible {
     outline: 1px solid var(--theme);
   }
 
@@ -29,7 +29,7 @@
     }
 
     &:hover {
-      background-color: var(--grey-lightest);
+      background-color: var(--theme-light);
     }
   }
 
