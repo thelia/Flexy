@@ -18,7 +18,9 @@ export const base = {
     giftCard: {
       code: '4781 6931 567',
       reduction: '-100€'
-    }
+    },
+    noGiftCard: false,
+    noPromo: false
   },
   parameters: {
     backgrounds: { default: 'grey' }
