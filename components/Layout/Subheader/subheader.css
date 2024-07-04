@@ -93,11 +93,9 @@
       max-width: 664px;
     }
   }
-  &-centered {
+  
+  &--centered {
     text-align: center;
-    @screen lg {
-      text-align: left;
-    }
   }
   &-title {
     @apply h1;
