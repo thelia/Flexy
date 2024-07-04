@@ -16,6 +16,7 @@
     @apply paragraph-2;
     font-weight: 700;
     color: var(--black);
+    margin-bottom: rem-convert(8px);
   }
   &-footer {
     @apply paragraph-6;

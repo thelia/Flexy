@@ -97,6 +97,7 @@
     @apply h4;
     font-weight: 700;
     color: var(--black);
+    margin-bottom: rem-convert(16px);
   }
   &-address {
     @apply paragraph-2;

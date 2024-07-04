@@ -7,20 +7,29 @@ export default {
 export const Base = {
   render: (args) => OrderTag(args),
   args: {
-    customText: "Commande validée",
+    customText: 'Commande validée',
+    withoutChip: false
   },
   argTypes: {
     variant: {
-      options: ['informative', 'success', 'validated', 'grey', 'error', 'processing', 'warning', 'vermillon'],
-      control: { type: 'select' },
+      options: [
+        'informative',
+        'success',
+        'validated',
+        'grey',
+        'error',
+        'processing',
+        'warning',
+        'vermillon'
+      ],
+      control: { type: 'select' }
     },
     type: {
       options: ['outline', 'minimal'],
-      control: { type: 'select' },
+      control: { type: 'select' }
     }
-  },
+  }
 };
-
 
 export const Variants = {
   render: () => `
@@ -62,4 +71,4 @@ export const Variants = {
     validated : 
     ${OrderTag({ customText: 'Epuisé', variant: 'error', type: 'minimal' })}</div>
   `
-}
+};

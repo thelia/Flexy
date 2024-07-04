@@ -17,7 +17,6 @@
     width: max-content;
     background-color: var(--black);
     color: var(--white);
-    text-align: center;
     padding: rem-convert(22px) rem-convert(34px) rem-convert(22px)
       rem-convert(20px);
     border-radius: 8px;

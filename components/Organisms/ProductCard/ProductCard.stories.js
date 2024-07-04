@@ -11,7 +11,8 @@ export default {
 };
 
 export const standard = {
-  render: (args) => Standard(args),
+  render: (args) =>
+    `<div class='max-w-[187px] sm:max-w-[340px] lg:max-w-[400px]'>${Standard(args)}</div>`,
   args: {
     productTitle: 'Nom du produit',
     secondaryTitle: 'Titre secondaire',

@@ -15,6 +15,12 @@
     margin-right: rem-convert(6px);
   }
 
+  &--withoutChip {
+    &:before {
+      content: none;
+    }
+  }
+
   &--informative {
     background-color: var(--informative-lightest);
     border: 1px solid var(--informative);
