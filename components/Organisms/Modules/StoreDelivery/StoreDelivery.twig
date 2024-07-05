@@ -28,7 +28,7 @@
             <span class='StoreDelivery-description'>Livraison estimée le {{ date }}</span>
           </div>
           <div class="w-12 h-12 text-theme-medium">
-          {{ source("/icons/reinsurance-store.svg") }}
+          {{ svg("reinsurance-store") }}
           </div>
         </div>
         <div class='flex items-center justify-between mt-6'>
@@ -63,7 +63,7 @@
   </label>
   {% if newClient == false %}
   <div class='StoreDelivery-bottom'>
-    <button class='StoreDelivery-hours' data-show-hours='Voir les horaires' data-hide-hours='Masquer les horaires'>{{ source("/icons/clock.svg") }}<span>Voir les horaires</span></span></button>
+    <button class='StoreDelivery-hours' data-show-hours='Voir les horaires' data-hide-hours='Masquer les horaires'>{{ svg("clock") }}<span>Voir les horaires</span></span></button>
   </div>
   <div class='StoreDelivery-hoursListing md:hidden'>
     <table>

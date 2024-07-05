@@ -8,11 +8,11 @@
 		{{ customText }}
 	</a>
 	{% if sub %}
-		<button type="button" data-menu-item="{{sub}}">{{ source("/icons/arrow-right.svg") }}</button>
+		<button type="button" data-menu-item="{{sub}}">{{ svg("arrow-right") }}</button>
 		<ul data-menu-sub="{{sub}}" data-menu-previous="0">
 			<li>
 				<a href="#0">Titre sous menu</a>
-				<button type="button" data-menu-item="5">{{ source("/icons/arrow-right.svg") }}</button>
+				<button type="button" data-menu-item="5">{{ svg("arrow-right") }}</button>
 				<ul data-menu-sub="5" data-menu-previous="{{sub}}">
 					<li>
 						<a href="#0">Titre sous sous menu</a>

@@ -8,7 +8,7 @@
 
 <button {% if id %} id="{{id}}" {% endif %} class='HeaderButton {% if inactive %}HeaderButton--inactive{% endif %} {{ classes }} {% if small %}HeaderButton--small{% endif %}'>
   {% if icon %}
-    <span class='HeaderButton-icon'>{{ source("/icons/" ~ icon ~ ".svg") }}</span>
+    <span class='HeaderButton-icon'>{{ svg(icon) }}</span>
   {% endif %}
 
   <div class='flex flex-col items-start HeaderButton-text'>

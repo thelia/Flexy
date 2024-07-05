@@ -19,8 +19,8 @@
 		</div>
 	{% else %}
 		<nav id="Menu">
-			<button type="button" data-menu-back="-1">{{ source("/icons/arrow-left.svg") }}</button>
-			<button type="button" data-menu-close>{{ source("/icons/close.svg") }}</button>
+			<button type="button" data-menu-back="-1">{{ svg("arrow-left") }}</button>
+			<button type="button" data-menu-close>{{ svg("close") }}</button>
 			<ul class="Header-navigation" data-menu-sub="0">
 				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#", sub: 1 } %}
 				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
@@ -35,8 +35,8 @@
 
 	{% if type == "searchbar" %}
 		<nav id="Menu" class='Header-navWrap'>
-			<button type="button" data-menu-back="-1">{{ source("/icons/arrow-left.svg") }}</button>
-			<button type="button" data-menu-close>{{ source("/icons/close.svg") }}</button>
+			<button type="button" data-menu-back="-1">{{ svg("arrow-left") }}</button>
+			<button type="button" data-menu-close>{{ svg("close") }}</button>
 			<ul class="Header-navigation">
 				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#",sub: 1 } %}
 				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}

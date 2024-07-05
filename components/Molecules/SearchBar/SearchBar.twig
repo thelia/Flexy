@@ -5,6 +5,6 @@
 {% if type != 'classic' %}{% set classes = classes ~ ' SearchBar--' ~ type %}{% endif %}
 
 <label class="SearchBar {{ classes }}" aria-label="Recherche">
-	<button class='w-4 h-4'>{{ source("/icons/search.svg") }}</button>
+	<button class='w-4 h-4'>{{ svg("search") }}</button>
 	<input type="text" name="query" placeholder="Ex. Chaussures, tee-shirt, ..." autocomplete='off' value="{{ value }}"/>
 </label>

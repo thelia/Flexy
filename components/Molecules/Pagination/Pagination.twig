@@ -13,7 +13,7 @@
       {% if currentPage != 1 %}
         <li class="Pagination-listItemPrev">
           <a href="?page={{ currentPage - 1 }}" class="Pagination-item Pagination-item--isPrev">
-            <span class='Pagination-icon'>{{ source("/icons/chevron-left.svg") }}</span>
+            <span class='Pagination-icon'>{{ svg("chevron-left") }}</span>
             <span class='Pagination-text'>{{ prevText }}</span>
           </a>
         </li>
@@ -51,7 +51,7 @@
         <li class="Pagination-listItemNext">
           <a href="?page={{ currentPage + 1 }}" class="Pagination-item Pagination-item--isNext">
             <span class='Pagination-text'>{{ nextText }}</span>
-            <span class='Pagination-icon'>{{ source("/icons/chevron-right.svg") }}</span>
+            <span class='Pagination-icon'>{{ svg("chevron-right") }}</span>
           </a>
         </li>
       {% endif %}

@@ -13,7 +13,7 @@
 <div class='SnackBar SnackBar-{{ size }} SnackBar--{{ variant }}'>
   <div class='SnackBar-content'>
     {% if withIcon and icon %}
-    <div class='SnackBar-icon'>{{ source("/icons/" ~ icon  ~".svg") }}</div>
+    <div class='SnackBar-icon'>{{ svg(icon) }}</div>
     {% endif %}
     <div class='SnackBar-message'>{{ text }}</div>
   </div>

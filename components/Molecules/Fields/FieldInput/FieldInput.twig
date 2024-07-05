@@ -54,7 +54,7 @@
     {% if unit %}<span class="FieldInput-unit">{{ unit }}</span>{% endif %}
     {% if iconButton %}
       <div class="FieldInput-button FieldInput-buttonIcon">
-        <button type='submit'>{{ source("/icons/"~ iconButton ~".svg") }}</button>
+        <button type='submit'>{{ svg(iconButton) }}</button>
       </div>
     {% endif %}
     {% if button %}

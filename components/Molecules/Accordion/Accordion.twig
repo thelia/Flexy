@@ -8,10 +8,10 @@
   <summary class='Accordion-summary'>
     {{ title }}
     {% if variant == 'faq' %}
-      <span class='Accordion-icon Accordion-icon--plus'>{{ source("/icons/plus.svg") }}</span>
-      <span class='Accordion-icon Accordion-icon--minus'>{{ source("/icons/minus.svg") }}</span>
+      <span class='Accordion-icon Accordion-icon--plus'>{{ svg("plus") }}</span>
+      <span class='Accordion-icon Accordion-icon--minus'>{{ svg("minus") }}</span>
     {% else %}
-      <span class='Accordion-icon'>{{ source("/icons/chevron-down.svg") }}</span>
+      <span class='Accordion-icon'>{{ svg("chevron-down") }}</span>
     {% endif %}
   </summary>
   <div class="Accordion-content">

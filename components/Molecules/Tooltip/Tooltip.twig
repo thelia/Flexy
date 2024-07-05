@@ -5,9 +5,9 @@
 {% set classes = classes ~ ' Tooltip-text--' ~ position %}
 
 <div class='Tooltip'>
-  <span class='Tooltip-icon'>{{ source("/icons/help.svg") }}</span>
+  <span class='Tooltip-icon'>{{ svg("help") }}</span>
   <span class='Tooltip-text{{ classes }}'>
-    <span class='Tooltip-close'>{{ source("/icons/close.svg") }}</span>
+    <span class='Tooltip-close'>{{ svg("close") }}</span>
     {{ tooltip }}
   </span>
 </div>

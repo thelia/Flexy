@@ -10,11 +10,11 @@
   <div class="Review-footer">
     <div class="Review-note">
       {% for star in 1..note %}
-        <span class="Review-star">{{ source("/icons/star.svg") }}</span>
+        <span class="Review-star">{{ svg("star") }}</span>
       {% endfor %}
       {% if note < maxNote %}
         {% for star in 1..(maxNote - note) %}
-          <span class="Review-star Review-star--empty">{{ source("/icons/star.svg") }}</span>
+          <span class="Review-star Review-star--empty">{{ svg("star") }}</span>
         {% endfor %}
       {% endif %}
     </div>

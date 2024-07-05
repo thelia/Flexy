@@ -17,7 +17,7 @@
         <p class="FilterSelect-text">{{ option.label }}</p>
       </div>
     {% endfor %}
-     <span class='FilterSelect-icon'>{{ source("/icons/chevron-down.svg") }}</span>
+     <span class='FilterSelect-icon'>{{ svg("chevron-down") }}</span>
   </div>
   <ul class="FilterSelect-list">
     {% for option in options %}
@@ -31,7 +31,7 @@
 
 <div class='MobileDrawer FilterSelect-mobileDrawer' id='FilterSelectDrawer'>
   <div class='MobileDrawer-header'>
-    <button class='MobileDrawer-close' type='button' data-drawer-close>{{ source("/icons/close.svg") }}</button>
+    <button class='MobileDrawer-close' type='button' data-drawer-close>{{ svg("close") }}</button>
   </div>
   <div>
     <ul class="FilterSelect-mobileList">

@@ -25,7 +25,7 @@
 
 <div class="ProductCard {{ classes }}">
   {% if isAddToCartConfirmation or isRemoveProduct %}
-    <span class='ProductCard-iconClose'>{{ source("/icons/close.svg") }}</span>
+    <span class='ProductCard-iconClose'>{{ svg("close") }}</span>
   {% endif %}
   <div class="ProductCard-header">
     <div class="ProductCard-tagList">
@@ -43,10 +43,10 @@
         class="ButtonWishList {% if inWishlist %} in-wishlist {% endif %}"
       >
           <span class="in-wishlist-icon">
-              <span>{{ source("/icons/heart-fill.svg") }}</span>
+              <span>{{ svg("heart-fill") }}</span>
           </span>
           <span class="not-in-wishlist-icon">
-              <span>{{ source("/icons/heart.svg") }}</span>
+              <span>{{ svg("heart") }}</span>
           </span>
       </button>
     {% endif %}
@@ -92,15 +92,15 @@
                   {% for i in 1..5 %}
                     {% if rate >= i %}
                       <div>
-                        {{ source("/icons/star-full.svg") }}
+                        {{ svg("star-full") }}
                       </div>
                     {% elseif rate <= i and rate > i - 1 %}
                       <div>
-                        {{ source("/icons/star-half-empty.svg") }}
+                        {{ svg("star-half-empty") }}
                       </div>
                     {% else %}
                       <div class="star-empty">
-                        {{ source("/icons/star-full.svg") }}
+                        {{ svg("star-full") }}
                       </div>
                     {% endif %}
                   {% endfor %}
@@ -150,11 +150,11 @@
   {% if isPurchaseFunnelCard|default(0) %}
     <div class="bottom-card-buttons">
       <button class='hover:bg-theme-lighter' {% if disabled %}disabled{% endif %} type='button'>
-        <span>{{ source("/icons/show.svg") }}</span>
+        <span>{{ svg("show") }}</span>
         Voir le produit
       </button>
       <button class='hover:bg-theme-lighter' {% if disabled %}disabled{% endif %} type='button'>
-        <span>{{ source("/icons/delete.svg") }}</span>
+        <span>{{ svg("delete") }}</span>
         Supprimer
       </button>
     </div>

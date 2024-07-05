@@ -4,7 +4,7 @@
   {% for reinsurance in data %}
     <div>
       {% if reinsurance.icon %}
-        <span class='Reinsurance-icon'>{{ source("/icons/" ~ reinsurance.icon  ~".svg") }}</span>
+        <span class='Reinsurance-icon'>{{ svg(reinsurance.icon) }}</span>
       {% endif %}
       <span>
         {% if reinsurance.strongText %}

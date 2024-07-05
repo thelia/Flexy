@@ -12,10 +12,10 @@
 
 <a href="{{ href }}" {% if target %}target="{{ target }}"{% endif %} class='Link {{ classes }}' {% if disabled %}disabled{% endif %}>
   {% if iconLeft %}
-    <span class='Link-icon'>{{ source("/icons/" ~ iconLeft  ~".svg") }}</span>
+    <span class='Link-icon'>{{ svg(iconLeft) }}</span>
   {% endif %}
   {{ customText }}
   {% if iconRight %}
-    <span class='Link-icon'>{{ source("/icons/" ~ iconRight  ~".svg") }}</span>
+    <span class='Link-icon'>{{ svg(iconRight) }}</span>
   {% endif %}
 </a>

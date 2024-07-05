@@ -17,10 +17,10 @@
 
 <{{ tag }} class='Button {{ classes }}' {% if disabled %}disabled{% endif %} {% if href %}href='{{ href }}'{% else %}type='{{ type }}'{% endif %}>
   {% if icon_left %}
-    <span class='icon icon-left'>{{ source("/icons/"~ icon_left ~".svg") }}</span>
+    <span class='icon icon-left'>{{ svg(icon_left) }}</span>
   {% endif %}
   {{ text|striptags('<span>')|raw }}
   {% if icon_right %}
-    <span class='icon icon-right'>{{ source("/icons/"~ icon_right ~".svg") }}</span>
+    <span class='icon icon-right'>{{ svg(icon_right) }}</span>
   {% endif %}
 </{{ tag }}>
