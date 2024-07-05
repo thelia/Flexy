@@ -15,6 +15,7 @@
   phone: '',
 }) %}
 {% set hours = hours|default([]) %} {# hours: [{ day: 'lundi', hours: '14h - 19h' }, ...] #}
+{% set carbone = carbone|default(null) %}
 
 <div class='StoreDelivery {% if selected %}selected{% endif %}'>
   <label class='StoreDelivery-content'>
@@ -32,7 +33,9 @@
         </div>
         <div class='flex items-center justify-between mt-6'>
           <span class='StoreDelivery-price'>{{ price }}</span>
-          {% include '../../../Molecules/Tag/Tag.twig' with { icon: "carbone", customText: "0.12kg CO2" } %}
+          {% if carbone %}
+            {% include '../../../Molecules/Tag/Tag.twig' with { icon: "carbone", customText: carbone} %}
+          {% endif %}
         </div>
 
         {% if registeredClient and newClient == false %}
@@ -60,9 +63,9 @@
   </label>
   {% if newClient == false %}
   <div class='StoreDelivery-bottom'>
-    <button class='StoreDelivery-hours'>{{ source("/icons/clock.svg") }}Horaires du magasin</button>
+    <button class='StoreDelivery-hours' data-show-hours='Voir les horaires' data-hide-hours='Masquer les horaires'>{{ source("/icons/clock.svg") }}<span>Voir les horaires</span></span></button>
   </div>
-  <div class='StoreDelivery-hoursListing'>
+  <div class='StoreDelivery-hoursListing md:hidden'>
     <table>
       {% for hour in hours %}
         <tr>

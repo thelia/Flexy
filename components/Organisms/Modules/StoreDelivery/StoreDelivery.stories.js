@@ -14,8 +14,8 @@ const address = {
 };
 
 const hours = [
-  { day: 'lundi', hours: '14h - 19h' },
-  { day: 'mardi', hours: '14h - 20h' },
+  { day: 'Lundi', hours: '14h - 19h' },
+  { day: 'Mardi', hours: '14h - 20h' },
   { day: 'Mercredi', hours: '14h - 20h' },
   { day: 'Jeudi', hours: '14h - 20h' },
   { day: 'Vendredi', hours: '14h - 20h' },
@@ -38,7 +38,8 @@ export const Base = {
     address: address,
     price: 'Gratuit',
     img: { alt: 'Logo Mondial Relay', src: '/images/mondialRelay.svg' },
-    hours
+    hours,
+    carbone: '0.12kg CO2'
   },
   argTypes: {
     date: { control: { type: 'text' } }

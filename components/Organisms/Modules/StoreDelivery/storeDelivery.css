@@ -56,9 +56,10 @@
   &-hoursListing {
     margin-top: rem-convert(16px);
     padding-top: rem-convert(16px);
-    @apply paragraph-4;
+    @apply paragraph-5;
     td:first-child {
       padding-right: rem-convert(40px);
+      font-weight: 700;
     }
   }
   &-hours {
