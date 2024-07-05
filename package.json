@@ -6,7 +6,11 @@
   "scripts": {
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_6f958e0407a7d26"
+    "chromatic": "npx chromatic --project-token=chpt_6f958e0407a7d26",
+    "dev-server": "encore dev-server",
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production --progress"
   },
   "dependencies": {
     "@storybook/addon-a11y": "^8.0.9",
@@ -35,11 +39,19 @@
     "postcss-nested": "^6.0.1",
     "postcss-nested-ancestors": "^3.0.0",
     "postcss-rem": "^3.0.0",
-    "storybook": "^8.0.9",
-    "storybook-addon-pseudo-states": "^3.0.1",
     "style-loader": "^3.3.4",
-    "twigjs-loader": "^1.0.3",
-    "webpack": "^5.88.2",
-    "webpack-cli": "^5.1.4"
+    "@babel/core": "^7.17.0",
+    "@babel/preset-env": "^7.16.0",
+    "@hotwired/stimulus": "^3.0.0",
+    "@symfony/stimulus-bridge": "^3.2.0",
+    "@symfony/ux-react": "file:vendor/symfony/ux-react/assets",
+    "@symfony/webpack-encore": "^4.0.0",
+    "core-js": "^3.23.0",
+    "react": "^18.0",
+    "react-dom": "^18.0",
+    "regenerator-runtime": "^0.13.9",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-notifier": "^1.15.0"
   }
 }

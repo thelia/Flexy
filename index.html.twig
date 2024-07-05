@@ -1,0 +1,8 @@
+{%  extends 'base.html.twig' %}
+
+{% block title %}index{% endblock %}
+
+{% block body %}
+  {% include '@components/Layout/Header/Header.twig'  with { type: "generic", classes:'', inactive:false, small:false, mobile:false,subText:'' } %}
+
+{% endblock %}
