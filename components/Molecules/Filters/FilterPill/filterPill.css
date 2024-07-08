@@ -8,12 +8,13 @@
   border: 1.5px solid var(--theme-light);
   cursor: pointer;
 
+  &:hover {
+    background-color: var(--theme-lightest);
+  }
   &--withIcon {
     padding: rem-convert(8px) rem-convert(10px) rem-convert(8px)
       rem-convert(4px);
   }
-
-
 
   &-iconClose {
     width: rem-convert(21px);
@@ -37,14 +38,14 @@
     margin-right: rem-convert(4px);
   }
 
-  &[disabled] {
+  &:has(:disabled) {
     border-color: var(--grey-lighter);
     color: var(--grey-lighter);
     cursor: not-allowed;
     background-color: var(--grey-lightest);
 
     .FilterPill-icon {
-      color: var(--grey-lighter);
+      opacity: 0.2;
     }
   }
 }
