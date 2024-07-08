@@ -5,7 +5,6 @@
   justify-content: space-between;
   background: var(--white);
   @apply rounded-lg;
-  
 
   &-header {
     margin-bottom: 0.5rem;
@@ -63,18 +62,22 @@
   }
 
   &-desc {
-    padding: 16px;
+    padding: 16px 0;
     @screen sm {
-      padding: 24px;
+      padding: 24px 0;
     }
     @screen md {
       flex-grow: 1;
       justify-content: center;
       flex-direction: column;
       display: flex;
+      padding: 24px;
+    }
+
+    @screen lg {
+      padding: 24px 0;
     }
   }
-
 
   &-title {
     @apply h5;
@@ -85,7 +88,7 @@
   }
 
   &:hover,
-  &:focus-visible{
+  &:focus-visible {
     .CategoryCard-img {
       img {
         transform: scale(1.075);
@@ -101,8 +104,6 @@
       outline: 2px solid theme('colors.gray.400');
     }
   }
-
-
 
   &-footer {
     margin-top: rem-convert(13px);
