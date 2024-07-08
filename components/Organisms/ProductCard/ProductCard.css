@@ -377,6 +377,7 @@
       @screen sm {
         max-width: 90%;
       }
+
       &:before {
         content: '';
         border-radius: 20px;

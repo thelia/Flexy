@@ -7,14 +7,9 @@
 {% set label = label|default('') %}
 
 <label class="Checkbox {{ classes }} {{ error ? 'error'  : ''}}">
-  <input type="checkbox"
-         name='{{ name }}'
-         value='{{ value }}'
-         {% if disabled %}disabled{% endif %}
-         {% if checked %}checked{% endif %}
-  >
-  <div class="checkmark">
-    <span>{{ svg("checkbox") }}</span>
-  </div>
-  <span>{{ label }}</span>
+	<input type="checkbox" name='{{ name }}' value='{{ value }}' {% if disabled %} disabled {% endif %} {% if checked %} checked {% endif %}>
+	<div class="checkmark">
+		<span>{{ svg("checkbox") }}</span>
+	</div>
+	<span class="paragraph-5">{{ label }}</span>
 </label>

@@ -8,7 +8,7 @@
     background: var(--white);
     border: 1px solid var(--theme-medium);
   }
-  label  {
+  label {
     cursor: pointer;
   }
   &-content {
@@ -23,17 +23,15 @@
     .Radio {
       margin-top: 4px;
       margin-right: 8px;
-      visibility: hidden;
       max-width: 0;
       @screen md {
-        visibility: visible;
         max-width: initial;
       }
     }
   }
 
-
-  &-hoursListing, &-bottom {
+  &-hoursListing,
+  &-bottom {
     @screen md {
       margin-left: rem-convert(22px);
     }
@@ -51,7 +49,7 @@
   }
   &-hoursListing {
     margin-top: rem-convert(16px);
-    padding-top:  rem-convert(16px);
+    padding-top: rem-convert(16px);
     border-top: 1px solid var(--grey-lighter);
     @apply paragraph-4;
     td:first-child {
@@ -68,7 +66,8 @@
     font-weight: 400;
     color: var(--grey);
   }
-  &-opening, &-address {
+  &-opening,
+  &-address {
     padding-top: rem-convert(13px);
     @apply paragraph-4;
     font-weight: 400;

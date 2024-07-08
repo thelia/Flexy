@@ -2,44 +2,44 @@
 {% set title = title|default('') %}
 
 <div class='Payment {% if selected %}selected{% endif %}'>
-  <label class='Payment-content'>
-    {% include '../../../Atoms/Form/Radio.twig' with {type:"span", name:"Payment", value:1, checked:selected} %}
+	<label class='Payment-content'>
+		{% include '../../../Atoms/Form/Radio.twig' with {type:"span", name:"Payment", value:1, checked:selected} %}
 
-    <span>
-        <div class='flex justify-between'>
-            <span class='Payment-title'>{{ title }}</span>
-            <div class='h-[22px] flex'>
-              {{ source("/images/visa.svg") }}
-              {{ source("/images/mastercard.svg") }}
-            </div>
-        </div>
-    </span>
-  </label>
-  {% if selected %}
-  <div class='Payment-bottom bg-theme-lightest'>
-    <div class="flex flex-col mx-auto gap-4 lg:max-w-[250px] lg:mt-[30px]">
-      {% include '../../../Molecules/Fields/FieldInput/FieldInput.twig' with { label: "Numéro de carte", placeholder: "xxxx xxxx xxxx xxxx" } %}
-      {% include '../../../Molecules/Fields/FieldInput/FieldInput.twig' with { label: "Titulaire de la carte", placeholder: "Ex. Alain Dupont" } %}
-      
-      <div class='flex'>
-        <div class="w-2/3 mr-4">
-          {% include '../../../Molecules/Fields/FieldInput/FieldInput.twig' with { label: "Date d'expiration", placeholder: "MM/AA" } %}
-        </div>
+		<span>
+			<div class='flex justify-between'>
+				<span class='Payment-title'>{{ title }}</span>
+				<div class='h-[22px] flex'>
+					{{ source("/images/visa.svg") }}
+					{{ source("/images/mastercard.svg") }}
+				</div>
+			</div>
+		</span>
+	</label>
+	{% if selected %}
+		<div class='Payment-bottom bg-theme-lightest'>
+			<div class="flex flex-col mx-auto gap-4 lg:max-w-[250px] lg:mt-[30px]">
+				{% include '../../../Molecules/Fields/FieldInput/FieldInput.twig' with { label: "Numéro de carte", placeholder: "xxxx xxxx xxxx xxxx" } %}
+				{% include '../../../Molecules/Fields/FieldInput/FieldInput.twig' with { label: "Titulaire de la carte", placeholder: "Ex. Alain Dupont" } %}
 
-        {% include '../../../Molecules/Fields/FieldInput/FieldInput.twig' with { label: "CVV", placeholder: "xxx", tooltip: "Tooltip CVV" } %}
-      </div>
+				<div class='flex gap-4'>
+					<div class="w-full">
+						{% include '../../../Molecules/Fields/FieldInput/FieldInput.twig' with { label: "Date d'expiration", placeholder: "MM/AA" } %}
+					</div>
 
-      <div class="flex gap-2">
-        <div class="w-8 h-8">{{ svg("lock") }}</div>
-        <span class="paragraph-6">
-          Le paiement se fait sur les serveurs de votre banque. Nous n'avons pas accès à vos données bancaires.
-        </span>
-      </div>
+					{% include '../../../Molecules/Fields/FieldInput/FieldInput.twig' with { label: "CVV", placeholder: "xxx", tooltip: "Tooltip CVV" } %}
+				</div>
 
-      <div class="flex"> 
-        {% include '../../../Atoms/Form/Checkbox.twig' with { label: "Enregistrer cette carte pour vos futurs achats" } %}
-      </div>
-    </div>
-  </div>
-  {% endif %}
+				<div class="flex gap-2">
+					<div class="flex-shrink-0 w-4 h-4">{{ svg("lock") }}</div>
+					<span class="paragraph-6">
+						Le paiement se fait sur les serveurs de votre banque. Nous n'avons pas accès à vos données bancaires.
+					</span>
+				</div>
+
+				<div class="flex">
+					{% include '../../../Atoms/Form/Checkbox.twig' with { label: "Enregistrer cette carte pour vos futurs achats", classes: 'items-baseline' } %}
+				</div>
+			</div>
+		</div>
+	{% endif %}
 </div>
