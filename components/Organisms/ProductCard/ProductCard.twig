@@ -4,6 +4,8 @@
 {% set price = price|default('') %}
 {% set promoPrice = promoPrice|default('') %}
 {% set size = size|default('') %}
+{% set attributesAv = attributesAv|default({}) %}
+{% set attributesAvColor = attributesAvColor|default({}) %}
 {% set quantity = quantity|default(null) %}
 {% set imgWidth = imgWidth|default(300) %}
 {% set imgHeight = imgHeight|default(300) %}
@@ -17,158 +19,169 @@
 {% set isOutOfStock = isOutOfStock|default(0) %}
 {% set isNew = isNew|default(0) %}
 {% set isPromo = isPromo|default(0) %}
-{% set colors = colors|default([]) %} {# colors: ['#667761','#84DCC6',...] #}
+{% set colors = colors|default([]) %}
+{# colors: ['#667761','#84DCC6',...] #}
 {% set rate = rate|default(null) %}
 {% set secondaryTitle = secondaryTitle|default(null) %}
 {% set img = img|default({url: '/images/placeholder2.webp', alt:''}) %}
 {% set quantityChoice = quantityChoice|default(1) %}
 
 <div class="ProductCard {{ classes }}">
-  {% if isAddToCartConfirmation or isRemoveProduct %}
-    <span class='ProductCard-iconClose'>{{ svg("close") }}</span>
-  {% endif %}
-  <div class="ProductCard-header">
-    <div class="ProductCard-tagList">
-      {% if isNew %}
-        {% include '../../Molecules/Tag/Tag.twig' with {customText: 'Nouveau', variant: 'vermillon'} %}
-      {% endif %}
-      {% if isPromo %}
-        {% include '../../Molecules/Tag/Tag.twig' with {customText: '-15%', variant: 'error'} %}
-      {% endif %}
-    </div>
+	{% if isAddToCartConfirmation or isRemoveProduct %}
+		<span class='ProductCard-iconClose'>{{ svg("close") }}</span>
+	{% endif %}
+	<div class="ProductCard-header">
+		<div class="ProductCard-tagList">
+			{% if isNew %}
+				{% include '../../Molecules/Tag/Tag.twig' with {customText: 'Nouveau', variant: 'vermillon'} %}
+			{% endif %}
+			{% if isPromo %}
+				{% include '../../Molecules/Tag/Tag.twig' with {customText: '-15%', variant: 'error'} %}
+			{% endif %}
+		</div>
 
-    {% if displayWishButton %}
-      <button
-        type="button"
-        class="ButtonWishList {% if inWishlist %} in-wishlist {% endif %}"
-      >
-          <span class="in-wishlist-icon">
-              <span>{{ svg("heart-fill") }}</span>
-          </span>
-          <span class="not-in-wishlist-icon">
-              <span>{{ svg("heart") }}</span>
-          </span>
-      </button>
-    {% endif %}
-  </div>
-  {% if isAddToCartConfirmation %}
-    <p class="ProductCard-addToCartTitle">
-      Votre produit a été ajouté au panier
-    </p>
-  {% endif %}
-  <div class="ProductCard-mainContent">
-    <a class="ProductCard-imgLink" href="#">
-      <figure class="ProductCard-img">
-        <img src="{{ img.url }}" alt="{{ img.alt }}"
-             title="{{ img.alt }}"  loading="lazy">
-      </figure>
-    </a>
-    <div class="ProductCard-desc">
-      {% if not isRemoveProduct %}
-        <a href="#" class="ProductCard-title">{{ productTitle }}</a>
-      {% endif %}
-      {% if secondaryTitle %}
-        <div class="ProductCard-subTitle paragraph-3">{{ secondaryTitle }}</div>
-      {% endif %}
-      {% if isOrderCard or isPurchaseFunnelCard or isAddToCartConfirmation %}
-        <div class="ProductCard-orderInfos paragraph-6">
-          <span class="ProductCard-secondaryTitle">{{ orderSecondaryTitle }}</span>
-          <span class="ProductCard-secondarySize">Taille : {{ size }}</span>
-          {% if quantity %} <span>Quantié : {{ quantity }}</span> {% endif %}
-        </div>
-      {% endif %}
-      {% if isRemoveProduct %}
-        <div class="ProductCard-removeProductMessage">
-          {{ productTitle }} a été supprimé de votre panier.
-        </div>
-        {% include '../../Molecules/Button/Button.twig' with {classes:'Button--small', text: "Restaurer", icon_left: "restore" } %}
-      {% endif %}
-      <div class="ProductCard-footer">
-        {% if rate != null or colors.length > 0 %}
-          <div class="ProductCard-footerLeft">
-            {% if rate != null %}
-              <div class="Rating">
-                <div class="Rating-mark">
-                  {% for i in 1..5 %}
-                    {% if rate >= i %}
-                      <div>
-                        {{ svg("star-full") }}
-                      </div>
-                    {% elseif rate <= i and rate > i - 1 %}
-                      <div>
-                        {{ svg("star-half-empty") }}
-                      </div>
-                    {% else %}
-                      <div class="star-empty">
-                        {{ svg("star-full") }}
-                      </div>
-                    {% endif %}
-                  {% endfor %}
-                </div>
-                <span class="Rating-reviewCount indication-small">
-                  {{reviewCount}} Avis
-                </span>
-              </div>
-            {% endif %}
-            {% if hasColors %}
-              <div class="Colors">
-                {% set limit = 6 %}
-                {% for color in colors %}
-                    {% if loop.index0 < limit %}
-                        <a href="#" class="Colors-item" style="background-color:{{ color }}">
-                        </a>
-                    {% else %}
-                        <div class="Colors-others">...</div>
-                    {% endif %}
-                {% endfor %}
-              </div>
-            {% endif %}
-          </div>
-        {% endif %}
-        {% if isPromo %}
-          <div class="ProductCard-footerRight">
-            <div class="ProductCard-price">{{ promoPrice }}</div>
-            <div class="ProductCard-originalPrice">{{ price }}</div>
-          </div>
-        {% else %}
-          <div class="ProductCard-price">{{ price }}</div>
-        {% endif %}
-        {% if isPurchaseFunnelCard|default(0) %}
-          {% if isOutOfStock %}
-            <div class="ProductCard-unavailable">
-              Indisponible
-            </div>
-          {% else %}
-            <div class="ProductCard-quantity">
-              {% include '../../Molecules/Button/Quantity.twig' with {disabled: false, value:quantityChoice, classes:'Button--small'} %}
-            </div>
-          {% endif %}
-        {% endif %}
-      </div>
-    </div>
-  </div>
-  {% if isPurchaseFunnelCard|default(0) %}
-    <div class="bottom-card-buttons">
-      <button class='hover:bg-theme-lighter' {% if disabled %}disabled{% endif %} type='button'>
-        <span>{{ svg("show") }}</span>
-        Voir le produit
-      </button>
-      <button class='hover:bg-theme-lighter' {% if disabled %}disabled{% endif %} type='button'>
-        <span>{{ svg("delete") }}</span>
-        Supprimer
-      </button>
-    </div>
-  {% endif %}
-  {% if isAddToCartConfirmation %}
-    <div class="ProductCard-ProductCardAddToCartBottom">
-      {% include '../../Molecules/Button/Button.twig' with {classes:'Button--medium', variant: "primary", text: "Voir mon panier" } %}
-      {% include '../../Molecules/Button/Button.twig' with {classes:'Button--medium', variant: "secondary", text: "Poursuivre mes achats" } %}
-    </div>
-  {% endif %}
-  {% if isRemoveProduct %}
-    <div class="ProductCard-progressBar">
-        <div class="ProductCard-progressBarInner">
-        </div>
-    </div>
-  {% endif %}
+		{% if displayWishButton %}
+			<button type="button" class="ButtonWishList {% if inWishlist %} in-wishlist {% endif %}">
+				<span class="in-wishlist-icon">
+					<span>{{ svg("heart-fill") }}</span>
+				</span>
+				<span class="not-in-wishlist-icon">
+					<span>{{ svg("heart") }}</span>
+				</span>
+			</button>
+		{% endif %}
+	</div>
+	{% if isAddToCartConfirmation %}
+		<p class="ProductCard-addToCartTitle">
+			Votre produit a été ajouté au panier
+		</p>
+	{% endif %}
+	<div class="ProductCard-mainContent">
+		<a class="ProductCard-imgLink" href="#">
+			<figure class="ProductCard-img">
+				<img src="{{ img.url }}" alt="{{ img.alt }}" title="{{ img.alt }}" loading="lazy">
+			</figure>
+		</a>
+		<div class="ProductCard-desc">
+			{% if not isRemoveProduct %}
+				<a href="#" class="ProductCard-title">{{ productTitle }}</a>
+			{% endif %}
+			{% if secondaryTitle %}
+				<div class="ProductCard-subTitle paragraph-3">{{ secondaryTitle }}</div>
+			{% endif %}
+			{% if isOrderCard or isPurchaseFunnelCard or isAddToCartConfirmation %}
+				<div class="ProductCard-orderInfos paragraph-6">
+					<span class="ProductCard-secondaryTitle">{{ orderSecondaryTitle }}</span>
+					{% for attribute,value in attributesAv %}
+						<span class="ProductCard-secondarySize">{{attribute}}
+							:
+							{{ value }}</span>
+					{% endfor %}
+					{% if quantity %}
+						<span>Quantié :
+							{{ quantity }}</span>
+					{% endif %}
+
+					{% if attributesAvColor %}
+
+						<span class="flex items-center ProductCard-secondarySize">
+							<span class="mr-1 Colors-item" style="background-color:{{ attributesAvColor.hexa }}"></span>Couleur:
+							{{ attributesAvColor.name }}</span>
+					{% endif %}
+				</div>
+			{% endif %}
+			{% if isRemoveProduct %}
+				<div class="ProductCard-removeProductMessage">
+					{{ productTitle }}
+					a été supprimé de votre panier.
+				</div>
+				{% include '../../Molecules/Button/Button.twig' with {classes:'Button--small', text: "Restaurer", icon_left: "restore" } %}
+			{% endif %}
+			<div class="ProductCard-footer">
+				{% if rate != null or colors.length > 0 %}
+					<div class="ProductCard-footerLeft">
+						{% if rate != null %}
+							<div class="Rating">
+								<div class="Rating-mark">
+									{% for i in 1..5 %}
+										{% if rate >= i %}
+											<div>
+												{{ svg("star-full") }}
+											</div>
+										{% elseif rate <= i and rate > i - 1 %}
+											<div>
+												{{ svg("star-half-empty") }}
+											</div>
+										{% else %}
+											<div class="star-empty">
+												{{ svg("star-full") }}
+											</div>
+										{% endif %}
+									{% endfor %}
+								</div>
+								<span class="Rating-reviewCount indication-small">
+									{{reviewCount}}
+									Avis
+								</span>
+							</div>
+						{% endif %}
+						{% if hasColors %}
+							<div class="Colors">
+								{% set limit = 6 %}
+								{% for color in colors %}
+									{% if loop.index0 < limit %}
+										<a href="#" class="Colors-item" style="background-color:{{ color }}"></a>
+									{% else %}
+										<div class="Colors-others">...</div>
+									{% endif %}
+								{% endfor %}
+							</div>
+						{% endif %}
+					</div>
+				{% endif %}
+				{% if isPromo %}
+					<div class="ProductCard-footerRight">
+						<div class="ProductCard-price">{{ promoPrice }}</div>
+						<div class="ProductCard-originalPrice">{{ price }}</div>
+					</div>
+				{% else %}
+					<div class="ProductCard-price">{{ price }}</div>
+				{% endif %}
+				{% if isPurchaseFunnelCard|default(0) %}
+					{% if isOutOfStock %}
+						<div class="ProductCard-unavailable">
+							Indisponible
+						</div>
+					{% else %}
+						<div class="ProductCard-quantity">
+							{% include '../../Molecules/Button/Quantity.twig' with {disabled: false, value:quantityChoice, classes:'Button--small'} %}
+						</div>
+					{% endif %}
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	{% if isPurchaseFunnelCard|default(0) %}
+		<div class="bottom-card-buttons">
+			<button class='hover:bg-theme-lighter' {% if disabled %} disabled {% endif %} type='button'>
+				<span>{{ svg("show") }}</span>
+				Voir le produit
+			</button>
+			<button class='hover:bg-theme-lighter' {% if disabled %} disabled {% endif %} type='button'>
+				<span>{{ svg("delete") }}</span>
+				Supprimer
+			</button>
+		</div>
+	{% endif %}
+	{% if isAddToCartConfirmation %}
+		<div class="ProductCard-ProductCardAddToCartBottom">
+			{% include '../../Molecules/Button/Button.twig' with {classes:'Button--medium', variant: "primary", text: "Voir mon panier" } %}
+			{% include '../../Molecules/Button/Button.twig' with {classes:'Button--medium', variant: "secondary", text: "Poursuivre mes achats" } %}
+		</div>
+	{% endif %}
+	{% if isRemoveProduct %}
+		<div class="ProductCard-progressBar">
+			<div class="ProductCard-progressBarInner"></div>
+		</div>
+	{% endif %}
 </div>
