@@ -7,27 +7,27 @@
 {% set classes = '' %}
 {% set classes = classes ~ ' Tag--' ~ (variant|default('validated')) %}
 {% if closeOnClick %}
-   {% set classes = classes ~ ' Tag--close' %}
+	{% set classes = classes ~ ' Tag--close' %}
 {% endif %}
 {% if icon %}
-   {% set classes = classes ~ ' Tag--withIcon' %}
+	{% set classes = classes ~ ' Tag--withIcon' %}
 {% endif %}
 
 {% if not closeOnClick and not href and not onClick %}
-  <span class="Tag{{ classes }}">
-    {% if icon %}
-      <span class="Tag-icon">{{ svg(" icon  ")) }}</span>
-    {% endif %}
-    {{ customText }}
-  </span>
+	<span class="Tag{{ classes }}">
+		{% if icon %}
+			<span class="Tag-icon">{{ svg(" icon  ") }}</span>
+		{% endif %}
+		{{ customText }}
+	</span>
 {% else %}
-  <button class="Tag{{ classes }} Tag--action" {% if href %}href="{{ href }}"{% endif %} {% if onClick %}onclick=onClick{% endif %}>
-    {% if icon %}
-      <span class="Tag-icon">{{ svg(icon) }}</span>
-    {% endif %}
-    {{ customText }}
-    {% if closeOnClick %}
-      <span class='Tag-iconClose'>{{ svg("close") }}</span>
-    {% endif %}
-  </button>
+	<button class="Tag{{ classes }} Tag--action" {% if href %} href="{{ href }}" {% endif %} {% if onClick %} onclick="onClick" {% endif %}>
+		{% if icon %}
+			<span class="Tag-icon">{{ svg(icon) }}</span>
+		{% endif %}
+		{{ customText }}
+		{% if closeOnClick %}
+			<span class='Tag-iconClose'>{{ svg("close") }}</span>
+		{% endif %}
+	</button>
 {% endif %}

@@ -60,12 +60,12 @@
   }
 
   &Order {
-    background-color: var(--theme-lighter);
+    background-color: var(--theme-lightest);
     display: flex;
     flex-direction: row;
     max-width: initial;
     align-items: center;
-    border: 1px solid var(--theme);
+    border: 1px solid var(--theme-medium);
     padding: 8px;
     @screen sm {
       max-width: 540px;
