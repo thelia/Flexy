@@ -27,7 +27,7 @@
         </div>
         {% if promo %}
           <div>
-            {% include '../../Molecules/Filters/FilterPill/FilterPill.twig' with
+            {% include '@components/Molecules/Filters/FilterPill/FilterPill.twig' with
               {selected: true, customText:promo.reduction, icon:'price-tag'} %}
           </div>
         {% else %}
@@ -43,7 +43,7 @@
       </div>
       {% if giftCard %}
         <div>
-          {% include '../../Molecules/Filters/FilterPill/FilterPill.twig' with
+          {% include '@components/Molecules/Filters/FilterPill/FilterPill.twig' with
             {selected: true, customText:giftCard.reduction, icon:'gift'} %}
         </div>
       {% else %}

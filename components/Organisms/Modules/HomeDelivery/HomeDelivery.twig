@@ -15,7 +15,7 @@
 
 <div class='HomeDelivery {% if selected %}selected{% endif %}'>
 	<label class='HomeDelivery-content'>
-		{% include '../../../Atoms/Form/Radio.twig' with {type:"span", name:"HomeDelivery", value:1, checked:selected} %}
+    {% include '@components/Atoms/Form/Radio.twig' with {type:"span", name:"HomeDelivery", value:1, checked:selected} %}
 
 		<span>
 			<div class='flex justify-between'>
@@ -30,7 +30,7 @@
 			</div>
 			<div class='flex items-center justify-between mt-6'>
 				<span class='HomeDelivery-price'>{{ price }}</span>
-				{% include '../../../Molecules/Tag/Tag.twig' with { icon: "carbone", customText: "0.80kg CO2" } %}
+          {% include '@components/Molecules/Tag/Tag.twig' with { icon: "carbone", customText: "0.80kg CO2" } %}
 			</div>
 		</span>
 	</label>
@@ -42,22 +42,22 @@
 						Vous n'avez pas d'adresse enregistrée
 					</span>
 
-					{% include '../../../Molecules/Button/Button.twig' with {text: 'Ajouter une adresse', classes:'mt-4'} %}
+					{% include '@components/Molecules/Button/Button.twig' with {text: 'Ajouter une adresse', classes:'mt-4'} %}
 				</div>
 			{% else %}
 				<div>
 					<div class='flex flex-col gap-2'>
-						{% include '../../Card/Address/AddressCard.twig' with { address: address } %}
-						{% include '../../Card/Address/AddressCard.twig' with { address: address, selected: false } %}
+						{% include '@components/Organisms/Card/Address/AddressCard.twig' with { address: address } %}
+						{% include '@components/Organisms/Card/Address/AddressCard.twig' with { address: address, selected: false } %}
 					</div>
 
 					<div class='my-4'>
-						{% include '../../../Atoms/Form/Checkbox.twig' with { label: "Utiliser cette adresse pour la facturation" } %}
+          {% include '@components/Atoms/Form/Checkbox.twig' with { label: "Utiliser cette adresse pour la facturation" } %}
 					</div>
 
 					<div class='flex flex-col gap-2 mt-4 lg:flex-row lg:items-center'>
-						{% include '../../../Molecules/Button/Button.twig' with {text: 'Choisir cette adresse', classes:'Button--fill lg:w-1/2'} %}
-						{% include '../../../Molecules/Button/Button.twig' with {text: 'Utiliser une autre adresse', classes:'Button--secondary lg:w-1/2'} %}
+          {% include '@components/Molecules/Button/Button.twig' with {text: 'Choisir cette adresse', classes:'Button--fill lg:w-1/2'} %}
+          {% include '@components/Molecules/Button/Button.twig' with {text: 'Utiliser une autre adresse', classes:'Button--secondary lg:w-1/2'} %}
 					</div>
 				</div>
 			{% endif %}

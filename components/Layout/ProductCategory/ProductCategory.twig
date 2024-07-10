@@ -7,6 +7,6 @@
 
 <div class='flex flex-col gap-10  lg:grid lg:grid-cols-3 xl:container xl:mx-auto'>
   {% for category in categories %}
-    {% include '../../Organisms/CategoryCard/CategoryCard.twig' with category %}
+    {% include '@components/Organisms/CategoryCard/CategoryCard.twig' with category %}
   {% endfor %}
 </div>

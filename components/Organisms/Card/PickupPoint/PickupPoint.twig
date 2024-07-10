@@ -14,7 +14,7 @@
 
 <div class='PickupPoint {% if selected %}selected{% endif %}'>
   <label class='PickupPoint-content'>
-    {% include '../../../Atoms/Form/Radio.twig' with {type:"span", name:"PickupPoint", value:1, checked:selected} %}
+    {% include '@components/Atoms/Form/Radio.twig' with {type:"span", name:"PickupPoint", value:1, checked:selected} %}
 
     <span>
         <span class='PickupPoint-title'>{{ title }}</span>
@@ -45,6 +45,6 @@
     </table>
   </div>
   <div class='md:hidden mt-4'>
-    {% include '../../../Molecules/Button/Button.twig' with {text: 'Choisir ce point relais', classes:'Button--fill'} %}
+    {% include '@components/Molecules/Button/Button.twig' with {text: 'Choisir ce point relais', classes:'Button--fill'} %}
   </div>
 </div>

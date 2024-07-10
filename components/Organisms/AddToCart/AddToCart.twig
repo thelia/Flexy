@@ -13,7 +13,7 @@
     {% if unavailable %}
       <span class='typo-button-large'>Produit indisponible</span>
     {% else %}
-      {% include '../../Molecules/Button/Button.twig' with
+      {% include '@components/Molecules/Button/Button.twig' with
         {classes:'', variant:'primary', text:'Ajouter au panier'} %}
     {% endif %}
   </div>

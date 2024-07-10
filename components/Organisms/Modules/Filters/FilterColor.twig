@@ -11,9 +11,9 @@
 
 <div class='hidden md:block'>
 	{% for option in options %}
-		{% include '../../../Molecules/Filters/FilterPill/FilterPill.twig' with {customText: option.label,icon: 'circle',inputType: 'radio', name: 'color', value: option.value, iconColor: option.color, disabled: option.disabled} %}
+		{% include '@components/Molecules/Filters/FilterPill/FilterPill.twig' with {customText: option.label,icon: 'circle',inputType: 'radio', name: 'color', value: option.value, iconColor: option.color, disabled: option.disabled} %}
 	{% endfor %}
 </div>
 <div class='md:hidden'>
-	{% include '../../../Molecules/Filters/FilterSelect/FilterSelect.twig' with {id: 'colorFilterSelect', options: optionsColors} %}
+  {% include '@components/Molecules/Filters/FilterSelect/FilterSelect.twig' with {id: 'colorFilterSelect', options: optionsColors} %}
 </div>

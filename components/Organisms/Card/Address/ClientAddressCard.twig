@@ -28,7 +28,7 @@
     {% endif %}
   </div>
   <div class='AddressCard-bottom'>
-    {% include '../../../Molecules/Button/Button.twig' with
+    {% include '@components/Molecules/Button/Button.twig' with
       {text:
         undefined ? 'Ajouter une adresse de facturation' : 'Modifier l’adresse<span class="md:inline hidden">&nbsp;de facturation</span>',
         variant: undefined? 'primary' : 'secondary',

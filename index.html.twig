@@ -3,6 +3,35 @@
 {% block title %}index{% endblock %}
 
 {% block body %}
-  {% include '@components/Layout/Header/Header.twig'  with { type: "generic", classes:'', inactive:false, small:false, mobile:false,subText:'' } %}
+  {% include '@components/Layout/Header/Header.twig' %}
+  {% set products = resources('/api/front/products', {'productCategories.category.id':1,pagination_items_per_page:3}, false) %}
+  {{ dump(products|slice(0, 3)) }}
+  {% set productFiltered = products|slice(0, 3)|map((p) => ({
+    displayWishButton: true,
+    productTitle: p.i18ns.i18ns.fr_FR.title,
+    secondaryTitle: p.i18ns.i18ns.fr_FR.chapo ?? null,
+    price: p.productSaleElements|filter(pse => pse.isDefault)|first.productPrices|first.price ~ '€',
+    promoPrice: p.productSaleElements|filter(pse => pse.isDefault)|first.productPrices|first.promoPrice ~ '€',
+    isPromo: p.productSaleElements|filter(pse => pse.isDefault)|first.promo,
+    isNew: p.productSaleElements|filter(pse => pse.isDefault)|first.newness,
+  })) %}
+
+  {{ dump(productFiltered) }}
+{#  {% set products = [{productTitle:'Nom du produit',secondaryTitle: 'Titre secondaire',price: '1000,00€'}] %}#}
+  {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Produits populaires', products:productFiltered}  %}
 
 {% endblock %}
+{#const standardProduct = {#}
+{#productTitle: 'Nom du produit',#}
+{#secondaryTitle: 'Titre secondaire',#}
+{#price: '1000,00€',#}
+{#price: '1000,00€',#}
+{#promoPrice: '900,00€',#}
+{#rate: 4,#}
+{#isNew: true,#}
+{#displayWishButton: true,#}
+{#reviewCount: 12#}
+{#};#}
+
+
+{#<div class="font-bold sm:w-7/12">{format_money number={$TOTAL_TAXED_AMOUNT} currency_id=$CURRENCY}</div>#}

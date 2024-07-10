@@ -23,11 +23,11 @@
 <div class='AddressCard {% if selected %}selected{% endif %}'>
   {% if not purchaseFunnel %}
     <div class='AddressCard-top'>
-      {% include '../../../Molecules/Favorite/Favorite.twig' with {text: 'Favori', selected: isDefault} %}
+      {% include '@components/Molecules/Favorite/Favorite.twig' with {text: 'Favori', selected: isDefault} %}
     </div>
   {% endif %}
   <{{ contentType }} class='AddressCard-content'>
-    {% include '../../../Atoms/Form/Radio.twig' with {classes:radio ? "" : "invisible max-w-0", type:"span", name:"test", value:1, checked:selected} %}
+    {% include '@components/Atoms/Form/Radio.twig' with {classes:radio ? "" : "invisible max-w-0", type:"span", name:"test", value:1, checked:selected} %}
 
     <span>
       <span class='AddressCard-title'>{% if not purchaseFunnel %}{{ address.title }}{% else %}Adresse de livraison{% endif %}</span>

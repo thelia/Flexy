@@ -7,10 +7,10 @@
 
 	<div class='SimilarContents slider'>
 		{% for similarContent in similarContents %}
-			{% include '../../Organisms/SimilarContentCard/SimilarContentCard.twig' with similarContent %}
+    {% include '@components/Organisms/SimilarContentCard/SimilarContentCard.twig' with similarContent %}
 		{% endfor %}
 	</div>
 	{% if button %}
-		{% include '../../Molecules/Button/Button.twig' with {text: button.label, href: button.href,icon_right:'chevron-right', variant:'secondary', classes: 'mt-5'} %}
+		{% include '@components/Molecules/Button/Button.twig' with {text: button.label, href: button.href,icon_right:'chevron-right', variant:'secondary', classes: 'mt-5'} %}
 	{% endif %}
 </div>
