@@ -32,6 +32,7 @@
 
   &-noAddress {
     @apply paragraph-2;
+    color: var(--black);
     font-weight: 700;
     @screen md {
       @apply paragraph-1;
@@ -61,8 +62,8 @@
   }
 
   &-bottom {
-    padding: rem-convert(16px);
-    @apply paragraph-4;
+    padding: 1rem 2.5rem;
+    @apply paragraph-4 py-4 px-5 lg:px-10;
     font-weight: 600;
     display: flex;
     border-radius: 0 0 rem-convert(8px) rem-convert(8px);
