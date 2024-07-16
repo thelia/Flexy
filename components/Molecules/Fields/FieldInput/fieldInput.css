@@ -32,12 +32,13 @@
     width: 100%;
     padding: rem-convert(16px) rem-convert(10px);
     transition: 0.2s ease all;
+    text-overflow: ellipsis;
 
     &:hover {
       background-color: var(--theme-lightest);
     }
 
-    &:focus-visible{
+    &:focus-visible {
       outline-offset: 2px;
       outline: 1px solid var(--theme);
     }
@@ -87,7 +88,7 @@
         background-color: var(--error-lightest);
       }
 
-      &:focus-visible{
+      &:focus-visible {
         outline: 1px solid var(--error-dark);
       }
     }
@@ -141,9 +142,11 @@
 
   &-button {
     position: absolute;
-    top: 50%;
-    right: 4px;
-    transform: translateY(-50%);
+    top: 1px;
+    right: 1px;
+    bottom: 1px;
+    display: flex;
+    align-items: stretch;
   }
 
   &-buttonIcon {

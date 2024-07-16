@@ -4,16 +4,13 @@
   overflow: hidden;
 
   .ProductCard {
-    flex-shrink: 0;
+    flex: 0 0 auto;
     width: rem-convert(187px);
     @screen md {
-      width: rem-convert(288px);
-    }
-    @screen lg {
+      flex-grow: 1;
       width: rem-convert(288px);
     }
   }
-
 
   @screen lg {
     display: grid;
@@ -31,5 +28,4 @@
   @screen xl {
     @apply container mx-auto;
   }
-
 }

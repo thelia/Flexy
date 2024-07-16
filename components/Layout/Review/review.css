@@ -1,29 +1,36 @@
 .Reviews {
   display: flex;
   flex-direction: column;
-  gap: rem-convert(16px);
+  gap: 0.5rem;
+
   @screen md {
     flex-direction: row;
     overflow: hidden;
+    gap: 1.5rem;
+
     .Review {
       width: 271px;
       flex-shrink: 0;
-    }
-  }
-  @screen lg {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    cursor: initial;
-    .Review {
-      width: initial;
-      &:active {
-        cursor: initial;
+
+      &:last-child {
+        margin-right: 3rem;
       }
     }
   }
-  @screen xl {
-    @apply container mx-auto;
-    gap: rem-convert(32px);
-    grid-template-columns: repeat(3, 1fr);
+
+  @screen lg {
+    cursor: initial;
+
+    .Review {
+      width: auto;
+      flex-shrink: 1;
+      &:active {
+        cursor: initial;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
 }

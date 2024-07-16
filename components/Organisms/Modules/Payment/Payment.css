@@ -37,12 +37,6 @@
     .Radio {
       margin-top: 4px;
       margin-right: 8px;
-      visibility: hidden;
-      max-width: 0;
-      @screen md {
-        visibility: visible;
-        max-width: initial;
-      }
     }
   }
 

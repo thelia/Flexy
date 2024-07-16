@@ -16,7 +16,7 @@ const standardReview = {
 
 const reviews = [];
 
-for (let i = 0; i < 4; i++) {
+for (let i = 0; i < 3; i++) {
   reviews.push(standardReview);
 }
 
@@ -31,6 +31,6 @@ export const base = {
     slider();
   },
   parameters: {
-    backgrounds: { default: 'grey' }
+    backgrounds: { default: 'theme-lighter' }
   }
 };

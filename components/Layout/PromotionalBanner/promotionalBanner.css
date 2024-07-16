@@ -27,10 +27,15 @@
     align-items: flex-start;
 
     @screen md {
-      flex-direction: row;
-      gap: rem-convert(48px);
       max-width: rem-convert(1110px);
-      align-items: center;
+    }
+
+    &--button {
+      @screen md {
+        flex-direction: row;
+        gap: rem-convert(48px);
+        align-items: center;
+      }
     }
   }
   &-button {

@@ -1,18 +1,19 @@
-{% set options = options|default([]) %} {# options:  [{ value: 1, color: '#6969B3', label: 'State Blue' }, ...] #}
+{% set options = options|default([]) %}
+{# options:  [{ value: 1, color: '#6969B3', label: 'State Blue' }, ...] #}
 
 {% set optionsColors = [] %}
 {% for option in options %}
-  {% set optionsColors = optionsColors|merge([{
+	{% set optionsColors = optionsColors|merge([{
     'value': option.value,
     'label':  "<span class='colorRounded' data-bg-color='" ~ option.color ~ "'></span>" ~ option.label
   }]) %}
 {% endfor %}
 
 <div class='hidden md:block'>
-  {% for option in options %}
-    {% include '../../../Molecules/Filters/FilterPill/FilterPill.twig' with {customText: option.label,icon: 'circle',inputType: 'radio', name: 'color', value: option.value, iconColor: option.color} %}
-  {% endfor %}
+	{% for option in options %}
+		{% include '../../../Molecules/Filters/FilterPill/FilterPill.twig' with {customText: option.label,icon: 'circle',inputType: 'radio', name: 'color', value: option.value, iconColor: option.color, disabled: option.disabled} %}
+	{% endfor %}
 </div>
 <div class='md:hidden'>
-  {% include '../../../Molecules/Filters/FilterSelect/FilterSelect.twig' with {id: 'colorFilterSelect', options: optionsColors} %}
+	{% include '../../../Molecules/Filters/FilterSelect/FilterSelect.twig' with {id: 'colorFilterSelect', options: optionsColors} %}
 </div>

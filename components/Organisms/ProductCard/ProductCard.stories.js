@@ -94,7 +94,14 @@ export const addToCartConfirmation = {
     productTitle: 'Nom du produit',
     orderSecondaryTitle: 'Titre secondaire',
     size: 'S-34/36',
-    quantity: 1
+    quantity: 1,
+    attributesAv: {
+      Taille: '34'
+    },
+    attributesAvColor: {
+      name: 'Slate Blue',
+      hexa: '#6969B3'
+    }
   }
 };
 

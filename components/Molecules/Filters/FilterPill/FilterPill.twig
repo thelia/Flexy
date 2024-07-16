@@ -10,19 +10,19 @@
 
 {% set classes = '' %}
 {% if selected %}
-   {% set classes = classes ~ ' FilterPill--selected' %}
+	{% set classes = classes ~ ' FilterPill--selected' %}
 {% endif %}
 {% if icon %}
-   {% set classes = classes ~ ' FilterPill--withIcon' %}
+	{% set classes = classes ~ ' FilterPill--withIcon' %}
 {% endif %}
 
-<label class="FilterPill{{ classes }}" {% if disabled %}disabled{% endif %}>
-  <input type='{{ inputType }}' class='hidden' value='{{ value }}' name='{{ name }}' />
-  {% if icon %}
-    <span class="FilterPill-icon" {% if iconColor %}style="color:{{ iconColor }}"{% endif %}>{{ svg(icon) }}</span>
-  {% endif %}
-  {{ customText }}
-  {% if closeButton %}
-    <span class='FilterPill-iconClose'>{{ svg("close") }}</span>
-  {% endif %}
+<label class="FilterPill{{ classes }}">
+	<input type='{{ inputType }}' class='hidden' value='{{ value }}' name='{{ name }}' {% if disabled %} disabled {% endif %}/>
+	{% if icon %}
+		<span class="FilterPill-icon" {% if iconColor %} style="color:{{ iconColor }}" {% endif %}>{{ svg(icon) }}</span>
+	{% endif %}
+	{{ customText }}
+	{% if closeButton %}
+		<span class='FilterPill-iconClose'>{{ svg("close") }}</span>
+	{% endif %}
 </label>

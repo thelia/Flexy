@@ -2,8 +2,12 @@
 {% set position = position|default('left') %}
 {% set title = title|default('') %}
 
-<div class='Subheader Subheader-titleOnly  {% if position == 'centered' %}Subheader-centered{% endif %}'>
-  <div class='container mx-auto'>
-    <{{ tag }} class='Subheader-title'>{{ title }}</{{ tag }}>
-  </div>
+{% set classes = ''%}
+{% if position == 'centered' %}
+	{%  set classes = 'Subheader--centered' %}
+{% endif %}
+<div class='Subheader Subheader-titleOnly {{classes}}'>
+	<div class='container mx-auto'>
+		<{{tag}} class='Subheader-title'>{{ title }}</{{tag}}>
+	</div>
 </div>

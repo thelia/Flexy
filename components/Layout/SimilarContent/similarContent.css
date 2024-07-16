@@ -1,13 +1,18 @@
 .SimilarContents {
   display: flex;
   flex-direction: column;
-  gap: rem-convert(16px);
+  gap: 1rem;
+
   @screen md {
     flex-direction: row;
     overflow: hidden;
     .SimilarContentCard {
       width: 340px;
       flex-shrink: 0;
+
+      &:last-child {
+        margin-right: 3rem;
+      }
     }
   }
   @screen lg {
@@ -19,12 +24,22 @@
       &:active {
         cursor: initial;
       }
+      &:last-child {
+        margin-right: 0;
+      }
     }
   }
   @screen xl {
     @apply container mx-auto;
-    gap: rem-convert(32px);
     grid-template-columns: repeat(3, 1fr);
-  }
+    gap: 2rem;
 
+    .SimilarContentCard {
+      width: initial;
+      flex-shrink: 0;
+      &:active {
+        cursor: initial;
+      }
+    }
+  }
 }

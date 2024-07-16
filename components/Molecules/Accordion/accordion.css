@@ -1,21 +1,24 @@
 .Accordion {
+  border-bottom: 1px solid var(--grey-lighter);
+
+  &:has(&-summary:focus-visible) {
+    outline: var(--theme) solid 1px;
+    border-bottom: 0px solid transparent;
+  }
+
   &-summary {
     @apply paragraph-2;
     padding: rem-convert(14px) rem-convert(16px);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid var(--grey-lighter);
+
     color: var(--black);
     outline: 0;
+    cursor: pointer;
 
     &::marker {
       font-size: 0;
-    }
-
-    &:focus-visible {
-      outline: var(--theme) solid 1px;
-      border-bottom: 0px solid transparent;
     }
   }
 

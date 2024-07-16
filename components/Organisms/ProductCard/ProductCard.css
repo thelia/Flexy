@@ -60,12 +60,12 @@
   }
 
   &Order {
-    background-color: var(--theme-lighter);
+    background-color: var(--theme-lightest);
     display: flex;
     flex-direction: row;
     max-width: initial;
     align-items: center;
-    border: 1px solid var(--theme);
+    border: 1px solid var(--theme-medium);
     padding: 8px;
     @screen sm {
       max-width: 540px;
@@ -284,6 +284,7 @@
       max-width: 518px;
       background-color: var(--theme-lightest);
       padding: 24px 20px;
+      width: calc(100vw - 60px);
     }
 
     .ProductCard-iconClose {
@@ -311,9 +312,6 @@
     .ProductCard-imgLink {
       display: flex;
       flex-basis: 120px;
-      @screen sm {
-        flex-basis: 74px;
-      }
     }
 
     .ProductCard-img {
@@ -344,11 +342,11 @@
       font-family: 'Roboto';
       flex-direction: row;
       flex-wrap: wrap;
+      row-gap: 8px;
 
       & .ProductCard-secondaryTitle {
         @apply paragraph-3;
         width: 100%;
-        margin-bottom: 6px;
         font-size: rem-convert(14px);
         &:after {
           content: '' !important;
@@ -375,6 +373,11 @@
       color: var(--black);
       margin-bottom: 16px;
       text-align: center;
+
+      @screen sm {
+        max-width: 90%;
+      }
+
       &:before {
         content: '';
         border-radius: 20px;
@@ -401,11 +404,21 @@
     .ProductCard-ProductCardAddToCartBottom {
       display: flex;
       gap: 10px;
-      flex-direction: column;
       margin-top: 10px;
+      width: 100%;
+      flex-wrap: wrap;
+
       @screen sm {
         margin-top: 0;
-        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .Button {
+        flex-grow: 1;
+
+        @screen lg {
+          flex-grow: 0;
+        }
       }
     }
 
@@ -486,7 +499,7 @@
     svg {
       max-width: 35px;
     }
-    &:focus-visible{
+    &:focus-visible {
       outline: none;
     }
 
@@ -587,9 +600,15 @@
   &-footer {
     margin-top: rem-convert(13px);
     display: flex;
-    align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    gap: 20px;
+    flex-direction: column;
+
+    @screen md {
+      flex-direction: row;
+      align-items: center;
+    }
 
     &Left {
       display: flex;
@@ -617,8 +636,9 @@
 
     &-item {
       border-radius: 100%;
-      width: 12px;
-      height: 12px;
+      display: inline-block;
+      width: 0.75rem;
+      height: 0.75rem;
     }
 
     &-others {
@@ -628,13 +648,14 @@
 
   .Rating {
     display: flex;
-    gap: 11px;
+    gap: 10px;
     align-items: center;
+    flex-wrap: wrap;
 
     &-mark {
       display: flex;
       gap: 4px;
-      max-width: 93px;
+      max-width: 92px;
       svg {
         color: var(--black);
       }
@@ -649,7 +670,7 @@
       text-transform: uppercase;
       color: var(--grey);
 
-      @screen sm {
+      @screen md {
         font-size: var(--font-size-indication);
         letter-spacing: var(--letter-spacing-indication);
       }
@@ -658,6 +679,7 @@
 
   &-desc {
     padding: 16px;
+
     @screen sm {
       padding: 24px;
     }
@@ -685,6 +707,7 @@
     color: var(--black);
     position: relative;
     line-height: normal;
+    margin-top: 0;
   }
 
   &-originalPrice {
@@ -695,7 +718,7 @@
   }
 
   &:hover,
-  &:focus-visible{
+  &:focus-visible {
     .ProductCard-img {
       img {
         transform: scale(1.075);

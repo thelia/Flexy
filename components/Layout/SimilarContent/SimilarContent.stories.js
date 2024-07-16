@@ -27,6 +27,6 @@ export const base = {
     slider();
   },
   parameters: {
-    backgrounds: { default: 'grey' }
+    backgrounds: { default: 'theme-lighter' }
   }
 };

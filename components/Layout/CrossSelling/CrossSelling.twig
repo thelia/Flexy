@@ -2,16 +2,14 @@
 {% set products = products|default([]) %}
 {% set button = button|default({label:"", href:""}) %}
 
-<div class='xl:container xl:mx-auto'>
+<div class="pt-[56px] pb-[68px] pl-[24px] md:pl-[48px] xl:pt-[68px] xl:pb-[104px] lg:px-0 lg:container lg:mx-auto">
 	<div class='pb-6 text-black h2'>{{ title }}</div>
-</div>
-
-<div class='CrossSelling slider'>
-	{% for product in products %}
-		{% include '../../Organisms/ProductCard/ProductCard.twig' with product %}
-	{% endfor %}
-</div>
-
-<div class='mt-5 xl:container xl:mx-auto'>
-	{% include '../../Molecules/Button/Button.twig' with {text: button.label, href: button.href,icon_right:'chevron-right', variant:'secondary'} %}
+	<div class='CrossSelling slider'>
+		{% for product in products %}
+			{% include '../../Organisms/ProductCard/ProductCard.twig' with product %}
+		{% endfor %}
+	</div>
+	<div class='mt-5'>
+		{% include '../../Molecules/Button/Button.twig' with {text: button.label, href: button.href,icon_right:'chevron-right', variant:'secondary'} %}
+	</div>
 </div>

@@ -15,7 +15,7 @@ export const FilterColor = {
   },
   args: {
     options: [
-      { value: 1, color: '#6969B3', label: 'State Blue' },
+      { value: 1, color: '#6969B3', label: 'State Blue', disabled: true },
       { value: 2, color: '#FFB698', label: 'Vermillon' },
       { value: 3, color: '#767676', label: 'Grey' }
     ]

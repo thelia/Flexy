@@ -1,17 +1,16 @@
 {% set title = title|default('') %}
 {% set similarContents = similarContents|default([]) %}
-{% set button = button|default({label:"", href:""}) %}
+{% set button = button|default(null) %}
 
-<div class='xl:container xl:mx-auto'>
-  <div class='h4 text-black pb-6'>{{ title }}</div>
-</div>
+<div class="px-6 py-20 mx-auto md:px-12 md:pr-0 lg:px-0 lg:container">
+	<div class='pb-6 text-black h4'>{{ title }}</div>
 
-<div class='SimilarContents slider'>
-  {% for similarContent in similarContents %}
-    {% include '../../Organisms/SimilarContentCard/SimilarContentCard.twig' with similarContent %}
-  {% endfor %}
-</div>
-
-<div class='xl:container xl:mx-auto mt-5'>
-  {% include '../../Molecules/Button/Button.twig' with {text: button.label, href: button.href,icon_right:'chevron-right', variant:'secondary'} %}
+	<div class='SimilarContents slider'>
+		{% for similarContent in similarContents %}
+			{% include '../../Organisms/SimilarContentCard/SimilarContentCard.twig' with similarContent %}
+		{% endfor %}
+	</div>
+	{% if button %}
+		{% include '../../Molecules/Button/Button.twig' with {text: button.label, href: button.href,icon_right:'chevron-right', variant:'secondary', classes: 'mt-5'} %}
+	{% endif %}
 </div>
