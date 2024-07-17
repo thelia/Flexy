@@ -79,5 +79,4 @@ Encore
 // CSS CONFIG
 Encore.enablePostCssLoader();
 
-
 module.exports = Encore.getWebpackConfig();
