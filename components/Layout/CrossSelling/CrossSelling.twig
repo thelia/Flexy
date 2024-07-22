@@ -1,15 +1,17 @@
 {% set title = title|default('') %}
-{% set products = products|default([]) %}
-{% set button = button|default({label:"", href:""}) %}
+{% set products = products|default(null) %}
+{% set button = button|default(null) %}
 
 <div class="pt-[56px] pb-[68px] pl-[24px] md:pl-[48px] xl:pt-[68px] xl:pb-[104px] lg:px-0 lg:container lg:mx-auto">
 	<div class='pb-6 text-black h2'>{{ title }}</div>
 	<div class='CrossSelling slider'>
 		{% for product in products %}
-			{% include '../../Organisms/ProductCard/ProductCard.twig' with product %}
+		{% include '@components/Organisms/ProductCard/ProductCard.twig' with product %}
 		{% endfor %}
 	</div>
+  {% if button %}
 	<div class='mt-5'>
-		{% include '../../Molecules/Button/Button.twig' with {text: button.label, href: button.href,icon_right:'chevron-right', variant:'secondary'} %}
+		{% include '@components/Molecules/Button/Button.twig' with {text: button.label, href: button.href,icon_right:'chevron-right', variant:'secondary'} %}
 	</div>
+  {% endif %}
 </div>

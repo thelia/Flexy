@@ -4,8 +4,8 @@
 	<div class='container flex flex-col items-center mx-auto'>
 		<h1 class='Subheader-title'>{{ title }}</h1>
 		<div class='flex mt-[30px]'>
-			{% include '../../../Molecules/Button/Button.twig' with {text: 'En cours', sharp:true, variant:selected == 'in_progress' ? 'primary' : 'secondary'} %}
-			{% include '../../../Molecules/Button/Button.twig' with {text: 'Historique', sharp:true, variant: selected == 'in_progress' ? 'secondary' : 'primary'} %}
+			{% include '@components/Molecules/Button/Button.twig' with {text: 'En cours', sharp:true, variant:selected == 'in_progress' ? 'primary' : 'secondary'} %}
+			{% include '@components/Molecules/Button/Button.twig' with {text: 'Historique', sharp:true, variant: selected == 'in_progress' ? 'secondary' : 'primary'} %}
 		</div>
 	</div>
 </div>

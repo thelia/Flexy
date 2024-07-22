@@ -3,9 +3,9 @@
 
 <div class='hidden md:block'>
   {% for option in options %}
-    {% include '../../../Molecules/Filters/FilterPill/FilterPill.twig' with {customText: option.label,inputType: 'radio', name: 'classic', value: option.value} %}
+    {% include '@components/Molecules/Filters/FilterPill/FilterPill.twig' with {customText: option.label,inputType: 'radio', name: 'classic', value: option.value} %}
   {% endfor %}
 </div>
 <div class='md:hidden'>
-  {% include '../../../Molecules/Filters/FilterSelect/FilterSelect.twig' with {id: 'classicFilterSelect', isRounded:isRounded, options: options} %}
+  {% include '@components/Molecules/Filters/FilterSelect/FilterSelect.twig' with {id: 'classicFilterSelect', isRounded:isRounded, options: options} %}
 </div>

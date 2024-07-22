@@ -20,9 +20,9 @@
     </div>
     {% if not withoutButton %}
       <div class='{% if expired %}mt-2 flex gap-2{% endif %}'>
-        {% include '../../../Molecules/Button/Button.twig' with {classes: 'Button--small',text:'Supprimer', icon_left: 'delete'} %}
+        {% include '@components/Molecules/Button/Button.twig' with {classes: 'Button--small',text:'Supprimer', icon_left: 'delete'} %}
         {% if expired %}
-          {% include '../../../Molecules/Button/Button.twig' with {classes: 'Button--small', variant:'secondary', text:'Mettre à jour'} %}
+          {% include '@components/Molecules/Button/Button.twig' with {classes: 'Button--small', variant:'secondary', text:'Mettre à jour'} %}
         {% endif %}
       </div>
     {% endif %}

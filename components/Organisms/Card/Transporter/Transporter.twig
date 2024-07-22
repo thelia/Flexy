@@ -6,7 +6,7 @@
 
 <div class='Transporter {% if selected %}selected{% endif %}'>
   <label class='Transporter-content'>
-    {% include '../../../Atoms/Form/Radio.twig' with {type:"span", name:"transporter", value:1, checked:selected} %}
+    {% include '@components/Atoms/Form/Radio.twig' with {type:"span", name:"transporter", value:1, checked:selected} %}
 
     <span>
         <span class='Transporter-title'>{{ title }}</span>

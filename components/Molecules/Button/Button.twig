@@ -5,6 +5,11 @@
 {% set type = type|default('button') %}
 {% set icon_left = icon_left|default(false) %}
 {% set icon_right = icon_right|default(false) %}
+{% set fill = fill|default(false) %}
+{% set variant = variant|default('primary') %}
+{% set rectangle = rectangle|default(false) %}
+{% set sharp = sharp|default(false) %}
+{% set round = round|default(false) %}
 
 {% if variant and variant != 'primary' %}{% set classes = classes ~ ' Button--' ~ variant %}{% endif %}
 {% if fill %}{% set classes = classes ~ ' Button--fill'%}{% endif %}

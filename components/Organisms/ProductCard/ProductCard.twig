@@ -23,7 +23,7 @@
 {# colors: ['#667761','#84DCC6',...] #}
 {% set rate = rate|default(null) %}
 {% set secondaryTitle = secondaryTitle|default(null) %}
-{% set img = img|default({url: '/images/placeholder2.webp', alt:''}) %}
+{% set img = img|default({url: '@assets/images/placeholder2.webp', alt:''}) %}
 {% set quantityChoice = quantityChoice|default(1) %}
 
 <div class="ProductCard {{ classes }}">
@@ -33,10 +33,10 @@
 	<div class="ProductCard-header">
 		<div class="ProductCard-tagList">
 			{% if isNew %}
-				{% include '../../Molecules/Tag/Tag.twig' with {customText: 'Nouveau', variant: 'vermillon'} %}
+        {% include '@components/Molecules/Tag/Tag.twig' with {customText: 'Nouveau', variant: 'vermillon'} %}
 			{% endif %}
 			{% if isPromo %}
-				{% include '../../Molecules/Tag/Tag.twig' with {customText: '-15%', variant: 'error'} %}
+        {% include '@components/Molecules/Tag/Tag.twig' with {customText: '-15%', variant: 'error'} %}
 			{% endif %}
 		</div>
 
@@ -95,10 +95,10 @@
 					{{ productTitle }}
 					a été supprimé de votre panier.
 				</div>
-				{% include '../../Molecules/Button/Button.twig' with {classes:'Button--small', text: "Restaurer", icon_left: "restore" } %}
+        {% include '@components/Molecules/Button/Button.twig' with {classes:'Button--small', text: "Restaurer", icon_left: "restore" } %}
 			{% endif %}
 			<div class="ProductCard-footer">
-				{% if rate != null or colors.length > 0 %}
+        {% if rate != null or colors|length > 0 %}
 					<div class="ProductCard-footerLeft">
 						{% if rate != null %}
 							<div class="Rating">
@@ -154,7 +154,7 @@
 						</div>
 					{% else %}
 						<div class="ProductCard-quantity">
-							{% include '../../Molecules/Button/Quantity.twig' with {disabled: false, value:quantityChoice, classes:'Button--small'} %}
+              {% include '@components/Molecules/Button/Quantity.twig' with {disabled: false, value:quantityChoice, classes:'Button--small'} %}
 						</div>
 					{% endif %}
 				{% endif %}
@@ -175,8 +175,8 @@
 	{% endif %}
 	{% if isAddToCartConfirmation %}
 		<div class="ProductCard-ProductCardAddToCartBottom">
-			{% include '../../Molecules/Button/Button.twig' with {classes:'Button--medium', variant: "primary", text: "Voir mon panier" } %}
-			{% include '../../Molecules/Button/Button.twig' with {classes:'Button--medium', variant: "secondary", text: "Poursuivre mes achats" } %}
+      {% include '@components/Molecules/Button/Button.twig' with {classes:'Button--medium', variant: "primary", text: "Voir mon panier" } %}
+      {% include '@components/Molecules/Button/Button.twig' with {classes:'Button--medium', variant: "secondary", text: "Poursuivre mes achats" } %}
 		</div>
 	{% endif %}
 	{% if isRemoveProduct %}
