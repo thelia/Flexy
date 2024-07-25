@@ -1,16 +1,17 @@
 {%  extends 'base.html.twig' %}
 
-{% block title %}404 - Page not found
+{% block title %}Erreur
 {% endblock %}
 
 {% block header %}{% endblock %}
 
 {% block body %}
 	<div class="flex flex-col items-center justify-center h-screen text-center">
-		<div class="w-[250px] h-[150px] lg:w-[300px] lg:h-[200px] mb-6">
-			{{ source('assets/images/not-found.svg') }}
+		<div class="w-[150px] h-[150px] lg:w-[220px] lg:h-[220px] mb-4">
+			{{ source('assets/images/volcano.svg') }}
 		</div>
-		<h3 class="mt-4 mb-6 h3">Oops, cette page n’existe pas...</h3>
+		<h3 class="mt-4 mb-2 h3">XXX</h3>
+		<p class="mb-6 paragraph-2">Ici une description de l’erreur pour aider l’utilisateur à comprendre.</p>
 		{% include '@components/Molecules/Button/Button.twig' with {text: 'Homepage',  classes:'Button--large', href: "/", variant: 'primary', icon_left: "chevron-left"} %}
 	</div>
 {% endblock %}

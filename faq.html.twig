@@ -1,0 +1,14 @@
+{%  extends 'base.html.twig' %}
+
+{% block title %}FAQ page
+{% endblock %}
+
+{% block body %}
+	{% include '@components/Layout/SubHeader/TitleOnly/SubheaderTitle.twig' with {title: "FAQ" }  %}
+
+	<div class="flex flex-col max-w-[676px] px-6 lg:px-0 mt-[24px] mb-[80px] lg:mt-[56px] lg:mb-[120px] mx-auto">
+		{% include '@components/Molecules/Accordion/Accordion.twig' with { title: "Une question fréquente ici ?", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", variant: "faq" } %}
+		{% include '@components/Molecules/Accordion/Accordion.twig' with { title: "Une question fréquente ici ?", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", variant: "faq" } %}
+		{% include '@components/Molecules/Accordion/Accordion.twig' with { title: "Une question fréquente ici ?", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.", variant: "faq" } %}
+	</div>
+{% endblock %}
