@@ -4,40 +4,61 @@
 {% endblock %}
 
 {% block body %}
-	{% set products = resources('/api/front/products', {'productCategories.category.id':1, itemsPerPage:9}) %}
+	{% set products = resources('/api/front/products', {'productCategories.category.id': attr('category', 'id'), itemsPerPage:9}) %}
 
-	{% include '@components/Layout/SubHeader/Category/SubheaderCategory.twig' with {title: 'Nom de la catégorie', description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor...", nbProducts: products|length}  %}
+	{% include '@components/Layout/SubHeader/Category/SubheaderCategory.twig' with {title: attr('category', 'title'), description: attr('category', 'description'), nbProducts: products|length}  %}
 
-	<section class="px-6 lg:px-[120px] py-6">
-		<div class="lg:justify-between lg:items-center mb-[29px] hidden lg:flex">
-			<span>{{products|length}}
-				article(s)</span>
+	<section class="px-6 lg:px-[120px] py-6 lg:flex lg:gap-[115px] lg:justify-between">
+		<div class="w-[310px] lg:block hidden mt-[44px] sticky top-20">
+			<div class="h4 mb-[22px]">Filtrer</div>
 
-			{% include '@components/Molecules/Fields/FieldSelect/FieldSelect.twig' with {
-        classes: "w-[250px]",
-        label: "Trier par",
-        tooltip: "Trier les produits",
-        placeholder: "Trier par",
-        options: [{
-          value: "priceASC",
-          label: "Prix croissant"
-        }, {
-          value: "priceDESC",
-          label: "Prix décroissant"
-        }, {
-          value: "newness",
-          label: "Nouveautés"
-        }, {
-          value: "promo",
-          label: "Promotions"
-        }],
-      } %}
-
+			<div>
+				{% include '@components/Molecules/Accordion/Accordion.twig' with {
+          title: "Taille",
+          content: ""
+        } %}
+				{% include '@components/Molecules/Accordion/Accordion.twig' with {
+          title: "Couleur",
+          content: "test"
+				} %}
+				{% include '@components/Molecules/Accordion/Accordion.twig' with {
+          title: "Matière",
+          content: "test"
+				} %}
+			</div>
 		</div>
 
-		<div class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 mb-[40px]">
-			{% for product in products %}
-				{% include '@components/Organisms/ProductCard/ProductCard.twig' with {
+		<div>
+			<div class="lg:justify-between lg:items-center mb-[29px] hidden lg:flex">
+				<span>{{products|length}}
+					article(s)</span>
+
+				<div class="w-[250px]">
+					{% include '@components/Molecules/Fields/FieldSelect/FieldSelect.twig' with {
+          label: "Trier par",
+          tooltip: "Trier les produits",
+          placeholder: "Trier par",
+          options: [{
+            value: "priceASC",
+            label: "Prix croissant"
+          }, {
+            value: "priceDESC",
+            label: "Prix décroissant"
+          }, {
+            value: "newness",
+            label: "Nouveautés"
+          }, {
+            value: "promo",
+            label: "Promotions"
+          }],
+        } %}
+				</div>
+
+			</div>
+
+			<div class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 mb-[40px]">
+				{% for product in products %}
+					{% include '@components/Organisms/ProductCard/ProductCard.twig' with {
           displayWishButton: true,
           productTitle: product.i18ns.i18ns.fr_FR.title,
           secondaryTitle: product.i18ns.i18ns.fr_FR.chapo ?? null,
@@ -47,21 +68,22 @@
           isNew: product.productSaleElements|filter(pse => pse.isDefault)|first.newness,
           img: {url: '/legacy-image-library/product_image_'~product.id~'/full/%5E*!386,280/0/default.webp', alt: product.i18ns.i18ns.fr_FR.title}
         } %}
-			{% endfor %}
-		</div>
+				{% endfor %}
+			</div>
 
-		<div class='mx-auto lg:mx-0 lg:ml-auto w-max'>
-			{% include '@components/Molecules/Pagination/Pagination.twig' with {
+			<div class='mx-auto lg:mx-0 lg:ml-auto w-max'>
+				{% include '@components/Molecules/Pagination/Pagination.twig' with {
         prevText: 'Précédent',
         nextText: 'Suivant',
         currentPage: 2,
         totalPages: 3
       } %}
-		</div>
+			</div>
 
-		<p class="paragraph-4 lg:paragraph-2 lg:pt-[56px] lg:pb-[96px] max-w-[664px] pt-[102px] pb-[52px] mx-auto">
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		</p>
+			<p class="paragraph-4 lg:paragraph-2 lg:pt-[56px] lg:pb-[96px] max-w-[664px] pt-[102px] pb-[52px] mx-auto">
+				{{ attr('category', 'description') }}
+			</p>
+		</div>
 	</section>
 
 	{% include '@components/Layout/Reinsurance/Reinsurance.twig' with { data: [
