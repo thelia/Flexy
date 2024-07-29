@@ -4,18 +4,19 @@
 {% set target = target|default(null) %}
 {% set iconLeft = iconLeft|default(null) %}
 {% set iconRight = iconRight|default(null) %}
+{% set size = size|default(null) %}
 
 {% set classes = '' %}
 {% if size %}
-   {% set classes = classes ~ 'Link--' ~ size %}
+	{% set classes = classes ~ 'Link--' ~ size %}
 {% endif %}
 
-<a href="{{ href }}" {% if target %}target="{{ target }}"{% endif %} class='Link {{ classes }}' {% if disabled %}disabled{% endif %}>
-  {% if iconLeft %}
-    <span class='Link-icon'>{{ svg(iconLeft) }}</span>
-  {% endif %}
-  {{ customText }}
-  {% if iconRight %}
-    <span class='Link-icon'>{{ svg(iconRight) }}</span>
-  {% endif %}
+<a href="{{ href }}" {% if target %} target="{{ target }}" {% endif %} class='Link {{ classes }}' {% if disabled %} disabled {% endif %}>
+	{% if iconLeft %}
+		<span class='Link-icon'>{{ svg(iconLeft) }}</span>
+	{% endif %}
+	{{ customText }}
+	{% if iconRight %}
+		<span class='Link-icon'>{{ svg(iconRight) }}</span>
+	{% endif %}
 </a>
