@@ -1,0 +1,8 @@
+.Product {
+   &-imageContainer {
+     width: 594px;
+     img {
+       width: 100%;
+     }
+   }
+}

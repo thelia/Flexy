@@ -1,0 +1,13 @@
+{% set maxScore = maxScore|default(5) %}
+{% set score = score|default(0) %}
+
+<div class="Score">
+  {% for star in 1..score %}
+    <span class="Score-star">{{ svg("star") }}</span>
+  {% endfor %}
+  {% if score < maxScore %}
+    {% for star in 1..(maxScore - score) %}
+      <span class="Score-star Score-star--empty">{{ svg("star") }}</span>
+    {% endfor %}
+  {% endif %}
+</div>

@@ -9,9 +9,9 @@
   }]) %}
 {% endfor %}
 
-<div class='hidden md:block'>
+<div class='hidden md:flex gap-2 flex-wrap'>
 	{% for option in options %}
-		{% include '@components/Molecules/Filters/FilterPill/FilterPill.twig' with {customText: option.label,icon: 'circle',inputType: 'radio', name: 'color', value: option.value, iconColor: option.color, disabled: option.disabled} %}
+		{% include '@components/Molecules/Filters/FilterPill/FilterPill.twig' with option|merge({customText: option.label,icon: 'circle',inputType: 'radio', name: 'color', value: option.value, iconColor: option.color}) %}
 	{% endfor %}
 </div>
 <div class='md:hidden'>

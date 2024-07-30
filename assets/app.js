@@ -10,11 +10,15 @@ import '../components/base.css';
 
 
 import HeaderScript from '../components/Layout/Header/Header.js';
+import MobileDrawer from "./js/mobileDrawer";
+import filterSelectFunction from "../components/Molecules/Filters/FilterSelect/FilterSelect";
 
 function main() {
   document.body.classList.remove('no-js');
 console.log('test')
   HeaderScript();
+  MobileDrawer();
+  filterSelectFunction();
 }
 
 document.addEventListener('DOMContentLoaded', () => {

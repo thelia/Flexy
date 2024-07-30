@@ -1,0 +1,14 @@
+.Score {
+  display: flex;
+  gap: rem-convert(5px);
+
+  &-star {
+    width: rem-convert(14px);
+    height: rem-convert(14px);
+    color: var(--black);
+
+    &--empty {
+      color: var(--grey-lighter);
+    }
+  }
+}
