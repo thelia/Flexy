@@ -3,8 +3,9 @@
 {% set disabled = disabled|default(false) %}
 {% set icon = icon|default(null) %}
 {% set text = text|default('') %}
+{% set fill = fill|default(false) %}
 
 <div class='Button-quantityButton'>
-  {% include './Quantity.twig' with {disabled: disabled, value:value, classes:classes} %}
-  {% include './Button.twig' with {disabled: disabled, text:text, classes:classes, icon_left: icon} %}
+  {% include '@components/Molecules/Button/Quantity.twig' with {disabled: disabled, value:value, classes:classes} %}
+  {% include '@components/Molecules/Button/Button.twig' with {disabled: disabled, text:text, classes:classes, icon_left: icon, fill:fill} %}
 </div>

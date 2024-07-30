@@ -12,6 +12,7 @@ import '../components/base.css';
 import HeaderScript from '../components/Layout/Header/Header.js';
 import MobileDrawer from "./js/mobileDrawer";
 import filterSelectFunction from "../components/Molecules/Filters/FilterSelect/FilterSelect";
+import {quantityButton} from "../components/Molecules/Button/button";
 
 function main() {
   document.body.classList.remove('no-js');
@@ -19,6 +20,7 @@ console.log('test')
   HeaderScript();
   MobileDrawer();
   filterSelectFunction();
+  quantityButton();
 }
 
 document.addEventListener('DOMContentLoaded', () => {

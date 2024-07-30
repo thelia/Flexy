@@ -1,15 +1,26 @@
 {% set classes = '' %}
 {% set variant = variant|default('text') %}
+{% set iconPlus = iconPlus|default(null) %}
+{% set iconMinus = iconMinus|default(null) %}
 {% set classes = classes ~ ' Accordion--' ~ variant %}
 {% set title = title|default('') %}
 {% set content = content|default('') %}
 
+{% if variant == 'faq' %}
+  {% if iconPlus == null %}
+    {% set iconPlus = 'plus' %}
+  {% endif %}
+  {% if iconMinus == null %}
+    {% set iconMinus = 'minus' %}
+  {% endif %}
+{% endif %}
+
 <details class='Accordion{{ classes }}'>
   <summary class='Accordion-summary'>
     {{ title }}
-    {% if variant == 'faq' %}
-      <span class='Accordion-icon Accordion-icon--plus'>{{ svg("plus") }}</span>
-      <span class='Accordion-icon Accordion-icon--minus'>{{ svg("minus") }}</span>
+    {% if variant == 'faq' or (iconPlus and iconMinus) %}
+      <span class='Accordion-icon Accordion-icon--plus'>{{ svg(iconPlus) }}</span>
+      <span class='Accordion-icon Accordion-icon--minus'>{{ svg(iconMinus) }}</span>
     {% else %}
       <span class='Accordion-icon'>{{ svg("chevron-down") }}</span>
     {% endif %}

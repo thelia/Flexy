@@ -93,18 +93,18 @@
       padding: 0 0 rem-convert(20px) 0;
     }
 
+  }
+
+  .Accordion-icon--minus {
+    display: none;
+  }
+  &[open] {
     .Accordion-icon--minus {
-      display: none;
+      display: block;
     }
 
-    &[open] {
-      .Accordion-icon--minus {
-        display: block;
-      }
-
-      .Accordion-icon--plus {
-        display: none;
-      }
+    .Accordion-icon--plus {
+      display: none;
     }
   }
 }
