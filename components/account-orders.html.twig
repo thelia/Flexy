@@ -1,0 +1,65 @@
+{%  extends 'base.html.twig' %}
+
+{% block title %}Account orders
+{% endblock %}
+
+{% block body %}
+	{% include '@components/Layout/SubHeader/Orders/SubheaderOrders.twig' with {title: "Mes commandes"}  %}
+
+	<div class="grid max-w-screen-xl grid-cols-1 gap-6 mx-auto md:grid-cols-2 mt-11 mb-[120px] px-8 [&>.OrderCard]:max-w-full">
+		{% include '@components/Organisms/Card/Order/OrderCard.twig' with {
+      orderNumber: "123456",
+      date: "12/12/2021",
+      nbItems: 2,
+      price: "120.00 €",
+      deliveryDate: "12/12/2021",
+      productImages: [
+        {
+          src: "https://via.placeholder.com/150",
+          alt: "product"
+        },
+        {
+          src: "https://via.placeholder.com/150",
+          alt: "product"
+        }
+      ]
+    }  %}
+
+		{% include '@components/Organisms/Card/Order/OrderCard.twig' with {
+      orderNumber: "123456",
+      date: "12/12/2021",
+      nbItems: 2,
+      price: "120.00 €",
+      deliveryDate: "12/12/2021",
+      productImages: [
+        {
+          src: "https://via.placeholder.com/150",
+          alt: "product"
+        },
+        {
+          src: "https://via.placeholder.com/150",
+          alt: "product"
+        }
+      ]
+    }  %}
+
+		{% include '@components/Organisms/Card/Order/OrderCard.twig' with {
+      orderNumber: "123456",
+      date: "12/12/2021",
+      nbItems: 2,
+      price: "120.00 €",
+      deliveryDate: "12/12/2021",
+      productImages: [
+        {
+          src: "https://via.placeholder.com/150",
+          alt: "product"
+        },
+        {
+          src: "https://via.placeholder.com/150",
+          alt: "product"
+        }
+      ]
+    }  %}
+
+	</div>
+{% endblock %}

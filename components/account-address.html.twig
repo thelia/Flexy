@@ -1,0 +1,59 @@
+{%  extends 'base.html.twig' %}
+
+{% block title %}Account address
+{% endblock %}
+
+{% block body %}
+	{% include '@components/Layout/SubHeader/TitleOnly/SubheaderTitle.twig' with {title: "Mes adresses de livraison", position: "centered" }  %}
+
+	<div class="flex flex-col items-center justify-center mt-11 mb-[120px] px-8">
+		<div class="grid w-full max-w-screen-xl grid-cols-1 gap-6 mx-auto md:grid-cols-2">
+
+			{% include '@components/Organisms/Card/Address/AddressCard.twig' with {
+        address: {
+          title: "Adresse principale",
+          name: "John Doe",
+          address1: "12 rue de la paix",
+          address2: "",
+          zipCode: "75000",
+          city: "Paris",
+          country: "France",
+          phone: "0123456789",
+        }
+      } %}
+
+			{% include '@components/Organisms/Card/Address/AddressCard.twig' with {
+        address: {
+          title: "Adresse principale",
+          name: "John Doe",
+          address1: "12 rue de la paix",
+          address2: "",
+          zipCode: "75000",
+          city: "Paris",
+          country: "France",
+          phone: "0123456789",
+        }
+      } %}
+
+			{% include '@components/Organisms/Card/Address/AddressCard.twig' with {
+        address: {
+          title: "Adresse principale",
+          name: "John Doe",
+          address1: "12 rue de la paix",
+          address2: "",
+          zipCode: "75000",
+          city: "Paris",
+          country: "France",
+          phone: "0123456789",
+        }
+      } %}
+
+		</div>
+
+		{% include '@components/Molecules/Button/Button.twig' with {
+      text: "Ajouter une adresse",
+      classes: "mt-8 w-[340px]",
+    } %}
+
+	</div>
+{% endblock %}
