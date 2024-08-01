@@ -8,7 +8,6 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import '../components/base.css';
 
-
 import HeaderScript from '../components/Layout/Header/Header.js';
 import MobileDrawer from "./js/mobileDrawer";
 import filterSelectFunction from "../components/Molecules/Filters/FilterSelect/FilterSelect";

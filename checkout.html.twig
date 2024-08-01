@@ -1,0 +1,23 @@
+{%  extends 'base.html.twig' %}
+
+{% block title %}
+	Tunnel d'achat
+{% endblock %}
+
+{% block javascripts %}
+	{{ encore_entry_script_tags('checkout') }}
+{% endblock %}
+
+{% block header %}
+	{% include '@components/Layout/Header/HeaderCheckout.twig' %}
+{% endblock %}
+{% block body %}
+	{% set products = resources('/api/front/products', {'productCategories.category.id':1, itemsPerPage:3}) %}
+	<div id="Checkout"></div>
+	<div class="bg-theme-lighter">
+		{% include '@components/Layout/CrossSelling/CrossSelling.twig' with {products: products, title: 'Consultés récemment'} %}
+	</div>
+{% endblock %}
+{% block footer %}
+	{% include '@components/Layout/Footer/FooterCheckout.twig' %}
+{% endblock %}
