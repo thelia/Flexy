@@ -2,16 +2,17 @@
 {% set productTitle = productTitle|default('') %}
 
 {% if isOutOfStock %}
-    <div class="ProductCardWrapper ProductCardWrapper--outOfStock purchase-funnel-card-width">
-        <div class="ProductCardWrapper-outOfStockMessage">
-            <div>
-                {{ svg("error") }}
-            </div>
-            <p class="paragraph-4">{{ productTitle }} n’est plus disponible et ne pourra pas être commandé.</p>
-        </div>
-        {% include './ProductCard.twig' with {classes:'ProductCardPurchaseFunnel', isPurchaseFunnelCard: true, imgWidth:'232', imgHeight:'232'} %}
-        {% include '@components/Molecules/Button/Button.twig' with { classes:"ProductCardWrapper-outOfStockButton", disabled: false, text:"Voir les produits similaires"} %}
-    </div>
+	<div class="ProductCardWrapper ProductCardWrapper--outOfStock purchase-funnel-card-width">
+		<div class="ProductCardWrapper-outOfStockMessage">
+			<div>
+				{{ svg("error") }}
+			</div>
+			<p class="paragraph-4">{{ productTitle }}
+				n’est plus disponible et ne pourra pas être commandé.</p>
+		</div>
+		{% include '@components/Organisms/ProductCard/ProductCard.twig' with {classes:'ProductCardPurchaseFunnel', isPurchaseFunnelCard: true, imgWidth:'232', imgHeight:'232'} %}
+		{% include '@components/Molecules/Button/Button.twig' with { classes:"ProductCardWrapper-outOfStockButton", disabled: false, text:"Voir les produits similaires"} %}
+	</div>
 {% else %}
-    {% include './ProductCard.twig' with {classes:'ProductCardPurchaseFunnel purchase-funnel-card-width', isPurchaseFunnelCard: true, imgWidth:'232', imgHeight:'232'} %}
+	{% include '@components/Organisms/ProductCard/ProductCard.twig' with {classes:'ProductCardPurchaseFunnel purchase-funnel-card-width', isPurchaseFunnelCard: true, imgWidth:'232', imgHeight:'232'} %}
 {% endif %}
