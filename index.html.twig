@@ -46,7 +46,6 @@
   </div>
 
   {% set news = resources('/api/front/contents', {itemsPerPage:3}) %}
-  {{ dump(news) }}
 
   {% set newsFiltered = news|map((n) => ({
     title: n.i18ns.title,

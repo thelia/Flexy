@@ -6,18 +6,18 @@
   {% set productCategory = product.productCategories|filter(c => c.defaultCategory)|first.category %}
 {% block body %}
   <div class="px-6 lg:px-[120px] py-6">
-    <div class="lg:justify-between lg:items-center mb-[29px] hidden lg:flex">
+    <div class="lg:justify-between lg:items-center mb-[29px] lg:flex">
 			<a href="#" class="typo-button-medium flex gap-3"><span class="h-5 w-5">{{ svg('chevron-left')}}</span> {{ productCategory.i18ns.title }}</a>
 
     </div>
 
-    <div class="container mx-auto">
-      <section class="flex lg:justify-between gap-[46px]">
-        <div class="flex">
-          <div>
+    <div class="lg:container lg:w-full md:w-[540px] w-full mx-auto">
+      <section class="lg:flex lg:justify-between gap-[46px]">
+        <div class="flex relative">
+          <div class="-translate-x-full	absolute top-0 left-0 lg:translate-x-0 lg:static md:block hidden">
             <img src="/legacy-image-library/product_image_{{ productId }}/full/%5E*!92,92/0/default.webp" />
           </div>
-          <div class="Product-imageContainer">
+          <div>
             <img src="/legacy-image-library/product_image_{{ productId }}/full/%5E*!594,594/0/default.webp" />
             <div>
               {% include '@components/Molecules/Accordion/Accordion.twig' with {
@@ -47,7 +47,7 @@
             </div>
           </div>
         </div>
-        <div class="md:w-[400px]">
+        <div class="lg:w-[400px] lg:mx-0 md:w-[540px] mx-auto">
           <h1 class="h3 mb-3">{{ attr('product', 'title') }}</h1>
           {% set chapo = attr('product', 'chapo') %}
           {% if chapo %}
@@ -121,7 +121,7 @@
     isNew: p.productSaleElements|filter(pse => pse.isDefault)|first.newness,
     img: {url: '/legacy-image-library/product_image_'~p.id~'/full/%5E*!386,280/0/default.webp', alt: p.i18ns.title}
   })) %}
-  <div>
+  <div class="bg-theme-lighter">
     {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Derniers produits consultés', products:productFiltered}  %}
   </div>
 
