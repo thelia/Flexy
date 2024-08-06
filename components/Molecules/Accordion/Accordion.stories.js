@@ -8,13 +8,21 @@ export default {
 
 const commonProps = {
   args: {
-    title: 'Concertina'
+    title: 'Concertina',
+    iconPlus: null,
+    iconMinus: null,
   },
   argTypes: {
     variant: {
       options: ['text', 'promo', 'filter', 'faq'],
-      control: { type: 'select' }
-    }
+      control: { type: 'select' },
+    },
+    iconPlus:  {
+      control: { type: 'text' },
+    },
+    iconMinus:  {
+      control: { type: 'text' },
+    },
   }
 };
 

@@ -1,5 +1,5 @@
 @import 'variables.css';
-@import '../assets/css/*.css';
+@import '../assets/css/**/*.css';
 @import url('./**/*.css');
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';

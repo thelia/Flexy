@@ -8,16 +8,7 @@
   <div class="Review-author">{{ author }}</div>
   <div class="Review-review">{{ review }}</div>
   <div class="Review-footer">
-    <div class="Review-note">
-      {% for star in 1..note %}
-        <span class="Review-star">{{ svg("star") }}</span>
-      {% endfor %}
-      {% if note < maxNote %}
-        {% for star in 1..(maxNote - note) %}
-          <span class="Review-star Review-star--empty">{{ svg("star") }}</span>
-        {% endfor %}
-      {% endif %}
-    </div>
+    {% include '@components/Molecules/Score/Score.twig' with {score: note, maxScore: maxNote} %}
     <div class="Review-date">{{ date }}</div>
   </div>
 </div>

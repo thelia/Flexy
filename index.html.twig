@@ -3,26 +3,25 @@
 {% block title %}index{% endblock %}
 
 {% block body %}
-  {% include '@components/Layout/Header/Header.twig' %}
   {% set products = resources('/api/front/products', {'productCategories.category.id':1, itemsPerPage:3}) %}
   {% set categories = resources('/api/front/categories', {itemsPerPage:3}) %}
-
   {% set categoriesFiltered = categories|map((c) => ({
-    title: c.i18ns.i18ns.fr_FR.title,
+    title: c.i18ns.title,
     button: {label: 'Je découvre', href: ''},
-    img: {url: '/legacy-image-library/category_image_'~c.id~'/full/%5E*!386,280/0/default.webp', alt: c.i18ns.i18ns.fr_FR.title}
+    img: {url: '/legacy-image-library/category_image_'~c.id~'/full/%5E*!386,280/0/default.webp', alt: c.i18ns.title}
   })) %}
 
   {% set productFiltered = products|map((p) => ({
     displayWishButton: true,
-    productTitle: p.i18ns.i18ns.fr_FR.title,
-    secondaryTitle: p.i18ns.i18ns.fr_FR.chapo ?? null,
+    productTitle: p.i18ns.title,
+    secondaryTitle: p.i18ns.chapo ?? null,
     price: p.productSaleElements|filter(pse => pse.isDefault)|first.productPrices|first.price ~ '€',
     promoPrice: p.productSaleElements|filter(pse => pse.isDefault)|first.productPrices|first.promoPrice ~ '€',
     isPromo: p.productSaleElements|filter(pse => pse.isDefault)|first.promo,
     isNew: p.productSaleElements|filter(pse => pse.isDefault)|first.newness,
-    img: {url: '/legacy-image-library/product_image_'~p.id~'/full/%5E*!386,280/0/default.webp', alt: p.i18ns.i18ns.fr_FR.title}
+    img: {url: '/legacy-image-library/product_image_'~p.id~'/full/%5E*!386,280/0/default.webp', alt: p.i18ns.title}
   })) %}
+
   {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Derniers produits consultés', products:productFiltered}  %}
 
 
@@ -49,10 +48,10 @@
   {% set news = resources('/api/front/contents', {itemsPerPage:3}) %}
 
   {% set newsFiltered = news|map((n) => ({
-    title: n.i18ns.i18ns.fr_FR.title,
+    title: n.i18ns.title,
     date: n.createdAt|date("d/m/Y"),
     url: '#',
-    img:{url: '/images/placeholder.webp', alt:n.i18ns.i18ns.fr_FR.title}
+    img:{url: '/images/placeholder.webp', alt:n.i18ns.title}
     }))
   %}
   <div class="bg-theme-lighter">
