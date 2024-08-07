@@ -60,8 +60,12 @@ Encore
     config.corejs = '3.23';
   })
   .configureWatchOptions((config) => {
-    config.ignored = /node_modules/;
+    config.ignored = /node_modules|dist/;
   })
+  .configureDevServerOptions(options => {
+    options.allowedHosts = 'all';
+  })
+
 
 // enables Sass/SCSS support
 //.enableSassLoader()
