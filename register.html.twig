@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block body %}
+    {% include "@components//Molecules/Step/Steps.twig" with {
+        checkoutSteps:{
+          "CART": {
+            "id": 1,
+            "label": "Vos identifiants"
+          },
+          "DELIVERY": {
+            "id": 2,
+            "label": "Vos informations"
+          }
+        }
+    } %}
+	<div class="max-w-[400px] px-[25px] pt-[30px] pb-[54px] lg:px-0 lg:pt-[50px] lg:pb-[120px] mx-auto">
+		<form>
+			<h2 class="mb-4 h2">Créer mon compte</h2>
+      <p class="mb-8">
+        Grâce à votre compte, vous pourrez suivre vos commandes, gérer votre profil, recevoir la newsletter, gérer vos listes d’envie...
+      </p>
+			<div class="flex flex-col gap-6 mb-3">
+				{% include "@components/Molecules/Fields/FieldInput/FieldInput.twig" with {
+          label: 'Email',
+          name: 'email',
+          type: 'email',
+          placeholder: 'e.shellstrop@mail.com',
+          required: true,
+        } %}
+
+				{% include "@components/Molecules/Fields/FieldInput/FieldInput.twig" with {
+          label: 'Mot de passe',
+          name: 'password',
+          type: 'password',
+          placeholder: '########',
+          required: true,
+        } %}
+			</div>
+
+      <div class="flex flex-col items-start mt-7">
+        {% include "@components/Molecules/Button/Button.twig" with { icon_right: 'chevron-right', text: "Etape suivante", variant: "large" } %}
+
+        <div class="mt-9">
+          <p>Vous avez déjà un compte ?</p>
+          {% include "@components/Molecules/Link/Link.twig" with {
+            customText: 'Connectez-vous',
+            href: '/login'
+          } %}
+        </div>
+      </div>
+		</form>
+	</div>
+{% endblock %}
