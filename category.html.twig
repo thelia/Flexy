@@ -6,7 +6,7 @@
 {% block body %}
 	{% set products = resources('/api/front/products', {'productCategories.category.id': attr('category', 'id'), itemsPerPage:9}) %}
 
-	{% include '@components/Layout/SubHeader/Category/SubheaderCategory.twig' with {title: attr('category', 'title'), description: attr('category', 'description'), nbProducts: products|length}  %}
+	{% include '@components/Layout/Subheader/Category/SubheaderCategory.twig' with {title: attr('category', 'title'), description: attr('category', 'description'), nbProducts: products|length}  %}
 
 	<section class="px-6 lg:px-[120px] py-6 lg:flex lg:gap-[115px] lg:justify-between">
 		<div class="w-[310px] lg:block hidden mt-[44px] sticky top-20">
