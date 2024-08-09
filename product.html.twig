@@ -75,10 +75,10 @@
             { value: 6, color: '#C17767', label: 'Old Rose' },
           ] %}
           <div class="mt-[30px]">
-            {% include '@components/Organisms/Modules/Filters/FilterClassic.twig' with {options: sizes, name: 'size', label: 'Taille'} %}
+            {% include '@components/Organisms/Modules/Filters/FilterClassic.twig' with {options: sizes, name: 'size', label: 'Taille',id: 'filterSize'} %}
           </div>
           <div class="mt-4">
-            {% include '@components/Organisms/Modules/Filters/FilterColor.twig' with {options: colors, name: 'color', label: 'Couleur'} %}
+            {% include '@components/Organisms/Modules/Filters/FilterColor.twig' with {options: colors, name: 'color', label: 'Couleur',id: 'filterColor'} %}
           </div>
           <div class="mt-[30px] h4">
             1000 €
