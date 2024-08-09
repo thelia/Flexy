@@ -36,6 +36,7 @@ Encore
   .addEntry('app', './assets/app.js')
   .addEntry('product', './assets/js/routes/product.js')
   .addEntry('checkout', './assets/js/routes/checkout.js')
+  .addEntry('register', './assets/js/routes/register.js')
 
   // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
   .splitEntryChunks()

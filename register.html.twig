@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+  {{ parent() }}
+  {{ encore_entry_script_tags('register') }}
+{% endblock %}
+
 {% block title %}Register
 {% endblock %}
 
@@ -22,35 +27,41 @@
       <p class="mb-8">
         Grâce à votre compte, vous pourrez suivre vos commandes, gérer votre profil, recevoir la newsletter, gérer vos listes d’envie...
       </p>
-			<div class="flex flex-col gap-6 mb-3">
-				{% include "@components/Molecules/Fields/FieldInput/FieldInput.twig" with {
-          label: 'Email',
-          name: 'email',
-          type: 'email',
-          placeholder: 'e.shellstrop@mail.com',
-          required: true,
-        } %}
 
-				{% include "@components/Molecules/Fields/FieldInput/FieldInput.twig" with {
-          label: 'Mot de passe',
-          name: 'password',
-          type: 'password',
-          placeholder: '########',
-          required: true,
-        } %}
-			</div>
+      <div class="step-1">
+        <div class="flex flex-col gap-6 mb-3">
+          {% include "@components/Molecules/Fields/FieldInput/FieldInput.twig" with {
+            label: 'Email',
+            name: 'email',
+            type: 'email',
+            placeholder: 'e.shellstrop@mail.com',
+            required: true,
+          } %}
 
-      <div class="flex flex-col items-start mt-7">
-        {% include "@components/Molecules/Button/Button.twig" with { icon_right: 'chevron-right', text: "Etape suivante", variant: "large" } %}
-
-        <div class="mt-9">
-          <p>Vous avez déjà un compte ?</p>
-          {% include "@components/Molecules/Link/Link.twig" with {
-            customText: 'Connectez-vous',
-            href: '/login'
+          {% include "@components/Molecules/Fields/FieldInput/FieldInput.twig" with {
+            label: 'Mot de passe',
+            name: 'password',
+            type: 'password',
+            placeholder: '########',
+            required: true,
           } %}
         </div>
+
+        {% include "@components/Molecules/PasswordControls/PasswordControls.twig" %}
+
+        <div class="flex flex-col items-start mt-7">
+          {% include "@components/Molecules/Button/Button.twig" with { icon_right: 'chevron-right', text: "Etape suivante", variant: "large" } %}
+
+          <div class="mt-9">
+            <p>Vous avez déjà un compte ?</p>
+            {% include "@components/Molecules/Link/Link.twig" with {
+              customText: 'Connectez-vous',
+              href: '/login'
+            } %}
+          </div>
+        </div>
       </div>
+
 		</form>
 	</div>
 {% endblock %}

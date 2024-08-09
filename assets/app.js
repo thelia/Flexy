@@ -9,10 +9,12 @@
 import '../components/base.css';
 
 import HeaderScript from '../components/Layout/Header/Header.js';
-import MobileDrawer from "./js/mobileDrawer";
-import filterSelectFunction from "../components/Molecules/Filters/FilterSelect/FilterSelect";
-import {quantityButton} from "@components/Molecules/Button/button";
-import {slider} from "@js/slider";
+import MobileDrawer from './js/mobileDrawer';
+import filterSelectFunction from '../components/Molecules/Filters/FilterSelect/FilterSelect';
+import { quantityButton } from '@components/Molecules/Button/button';
+import { slider } from '@js/slider';
+import ProductGallery from '../components/Layout/ProductGallery/ProductGallery';
+import PasswordControlsFunction from '../components/Molecules/PasswordControls/PasswordControls';
 
 function main() {
   document.body.classList.remove('no-js');
@@ -21,6 +23,8 @@ function main() {
   filterSelectFunction();
   quantityButton();
   slider();
+  ProductGallery();
+  PasswordControlsFunction();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
