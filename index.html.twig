@@ -22,6 +22,32 @@
     img: {url: '/legacy-image-library/product_image_'~p.id~'/full/%5E*!386,280/0/default.webp', alt: p.i18ns.title}
   })) %}
 
+{% set blocks = [
+  {
+    "image": encore_manifest_file("dist/images/placeholder.webp"),
+    alt: "Image desc",
+    "title": "Ici une phrase d’accroche pour accompagner le visuel",
+    "href": "#",
+    "linkLabel": "Je découvre"
+  },
+  {
+    "image": encore_manifest_file("dist/images/placeholder.webp"),
+    alt: "Image desc",
+    "title": "Ici une phrase d’accroche pour accompagner le visuel",
+    "href": "#",
+    "linkLabel": "Je découvre"
+  },
+  {
+    "image": encore_manifest_file("dist/images/placeholder.webp"),
+    alt: "Image desc",
+    "title": "Ici une phrase d’accroche pour accompagner le visuel",
+    "href": "#",
+    "linkLabel": "Je découvre"
+  }
+] %}
+
+    {% include '@components/Layout/Hero/Hero.twig' with { blocks: blocks } %}
+
   {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Derniers produits consultés', products:productFiltered}  %}
 
 
