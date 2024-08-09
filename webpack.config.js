@@ -67,6 +67,8 @@ Encore
   })
 
 
+
+
 // enables Sass/SCSS support
 //.enableSassLoader()
 
@@ -83,6 +85,28 @@ Encore
 // uncomment if you're having problems with a jQuery plugin
 //.autoProvidejQuery()
 ;
+
+
+
+// IMAGES CONFIG
+Encore.copyFiles({
+  from: './assets/images',
+  to: 'images/[path][name].[ext]',
+  pattern: /\.(png|jpg|jpeg|gif|svg|webp)$/
+});
+
+Encore.configureImageRule({ type: 'javascript/auto' }, (loaderRule) => {
+  loaderRule.test = /\.(png|jpg|jpeg|gif|ico|webp)$/;
+  loaderRule.oneOf = [
+    { resourceQuery: /copy-files-loader/, type: 'javascript/auto' },
+    {
+      type: 'asset/resource',
+      generator: { filename: 'images/[name].[hash:8][ext]' },
+      parser: {}
+    }
+  ];
+});
+
 // CSS CONFIG
 Encore.enablePostCssLoader();
 
