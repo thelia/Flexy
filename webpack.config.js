@@ -1,5 +1,5 @@
 const Encore = require('@symfony/webpack-encore');
-const path   = require("path");
+const path = require('path');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -14,7 +14,7 @@ Encore
   // public path used by the web server to access the output path
   //.setPublicPath('/templates/frontOffice/flexy/public/build') ///build
   .setPublicPath(
-    process.env.NODE_ENV === 'production'
+    Encore.isProduction()
       ? '/templates-assets/frontOffice/' + path.basename(__dirname) + '/dist'
       : '/dist'
   )
@@ -62,12 +62,9 @@ Encore
   .configureWatchOptions((config) => {
     config.ignored = /node_modules|dist/;
   })
-  .configureDevServerOptions(options => {
+  .configureDevServerOptions((options) => {
     options.allowedHosts = 'all';
-  })
-
-
-
+  });
 
 // enables Sass/SCSS support
 //.enableSassLoader()
@@ -84,9 +81,6 @@ Encore
 
 // uncomment if you're having problems with a jQuery plugin
 //.autoProvidejQuery()
-;
-
-
 
 // IMAGES CONFIG
 Encore.copyFiles({
