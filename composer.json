@@ -1,4 +1,5 @@
 {
+  "version": "1.0.0",
   "name": "thelia/flexy",
   "type": "thelia-frontoffice-template",
   "description": "thelia design system",
