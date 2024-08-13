@@ -15,6 +15,7 @@ import { quantityButton } from '@components/Molecules/Button/button';
 import { slider } from '@js/slider';
 import ProductGallery from '../components/Layout/ProductGallery/ProductGallery';
 import PasswordControlsFunction from '../components/Molecules/PasswordControls/PasswordControls';
+import StepsFunction from '../components/Molecules/Step/Steps.js';
 
 function main() {
   document.body.classList.remove('no-js');
@@ -25,6 +26,7 @@ function main() {
   slider();
   ProductGallery();
   PasswordControlsFunction();
+  StepsFunction();
 }
 
 document.addEventListener('DOMContentLoaded', () => {

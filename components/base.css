@@ -53,3 +53,10 @@ svg {
     height: rem-convert(18px);
   }
 }
+
+.step-content {
+  display: none;
+  &.active {
+    display: block;
+  }
+}
