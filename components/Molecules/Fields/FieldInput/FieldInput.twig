@@ -1,4 +1,4 @@
-{% set classes = '' %}
+{% set classes = classes|default('') %}
 {% set success = success|default(false) %}
 {% set size = size|default(false) %}
 {# size: 'small'|'large' #}
@@ -17,6 +17,7 @@
 {% set error = error|default(null) %}
 {% set type = type|default('text') %}
 {% set unit = unit|default(null) %}
+{% set verificationCode = verificationCode|default(false) %}
 
 {% if error %}
 	{% set classes = classes ~ ' FieldInput--error' %}
@@ -45,7 +46,7 @@
 		{% endif %}
 	</div>
 	<div class='FieldInput-blockInput {% if iconButton and iconButtonLeft %}FieldInput-blockInputIconLeft{% endif %}'>
-		<input class='FieldInput-input{% if unit %} FieldInput-input--unit{% endif %}' type='{{ type }}' name='{{ name }}' id='{{ name }}' {% if value %} value='{{ value }}' {% endif %} {% if not optional %} required {% endif %} {% if placeholder %} placeholder='{{ placeholder }}{% if optional and not label %} Optionnel{% endif %}' {% endif %} {% if min %} minlength='{{ min }}' {% endif %} {% if max %} maxlength='{{ max }}' {% endif %}/>
+		<input class='FieldInput-input{% if unit %} FieldInput-input--unit{% endif %}{% if verificationCode %} FieldInput-input--verificationCode{% endif %}' type='{{ type }}' name='{{ name }}' id='{{ name }}' {% if value %} value='{{ value }}' {% endif %} {% if not optional %} required {% endif %} {% if placeholder %} placeholder='{{ placeholder }}{% if optional and not label %} Optionnel{% endif %}' {% endif %} {% if min %} minlength='{{ min }}' {% endif %} {% if max %} maxlength='{{ max }}' {% endif %}/>
 		{% if unit %}
 			<span class="FieldInput-unit">{{ unit }}</span>
 		{% endif %}

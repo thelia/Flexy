@@ -15,7 +15,7 @@ export const base = {
   },
   argTypes: {
     size: {
-      options: ['small', 'large'],
+      options: ['small', 'large', 'full'],
       control: { type: 'radio' }
     },
     variant: {

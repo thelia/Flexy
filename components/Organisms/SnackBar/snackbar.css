@@ -29,6 +29,11 @@
     padding-left: rem-convert(24px);
   }
 
+  &-full {
+    width: 100%;
+    padding-right: rem-convert(24px);
+    padding-left: rem-convert(24px);
+  }
 
   &--neutral-light {
     background: var(--theme-lightest);

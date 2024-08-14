@@ -1,0 +1,14 @@
+{%  extends 'base.html.twig' %}
+
+{% block title %}register confirmation
+{% endblock %}
+
+{% block body %}
+	<div class="flex flex-col items-center justify-center h-screen md:w-[540px] m-auto">
+		<div class="w-[250px] h-[150px] lg:w-[300px] lg:h-[200px] mb-6">
+			{{ source('assets/images/hight-five.svg') }}
+		</div>
+		<h3 class="mt-4 mb-6 h3">Votre compte est activé</h3>
+    <p class="paragraph-3">Un e-mail de confirmation vous a été envoyé à <a href="#">e.shellstrop@mail.com</a></p>
+	</div>
+{% endblock %}
