@@ -1,5 +1,6 @@
 {% set classes = classes|default('') %}
 {% set productTitle = productTitle|default('') %}
+{% set productLink = productLink|default('#') %}
 {% set orderSecondaryTitle = orderSecondaryTitle|default('') %}
 {% set price = price|default('') %}
 {% set promoPrice = promoPrice|default('') %}
@@ -26,6 +27,7 @@
 {% set secondaryTitle = secondaryTitle|default(null) %}
 {% set img = img|default({url: '@assets/images/placeholder2.webp', alt:''}) %}
 {% set quantityChoice = quantityChoice|default(1) %}
+
 
 <div class="ProductCard {{ classes }}">
 	{% if isAddToCartConfirmation or isRemoveProduct %}
@@ -58,14 +60,14 @@
 		</p>
 	{% endif %}
 	<div class="ProductCard-mainContent">
-		<a class="ProductCard-imgLink" href="#">
+		<a class="ProductCard-imgLink" href="{{productLink}}">
 			<figure class="ProductCard-img">
 				<img src="{{ img.url }}" alt="{{ img.alt }}" title="{{ img.alt }}" loading="lazy">
 			</figure>
 		</a>
 		<div class="ProductCard-desc">
 			{% if not isRemoveProduct %}
-				<a href="#" class="ProductCard-title">{{ productTitle }}</a>
+				<a href="{{productLink}}" class="ProductCard-title">{{ productTitle }}</a>
 			{% endif %}
 			{% if secondaryTitle %}
 				<div class="ProductCard-subTitle paragraph-3">{{ secondaryTitle }}</div>

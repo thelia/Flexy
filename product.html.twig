@@ -7,14 +7,14 @@
 {% block body %}
   <div class="px-6 lg:px-[120px] py-6">
     <div class="lg:justify-between lg:items-center mb-[29px] lg:flex">
-			<a href="#" class="typo-button-medium flex gap-3"><span class="h-5 w-5">{{ svg('chevron-left')}}</span> {{ productCategory.i18ns.title }}</a>
+			<a href="#" class="flex gap-3 typo-button-medium"><span class="w-5 h-5">{{ svg('chevron-left')}}</span> {{ productCategory.i18ns.title }}</a>
 
     </div>
 
     <div class="lg:container lg:w-full md:w-[540px] w-full mx-auto">
       <section class="lg:flex lg:justify-between gap-[46px]">
-        <div class="flex relative">
-          <div class="-translate-x-full	absolute top-0 left-0 lg:translate-x-0 lg:static md:block hidden">
+        <div class="relative flex">
+          <div class="absolute top-0 left-0 hidden -translate-x-full lg:translate-x-0 lg:static md:block">
             <img src="/legacy-image-library/product_image_{{ productId }}/full/%5E*!92,92/0/default.webp" />
           </div>
           <div>
@@ -48,7 +48,7 @@
           </div>
         </div>
         <div class="lg:w-[400px] lg:mx-0 md:w-[540px] mx-auto">
-          <h1 class="h3 mb-3">{{ attr('product', 'title') }}</h1>
+          <h1 class="mb-3 h3">{{ attr('product', 'title') }}</h1>
           {% set chapo = attr('product', 'chapo') %}
           {% if chapo %}
             <div class="paragraph-3">{{ chapo }}</div>
@@ -114,6 +114,7 @@
   {% set productFiltered = products|map((p) => ({
     displayWishButton: true,
     productTitle: p.i18ns.title,
+    productLink: p.publicUrl,
     secondaryTitle: p.i18ns.chapo ?? null,
     price: p.productSaleElements|filter(pse => pse.isDefault)|first.productPrices|first.price ~ '€',
     promoPrice: p.productSaleElements|filter(pse => pse.isDefault)|first.productPrices|first.promoPrice ~ '€',

@@ -9,25 +9,8 @@
         <title>Flexy front office template</title>
     </descriptive>
     <languages>
-        <language>ar_SA</language>
-        <language>cs_CZ</language>
-        <language>de_DE</language>
-        <language>el_GR</language>
         <language>en_US</language>
-        <language>es_ES</language>
-        <language>fa_IR</language>
         <language>fr_FR</language>
-        <language>hu_HU</language>
-        <language>id_ID</language>
-        <language>it_IT</language>
-        <language>nl_NL</language>
-        <language>pl_PL</language>
-        <language>pt_BR</language>
-        <language>pt_PT</language>
-        <language>ru_RU</language>
-        <language>sk_SK</language>
-        <language>tr_TR</language>
-        <language>uk_UA</language>
     </languages>
     <version>1.0.0</version>
     <authors>
