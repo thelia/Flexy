@@ -8,6 +8,7 @@ export default {
 
 const standardProduct = {
   productTitle: 'Nom du produit',
+  productLink: '#',
   secondaryTitle: 'Titre secondaire',
   price: '1000,00€',
   promoPrice: '900,00€',
