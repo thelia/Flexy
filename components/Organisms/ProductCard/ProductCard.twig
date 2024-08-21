@@ -1,6 +1,6 @@
 {% set classes = classes|default('') %}
-{% set productTitle = productTitle|default('') %}
-{% set productLink = productLink|default('#') %}
+{% set productTitle = productTitle|default(i18ns.title ?? '') %}
+{% set productLink = publicUrl|default('#') %}
 {% set orderSecondaryTitle = orderSecondaryTitle|default('') %}
 {% set price = price|default('') %}
 {% set promoPrice = promoPrice|default('') %}
@@ -24,9 +24,25 @@
 {% set colors = colors|default([]) %}
 {# colors: ['#667761','#84DCC6',...] #}
 {% set rate = rate|default(null) %}
-{% set secondaryTitle = secondaryTitle|default(null) %}
-{% set img = img|default({url: '@assets/images/placeholder2.webp', alt:''}) %}
+{% set secondaryTitle = secondaryTitle|default(i18ns.chapo ?? null) %}
 {% set quantityChoice = quantityChoice|default(1) %}
+
+{%  if productSaleElements is defined %}
+  {% set price = productSaleElements|filter(pse => pse.isDefault)|first.productPrices|first.price ~ '€' %}
+  {% set promoPrice = productSaleElements|filter(pse => pse.isDefault)|first.productPrices|first.promoPrice ~ '€' %}
+  {% set isPromo = productSaleElements|filter(pse => pse.isDefault)|first.promo %}
+  {% set isNew = productSaleElements|filter(pse => pse.isDefault)|first.newness %}
+{% endif %}
+{%  if id is defined and img is not defined %}
+  {% set images = resources('/api/front/product_images', {'product.id':id, itemsPerPage:1}) %}
+  {% if images %}
+    {% set img = {url: '/legacy-image-library/product_image_'~ images|first.id ~'/full/%5E*!386,280/0/default.webp', alt: i18ns.title} %}
+  {% endif %}
+{% endif %}
+
+{% if img is not defined %}
+    {% set img = img|default({url: '@assets/images/placeholder2.webp', alt:''}) %}
+{% endif %}
 
 
 <div class="ProductCard {{ classes }}">

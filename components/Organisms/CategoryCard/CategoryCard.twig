@@ -2,11 +2,12 @@
 {% set img = img|default({url: '/images/placeholder2.webp', alt:''}) %}
 {% set classes = classes|default('') %}
 {% set button = button|default({label: '', href:''}) %}
+{% set url = url|default('#') %}
 
 <div class="CategoryCard {{ classes }}">
 
   <div class="CategoryCard-mainContent">
-    <a class="CategoryCard-imgLink" href="#">
+    <a class="CategoryCard-imgLink" href="{{ url }}">
       <figure class="CategoryCard-img">
         <img src="{{ img.url }}" alt="{{ img.alt }}" title="{{ img.alt }}"  loading="lazy">
       </figure>

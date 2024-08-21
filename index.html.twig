@@ -3,24 +3,12 @@
 {% block title %}index{% endblock %}
 
 {% block body %}
-  {% set products = resources('/api/front/products', {'productCategories.category.id':1, itemsPerPage:3}) %}
   {% set categories = resources('/api/front/categories', {itemsPerPage:3}) %}
   {% set categoriesFiltered = categories|map((c) => ({
     title: c.i18ns.title,
-    button: {label: 'Je découvre', href: ''},
-    img: {url: '/legacy-image-library/category_image_'~c.id~'/full/%5E*!386,280/0/default.webp', alt: c.i18ns.title}
-  })) %}
-
-  {% set productFiltered = products|map((p) => ({
-    displayWishButton: true,
-    productTitle: p.i18ns.title,
-    productLink: p.publicUrl,
-    secondaryTitle: p.i18ns.chapo ?? null,
-    price: p.productSaleElements|filter(pse => pse.isDefault)|first.productPrices|first.price ~ '€',
-    promoPrice: p.productSaleElements|filter(pse => pse.isDefault)|first.productPrices|first.promoPrice ~ '€',
-    isPromo: p.productSaleElements|filter(pse => pse.isDefault)|first.promo,
-    isNew: p.productSaleElements|filter(pse => pse.isDefault)|first.newness,
-    img: {url: '/legacy-image-library/product_image_'~p.id~'/full/%5E*!386,280/0/default.webp', alt: p.i18ns.title}
+    button: {label: 'Je découvre', href: c.publicUrl},
+    img: {url: '/legacy-image-library/category_image_'~c.id~'/full/%5E*!386,280/0/default.webp', alt: c.i18ns.title},
+    url: c.publicUrl
   })) %}
 
 {%
@@ -51,14 +39,14 @@
 
   {% include '@components/Layout/Hero/Hero.twig' with { blocks: blocks } %}
 
-  {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Last seen products'|trans , products:productFiltered}  %}
+  {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Last seen products'|trans, categoryId: 1}  %}
 
 
   <div class="bg-theme-lighter">
-    {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Popular products'|trans, products:productFiltered}  %}
+    {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Popular products'|trans, categoryId: 2}  %}
   </div>
   <div class="bg-theme-lightest">
-    {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Promotions'|trans, products:productFiltered}  %}
+    {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Promotions'|trans, categoryId: 3}  %}
   </div>
 
   {% include '@components/Layout/ProductCategory/ProductCategory.twig' with {title: t('Nos catégories de produits'), categories:categoriesFiltered}  %}

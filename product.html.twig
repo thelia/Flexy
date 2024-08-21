@@ -4,6 +4,12 @@
 
   {% set product = resources('/api/front/products/' ~ productId) %}
   {% set productCategory = product.productCategories|filter(c => c.defaultCategory)|first.category %}
+
+{% set images = resources('/api/front/product_images', {'product.id':productId}) %}
+{% if images %}
+    {% set imgId = images|first.id  %}
+{% endif %}
+
 {% block body %}
   <div class="px-6 lg:px-[120px] py-6">
     <div class="lg:justify-between lg:items-center mb-[29px] lg:flex">
@@ -15,10 +21,14 @@
       <section class="lg:flex lg:justify-between gap-[46px]">
         <div class="relative flex">
           <div class="absolute top-0 left-0 hidden -translate-x-full lg:translate-x-0 lg:static md:block">
-            <img src="/legacy-image-library/product_image_{{ productId }}/full/%5E*!92,92/0/default.webp" />
+            {% for image in images %}
+              <div>
+                <img src="{{ imgId ? "/legacy-image-library/product_image_"~image.id~"/full/%5E*!92,92/0/default.webp" : "@assets/images/placeholder2.webp"}}" />
+              </div>
+            {% endfor %}
           </div>
           <div>
-            <img src="/legacy-image-library/product_image_{{ productId }}/full/%5E*!594,594/0/default.webp" />
+            <img src="{{ imgId ? "/legacy-image-library/product_image_"~imgId~"/full/%5E*!594,594/0/default.webp" : "@assets/images/placeholder2.webp"}}" />
             <div>
               {% include '@components/Molecules/Accordion/Accordion.twig' with {
                 title: "Description",
@@ -109,21 +119,8 @@
     </div>
   </div>
 
-  {% set products = resources('/api/front/products', {'productCategories.category.id':1, itemsPerPage:3}) %}
-
-  {% set productFiltered = products|map((p) => ({
-    displayWishButton: true,
-    productTitle: p.i18ns.title,
-    productLink: p.publicUrl,
-    secondaryTitle: p.i18ns.chapo ?? null,
-    price: p.productSaleElements|filter(pse => pse.isDefault)|first.productPrices|first.price ~ '€',
-    promoPrice: p.productSaleElements|filter(pse => pse.isDefault)|first.productPrices|first.promoPrice ~ '€',
-    isPromo: p.productSaleElements|filter(pse => pse.isDefault)|first.promo,
-    isNew: p.productSaleElements|filter(pse => pse.isDefault)|first.newness,
-    img: {url: '/legacy-image-library/product_image_'~p.id~'/full/%5E*!386,280/0/default.webp', alt: p.i18ns.title}
-  })) %}
   <div class="bg-theme-lighter">
-    {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Derniers produits consultés', products:productFiltered}  %}
+    {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Derniers produits consultés', categoryId: 1}  %}
   </div>
 
 
