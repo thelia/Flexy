@@ -22,13 +22,13 @@
       <div class="lg:flex lg:justify-between gap-[46px]">
         <div>
           <section id="gallery" class="relative md:pl-[92px]">
-            <div class="absolute top-0 left-0 md:transform-none hidden -translate-x-full lg:translate-x-0 sm:block">
+            <ul class="absolute top-0 left-0 md:transform-none hidden -translate-x-full lg:translate-x-0 sm:block">
               {% for image in images %}
-                <div>
+                <li class="ProductGallery-item cursor-pointer{% if loop.index== 1 %} is-active{% endif %}">
                   <img class="ProductGallery-thumbnail" data-image-id="{{ image.id }}" src="{{ "/legacy-image-library/product_image_"~image.id~"/full/%5E*!92,92/0/default.webp"}}" loading="lazy" />
-                </div>
+                </li>
               {% endfor %}
-            </div>
+            </ul>
             <div>
               <img id="MainImage" src="{{ imgId ? "/legacy-image-library/product_image_"~imgId~"/full/%5E*!594,594/0/default.webp" : "@assets/images/placeholder2.webp"}}" loading="lazy"  alt="{{ attr('product', 'title') }}"/>
             </div>
