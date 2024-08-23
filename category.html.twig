@@ -1,10 +1,11 @@
 {%  extends 'base.html.twig' %}
-
+{% set page = app.request.get('page')|default(1) %}
 {% block title %}Catégorie
 {% endblock %}
 
 {% block body %}
-	{% set products = resources('/api/front/products', {'productCategories.category.id': attr('category', 'id'), itemsPerPage:9}) %}
+	{% set products = resources('/api/front/products', {'productCategories.category.id': attr('category', 'id'), itemsPerPage:9, page: page}) %}
+	{% set totalProducts = resources('/api/front/products', {'productCategories.category.id': attr('category', 'id'), itemsPerPage:9, page: page}) %}
 
 	{% include '@components/Layout/Subheader/Category/SubheaderCategory.twig' with {title: attr('category', 'title'), description: attr('category', 'description'), nbProducts: products|length}  %}
 
@@ -58,16 +59,7 @@
 
 			<div class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 mb-[40px]">
 				{% for product in products %}
-					{% include '@components/Organisms/ProductCard/ProductCard.twig' with {
-          displayWishButton: true,
-          productTitle: product.i18ns.i18ns.fr_FR.title,
-          secondaryTitle: product.i18ns.i18ns.fr_FR.chapo ?? null,
-          price: product.productSaleElements|filter(pse => pse.isDefault)|first.productPrices|first.price ~ '€',
-          promoPrice: product.productSaleElements|filter(pse => pse.isDefault)|first.productPrices|first.promoPrice ~ '€',
-          isPromo: product.productSaleElements|filter(pse => pse.isDefault)|first.promo,
-          isNew: product.productSaleElements|filter(pse => pse.isDefault)|first.newness,
-          img: {url: '/legacy-image-library/product_image_'~product.id~'/full/%5E*!386,280/0/default.webp', alt: product.i18ns.i18ns.fr_FR.title}
-        } %}
+					{% include '@components/Organisms/ProductCard/ProductCard.twig' with  product|merge({displayWishButton: true}) %}
 				{% endfor %}
 			</div>
 
@@ -75,7 +67,7 @@
 				{% include '@components/Molecules/Pagination/Pagination.twig' with {
         prevText: 'Précédent',
         nextText: 'Suivant',
-        currentPage: 2,
+        currentPage: page,
         totalPages: 3
       } %}
 			</div>

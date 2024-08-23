@@ -4,12 +4,15 @@
 
 {% block body %}
   {% set categories = resources('/api/front/categories', {itemsPerPage:3}) %}
+  {% dump(categories) %}
+
   {% set categoriesFiltered = categories|map((c) => ({
     title: c.i18ns.title,
     button: {label: 'Je découvre', href: c.publicUrl},
     img: {url: '/legacy-image-library/category_image_'~c.id~'/full/%5E*!386,280/0/default.webp', alt: c.i18ns.title},
     url: c.publicUrl
   })) %}
+
 
 {%
   set blocks = [

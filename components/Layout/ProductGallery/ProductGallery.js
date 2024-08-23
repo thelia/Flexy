@@ -1,0 +1,23 @@
+export default function ProductGallery() {
+  const main = document.getElementById('MainImage');
+
+  const thumbs = document.querySelectorAll('.ProductGallery-thumbnail');
+
+  if (!main || thumbs.length === 0) return null;
+
+  [...thumbs].forEach((img) => {
+    img.addEventListener('click', (e) => {
+      resetFocus();
+      main.src =
+        '/legacy-image-library/product_image_' +
+        img.dataset.imageId +
+        '/full/%5E*!594,594/0/default.webp';
+
+      img.parentNode.classList.add('is-active');
+    });
+  });
+
+  function resetFocus() {
+    [...thumbs].forEach((el) => el.parentNode.classList.remove('is-active'));
+  }
+}
