@@ -44,7 +44,6 @@
     {% set img = img|default({url: '@assets/images/placeholder2.webp', alt:''}) %}
 {% endif %}
 
-
 <div class="ProductCard {{ classes }}">
 	{% if isAddToCartConfirmation or isRemoveProduct %}
 		<span class='ProductCard-iconClose'>{{ svg("close") }}</span>
@@ -52,7 +51,7 @@
 	<div class="ProductCard-header">
 		<div class="ProductCard-tagList">
 			{% if isNew %}
-        {% include '@components/Molecules/Tag/Tag.twig' with {customText: 'Nouveau', variant: 'vermillon'} %}
+        {% include '@components/Molecules/Tag/Tag.twig' with {customText: 'New'|trans, variant: 'vermillon'} %}
 			{% endif %}
 			{% if isPromo %}
         {% include '@components/Molecules/Tag/Tag.twig' with {customText: '-15%', variant: 'error'} %}
@@ -72,7 +71,7 @@
 	</div>
 	{% if isAddToCartConfirmation %}
 		<p class="ProductCard-addToCartTitle">
-			Votre produit a été ajouté au panier
+			{{ 'Your product has been added to the cart' |trans }}
 		</p>
 	{% endif %}
 	<div class="ProductCard-mainContent">
@@ -97,14 +96,14 @@
 							{{ value }}</span>
 					{% endfor %}
 					{% if quantity %}
-						<span>Quantié :
+						<span>{{ 'Quantity' |trans }}:
 							{{ quantity }}</span>
 					{% endif %}
 
 					{% if attributesAvColor %}
 
 						<span class="flex items-center ProductCard-secondarySize">
-							<span class="mr-1 Colors-item" style="background-color:{{ attributesAvColor.hexa }}"></span>Couleur:
+							<span class="mr-1 Colors-item" style="background-color:{{ attributesAvColor.hexa }}"></span>{{ t('Color') }}:
 							{{ attributesAvColor.name }}</span>
 					{% endif %}
 				</div>
@@ -112,9 +111,9 @@
 			{% if isRemoveProduct %}
 				<div class="ProductCard-removeProductMessage">
 					{{ productTitle }}
-					a été supprimé de votre panier.
+					{{ 'has been removed from your cart.' |trans }}
 				</div>
-        {% include '@components/Molecules/Button/Button.twig' with {classes:'Button--small', text: "Restaurer", icon_left: "restore" } %}
+        {% include '@components/Molecules/Button/Button.twig' with {classes:'Button--small', text: 'Restore'|trans , icon_left: "restore" } %}
 			{% endif %}
 			<div class="ProductCard-footer">
         {% if rate != null or colors|length > 0 %}
@@ -140,7 +139,7 @@
 								</div>
 								<span class="Rating-reviewCount indication-small">
 									{{reviewCount}}
-									Avis
+									{{ 'Reviews' |trans }}
 								</span>
 							</div>
 						{% endif %}
@@ -169,7 +168,7 @@
 				{% if isPurchaseFunnelCard|default(0) %}
 					{% if isOutOfStock %}
 						<div class="ProductCard-unavailable">
-							Indisponible
+							{{ 'Unavailable' |trans }}
 						</div>
 					{% else %}
 						<div class="ProductCard-quantity">
@@ -184,18 +183,18 @@
 		<div class="bottom-card-buttons">
 			<button class='hover:bg-theme-lighter' {% if disabled %} disabled {% endif %} type='button'>
 				<span>{{ svg("show") }}</span>
-				Voir le produit
+				{{ 'View product'|trans }}
 			</button>
 			<button class='hover:bg-theme-lighter' {% if disabled %} disabled {% endif %} type='button'>
 				<span>{{ svg("delete") }}</span>
-				Supprimer
+				{{ 'Delete' |trans }}
 			</button>
 		</div>
 	{% endif %}
 	{% if isAddToCartConfirmation %}
 		<div class="ProductCard-ProductCardAddToCartBottom">
-      {% include '@components/Molecules/Button/Button.twig' with {classes:'Button--medium', variant: "primary", text: "Voir mon panier" } %}
-      {% include '@components/Molecules/Button/Button.twig' with {classes:'Button--medium', variant: "secondary", text: "Poursuivre mes achats" } %}
+      {% include '@components/Molecules/Button/Button.twig' with {classes:'Button--medium', variant: "primary", text: "View my cart"|trans } %}
+      {% include '@components/Molecules/Button/Button.twig' with {classes:'Button--medium', variant: "secondary", text: "Continue shopping"|trans } %}
 		</div>
 	{% endif %}
 	{% if isRemoveProduct %}

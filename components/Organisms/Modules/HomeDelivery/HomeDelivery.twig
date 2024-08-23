@@ -21,7 +21,7 @@
 			<div class='flex justify-between'>
 				<div>
 					<span class='HomeDelivery-title'>{{ title }}</span>
-					<span class='HomeDelivery-description'>Livraison estimée le
+					<span class='HomeDelivery-description'>{{ 'Estimated delivery on'|trans }}
 						{{ date }}</span>
 				</div>
 				<div class="w-12 h-12 text-theme-medium">
@@ -39,10 +39,10 @@
 			{% if noAddress %}
 				<div class="flex flex-col items-start">
 					<span class="HomeDelivery-noAddress">
-						Vous n'avez pas d'adresse enregistrée
+						{{ 'You have no registered address' |trans }}:
 					</span>
 
-					{% include '@components/Molecules/Button/Button.twig' with {text: 'Ajouter une adresse', classes:'mt-4'} %}
+					{% include '@components/Molecules/Button/Button.twig' with {text: 'Add an address'|trans, classes:'mt-4'} %}
 				</div>
 			{% else %}
 				<div>
@@ -52,12 +52,12 @@
 					</div>
 
 					<div class='my-4'>
-          {% include '@components/Atoms/Form/Checkbox.twig' with { label: "Utiliser cette adresse pour la facturation" } %}
+          {% include '@components/Atoms/Form/Checkbox.twig' with { label: "Use this address for billing"|trans } %}
 					</div>
 
 					<div class='flex flex-col gap-2 mt-4 lg:flex-row lg:items-center'>
-          {% include '@components/Molecules/Button/Button.twig' with {text: 'Choisir cette adresse', classes:'Button--fill lg:w-1/2'} %}
-          {% include '@components/Molecules/Button/Button.twig' with {text: 'Utiliser une autre adresse', classes:'Button--secondary lg:w-1/2'} %}
+          {% include '@components/Molecules/Button/Button.twig' with {text: 'Choose this address'|trans, classes:'Button--fill lg:w-1/2'} %}
+          {% include '@components/Molecules/Button/Button.twig' with {text: 'Use another address'|trans, classes:'Button--secondary lg:w-1/2'} %}
 					</div>
 				</div>
 			{% endif %}

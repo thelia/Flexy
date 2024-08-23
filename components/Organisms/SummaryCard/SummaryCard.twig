@@ -10,19 +10,19 @@
 <div class='SummaryCard'>
   <div class='SummaryCard-list'>
     <div class='SummaryCard-line'>
-      <div>Sous-total <span class='paragraph-6 font-normal	'>({{ nbArticles}} article{{ nbArticles > 1 ? 's' : '' }})</span></div>
+      <div>{{ 'Subtotal'|trans }} <span class='font-normal paragraph-6 '>({{ nbArticles}} {{ 'item'|trans }}{{ nbArticles > 1 ? 's' : '' }})</span></div>
       <div>{{ subTotal }}</div>
     </div>
     <div class='SummaryCard-line'>
-      <div>Livraison</div>
-      <div>Calculée à l’étape suivante</div>
+      <div>{{ 'Delivery'|trans }}</div>
+      <div>{{ 'Calculated at the next step'|trans }}</div>
     </div>
     {% if not noPromo %}
       <div class='SummaryCard-line'>
         <div>
-          Code Promo
+          {{ 'Promo Code'|trans }}
           {% if promo %}
-            <div class='paragraph-6 font-normal'>{{ promo.code }}</div>
+            <div class='font-normal paragraph-6'>{{ promo.code }}</div>
           {% endif %}
         </div>
         {% if promo %}
@@ -31,15 +31,15 @@
               {selected: true, customText:promo.reduction, icon:'price-tag'} %}
           </div>
         {% else %}
-        <div>Aucun code Promo</div>
+        <div>{{ 'No Promo Code'|trans }}</div>
         {% endif %}
       </div>
     {% endif %}
     {% if not noGiftCard %}
     <div class='SummaryCard-line'>
       <div>
-        Carte cadeau
-        <div class='paragraph-6 font-normal'>{{ giftCard.code }}</div>
+        {{ 'Gift Card'|trans }}
+        <div class='font-normal paragraph-6'>{{ giftCard.code }}</div>
       </div>
       {% if giftCard %}
         <div>
@@ -47,22 +47,22 @@
             {selected: true, customText:giftCard.reduction, icon:'gift'} %}
         </div>
       {% else %}
-        <div>Aucune carte cadeau</div>
+        <div>{{ 'No Gift Card'|trans }}</div>
       {% endif %}
     </div>
     {% endif %}
   </div>
   <div class='SummaryCard-footer'>
     <div class='SummaryCard-total'>
-      <div>Total TTC</div>
+      <div>{{ 'Total (including VAT)'|trans }}</div>
       <div>{{ total }}</div>
     </div>
     <div class='italic'>
-      Taxes de 5,05 € incluse
+      {{ 'Taxes of'| trans }} 5,05€  {{ 'included'| trans }}
     </div>
     {% if cgvLink %}
       <div class='mt-2'>
-        En payant votre commande, vous acceptez nos <a href='{{ cgvLink }}'>conditions générales de vente</a> .
+        {{ 'By paying for your order, you agree to our'|trans }} <a href='{{ cgvLink }}'>{{ 'terms and conditions'|trans }}</a>.
       </div>
     {% endif %}
   </div>

@@ -2,15 +2,15 @@
 {% set nbProducts = nbProducts|default(0) %}
 
 <div class='Subheader Subheader--search'>
-  <div class='container mx-auto flex flex-col'>
+  <div class='container flex flex-col mx-auto'>
     <h1 class='Subheader-title Subheader-title--search'>{{ title }}</h1>
     <div>
-      {% include '@components/Molecules/SearchBar/SearchBar.twig' with { label: "Rechercher un lieu de livraison", classes: 'SearchBar--white ',placeholder: "Ex : Ville, Code postal",iconButtonLeft:true, iconButton: "search" } %}
+      {% include '@components/Molecules/SearchBar/SearchBar.twig' with { label: "Find a delivery address"|trans, classes: 'SearchBar--white ',placeholder: "e.g. City, Postcode"|trans,iconButtonLeft:true, iconButton: "search" } %}
 
     </div>
     <div class='Subheader-info'>
-      <div>{{ nbProducts}} produit(s)</div>
-      {% include '@components/Molecules/Button/Button.twig' with {text: 'Filtrer & trier',icon_left:'filter', variant: 'secondary'} %}
+      <div>{{ nbProducts}} {{ 'product(s)'|trans }}</div>
+      {% include '@components/Molecules/Button/Button.twig' with {text: 'Filter & Sort'|trans,icon_left:'filter', variant: 'secondary'} %}
     </div>
   </div>
 </div>

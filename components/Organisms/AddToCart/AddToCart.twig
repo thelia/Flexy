@@ -11,10 +11,10 @@
   {% endif %}
   <div>
     {% if unavailable %}
-      <span class='typo-button-large'>Produit indisponible</span>
+      <span class='typo-button-large'>{{ "Product unavailable"|trans }}</span>
     {% else %}
       {% include '@components/Molecules/Button/Button.twig' with
-        {classes:'', variant:'primary', text:'Ajouter au panier'} %}
+        {classes:'', variant:'primary', text:'Add to cart'|trans} %}
     {% endif %}
   </div>
 </div>

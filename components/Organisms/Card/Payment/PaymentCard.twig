@@ -13,16 +13,16 @@
       <div class='font-semibold'>{{ cardType }}</div>
       <div>N° {{ number }}</div>
       {% if expired %}
-        <div class='font-bold text-error-dark'>Expirée</div>
+        <div class='font-bold text-error-dark'>{{ 'Expired'|trans }}</div>
       {% else %}
-        <div>Expire le {{ date }}</div>
+        <div>{{ 'Expires on'|trans }} {{ date }}</div>
       {% endif %}
     </div>
     {% if not withoutButton %}
       <div class='{% if expired %}mt-2 flex gap-2{% endif %}'>
-        {% include '@components/Molecules/Button/Button.twig' with {classes: 'Button--small',text:'Supprimer', icon_left: 'delete'} %}
+        {% include '@components/Molecules/Button/Button.twig' with {classes: 'Button--small',text:'Delete'|trans, icon_left: 'delete'} %}
         {% if expired %}
-          {% include '@components/Molecules/Button/Button.twig' with {classes: 'Button--small', variant:'secondary', text:'Mettre à jour'} %}
+          {% include '@components/Molecules/Button/Button.twig' with {classes: 'Button--small', variant:'secondary', text:'Update'|trans} %}
         {% endif %}
       </div>
     {% endif %}

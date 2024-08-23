@@ -2,7 +2,7 @@
 {% set title = title|default('') %}
 {% set date = date|default('') %}
 {% set price = price|default('') %}
-{% set img = img|default({src: null, alt:'Logo transporteur'}) %}
+{% set img = img|default({src: null, alt:'Carrier logo'|trans}) %}
 
 <div class='Transporter {% if selected %}selected{% endif %}'>
   <label class='Transporter-content'>
@@ -10,7 +10,7 @@
 
     <span>
         <span class='Transporter-title'>{{ title }}</span>
-        <span class='Transporter-description'>Livraison estimée le {{ date }}</span>
+        <span class='Transporter-description'>{{ 'Estimated delivery on'|trans }} {{ date }}</span>
         <span class='Transporter-bottom'>
           <span>{{ price }}</span>
           {% if img.src %}
