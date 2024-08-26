@@ -5,6 +5,7 @@
   "license": "LGPL-3.0+",
   "require": {
     "composer/installers": "~1.0",
-    "symfony/webpack-encore-bundle": "*"
+    "symfony/webpack-encore-bundle": "*",
+    "symfony/ux-live-component": "^2.19"
   }
 }
