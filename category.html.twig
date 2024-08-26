@@ -13,18 +13,38 @@
 		<div class="w-[310px] lg:block hidden mt-[44px] sticky top-20">
 			<div class="h4 mb-[22px]">Filtrer</div>
 
+			{% set sizes %}
+			{% set sizesData = [
+        { value: 1, label: 'S - 34/36' },
+        { value: 2, label: 'M - 38/40', disabled: true },
+        { value: 3, label: 'L - 42/44' }
+      ] %}
+
+			{% include '@components/Organisms/Modules/Filters/FilterClassic.twig' with {options: sizesData, name: 'size', id: 'filterSize'} %}
+			{% endset %}
+
+			{% set colors %}
+			{% set colorsData = [
+        { value: 1, color: '#6969B3', label: 'State Blue' },
+        { value: 2, color: '#FFB698', label: 'Vermillon' },
+        { value: 3, color: '#767676', label: 'Grey' },
+        { value: 4, color: '#84DCC6', label: 'Tiffany Blue', disabled: true },
+        { value: 5, color: '#DD6E42', label: 'Sienna' },
+        { value: 6, color: '#C17767', label: 'Old Rose' },
+      ] %}
+
+			{% include '@components/Organisms/Modules/Filters/FilterColor.twig' with {options: colorsData, name: 'color', id: 'filterColor'} %}
+			{% endset %}
+
 			<div>
 				{% include '@components/Molecules/Accordion/Accordion.twig' with {
           title: "Taille",
-          content: ""
+          content: sizes
         } %}
+
 				{% include '@components/Molecules/Accordion/Accordion.twig' with {
           title: "Couleur",
-          content: "test"
-				} %}
-				{% include '@components/Molecules/Accordion/Accordion.twig' with {
-          title: "Matière",
-          content: "test"
+          content: colors
 				} %}
 			</div>
 		</div>
