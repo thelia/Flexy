@@ -1,6 +1,6 @@
 {%  extends 'base.html.twig' %}
 {% set page = app.request.get('page')|default(1) %}
-{% block title %}Catégorie
+{% block title %}{{ 'Category'|trans }}
 {% endblock %}
 
 {% block body %}
@@ -11,19 +11,19 @@
 
 	<section class="px-6 lg:px-[120px] py-6 lg:flex lg:gap-[115px] lg:justify-between">
 		<div class="w-[310px] lg:block hidden mt-[44px] sticky top-20">
-			<div class="h4 mb-[22px]">Filtrer</div>
+			<div class="h4 mb-[22px]">{{ 'Filter'|trans }}</div>
 
 			<div>
 				{% include '@components/Molecules/Accordion/Accordion.twig' with {
-          title: "Taille",
+          title: "Size" | trans,
           content: ""
         } %}
 				{% include '@components/Molecules/Accordion/Accordion.twig' with {
-          title: "Couleur",
+          title: "Color" | trans,
           content: "test"
 				} %}
 				{% include '@components/Molecules/Accordion/Accordion.twig' with {
-          title: "Matière",
+          title: "Material" | trans,
           content: "test"
 				} %}
 			</div>
@@ -31,26 +31,26 @@
 
 		<div>
 			<div class="lg:justify-between lg:items-center mb-[29px] hidden lg:flex">
-				<span>{{products|length}}
-					article(s)</span>
+				<span>{{ products|length }}
+					{{ 'item(s)'|trans }}</span>
 
 				<div class="w-[250px]">
 					{% include '@components/Molecules/Fields/FieldSelect/FieldSelect.twig' with {
-          label: "Trier par",
-          tooltip: "Trier les produits",
-          placeholder: "Trier par",
+          label: "Sort by" | trans,
+          tooltip: "Sort the products" | trans,
+          placeholder: "Sort by" | trans,
           options: [{
             value: "priceASC",
-            label: "Prix croissant"
+            label: "Price ascending" | trans
           }, {
             value: "priceDESC",
-            label: "Prix décroissant"
+            label: "Price descending" | trans
           }, {
             value: "newness",
-            label: "Nouveautés"
+            label: "New arrivals" | trans
           }, {
             value: "promo",
-            label: "Promotions"
+            label: "Promotions" | trans
           }],
         } %}
 				</div>
@@ -65,8 +65,8 @@
 
 			<div class='mx-auto lg:mx-0 lg:ml-auto w-max'>
 				{% include '@components/Molecules/Pagination/Pagination.twig' with {
-        prevText: 'Précédent',
-        nextText: 'Suivant',
+        prevText: 'Previous' | trans,
+        nextText: 'Next' | trans,
         currentPage: page,
         totalPages: 3
       } %}
@@ -80,23 +80,23 @@
 
 	{% include '@components/Layout/Reinsurance/Reinsurance.twig' with { data: [
       {
-        strongText: 'Livraison gratuite',
-        text: 'Pour toute commande supérieure à 100€',
-        linkLabel: 'Voir conditions',
+        strongText: 'Free delivery' | trans,
+        text: 'For any order over €100' | trans,
+        linkLabel: 'See conditions' | trans,
         link: '#',
         icon: 'reinsurance-delivery'
       },
       {
-        strongText: 'Paiement sécurisé',
-        text: 'Carte bancaire, Paypal',
-        linkLabel: 'Voir conditions',
+        strongText: 'Secure payment' | trans,
+        text: 'Credit card, Paypal' | trans,
+        linkLabel: 'See conditions' | trans,
         link: '#',
         icon: 'reinsurance-payment'
       },
       {
-        strongText: 'Satisfait ou remboursé',
-        text: 'Echange ou remboursement offert sous 30 jours',
-        linkLabel: 'Voir conditions',
+        strongText: 'Satisfied or refunded' | trans,
+        text: 'Exchange or refund offered within 30 days' | trans,
+        linkLabel: 'See conditions' | trans,
         link: '#',
         icon: 'reinsurance-satisfied'
       }

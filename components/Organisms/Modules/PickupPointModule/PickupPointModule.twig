@@ -13,7 +13,7 @@
       <span class='PickupPointModule-top'>
       <span>
         <span class='PickupPointModule-title'>{{ title }}</span>
-        <span class='PickupPointModule-description'>Livraison estimée le {{ date }}</span>
+        <span class='PickupPointModule-description'>{{ 'Estimated delivery on'|trans }} {{ date }}</span>
       </span>
       <span class="w-12 h-12 text-theme-medium">
         {{ svg("reinsurance-pickup") }}
@@ -27,17 +27,17 @@
   </label>
   <div class='PickupPointModule-searchZone'>
     <div>
-      {% include '@components/Molecules/Fields/FieldInput/FieldInput.twig' with { label: "Rechercher un lieu de livraison", placeholder: "Ex : Ville, Code postal", iconButton: "search" } %}
+      {% include '@components/Molecules/Fields/FieldInput/FieldInput.twig' with { label: "Find a delivery address"|trans, placeholder: "e.g. City, Postcode"|trans, iconButton: "search" } %}
     </div>
     <div>
-      <button class='underline-with-icon text-black' type='button'>{{ svg("pin-circle") }}Sélectionner sur la carte</button>
+      <button class='text-black underline-with-icon' type='button'>{{ svg("pin-circle") }}{{ 'Select on map'|trans }}</button>
     </div>
     <div class='flex gap-1 md:gap-5'>
-      {% include '@components/Molecules/Button/Button.twig' with {classes: 'PickupPointModule-buttonView', text: 'Vue carte', sharp:true, icon_left: 'list', variant: 'secondary'} %}
-      {% include '@components/Molecules/Button/Button.twig' with {classes: 'PickupPointModule-buttonView', text: 'Vue carte', sharp:true, icon_left: 'pin-circle'} %}
+      {% include '@components/Molecules/Button/Button.twig' with {classes: 'PickupPointModule-buttonView', text: 'Map view'|trans, sharp:true, icon_left: 'list', variant: 'secondary'} %}
+      {% include '@components/Molecules/Button/Button.twig' with {classes: 'PickupPointModule-buttonView', text: 'Map view'|trans, sharp:true, icon_left: 'pin-circle'} %}
     </div>
-    <div class='paragraph-6 mt-5'>3 points relais trouvés</div>
-    <div class='mt-3 text-black xl:flex gap-10'>
+    <div class='mt-5 paragraph-6'>3 {{ 'relay point(s) found'|trans }}</div>
+    <div class='gap-10 mt-3 text-black xl:flex'>
       {% for pickupService in pickupServices %}
         <label class="Checkbox">
           <input type="checkbox"
@@ -54,7 +54,7 @@
         </label>
       {% endfor %}
     </div>
-    <div class='mt-6 flex flex-col gap-2'>
+    <div class='flex flex-col gap-2 mt-6'>
       {% for pickup in pickups %}
       {% include '../../Card/PickupPoint/PickupPoint.twig' with pickup %}
       {% endfor %}

@@ -1,7 +1,6 @@
-{%  extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}Site en maintenance
-{% endblock %}
+{% block title %}{{ 'Site under maintenance' | trans }}{% endblock %}
 
 {% block header %}{% endblock %}
 
@@ -10,7 +9,7 @@
 		<div class="w-[150px] h-[150px] lg:w-[220px] lg:h-[220px] mb-4">
 			{{ source('assets/images/coffee.svg') }}
 		</div>
-		<h3 class="mt-4 mb-6 h3 max-w-[540px]">Votre site favori fait peau neuve et reviendra dans quelques instants.</h3>
+		<h3 class="mt-4 mb-6 h3 max-w-[540px]">{{ 'Your favorite site is getting a makeover and will be back shortly.' | trans }}</h3>
 	</div>
 {% endblock %}
 

@@ -17,10 +17,10 @@
     {% if address.address2 %}<span>{{ address.address2 }},</span>{% endif %}
     <div>{{ address.zipCode }} {{ address.city }}</div>
   </div>
-  <div class='lg:flex justify-between align-center'>
-    <button class='StoreInfo-hours'>{{ svg("clock") }}Horaires du magasin</button>
+  <div class='justify-between lg:flex align-center'>
+    <button class='StoreInfo-hours'>{{ svg("clock") }}{{ 'Shop opening times'|trans }}</button>
     <div class='hidden lg:block'>
-      {% include '@components/Molecules/Button/Button.twig' with {text: 'Choisir ce magasin', classes:'Button--fill lg:Button--unfill'} %}
+      {% include '@components/Molecules/Button/Button.twig' with {text: 'Choose this shop'|trans, classes:'Button--fill lg:Button--unfill'} %}
     </div>
   </div>
   <div class='StoreInfo-hoursListing {% if not displayHours|default(false) %}hidden{% endif %}'>
@@ -29,7 +29,7 @@
         <div>{{ hour.hours }}</div>
       {% endfor %}
   </div>
-  <div class='lg:hidden mt-4'>
-    {% include '@components/Molecules/Button/Button.twig' with {text: 'Choisir ce magasin', classes:'Button--fill'} %}
+  <div class='mt-4 lg:hidden'>
+    {% include '@components/Molecules/Button/Button.twig' with {text: 'Choose this shop'|trans, classes:'Button--fill'} %}
   </div>
 </div>

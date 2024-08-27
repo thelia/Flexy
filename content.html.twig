@@ -1,6 +1,6 @@
 {%  extends 'base.html.twig' %}
 
-{% block title %}Content page
+{% block title %}{{ 'Content page'|trans }}
 {% endblock %}
 
 {% block body %}
@@ -20,13 +20,13 @@
 			{{ attr('content', 'description') }}
 		</article>
 		<aside class="hidden lg:block w-[340px]">
-			{% include '@components/Molecules/Shortcut/Shortcut.twig' with {customText: "Titre de section"} %}
-			{% include '@components/Molecules/Shortcut/Shortcut.twig' with {customText: "Titre de section"} %}
-			{% include '@components/Molecules/Shortcut/Shortcut.twig' with {customText: "Titre de section"} %}
+			{% include '@components/Molecules/Shortcut/Shortcut.twig' with {customText: "Section title" | trans} %}
+			{% include '@components/Molecules/Shortcut/Shortcut.twig' with {customText: "Section title" | trans} %}
+			{% include '@components/Molecules/Shortcut/Shortcut.twig' with {customText: "Section title" | trans} %}
 		</aside>
 	</div>
 
 	<div class="bg-theme-lighter">
-		{% include '@components/Layout/SimilarContent/SimilarContent.twig' with {title: "Sur le même sujet", button: {label: "Voir toutes les actualités", href: "/" }, similarContents: contentsFiltered}  %}
+		{% include '@components/Layout/SimilarContent/SimilarContent.twig' with {title: "On the same topic" | trans, button: {label: "See all news" | trans, href: "/" }, similarContents: contentsFiltered}  %}
 	</div>
 {% endblock %}

@@ -8,14 +8,14 @@
 <div class='OrderCard'>
 	<div class='justify-between 2xl:flex'>
 		<div>
-			<div class='OrderCard-title'>Commande N°
+			<div class='OrderCard-title'>{{ 'Order N°'|trans }}
 				{{ orderNumber }}</div>
-			<div class='OrderCard-date'>du
+			<div class='OrderCard-date'>{{ 'of'|trans }}
 				{{ date }}</div>
 		</div>
 		<div class='flex justify-between mt-1 2xl:block 2xl:mt-0'>
 			<div class='text-black paragraph-3'>{{ nbItems }}
-				article
+        {{ 'item'|trans }}
 				{% if nbItems > 1 %}s
 				{% endif %}
 			</div>
@@ -25,9 +25,9 @@
 
 	<div class='2xl:flex 2xl:items-center 2xl:gap-4 2xl:mb-4 2xl:mt-2'>
 		<div class='mt-1 mb-2 2xl:mt-0 2xl:mb-0'>
-			{% include '@components/Molecules/OrderTag/OrderTag.twig' with {customText: 'Commande expédiée', variant:'validated'} %}
+			{% include '@components/Molecules/OrderTag/OrderTag.twig' with {customText: 'Order shipped'|trans, variant:'validated'} %}
 		</div>
-		<div class='OrderCard-delivery'>Livraison prévue le
+		<div class='OrderCard-delivery'>{{ 'Scheduled for delivery on'|trans }}
 			{{ deliveryDate }}</div>
 	</div>
 	<div class='OrderCard-images'>
@@ -39,6 +39,6 @@
 		<div class='OrderCard-nbImages'></div>
 	</div>
 	<div class='mt-6 text-center md:text-left'>
-		{% include '@components/Molecules/Button/Button.twig' with {text: 'Voir le détail de la commande'} %}
+		{% include '@components/Molecules/Button/Button.twig' with {text: 'See order details'|trans} %}
 	</div>
 </div>

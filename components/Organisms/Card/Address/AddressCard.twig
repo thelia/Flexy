@@ -23,14 +23,14 @@
 <div class='AddressCard {% if selected %}selected{% endif %}'>
   {% if not purchaseFunnel %}
     <div class='AddressCard-top'>
-      {% include '@components/Molecules/Favorite/Favorite.twig' with {text: 'Favori', selected: isDefault} %}
+      {% include '@components/Molecules/Favorite/Favorite.twig' with {text: 'Favourite'|trans, selected: isDefault} %}
     </div>
   {% endif %}
   <{{ contentType }} class='AddressCard-content'>
     {% include '@components/Atoms/Form/Radio.twig' with {classes:radio ? "" : "invisible max-w-0", type:"span", name:"test", value:1, checked:selected} %}
 
     <span>
-      <span class='AddressCard-title'>{% if not purchaseFunnel %}{{ address.title }}{% else %}Adresse de livraison{% endif %}</span>
+      <span class='AddressCard-title'>{% if not purchaseFunnel %}{{ address.title }}{% else %}{{ 'Delivery address'|trans }}{% endif %}</span>
       <span class='AddressCard-name'>{{ address.name }}</span>
       <span class='AddressCard-address'>
         <span>{{ address.address1 }},{% if address.address2 %} {{ address.address2 }},{% endif %}</span>
@@ -44,11 +44,11 @@
     <div class="bottom-card-buttons">
       <button {% if disabled %}disabled{% endif %} class='hover:text-theme' type='button'>
         <span>{{ svg("edit") }}</span>
-        Modifier
+        {{ 'Modify'|trans }}
       </button>
       <button {% if disabled %}disabled{% endif %} class='hover:text-theme' type='button'>
         <span>{{ svg("delete") }}</span>
-        Supprimer
+        {{ 'Delete'|trans }}
       </button>
     </div>
   {% endif %}

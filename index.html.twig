@@ -8,7 +8,7 @@
 
   {% set categoriesFiltered = categories|map((c) => ({
     title: c.i18ns.title,
-    button: {label: 'Je découvre', href: c.publicUrl},
+    button: {label: 'Discover'|trans, href: c.publicUrl},
     img: {url: '/legacy-image-library/category_image_'~c.id~'/full/%5E*!386,280/0/default.webp', alt: c.i18ns.title},
     url: c.publicUrl
   })) %}
@@ -21,38 +21,37 @@
       alt: "Image desc",
       "title": "Ici une phrase d’accroche pour accompagner le visuel",
       "href": "#",
-      "linkLabel": "Je découvre"
+      "linkLabel": "Discover" | trans
     },
     {
       "image": asset("dist/images/placeholder.webp"),
       alt: "Image desc",
       "title": "Ici une phrase d’accroche pour accompagner le visuel",
       "href": "#",
-      "linkLabel": "Je découvre"
+      "linkLabel": "Discover" | trans
     },
     {
       "image": asset("dist/images/placeholder.webp"),
       alt: "Image desc",
       "title": "Ici une phrase d’accroche pour accompagner le visuel",
       "href": "#",
-      "linkLabel": "Je découvre"
+      "linkLabel": "Discover" | trans
     }
   ]
 %}
 
   {% include '@components/Layout/Hero/Hero.twig' with { blocks: blocks } %}
 
-  {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Last seen products'|trans, categoryId: 1}  %}
-
+  {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Last seen products' | trans, categoryId: 1}  %}
 
   <div class="bg-theme-lighter">
-    {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Popular products'|trans, categoryId: 2}  %}
+    {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Popular products' | trans, categoryId: 2}  %}
   </div>
   <div class="bg-theme-lightest">
-    {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Promotions'|trans, categoryId: 3}  %}
+    {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Promotions' | trans, categoryId: 3}  %}
   </div>
 
-  {% include '@components/Layout/ProductCategory/ProductCategory.twig' with {title: t('Nos catégories de produits'), categories:categoriesFiltered}  %}
+  {% include '@components/Layout/ProductCategory/ProductCategory.twig' with {title: 'Our product categories' | trans, categories: categoriesFiltered}  %}
 
   {%
     set reviews = [4,2,3]|map((note) => ({
@@ -64,7 +63,7 @@
   %}
 
   <div class="bg-theme-lightest">
-    {% include '@components/Layout/Review/Review.twig' with {title: 'Nos clients parlent de nous', reviews:reviews, button:{label:"Voir tous les avis", href:"#"}}  %}
+    {% include '@components/Layout/Review/Review.twig' with {title: 'Our customers speak about us' | trans, reviews: reviews, button: {label: "See all reviews" | trans, href: "#"}}  %}
   </div>
 
   {% set news = resources('/api/front/contents', {itemsPerPage:3}) %}
@@ -73,12 +72,12 @@
     title: n.i18ns.title,
     date: n.createdAt|date("d/m/Y"),
     url: '#',
-    img:{url: '/images/placeholder.webp', alt:n.i18ns.title}
-    }))
+    img: {url: '/images/placeholder.webp', alt: n.i18ns.title}
+  }))
   %}
   <div class="bg-theme-lighter">
-    {% include '@components/Layout/SimilarContent/SimilarContent.twig' with {title: 'Nos actualités', similarContents:newsFiltered, button:{label:"Voir toutes les actualités", href:"#"}}  %}
+    {% include '@components/Layout/SimilarContent/SimilarContent.twig' with {title: 'Our news' | trans, similarContents: newsFiltered, button: {label: "See all news" | trans, href: "#"}}  %}
   </div>
 {% endblock %}
 
-{#<div class="font-bold sm:w-7/12">{format_money number={$TOTAL_TAXED_AMOUNT} currency_id=$CURRENCY}</div>#}
+{#<div class="font-bold sm:w-7/12">{{ format_money(number={$TOTAL_TAXED_AMOUNT}, currency_id=$CURRENCY) }}</div>#}

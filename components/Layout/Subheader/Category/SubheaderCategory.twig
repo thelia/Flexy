@@ -3,17 +3,17 @@
 {% set nbProducts = nbProducts|default(0) %}
 
 <div class='Subheader Subheader--category'>
-  <div class='container mx-auto flex flex-col'>
+  <div class='container flex flex-col mx-auto'>
     <h1 class='Subheader-title'>{{ title }}</h1>
     <div class='Subheader-description'>
       {{ description }}
     </div>
-    <div class='Subheader-link underline'>
-      <a href='#' class='link-large'>Lire la suite</a>
+    <div class='underline Subheader-link'>
+      <a href='#' class='link-large'>{{ 'Read more'|trans }}</a>
     </div>
     <div class='Subheader-info Subheader-info--category'>
-      <div>{{ nbProducts }} produit(s)</div>
-      {% include '@components/Molecules/Button/Button.twig' with {text: 'Filtrer & trier',icon_left:'filter', variant: 'secondary'} %}
+      <div>{{ nbProducts }} {{ 'product(s)'|trans }}</div>
+      {% include '@components/Molecules/Button/Button.twig' with {text: 'Filter & Sort'|trans, icon_left:'filter', variant: 'secondary'} %}
     </div>
   </div>
 </div>

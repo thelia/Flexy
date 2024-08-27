@@ -18,12 +18,12 @@
 	{% if selected %}
 		<div class='Payment-bottom bg-theme-lightest'>
 			<div class="flex flex-col mx-auto gap-4 lg:max-w-[250px] lg:mt-[30px]">
-      {% include '@components/Molecules/Fields/FieldInput/FieldInput.twig' with { label: "Numéro de carte", placeholder: "xxxx xxxx xxxx xxxx" } %}
-      {% include '@components/Molecules/Fields/FieldInput/FieldInput.twig' with { label: "Titulaire de la carte", placeholder: "Ex. Alain Dupont" } %}
+      {% include '@components/Molecules/Fields/FieldInput/FieldInput.twig' with { label: "Card number"|trans, placeholder: "xxxx xxxx xxxx xxxx" } %}
+      {% include '@components/Molecules/Fields/FieldInput/FieldInput.twig' with { label: "Card holder"|trans, placeholder: "Ex. Alain Dupont" } %}
 
 				<div class='flex gap-4'>
 					<div class="w-full">
-						{% include '@components/Molecules/Fields/FieldInput/FieldInput.twig' with { label: "Date d'expiration", placeholder: "MM/AA" } %}
+						{% include '@components/Molecules/Fields/FieldInput/FieldInput.twig' with { label: "Expiry date"|trans, placeholder: "MM/AA" } %}
 					</div>
 
         {% include '@components/Molecules/Fields/FieldInput/FieldInput.twig' with { label: "CVV", placeholder: "xxx", tooltip: "Tooltip CVV" } %}
@@ -32,12 +32,12 @@
 				<div class="flex gap-2">
 					<div class="flex-shrink-0 w-4 h-4">{{ svg("lock") }}</div>
 					<span class="paragraph-6">
-						Le paiement se fait sur les serveurs de votre banque. Nous n'avons pas accès à vos données bancaires.
+            {{ "Payment is made via your bank's servers. We do not have access to your bank details."|trans }}
 					</span>
 				</div>
 
       <div class="flex">
-					{% include '@components/Atoms/Form/Checkbox.twig' with { label: "Enregistrer cette carte pour vos futurs achats", classes: 'items-baseline' } %}
+					{% include '@components/Atoms/Form/Checkbox.twig' with { label: "Save this card for future purchases"|trans, classes: 'items-baseline' } %}
 				</div>
 			</div>
 		</div>

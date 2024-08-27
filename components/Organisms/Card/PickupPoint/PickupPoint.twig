@@ -18,8 +18,8 @@
 
     <span>
         <span class='PickupPoint-title'>{{ title }}</span>
-        <span class='PickupPoint-description'>Livraison estimée le {{ date }}</span>
-        <span class='PickupPoint-opening {% if closed %}closed{% endif %}'>{% if closed %}Fermé{% else %}Ouvert{% endif %} actuellement</span>
+        <span class='PickupPoint-description'>{{ 'Estimated delivery on'|trans }}{{ date }}</span>
+        <span class='PickupPoint-opening {% if closed %}closed{% endif %}'>{% if closed %}{{ 'Close'|trans }}{% else %}{{ 'Open'|trans }}{% endif %}{{ 'currently'|trans }}</span>
         <span class='PickupPoint-address'>
           <span>{{ address.address1 }},</span>
           {% if address.address2 %}<span>{{ address.address2 }},</span>{% endif %}
@@ -29,7 +29,7 @@
     </span>
   </label>
   <div class='PickupPoint-bottom'>
-          <button class='PickupPoint-hours underline-with-icon' type='button'>{{ svg("clock") }}Horaires</button>
+          <button class='PickupPoint-hours underline-with-icon' type='button'>{{ svg("clock") }}{{ 'Opening hours'|trans }}</button>
           {% if img.src %}
             <img src="{{ img.src }}" alt="{{ img.alt }}" loading="lazy">
           {% endif %}
@@ -44,7 +44,7 @@
       {% endfor %}
     </table>
   </div>
-  <div class='md:hidden mt-4'>
-    {% include '@components/Molecules/Button/Button.twig' with {text: 'Choisir ce point relais', classes:'Button--fill'} %}
+  <div class='mt-4 md:hidden'>
+    {% include '@components/Molecules/Button/Button.twig' with {text: 'Choose this relay point'|trans, classes:'Button--fill'} %}
   </div>
 </div>
