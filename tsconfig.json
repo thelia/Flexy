@@ -2,8 +2,8 @@
   "include": [
     "./components/**/*.ts",
     "assets/js/utils/intl.ts",
-    "components/Layout/Checkout/Checkout.tsx",
-    "components/Layout/Checkout/index.tsx"
+    "react-components/Layout/Checkout/Checkout.tsx",
+    "react-components/Layout/Checkout/index.tsx"
   ],
   "exclude": [],
   "compilerOptions": {

@@ -1,6 +1,4 @@
-import messages, { locale } from '@utils/intl';
 import Checkout from './Checkout';
-import { IntlProvider } from 'react-intl';
 import { QueryClientProvider } from 'react-query';
 import { queryClient } from '@openstudio/thelia-api-utils';
 import { createRoot } from 'react-dom/client';
@@ -14,9 +12,7 @@ export default function CheckoutPage() {
 
   root.render(
     <QueryClientProvider client={queryClient}>
-      <IntlProvider locale={locale} messages={messages[locale]}>
-        <Checkout />
-      </IntlProvider>
+      <Checkout />
     </QueryClientProvider>
   );
 }
