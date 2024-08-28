@@ -1,4 +1,10 @@
 {% extends 'base.html.twig' %}
+
+{% block javascripts %}
+  {{ parent() }}
+  {{ encore_entry_script_tags('product') }}
+{% endblock %}
+
 {% set productId = attr('product', 'id') %}
 {% block title %}{{ attr('product', 'title') }}{% endblock %}
 
@@ -67,30 +73,21 @@
           </div>
           {% set attributes = getAttributesAndValues(productId) %}
 
-          <div class="mt-[30px] flex flex-col gap-4">
-          {% for attribute in attributes %}
-            <div>
-              {% include '@components/Organisms/Modules/Filters/FilterClassic.twig' with {options: attribute.values|map(v => {value: v.id, label: v.title}), name: 'attribute'~attribute.id, label: attribute.title,id: 'attribute'~attribute.id} %}
-            </div>
-          {% endfor %}
-          </div>
           {% include '@react/Layout/PseSelector/PseSelector.twig' %}
 
           {#     TODO : ajouter les couleurs aux attributs (voir ex commenté)    #}
-          {#          {% set colors = [#}
-          {#            { value: 1, color: '#6969B3', label: 'State Blue' },#}
-          {#            { value: 2, color: '#FFB698', label: 'Vermillon' },#}
-          {#            { value: 3, color: '#767676', label: 'Grey' },#}
-          {#            { value: 4, color: '#84DCC6', label: 'Tiffany Blue', disabled: true },#}
-          {#            { value: 5, color: '#DD6E42', label: 'Sienna' },#}
-          {#            { value: 6, color: '#C17767', label: 'Old Rose' },#}
-          {#          ] %}#}
-          {#          <div class="mt-4">#}
-          {#            {% include '@components/Organisms/Modules/Filters/FilterColor.twig' with {options: colors, name: 'color', label: 'Couleur',id: 'filterColor'} %}#}
-          {#          </div>#}
-          <div class="mt-[30px] h4">
-            1000 €
-          </div>
+          {#          {% set colors = [ #}
+          {#            { value: 1, color: '#6969B3', label: 'State Blue' }, #}
+          {#            { value: 2, color: '#FFB698', label: 'Vermillon' }, #}
+          {#            { value: 3, color: '#767676', label: 'Grey' }, #}
+          {#            { value: 4, color: '#84DCC6', label: 'Tiffany Blue', disabled: true }, #}
+          {#            { value: 5, color: '#DD6E42', label: 'Sienna' }, #}
+          {#            { value: 6, color: '#C17767', label: 'Old Rose' }, #}
+          {#          ] %} #}
+          {#          <div class="mt-4"> #}
+          {#            {% include '@components/Organisms/Modules/Filters/FilterColor.twig' with {options: colors, name: 'color', label: 'Couleur',id: 'filterColor'} %} #}
+          {#          </div> #}
+
           <div class="mt-[30px]">
             {% include '@components/Molecules/Button/QuantityButton.twig' with {value:1, classes:'Button--large', text:'Add to cart'|trans, icon:'cart', fill:true} %}
           </div>

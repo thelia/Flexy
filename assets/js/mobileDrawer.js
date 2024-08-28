@@ -2,6 +2,7 @@ export default function MobileDrawer() {
   const toggleDrawers = document.querySelectorAll('[data-drawer-toggle]');
   const closeDrawers = document.querySelectorAll('[data-drawer-close]');
   const drawers = document.querySelectorAll('.MobileDrawer');
+  const drawerOptions = document.querySelectorAll('.FilterSelect-option');
 
   toggleDrawers.forEach(function (drawer) {
     drawer.addEventListener('click', () => {
@@ -14,7 +15,10 @@ export default function MobileDrawer() {
   });
   closeDrawers.forEach(function (drawer) {
     drawer.addEventListener('click', () => {
+      console.log({drawer});
       const parent = drawer.closest('.MobileDrawer');
+      console.log({parent});
+
       if (!parent) return;
       closeDrawer(parent);
     });
@@ -37,6 +41,14 @@ export default function MobileDrawer() {
       }
     });
   });
+  drawerOptions.forEach(function (option) {
+    option.addEventListener('click', function () {
+      const parentDrawer = option.closest('.MobileDrawer');
+      if (parentDrawer) {
+        closeDrawer(parentDrawer);
+      }
+    });
+  });
 }
 
 function openDrawer(currentDrawer) {
@@ -56,5 +68,7 @@ function toggleOverlay(open) {
     document.body.prepend(div);
     return;
   }
+
+  console.log('close overlays');
   document.querySelector('.MobileDrawer-overlay').remove();
 }

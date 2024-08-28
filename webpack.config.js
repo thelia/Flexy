@@ -22,6 +22,7 @@ Encore
   .setManifestKeyPrefix('dist/')
   .addAliases({
     '@components': path.resolve(__dirname, './components'),
+    '@react': path.resolve(__dirname, './react-components'),
     '@js': path.resolve(__dirname, './assets/js'),
     '@utils': path.resolve(__dirname, './assets/js/utils')
   })
@@ -33,6 +34,7 @@ Encore
    * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
    */
   .addEntry('app', './assets/app.js')
+  .addEntry('product', './assets/js/routes/product.js')
   .addEntry('checkout', './assets/js/routes/checkout.js')
 
   // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.

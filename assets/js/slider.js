@@ -32,6 +32,7 @@ export function slider() {
     isDown = false;
     slider.classList.remove('active');
   }
+
   function move(e, pageX, slider)
   {
     if (!isDown) return;

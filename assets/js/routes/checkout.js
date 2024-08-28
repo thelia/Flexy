@@ -1,3 +1,3 @@
-import Checkout from '@components/Layout/Checkout';
+import Checkout from '@react/Layout/Checkout';
 
 Checkout();

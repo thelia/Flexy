@@ -62,6 +62,7 @@ const config: StorybookConfig = {
       alias: {
         ...config.resolve?.alias,
         '@components': path.resolve(__dirname, '../components'),
+        '@react': path.resolve(__dirname, '../react-components'),
         '@icons': path.resolve(__dirname, '../assets/icons')
       }
     };
