@@ -20,6 +20,12 @@ Encore
   )
   // only needed for CDN's or subdirectory deploy
   .setManifestKeyPrefix('dist/')
+  .addAliases({
+    '@components': path.resolve(__dirname, './components'),
+    '@react': path.resolve(__dirname, './react-components'),
+    '@js': path.resolve(__dirname, './assets/js'),
+    '@utils': path.resolve(__dirname, './assets/js/utils')
+  })
 
   /*
    * ENTRY CONFIG
@@ -28,6 +34,8 @@ Encore
    * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
    */
   .addEntry('app', './assets/app.js')
+  .addEntry('product', './assets/js/routes/product.js')
+  .addEntry('checkout', './assets/js/routes/checkout.js')
 
   // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
   .splitEntryChunks()
@@ -103,5 +111,12 @@ Encore.configureImageRule({ type: 'javascript/auto' }, (loaderRule) => {
 
 // CSS CONFIG
 Encore.enablePostCssLoader();
+Encore.enableTypeScriptLoader();
 
+Encore.configureDevServerOptions((options) => {
+  options.headers = {
+    'Access-Control-Allow-Origin': '*'
+  };
+  options.allowedHosts = 'all';
+});
 module.exports = Encore.getWebpackConfig();

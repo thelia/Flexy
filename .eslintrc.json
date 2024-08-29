@@ -1,8 +1,13 @@
 {
- "root": true,
- "parser": "@babel/eslint-parser",
- "extends": [
-  "react-app",
-  "plugin:storybook/recommended"
- ]
+  "root": true,
+  "parser": "@babel/eslint-parser",
+  "extends": [
+    "react-app"
+  ],
+  "rules": {
+    "semi": [
+      2,
+      "always"
+    ]
+  }
 }

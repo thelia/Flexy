@@ -1,0 +1,10 @@
+<div id="PseSelector-root"></div>
+
+
+{% set attributes = getAttributesAndValues(productId) %}
+{% set pses = psesByProduct(productId) %}
+
+<script id="PseSelector-data">
+  window.PSES       = {{ pses|raw }};
+  window.ATTRIBUTES = {{ attributes|json_encode()|raw }};
+</script>

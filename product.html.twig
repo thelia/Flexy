@@ -1,16 +1,17 @@
 {% extends 'base.html.twig' %}
+
+{% block javascripts %}
+  {{ parent() }}
+  {{ encore_entry_script_tags('product') }}
+{% endblock %}
+
 {% set productId = attr('product', 'id') %}
 {% block title %}{{ attr('product', 'title') }}{% endblock %}
 
 {% set product = resources('/api/front/products/' ~ productId) %}
 {% set productCategory = product.productCategories|filter(c => c.defaultCategory)|first.category %}
 
-{% set images = resources('/api/front/product_images', {'product.id':productId}) %}
-{% if images %}
-    {% set imgId = images|first.id %}
-{% endif %}
-{% dump(images) %}
-
+{% dump(product) %}
 {% block body %}
   <div class="px-6 lg:px-[120px] py-6">
     <div class="lg:justify-between lg:items-center mb-[29px] lg:flex">
@@ -23,27 +24,23 @@
       <div class="lg:flex lg:justify-between gap-[46px]">
         <div>
           <section id="gallery" class="relative md:pl-[92px]">
-            <ul class="absolute top-0 left-0 hidden -translate-x-full md:transform-none lg:translate-x-0 sm:block">
-              {% for image in images %}
-                <li class="ProductGallery-item cursor-pointer{% if loop.index== 1 %} is-active{% endif %}">
-                  <img class="ProductGallery-thumbnail" data-image-id="{{ image.id }}" src="{{ "/legacy-image-library/product_image_"~image.id~"/full/%5E*!92,92/0/default.webp"}}" loading="lazy" />
-                </li>
-              {% endfor %}
-            </ul>
-            <div>
-              <img id="MainImage" src="{{ imgId ? "/legacy-image-library/product_image_"~imgId~"/full/%5E*!594,594/0/default.webp" : "@assets/images/placeholder2.webp"}}" loading="lazy"  alt="{{ attr('product', 'title') }}"/>
-            </div>
+            {% include '@components/Layout/ProductGallery/ProductGallery.twig' with {productId:productId } %}
           </section>
           <section id="description" class="lg:pl-[92px]">
+            {% set descriptionContent %}
+              <p>toto 2</p>
+              {% include '@components/Layout/ProductGallery/test.twig' %}
+            {% endset %}
+
             {% include '@components/Molecules/Accordion/Accordion.twig' with {
               title: 'Description'|trans,
-              content: "",
+              content: descriptionContent,
               iconPlus: "plus",
               iconMinus: "minus",
             } %}
             {% include '@components/Molecules/Accordion/Accordion.twig' with {
               title: 'Features'|trans,
-              content: "",
+              content: "tata",
               iconPlus: "plus",
               iconMinus: "minus",
             } %}
@@ -74,28 +71,23 @@
             </div>
             {% include '@components/Molecules/OrderTag/OrderTag.twig' with { customText: 'In stock'|trans, variant: 'success', type: 'minimal' } %}
           </div>
-          {% set sizes = [
-            { value: 1, label: 'S - 34/36' },
-            { value: 2, label: 'M - 38/40', disabled: true },
-            { value: 3, label: 'L - 42/44' }
-          ] %}
-          {% set colors = [
-            { value: 1, color: '#6969B3', label: 'State Blue' },
-            { value: 2, color: '#FFB698', label: 'Vermillon' },
-            { value: 3, color: '#767676', label: 'Grey' },
-            { value: 4, color: '#84DCC6', label: 'Tiffany Blue', disabled: true },
-            { value: 5, color: '#DD6E42', label: 'Sienna' },
-            { value: 6, color: '#C17767', label: 'Old Rose' },
-          ] %}
-          <div class="mt-[30px]">
-            {% include '@components/Organisms/Modules/Filters/FilterClassic.twig' with {options: sizes, name: 'size', label: 'Size'|trans, id: 'filterSize'} %}
-          </div>
-          <div class="mt-4">
-            {% include '@components/Organisms/Modules/Filters/FilterColor.twig' with {options: colors, name: 'color', label: 'Color'|trans, id: 'filterColor'} %}
-          </div>
-          <div class="mt-[30px] h4">
-            1000 €
-          </div>
+          {% set attributes = getAttributesAndValues(productId) %}
+
+          {% include '@react/Layout/PseSelector/PseSelector.twig' %}
+
+          {#     TODO : ajouter les couleurs aux attributs (voir ex commenté)    #}
+          {#          {% set colors = [ #}
+          {#            { value: 1, color: '#6969B3', label: 'State Blue' }, #}
+          {#            { value: 2, color: '#FFB698', label: 'Vermillon' }, #}
+          {#            { value: 3, color: '#767676', label: 'Grey' }, #}
+          {#            { value: 4, color: '#84DCC6', label: 'Tiffany Blue', disabled: true }, #}
+          {#            { value: 5, color: '#DD6E42', label: 'Sienna' }, #}
+          {#            { value: 6, color: '#C17767', label: 'Old Rose' }, #}
+          {#          ] %} #}
+          {#          <div class="mt-4"> #}
+          {#            {% include '@components/Organisms/Modules/Filters/FilterColor.twig' with {options: colors, name: 'color', label: 'Couleur',id: 'filterColor'} %} #}
+          {#          </div> #}
+
           <div class="mt-[30px]">
             {% include '@components/Molecules/Button/QuantityButton.twig' with {value:1, classes:'Button--large', text:'Add to cart'|trans, icon:'cart', fill:true} %}
           </div>

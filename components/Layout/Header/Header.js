@@ -3,7 +3,7 @@ export default () => {
 
   const btn = document.getElementById('toggleMenu');
 
-  btn.addEventListener('click', () =>
+  btn?.addEventListener('click', () =>
     document.getElementById('Menu').classList.toggle('is-open')
   );
 };
