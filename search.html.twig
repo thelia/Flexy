@@ -1,13 +1,15 @@
 {%  extends 'base.html.twig' %}
 {% set page = app.request.get('page')|default(1) %}
-{% block title %}{{ 'Category'|trans }}
+{% set searchString = app.request.get('query')|default("") %}
+
+{% block title %}{{ 'Search'|trans }}
 {% endblock %}
 
 {% block body %}
-	{% set products = resources('/api/front/products', {'productCategories.category.id': attr('category', 'id'), itemsPerPage:9, page: page}) %}
-	{% set totalProducts = resources('/api/front/products', {'productCategories.category.id': attr('category', 'id'), itemsPerPage:9, page: page}) %}
+	{% set products = resources('/api/front/products', {itemsPerPage:9, page: page}) %}
+	{% set totalProducts = resources('/api/front/products', {itemsPerPage:9, page: page}) %}
 
-	{% include '@components/Layout/Subheader/Category/SubheaderCategory.twig' with {title: attr('category', 'title'), description: attr('category', 'description'), nbProducts: products|length}  %}
+	{% include '@components/Layout/Subheader/SearchResult/SubheaderSearch.twig' with {title: "Search results" | trans, } %}
   {% include '@components/Layout/CategoryProduct/CategoryProduct.html.twig' with {products: products, totalProducts:totalProducts} %}
 
 	{% include '@components/Layout/Reinsurance/Reinsurance.twig' with { data: [
