@@ -50,6 +50,11 @@
     &--unit {
       padding-right: rem-convert(50px);
     }
+    &--verificationCode {
+      font-size: rem-convert(18px);
+      text-align: center;
+      height: 59px;
+    }
   }
 
   &-unit {

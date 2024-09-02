@@ -101,6 +101,9 @@
       .Step {
         @apply flex items-center justify-center;
         gap: 7px;
+        &:hover {
+          cursor: pointer;
+        }
         &-circle {
           @apply rounded-full flex items-center justify-center font-semibold;
           color: var(--black);
