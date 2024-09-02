@@ -1,4 +1,5 @@
 {% set type = type|default("generic") %}
+{% set categories = resources('/api/front/categories') %}
 
 <header class='Header  {% if type == "sticky" %}is-sticky{% endif %} {% if type == "searchbar" %}Header--withSearchBar{% endif %}'>
 	<div class='flex'>
@@ -22,11 +23,9 @@
 			<button type="button" data-menu-back="-1">{{ svg("arrow-left") }}</button>
 			<button type="button" data-menu-close>{{ svg("close") }}</button>
 			<ul class="Header-navigation" data-menu-sub="0">
-				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#", sub: 1 } %}
-				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
-				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
-				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
-				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu", href: "#" } %}
+        {% for category in categories %}
+				  {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: category.i18ns.title, href: category.publicUrl} %}
+        {% endfor %}
 			</ul>
 		</nav>
 	{% endif %}
@@ -38,11 +37,9 @@
 			<button type="button" data-menu-back="-1">{{ svg("arrow-left") }}</button>
 			<button type="button" data-menu-close>{{ svg("close") }}</button>
 			<ul class="Header-navigation">
-				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#",sub: 1 } %}
-				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
-				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
-				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
-				{% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: "Item menu long", href: "#" } %}
+        {% for category in categories %}
+				  {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: category.i18ns.title, href: category.publicUrl} %}
+        {% endfor %}
 			</ul>
 		</nav>
 	{% endif %}
