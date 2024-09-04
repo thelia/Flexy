@@ -1,10 +1,17 @@
 {
   "name": "thelia/flexy",
-  "type": "thelia-frontoffice-template",
+  "type": "symfony-bundle",
   "description": "thelia design system",
   "license": "LGPL-3.0+",
   "require": {
     "composer/installers": "~1.0",
-    "symfony/webpack-encore-bundle": "*"
+    "symfony/webpack-encore-bundle": "^2.1",
+    "symfony/ux-twig-component": "^2.19"
+  },
+  "autoload": {
+    "psr-4": {
+      "FlexyBundle\\": "src/",
+      "FlexyBundle\\Twig\\": "src/Twig/"
+    }
   }
 }
