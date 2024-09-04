@@ -16,6 +16,7 @@ import { slider } from '@js/slider';
 import ProductGallery from '@components/Layout/ProductGallery/ProductGallery';
 import PasswordControlsFunction from '@components/Molecules/PasswordControls/PasswordControls';
 import StepsFunction from '@components/Molecules/Step/Steps.js';
+import SearchDropdown from '@react/Molecules/SearchBar/SearchBar';
 
 function main() {
   document.body.classList.remove('no-js');
@@ -27,6 +28,7 @@ function main() {
   ProductGallery();
   PasswordControlsFunction();
   StepsFunction();
+  SearchDropdown();
 }
 
 document.addEventListener('DOMContentLoaded', () => {

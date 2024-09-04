@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./components/**/*.{twig,ts,js,json}','./*.twig'],
+  content: [
+    './components/**/*.{twig,ts,js,json}',
+    './*.twig',
+    './react-components/**/*.{js,jsx,ts,tsx}'
+  ],
   theme: {
     extend: {
       colors: {
