@@ -28,10 +28,21 @@
 {% set quantityChoice = quantityChoice|default(1) %}
 
 {%  if productSaleElements is defined %}
-  {% set price = productSaleElements|filter(pse => pse.isDefault)|first.productPrices|first.price ~ '€' %}
-  {% set promoPrice = productSaleElements|filter(pse => pse.isDefault)|first.productPrices|first.promoPrice ~ '€' %}
-  {% set isPromo = productSaleElements|filter(pse => pse.isDefault)|first.promo %}
-  {% set isNew = productSaleElements|filter(pse => pse.isDefault)|first.newness %}
+
+  {% set defaultPse = null %}
+
+  {% for pse in productSaleElements %}
+    {% if pse.isDefault %}
+      {% set defaultPse = pse %}
+    {% endif %}
+  {% endfor %}
+
+  {% set price = defaultPse.productPrices|first.price ~ '€' %}
+  {% set promoPrice = defaultPse.productPrices|first.promoPrice ~ '€' %}
+
+  {% set isPromo = defaultPse ? defaultPse.promo|default(false) : false %}
+  {% set isNew = defaultPse ? defaultPse.newness|default(false) : false %}
+
 {% endif %}
 {%  if id is defined and img is not defined %}
   {% set images = resources('/api/front/product_images', {'product.id':id, itemsPerPage:1}) %}

@@ -51,12 +51,16 @@
         {% endif %}
 
         {% if not newClient %}
-        <span class='StoreDelivery-opening {% if closed %}closed{% endif %}'>{{ 'Close'|trans }}{% else %}{{ 'Open'|trans }}{% endif %}{{ 'currently'|trans }}</span>
-        <span class='StoreDelivery-address'>
-          <span>{{ address.address1 }},</span>
-          {% if address.address2 %}<span>{{ address.address2 }},</span>{% endif %}
-          <span>{{ address.zipCode }} {{ address.city }}</span>
-        </span>
+          {% if closed %}
+            <span class='StoreDelivery-opening closed'>{{ 'Close'|trans }} {{ 'currently'|trans }}</span>
+          {% else %}
+            <span class='StoreDelivery-opening'>{{ 'Open'|trans }} {{ 'currently'|trans }}</span>
+          {% endif %}
+          <span class='StoreDelivery-address'>
+            <span>{{ address.address1 }},</span>
+            {% if address.address2 %}<span>{{ address.address2 }},</span>{% endif %}
+            <span>{{ address.zipCode }} {{ address.city }}</span>
+          </span>
         {% endif %}
 
     </span>
