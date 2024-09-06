@@ -1,8 +1,3 @@
-import {
-  queryClient,
-  useSearchCategoriesQuery,
-  useSearchProductsQuery
-} from '@openstudio/thelia-api-utils';
 import { isArray } from 'lodash';
 import { QueryClientProvider } from 'react-query';
 import priceFormat from '@utils/priceFormat';
@@ -10,9 +5,14 @@ import Price from '@react/Price/Price';
 import { formatProductsResults } from '@utils/product';
 import { createRoot } from 'react-dom/client';
 import { SearchBarProps } from './SearchBar.types';
-import '@components/Molecules/SearchBar/searchBar.css';
 import { useState } from 'react';
 import { useDebounce } from 'react-use';
+import { useProductList } from '../../../assets/js/lib/hooks/product';
+import { useCategoriesList } from '../../../assets/js/lib/hooks/category';
+import { queryClient } from '../../../assets/js/lib/queryClient';
+import { Category, Product } from '../../../assets/js/lib/types';
+
+import '@components/Molecules/SearchBar/searchBar.css';
 
 export const SearchBar = ({ type = 'classic' }: SearchBarProps) => {
   const [debouncedQuery, setDebouncedQuery] = useState('');
@@ -58,35 +58,34 @@ export const SearchBar = ({ type = 'classic' }: SearchBarProps) => {
 };
 
 export const SearchDropdown = ({ query }: { query: string }) => {
-  const { data: productsData = null, isLoading: isLoadingProducts } =
-    useSearchProductsQuery({
-      /* @ts-ignore */
-      ref: query,
+  const { data: productsData, isLoading: isLoadingProducts } = useProductList({
+    title: `%${query}%`,
+    limit: 12
+  });
+
+  console.log(productsData);
+
+  const { data: categoriesData = null, isLoading: isLoadingCategories } =
+    useCategoriesList({
       title: query,
       limit: 12
     });
 
-  const { data: categoriesData = null, isLoading: isLoadingCategories } =
-    useSearchCategoriesQuery({
-      /* @ts-ignore */
-      ref: query,
-      title: query,
-      limit: 12
-    });
+  console.log(categoriesData);
 
   return (
     <div className="SearchDropdown-results-grid">
       <div className="mb-8 SearchDropdown-results-products">
         <div className="mb-[14px] text-sm uppercase text-grey">
-          {productsData?.length > 0
-            ? productsData.length + ' produits'
+          {productsData && productsData.length > 0
+            ? productsData?.length + ' produits'
             : 'Produits'}
         </div>
 
         {isLoadingProducts ? (
           'Chargement'
         ) : (
-          <ProductsResults data={productsData?.slice(0, 4)} />
+          <ProductsResults data={productsData?.slice(0, 4) || []} />
         )}
       </div>
       <div className="mb-8 SearchDropdown-results-categories">
@@ -94,10 +93,11 @@ export const SearchDropdown = ({ query }: { query: string }) => {
         {isLoadingCategories ? (
           'Chargement'
         ) : (
-          <CategoriesResults data={categoriesData} />
+          <CategoriesResults data={categoriesData || []} />
         )}
       </div>
-      {productsData?.length > 4 || categoriesData?.length > 0 ? (
+      {(productsData && productsData?.length > 4) ||
+      (categoriesData && categoriesData?.length > 0) ? (
         <a href={`/search?query=${query}`} className="mx-auto mt-8 Button">
           Voir tous les produits
         </a>
@@ -106,33 +106,27 @@ export const SearchDropdown = ({ query }: { query: string }) => {
   );
 };
 
-export const Item = ({
-  title,
-  price,
-  promoPrice,
-  image,
-  url,
-  promo
-}: {
-  title: string;
-  price: number | null;
-  promoPrice: number;
-  image: string;
-  url: string;
-  promo: boolean;
-}) => {
+// TODO : Get image from API
+export const ProductItem = ({ product }: { product: Product }) => {
+  const defaultPSE = product.productSaleElements.find((pse) => pse.isDefault);
+
   return (
-    <a href={url} className="CartItem">
+    <a href={product.publicUrl} className="CartItem">
       <div className="CartItem-img">
-        <img src={image} alt="" loading="lazy" />
+        <img src={'/'} alt="" loading="lazy" />
       </div>
       <div className="CartItem-contain">
-        <strong>{title}</strong>
-        {price === null ? null : (
+        <strong>{product.i18ns?.fr_FR?.title}</strong>
+        {defaultPSE?.productPrices[0]?.price === null ? null : (
           <div>
-            <span>{promo && priceFormat(promoPrice)}</span>
-            <span className={promo ? 'mt-1 text-sm line-through' : ''}>
-              <Price price={price} />
+            <span>
+              {defaultPSE?.promo &&
+                priceFormat(defaultPSE.productPrices[0]?.promoPrice)}
+            </span>
+            <span
+              className={defaultPSE?.promo ? 'mt-1 text-sm line-through' : ''}
+            >
+              <Price price={defaultPSE?.productPrices[0]?.price || 0} />
             </span>
           </div>
         )}
@@ -141,8 +135,7 @@ export const Item = ({
   );
 };
 
-// any is used because the hook response is not typed
-const ProductsResults = ({ data = null }: { data: any }) => {
+const ProductsResults = ({ data }: { data: Product[] }) => {
   if (!data || data.length === 0 || !isArray(data)) {
     return (
       <div className="font-medium">Aucun résultat pour cette recherche</div>
@@ -151,15 +144,14 @@ const ProductsResults = ({ data = null }: { data: any }) => {
 
   return (
     <div className="SearchDropdown-results">
-      {formatProductsResults(data).map((result) => (
-        <Item {...result} key={result.id} />
+      {data.map((product) => (
+        <ProductItem product={product} key={product.id} />
       ))}
     </div>
   );
 };
 
-// any is used because the hook response is not typed
-const CategoriesResults = ({ data = null }: { data: any }) => {
+const CategoriesResults = ({ data }: { data: Category[] }) => {
   if (!data || data.length === 0 || !isArray(data)) {
     return (
       <div className="font-medium">Aucun résultat pour cette catégorie</div>
@@ -169,15 +161,15 @@ const CategoriesResults = ({ data = null }: { data: any }) => {
   return (
     <div className="SearchDropdown-results-categories-list">
       {data.map((result) => (
-        <a href={result.url} className="underline" key={result.id}>
-          {result.i18n.title}
+        <a href={result.publicUrl} className="underline" key={result.id}>
+          {result.i18ns?.fr_FR?.title}
         </a>
       ))}
     </div>
   );
 };
 
-export default function SearchBarRoot() {
+export default function SearchBarDropdownRoot() {
   const DOMElement = document.getElementById('SearchBar');
 
   if (!DOMElement) return;

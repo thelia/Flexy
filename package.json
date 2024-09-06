@@ -13,7 +13,6 @@
     "build": "encore production --progress"
   },
   "dependencies": {
-    "@openstudio/thelia-api-utils": "^0.5.2",
     "@storybook/addon-a11y": "^8.0.9",
     "lodash": "^4.17.21",
     "react-intl": "^6.6.8",

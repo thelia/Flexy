@@ -1,7 +1,7 @@
 import Checkout from './Checkout';
 import { QueryClientProvider } from 'react-query';
-import { queryClient } from '@openstudio/thelia-api-utils';
 import { createRoot } from 'react-dom/client';
+import { queryClient } from '../../../assets/js/lib/queryClient';
 
 export default function CheckoutPage() {
   const DOMElement = document.getElementById('Checkout');

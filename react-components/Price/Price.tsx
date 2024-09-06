@@ -5,7 +5,7 @@ export default function Price({
   isUntaxed,
   quantity
 }: {
-  price: number | null;
+  price: number;
   isUntaxed?: boolean;
   quantity?: number;
 }) {
