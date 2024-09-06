@@ -7,16 +7,16 @@ Twig.extendFunction('svg', (iconName: string): string => {
   return IconTwig({ icon: iconName });
 });
 
-Twig.extend(function (Twig) {
-  Twig.filters.trans = function (value) {
+Twig.extend(function (Twig: any) {
+  Twig.filters.trans = function (value: any) {
     return value;
   };
 
-  Twig.exports.functions.t = function (value) {
+  Twig.exports.functions.t = function (value: any) {
     return value;
   };
 
-  Twig.exports.functions.resources = function (value) {
+  Twig.exports.functions.resources = function (value: any) {
     return value;
   };
 });
