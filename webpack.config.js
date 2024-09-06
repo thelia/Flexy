@@ -16,7 +16,7 @@ Encore
   .setPublicPath(
     Encore.isProduction()
       ? '/templates-assets/frontOffice/' + path.basename(__dirname) + '/dist'
-      : '/dist'
+      : '/templates-assets/frontOffice/' + path.basename(__dirname) + '/dist'
   )
   // only needed for CDN's or subdirectory deploy
   .setManifestKeyPrefix('dist/')
@@ -76,15 +76,6 @@ Encore
     options.allowedHosts = 'all';
   });
 
-// enables Sass/SCSS support
-//.enableSassLoader()
-
-// uncomment if you use TypeScript
-//.enableTypeScriptLoader()
-
-// uncomment if you use React
-//.enableReactPreset()
-
 // uncomment to get integrity="..." attributes on your script & link tags
 // requires WebpackEncoreBundle 1.4 or higher
 //.enableIntegrityHashes(Encore.isProduction())
@@ -113,7 +104,15 @@ Encore.configureImageRule({ type: 'javascript/auto' }, (loaderRule) => {
 
 // CSS CONFIG
 Encore.enablePostCssLoader();
+
+// TYPESCRIPT
 Encore.enableTypeScriptLoader();
+
+// REACT
+Encore.enableReactPreset();
+
+// STIMULUS
+Encore.enableStimulusBridge('./assets/controllers.json');
 
 Encore.configureDevServerOptions((options) => {
   options.headers = {

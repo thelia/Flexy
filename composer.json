@@ -1,10 +1,22 @@
 {
   "name": "thelia/flexy",
-  "type": "thelia-frontoffice-template",
+  "type": "symfony-bundle",
   "description": "thelia design system",
   "license": "LGPL-3.0+",
   "require": {
     "composer/installers": "~1.0",
-    "symfony/webpack-encore-bundle": "*"
+    "symfony/webpack-encore-bundle": "^2.1",
+    "symfony/ux-twig-component": "^2.19",
+    "symfony/stimulus-bundle": "^2.19",
+    "symfony/ux-react": "^2.19",
+    "symfony/ux-icons": "^2.19",
+    "symfony/ux-translator": "^2.19",
+    "symfony/ux-live-component": "^2.19"
+  },
+  "autoload": {
+    "psr-4": {
+      "FlexyBundle\\": "src/",
+      "FlexyBundle\\Twig\\": "src/Twig/"
+    }
   }
 }

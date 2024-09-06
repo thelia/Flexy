@@ -3,8 +3,24 @@
 {% block title %}index{% endblock %}
 
 {% block body %}
+
+  <div data-controller="hello"></div>
+
+  <twig:Alert message="I am a success alert!" />
+  <twig:Flexy:Message message="I am a message" />
+  <twig:Flexy:RandomNumber />
+
+  <div {{ react_component('Hello', { fullName: 'React' }) }}>
+      Loading...
+  </div>
+
+
+  <twig:ux:icon name="account" class="w-4 h-4" />
+
+
+
   {% set categories = resources('/api/front/categories', {itemsPerPage:3}) %}
-  {% dump(categories) %}
+
 
   {% set categoriesFiltered = categories|map((c) => ({
     title: c.i18ns.title,
