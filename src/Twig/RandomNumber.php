@@ -12,21 +12,16 @@
 
 namespace FlexyBundle\Twig;
 
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
-use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 
-#[AsLiveComponent(urlReferenceType: UrlGeneratorInterface::ABSOLUTE_URL)]
+#[AsLiveComponent()]
 class RandomNumber
 {
     use DefaultActionTrait;
 
-    #[LiveProp()]
-    public int $max = 1000;
-
     public function getRandomNumber(): int
     {
-        return random_int(0, $this->max);
+        return random_int(0, 1000);
     }
 }

@@ -1,7 +1,5 @@
 import { startStimulusApp } from '@symfony/stimulus-bridge';
 import { registerReactControllerComponents } from '@symfony/ux-react';
-import LiveController from '@symfony/ux-live-component';
-import '@symfony/ux-live-component/styles/live.css';
 
 registerReactControllerComponents(
   require.context('./react/controllers', true, /\.(j|t)sx?$/)
@@ -15,7 +13,3 @@ export const app = startStimulusApp(
     /\.[jt]sx?$/
   )
 );
-
-app.register('live', LiveController);
-
-console.log(app);
