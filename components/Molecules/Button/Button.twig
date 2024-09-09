@@ -22,10 +22,14 @@
 
 <{{ tag }} class='Button {{ classes }}' {% if disabled %}disabled{% endif %} {% if href %}href='{{ href }}'{% else %}type='{{ type }}'{% endif %}>
   {% if icon_left %}
-    <span class='icon icon-left'>{{ svg(icon_left) }}</span>
+    <span class='icon icon-left'>
+      {{ux_icon(icon_left)}}
+    </span>
   {% endif %}
   {{ text|striptags('<span>')|raw }}
   {% if icon_right %}
-    <span class='icon icon-right'>{{ svg(icon_right) }}</span>
+    <span class='icon icon-right'>
+      {{ux_icon(icon_right)}}
+    </span>
   {% endif %}
 </{{ tag }}>

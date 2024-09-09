@@ -3,11 +3,11 @@
 
 <div class="Score">
   {% for star in 1..score %}
-    <span class="Score-star">{{ svg("star") }}</span>
+    <span class="Score-star">{{ ux_icon("star") }}</span>
   {% endfor %}
   {% if score < maxScore %}
     {% for star in 1..(maxScore - score) %}
-      <span class="Score-star Score-star--empty">{{ svg("star") }}</span>
+      <span class="Score-star Score-star--empty">{{ ux_icon("star") }}</span>
     {% endfor %}
   {% endif %}
 </div>

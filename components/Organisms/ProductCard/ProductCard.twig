@@ -57,7 +57,7 @@
 
 <div class="ProductCard {{ classes }}">
 	{% if isAddToCartConfirmation or isRemoveProduct %}
-		<span class='ProductCard-iconClose'>{{ svg("close") }}</span>
+		<span class='ProductCard-iconClose'>{{ ux_icon("close") }}</span>
 	{% endif %}
 	<div class="ProductCard-header">
 		<div class="ProductCard-tagList">
@@ -72,10 +72,10 @@
 		{% if displayWishButton %}
 			<button type="button" class="ButtonWishList {% if inWishlist %} in-wishlist {% endif %}">
 				<span class="in-wishlist-icon">
-					<span>{{ svg("heart-fill") }}</span>
+					<span>{{ ux_icon("heart-fill") }}</span>
 				</span>
 				<span class="not-in-wishlist-icon">
-					<span>{{ svg("heart") }}</span>
+					<span>{{ ux_icon("heart") }}</span>
 				</span>
 			</button>
 		{% endif %}
@@ -135,15 +135,15 @@
 									{% for i in 1..5 %}
 										{% if rate >= i %}
 											<div>
-												{{ svg("star-full") }}
+												{{ ux_icon("star-full") }}
 											</div>
 										{% elseif rate <= i and rate > i - 1 %}
 											<div>
-												{{ svg("star-half-empty") }}
+												{{ ux_icon("star-half-empty") }}
 											</div>
 										{% else %}
 											<div class="star-empty">
-												{{ svg("star-full") }}
+												{{ ux_icon("star-full") }}
 											</div>
 										{% endif %}
 									{% endfor %}
@@ -193,11 +193,11 @@
 	{% if isPurchaseFunnelCard|default(0) %}
 		<div class="bottom-card-buttons">
 			<button class='hover:bg-theme-lighter' {% if disabled %} disabled {% endif %} type='button'>
-				<span>{{ svg("show") }}</span>
+				<span>{{ ux_icon("show") }}</span>
 				{{ 'View product'|trans }}
 			</button>
 			<button class='hover:bg-theme-lighter' {% if disabled %} disabled {% endif %} type='button'>
-				<span>{{ svg("delete") }}</span>
+				<span>{{ ux_icon("delete") }}</span>
 				{{ 'Delete' |trans }}
 			</button>
 		</div>

@@ -5,6 +5,6 @@
 {% if type != 'classic' %}{% set classes = classes ~ ' SearchBar--' ~ type %}{% endif %}
 
 <label class="SearchBar {{ classes }}" aria-label={{"Search"|trans}}>
-	<button class='w-4 h-4'>{{ svg("search") }}</button>
+	<button class='w-4 h-4'>{{ ux_icon("search") }}</button>
 	<input type="text" name="query" placeholder={{"e.g. Shoes, T-shirts, ..."|trans}} autocomplete='off' value="{{ value }}"/>
 </label>

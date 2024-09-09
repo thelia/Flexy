@@ -18,7 +18,7 @@
     <div>{{ address.zipCode }} {{ address.city }}</div>
   </div>
   <div class='justify-between lg:flex align-center'>
-    <button class='StoreInfo-hours'>{{ svg("clock") }}{{ 'Shop opening times'|trans }}</button>
+    <button class='StoreInfo-hours'>{{ ux_icon("clock") }}{{ 'Shop opening times'|trans }}</button>
     <div class='hidden lg:block'>
       {% include '@components/Molecules/Button/Button.twig' with {text: 'Choose this shop'|trans, classes:'Button--fill lg:Button--unfill'} %}
     </div>

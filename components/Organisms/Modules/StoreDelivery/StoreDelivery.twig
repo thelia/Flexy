@@ -28,7 +28,7 @@
             <span class='StoreDelivery-description'>{{ 'Estimated delivery on'|trans }} {{ date }}</span>
           </div>
           <div class="w-12 h-12 text-theme-medium">
-          {{ svg("reinsurance-store") }}
+          {{ ux_icon("reinsurance-store") }}
           </div>
         </div>
         <div class='flex items-center justify-between mt-6'>
@@ -67,7 +67,7 @@
   </label>
   {% if newClient == false %}
   <div class='StoreDelivery-bottom'>
-    <button class='StoreDelivery-hours' data-show-hours={{ 'See opening hours' |trans }} data-hide-hours={{ 'hide opening times' |trans }}>{{ svg("clock") }}<span>{{ 'See opening hours' |trans }}</span></span></button>
+    <button class='StoreDelivery-hours' data-show-hours={{ 'See opening hours' |trans }} data-hide-hours={{ 'hide opening times' |trans }}>{{ ux_icon("clock") }}<span>{{ 'See opening hours' |trans }}</span></span></button>
   </div>
   <div class='StoreDelivery-hoursListing md:hidden'>
     <table>

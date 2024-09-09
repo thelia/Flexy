@@ -9,7 +9,7 @@
 <label class="Checkbox {{ classes }} {{ error ? 'error'  : ''}}">
 	<input type="checkbox" name='{{ name }}' value='{{ value }}' {% if disabled %} disabled {% endif %} {% if checked %} checked {% endif %}>
 	<div class="checkmark">
-		<span>{{ svg("checkbox") }}</span>
+    {{ ux_icon('checkbox') }}
 	</div>
   <span class="paragraph-5">{{ label|raw }}</span>
 </label>

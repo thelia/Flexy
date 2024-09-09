@@ -3,7 +3,7 @@ import Twig from 'twig';
 // @ts-ignore
 import IconTwig from './IconTwig.twig';
 
-Twig.extendFunction('svg', (iconName: string): string => {
+Twig.extendFunction('ux_icon', (iconName: string): string => {
   return IconTwig({ icon: iconName });
 });
 
