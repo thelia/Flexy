@@ -6,7 +6,7 @@
 {% set date = date|default('') %}
 
 <div class='PaymentCard'>
-  <div class='PaymentCard-icon'><span>{{ svg("calendar") }}</span></div>
+  <div class='PaymentCard-icon'><span>{{ ux_icon("calendar") }}</span></div>
   <div class='PaymentCard-title'>{{ title }}</div>
   <div class='{% if not expired %}flex flex-cols items-end justify-between {% endif %}'>
     <div class='PaymentCard-content'>

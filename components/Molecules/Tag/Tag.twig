@@ -16,18 +16,18 @@
 {% if not closeOnClick and not href and not onClick %}
 	<span class="Tag{{ classes }}">
 		{% if icon %}
-      <span class="Tag-icon">{{ svg(icon) }}</span>
+      <span class="Tag-icon">{{ ux_icon(icon) }}</span>
 		{% endif %}
 		{{ customText }}
 	</span>
 {% else %}
 	<button class="Tag{{ classes }} Tag--action" {% if href %} href="{{ href }}" {% endif %} {% if onClick %} onclick="onClick" {% endif %}>
 		{% if icon %}
-			<span class="Tag-icon">{{ svg(icon) }}</span>
+			<span class="Tag-icon">{{ ux_icon(icon) }}</span>
 		{% endif %}
 		{{ customText }}
 		{% if closeOnClick %}
-			<span class='Tag-iconClose'>{{ svg("close") }}</span>
+			<span class='Tag-iconClose'>{{ ux_icon("close") }}</span>
 		{% endif %}
 	</button>
 {% endif %}

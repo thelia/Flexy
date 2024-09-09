@@ -16,7 +16,7 @@
         <span class='PickupPointModule-description'>{{ 'Estimated delivery on'|trans }} {{ date }}</span>
       </span>
       <span class="w-12 h-12 text-theme-medium">
-        {{ svg("reinsurance-pickup") }}
+        {{ ux_icon("reinsurance-pickup") }}
       </span>
     </span>
     <div class='flex items-center justify-between mt-6'>
@@ -30,7 +30,7 @@
       {% include '@components/Molecules/Fields/FieldInput/FieldInput.twig' with { label: "Find a delivery address"|trans, placeholder: "e.g. City, Postcode"|trans, iconButton: "search" } %}
     </div>
     <div>
-      <button class='text-black underline-with-icon' type='button'>{{ svg("pin-circle") }}{{ 'Select on map'|trans }}</button>
+      <button class='text-black underline-with-icon' type='button'>{{ ux_icon("pin-circle") }}{{ 'Select on map'|trans }}</button>
     </div>
     <div class='flex gap-1 md:gap-5'>
       {% include '@components/Molecules/Button/Button.twig' with {classes: 'PickupPointModule-buttonView', text: 'Map view'|trans, sharp:true, icon_left: 'list', variant: 'secondary'} %}
@@ -45,7 +45,7 @@
                  value='{{ pickupService.value }}'
           >
           <div class="checkmark">
-            <span>{{ svg("checkbox") }}</span>
+            <span>{{ ux_icon("checkbox") }}</span>
           </div>
           <span>{{ pickupService.name }}</span>
           {% if pickupService.img %}

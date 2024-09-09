@@ -5,7 +5,7 @@
 
 
 {# Nombre de pages à afficher de chaque côté de la page actuelle #}
-{% set range = 2 %} 
+{% set range = 2 %}
 
 {% if totalPages > 1 %}
   <nav class="Pagination">
@@ -13,7 +13,7 @@
       {% if currentPage != 1 %}
         <li class="Pagination-listItemPrev">
           <a href="?page={{ currentPage - 1 }}" class="Pagination-item Pagination-item--isPrev">
-            <span class='Pagination-icon'>{{ svg("chevron-left") }}</span>
+            <span class='Pagination-icon'>{{ ux_icon("chevron-left") }}</span>
             <span class='Pagination-text'>{{ prevText }}</span>
           </a>
         </li>
@@ -24,11 +24,11 @@
           <a href="?page=1" class="Pagination-item">1</a>
         </li>
       {% endif %}
-        
+
       {% if currentPage > range + 1 %}
         <li><span class="Pagination-item">...</span></li>
       {% endif %}
-        
+
       {% for page in 1..totalPages %}
         {% if page == currentPage %}
           <li><span class="Pagination-item Pagination-item--active">{{ page }}</span></li>
@@ -36,7 +36,7 @@
           <li><a href="?page={{ page }}" class="Pagination-item">{{ page }}</a></li>
         {% endif %}
       {% endfor %}
-        
+
       {% if totalPages > currentPage + range %}
         <li><span class="Pagination-item">...</span></li>
       {% endif %}
@@ -51,7 +51,7 @@
         <li class="Pagination-listItemNext">
           <a href="?page={{ currentPage + 1 }}" class="Pagination-item Pagination-item--isNext">
             <span class='Pagination-text'>{{ nextText }}</span>
-            <span class='Pagination-icon'>{{ svg("chevron-right") }}</span>
+            <span class='Pagination-icon'>{{ ux_icon("chevron-right") }}</span>
           </a>
         </li>
       {% endif %}

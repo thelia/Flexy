@@ -19,10 +19,10 @@
 <label class="FilterPill{{ classes }}">
 	<input type='{{ inputType }}' class='hidden' value='{{ value }}' name='{{ name }}' {% if disabled %} disabled {% endif %}/>
 	{% if icon %}
-		<span class="FilterPill-icon" {% if iconColor %} style="color:{{ iconColor }}" {% endif %}>{{ svg(icon) }}</span>
+		<span class="FilterPill-icon" {% if iconColor %} style="color:{{ iconColor }}" {% endif %}>{{ ux_icon(icon) }}</span>
 	{% endif %}
 	{{ customText }}
 	{% if closeButton %}
-		<span class='FilterPill-iconClose'>{{ svg("close") }}</span>
+		<span class='FilterPill-iconClose'>{{ ux_icon("close") }}</span>
 	{% endif %}
 </label>

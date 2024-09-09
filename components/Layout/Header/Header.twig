@@ -10,7 +10,9 @@
 		{% endif %}
 
 		<div class='flex items-center self-center h-full'>
-			<a href="/" class='Header-logo'>{{ svg('thelia') }}</a>
+			<a href="/" class='Header-logo'>
+      {{ ux_icon('thelia') }}
+      </a>
 		</div>
 	</div>
 
@@ -20,8 +22,12 @@
 		</div>
 	{% else %}
 		<nav id="Menu">
-			<button type="button" data-menu-back="-1">{{ svg("arrow-left") }}</button>
-			<button type="button" data-menu-close>{{ svg("close") }}</button>
+			<button type="button" data-menu-back="-1">
+        {{ ux_icon('arrow-left') }}
+      </button>
+			<button type="button" data-menu-close>
+        {{ ux_icon('close') }}
+      </button>
 			<ul class="Header-navigation" data-menu-sub="0">
         {% for category in categories %}
 				  {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: category.i18ns.title, href: category.publicUrl} %}
@@ -34,8 +40,12 @@
 
 	{% if type == "searchbar" %}
 		<nav id="Menu" class='Header-navWrap'>
-			<button type="button" data-menu-back="-1">{{ svg("arrow-left") }}</button>
-			<button type="button" data-menu-close>{{ svg("close") }}</button>
+			<button type="button" data-menu-back="-1">
+        {{ ux_icon('arrow-left') }}
+      </button>
+			<button type="button" data-menu-close>
+        {{ ux_icon('close') }}
+      </button>
 			<ul class="Header-navigation">
         {% for category in categories %}
 				  {% include '@components/Molecules/ItemHeader/ItemHeader.twig' with { customText: category.i18ns.title, href: category.publicUrl} %}

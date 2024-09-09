@@ -11,10 +11,10 @@
 
 <button class='Tab {{ classes }}' {% if disabled %}disabled{% endif %}>
   {% if iconLeft %}
-    <span class='Tab-icon'>{{ svg(iconLeft) }}</span>
+    <span class='Tab-icon'>{{ ux_icon(iconLeft) }}</span>
   {% endif %}
   {{ customText }}
   {% if iconRight %}
-    <span class='Tab-icon'>{{ svg(iconRight) }}</span>
+    <span class='Tab-icon'>{{ ux_icon(iconRight) }}</span>
   {% endif %}
 </button>
