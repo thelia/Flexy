@@ -1,4 +1,4 @@
-import SubheaderCategory from './SimilarContent.html.twig';
+import SubheaderCategory from './SubheaderCategory.html.twig';
 
 export default {
   title: 'Design System/Layout/Subheader/Category'

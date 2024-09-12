@@ -1,4 +1,4 @@
-import Footer from './Footer.htmltwig';
+import Footer from './Footer.html.twig';
 import FooterCheckout from './FooterCheckout.html.twig';
 
 export default {
