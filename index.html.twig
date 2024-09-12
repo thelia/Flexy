@@ -6,7 +6,7 @@
 
   <div data-controller="hello"></div>
 
-  <twig:Alert message="I am a success alert!" />
+
   <twig:Flexy:Message message="I am a message" />
   <twig:Flexy:RandomNumber />
 
@@ -56,18 +56,18 @@
   ]
 %}
 
-  {% include '@components/Layout/Hero/Hero.twig' with { blocks: blocks } %}
+  {% include '@components/Layout/Hero/Hero.html.twig' with { blocks: blocks } %}
 
-  {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Last seen products' | trans, categoryId: 1}  %}
+  {% include '@components/Layout/CrossSelling/CrossSelling.html.twig' with {title: 'Last seen products' | trans, categoryId: 1}  %}
 
   <div class="bg-theme-lighter">
-    {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Popular products' | trans, categoryId: 2}  %}
+    {% include '@components/Layout/CrossSelling/CrossSelling.html.twig' with {title: 'Popular products' | trans, categoryId: 2}  %}
   </div>
   <div class="bg-theme-lightest">
-    {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Promotions' | trans, categoryId: 3}  %}
+    {% include '@components/Layout/CrossSelling/CrossSelling.html.twig' with {title: 'Promotions' | trans, categoryId: 3}  %}
   </div>
 
-  {% include '@components/Layout/ProductCategory/ProductCategory.twig' with {title: 'Our product categories' | trans, categories: categoriesFiltered}  %}
+  {% include '@components/Layout/ProductCategory/ProductCategory.html.twig' with {title: 'Our product categories' | trans, categories: categoriesFiltered}  %}
 
   {%
     set reviews = [4,2,3]|map((note) => ({
@@ -79,7 +79,7 @@
   %}
 
   <div class="bg-theme-lightest">
-    {% include '@components/Layout/Review/Review.twig' with {title: 'Our customers speak about us' | trans, reviews: reviews, button: {label: "See all reviews" | trans, href: "#"}}  %}
+    {% include '@components/Layout/Review/Review.html.twig' with {title: 'Our customers speak about us' | trans, reviews: reviews, button: {label: "See all reviews" | trans, href: "#"}}  %}
   </div>
 
   {% set news = resources('/api/front/contents', {itemsPerPage:3}) %}
@@ -92,7 +92,7 @@
   }))
   %}
   <div class="bg-theme-lighter">
-    {% include '@components/Layout/SimilarContent/SimilarContent.twig' with {title: 'Our news' | trans, similarContents: newsFiltered, button: {label: "See all news" | trans, href: "#"}}  %}
+    {% include '@components/Layout/SimilarContent/SimilarContent.html.twig' with {title: 'Our news' | trans, similarContents: newsFiltered, button: {label: "See all news" | trans, href: "#"}}  %}
   </div>
 {% endblock %}
 

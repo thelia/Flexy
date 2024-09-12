@@ -1,0 +1,45 @@
+{% set selected = selected|default(false) %}
+{% set title = title|default('') %}
+
+<div class='Payment {% if selected %}selected{% endif %}'>
+	<label class='Payment-content'>
+    {% include '@components/Atoms/Form/Radio.html.twig' with {type:"span", name:"Payment", value:1, checked:selected} %}
+
+		<span>
+			<div class='flex justify-between'>
+				<span class='Payment-title'>{{ title }}</span>
+				<div class='h-[22px] flex'>
+					{{ source("/images/visa.svg") }}
+					{{ source("/images/mastercard.svg") }}
+				</div>
+			</div>
+		</span>
+	</label>
+	{% if selected %}
+		<div class='Payment-bottom bg-theme-lightest'>
+			<div class="flex flex-col mx-auto gap-4 lg:max-w-[250px] lg:mt-[30px]">
+      {% include '@components/Molecules/Fields/FieldInput/FieldInput.html.twig' with { label: "Card number"|trans, placeholder: "xxxx xxxx xxxx xxxx" } %}
+      {% include '@components/Molecules/Fields/FieldInput/FieldInput.html.twig' with { label: "Card holder"|trans, placeholder: "Ex. Alain Dupont" } %}
+
+				<div class='flex gap-4'>
+					<div class="w-full">
+						{% include '@components/Molecules/Fields/FieldInput/FieldInput.html.twig' with { label: "Expiry date"|trans, placeholder: "MM/AA" } %}
+					</div>
+
+        {% include '@components/Molecules/Fields/FieldInput/FieldInput.html.twig' with { label: "CVV", placeholder: "xxx", tooltip: "Tooltip CVV" } %}
+				</div>
+
+				<div class="flex gap-2">
+					<div class="flex-shrink-0 w-4 h-4">{{ ux_icon("lock") }}</div>
+					<span class="paragraph-6">
+            {{ "Payment is made via your bank's servers. We do not have access to your bank details."|trans }}
+					</span>
+				</div>
+
+      <div class="flex">
+					{% include '@components/Atoms/Form/Checkbox.html.twig' with { label: "Save this card for future purchases"|trans, classes: 'items-baseline' } %}
+				</div>
+			</div>
+		</div>
+	{% endif %}
+</div>

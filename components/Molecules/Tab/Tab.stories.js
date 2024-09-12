@@ -1,12 +1,12 @@
-import Tab from './Tab.twig';
+import Tab from './Tab.html.twig';
 
 export default {
-  title: 'Design System/Molecules/Tab',
+  title: 'Design System/Molecules/Tab'
 };
 
 const commonProps = {
   args: {
-    customText: "Tabulation",
+    customText: 'Tabulation'
   },
   argTypes: {
     disabled: {
@@ -14,7 +14,7 @@ const commonProps = {
     },
     size: {
       options: ['large', 'small'],
-      control: { type: 'select' },
+      control: { type: 'select' }
     }
   }
 };
@@ -28,8 +28,8 @@ export const WithIcon = {
   render: (args) => Tab(args),
   ...commonProps,
   args: {
-    iconLeft: "chevron-left",
-    iconRight: "chevron-right",
+    iconLeft: 'chevron-left',
+    iconRight: 'chevron-right',
     ...commonProps.args
-  },
+  }
 };

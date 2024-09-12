@@ -1,0 +1,39 @@
+
+<div>
+  <div class='h4-desktop mb-5'>Large</div>
+  <div  class='flex gap-4'>
+    {% include './Quantity.html.twig' with {disabled: false, value:1, classes:'Button--large'} %}
+    {% include './Quantity.html.twig' with {disabled: true, value:1, classes:'Button--large'} %}
+    {% include './QuantityButton.html.twig' with {value:1, classes:'Button--large', text:'Ajouter au panier', icon:'cart'} %}
+  </div>
+
+  <div class='h4-desktop my-5'>Medium</div>
+  <div  class='flex gap-4'>
+    {% include './Quantity.html.twig' with {disabled: false, value:1} %}
+    {% include './Quantity.html.twig' with {disabled: true, value:1} %}
+    {% include './QuantityButton.html.twig' with {value:1, text:'Ajouter au panier', icon:'cart'} %}
+    {% include './QuantityButton.html.twig' with {disabled: true,value:1, text:'Ajouter au panier', icon:'cart'} %}
+
+  </div>
+
+  <div class='h4-desktop my-5'>Small</div>
+  <div  class='flex gap-4'>
+    {% include './Quantity.html.twig' with {disabled: false, value:1, classes:'Button--small'} %}
+    {% include './Quantity.html.twig' with {disabled: true, value:1, classes:'Button--small'} %}
+    {% include './QuantityButton.html.twig' with {value:1, classes:'Button--small', text:'Ajouter au panier', icon:'cart'} %}
+
+  </div>
+
+  <div class='h4-desktop my-5'>XSmall</div>
+  <div  class='flex gap-4'>
+    {% include './Quantity.html.twig' with {disabled: false, value:1, classes:'Button--small Button--xsmall'} %}
+    {% include './Quantity.html.twig' with {disabled: true, value:1, classes:'Button--small Button--xsmall'} %}
+
+  </div>
+
+  <div class='h4-desktop my-5'>Secondary</div>
+  <div  class='flex gap-4'>
+    {% include './Quantity.html.twig' with {disabled: false, value:1, classes:'Button--secondary'} %}
+    {% include './Quantity.html.twig' with {disabled: true, value:1, classes:'Button--secondary'} %}
+  </div>
+</div>

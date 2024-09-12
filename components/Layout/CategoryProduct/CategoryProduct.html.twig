@@ -6,15 +6,15 @@
     <div class="h4 mb-[22px]">{{ 'Filter'|trans }}</div>
 
     <div>
-      {% include '@components/Molecules/Accordion/Accordion.twig' with {
+      {% include '@components/Molecules/Accordion/Accordion.html.twig' with {
         title: "Size" | trans,
         content: ""
       } %}
-      {% include '@components/Molecules/Accordion/Accordion.twig' with {
+      {% include '@components/Molecules/Accordion/Accordion.html.twig' with {
         title: "Color" | trans,
         content: "test"
       } %}
-      {% include '@components/Molecules/Accordion/Accordion.twig' with {
+      {% include '@components/Molecules/Accordion/Accordion.html.twig' with {
         title: "Material" | trans,
         content: "test"
       } %}
@@ -27,7 +27,7 @@
         {{ 'item(s)'|trans }}</span>
 
       <div class="w-[250px]">
-        {% include '@components/Molecules/Fields/FieldSelect/FieldSelect.twig' with {
+        {% include '@components/Molecules/Fields/FieldSelect/FieldSelect.html.twig' with {
         label: "Sort by" | trans,
         tooltip: "Sort the products" | trans,
         placeholder: "Sort by" | trans,
@@ -51,12 +51,12 @@
 
     <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 mb-[40px]">
       {% for product in products %}
-        {% include '@components/Organisms/ProductCard/ProductCard.twig' with  product|merge({displayWishButton: true}) %}
+        {% include '@components/Organisms/ProductCard/ProductCard.html.twig' with  product|merge({displayWishButton: true}) %}
       {% endfor %}
     </div>
 
     <div class='mx-auto lg:mx-0 lg:ml-auto w-max'>
-      {% include '@components/Molecules/Pagination/Pagination.twig' with {
+      {% include '@components/Molecules/Pagination/Pagination.html.twig' with {
       prevText: 'Previous' | trans,
       nextText: 'Next' | trans,
       currentPage: page,

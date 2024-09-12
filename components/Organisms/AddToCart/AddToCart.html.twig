@@ -1,0 +1,20 @@
+{% set price = price|default(null) %}
+{% set discount = discount|default(null) %}
+{% set unavailable = unavailable|default(false) %}
+
+<div class='AddToCart {% if not price %}AddToCart--center{% endif %}'>
+  {% if price %}
+    <div>
+      <div class='price{% if discount %}-promo{% endif %}'>{{ price }}</div>
+      {% if discount %}<div class='price'>{{ discount }}</div>{% endif %}
+    </div>
+  {% endif %}
+  <div>
+    {% if unavailable %}
+      <span class='typo-button-large'>{{ "Product unavailable"|trans }}</span>
+    {% else %}
+      {% include '@components/Molecules/Button/Button.html.twig' with
+        {classes:'', variant:'primary', text:'Add to cart'|trans} %}
+    {% endif %}
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import Article from './Article.twig';
+import Article from './Article.html.twig';
 
 export default {
   title: 'Design System/Organisms/Card/Article'

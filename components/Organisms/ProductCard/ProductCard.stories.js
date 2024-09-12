@@ -1,9 +1,9 @@
-import Standard from './Standard.twig';
-import Search from './Search.twig';
-import Order from './Order.twig';
-import PurchaseFunnel from './PurchaseFunnel.twig';
-import AddToCartConfirmation from './AddToCartConfirmation.twig';
-import RemoveProduct from './RemoveProduct.twig';
+import Standard from './Standard.html.twig';
+import Search from './Search.html.twig';
+import Order from './Order.html.twig';
+import PurchaseFunnel from './PurchaseFunnel.html.twig';
+import AddToCartConfirmation from './AddToCartConfirmation.html.twig';
+import RemoveProduct from './RemoveProduct.html.twig';
 import progressBar from './RemoveProduct.js';
 
 export default {

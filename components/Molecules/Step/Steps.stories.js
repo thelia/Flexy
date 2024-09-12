@@ -1,4 +1,4 @@
-import Steps from './Steps.twig';
+import Steps from './Steps.html.twig';
 
 export default {
   title: 'Design System/Molecules/Steps'

@@ -1,6 +1,6 @@
-import Title from './Title.twig';
-import Paragraph from './Paragraph.twig';
-import Other from './Other.twig';
+import Title from './Title.html.twig';
+import Paragraph from './Paragraph.html.twig';
+import Other from './Other.html.twig';
 import './font.css';
 
 export default {

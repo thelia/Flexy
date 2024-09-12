@@ -1,5 +1,5 @@
-import PasswordControls from './PasswordControls.twig';
-import FieldInput from '../Fields/FieldInput/FieldInput.twig';
+import PasswordControls from './PasswordControls.html.twig';
+import FieldInput from '../Fields/FieldInput/FieldInput.html.twig';
 import PasswordControlsFunction from './PasswordControls';
 
 export default {

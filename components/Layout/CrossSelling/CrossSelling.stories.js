@@ -1,4 +1,4 @@
-import CrossSelling from './CrossSelling.twig';
+import CrossSelling from './CrossSelling.html.twig';
 import { slider } from '../../../assets/js/slider';
 import { MAX_SECTION_PRODUCT } from '../../base';
 

@@ -1,4 +1,4 @@
-import SubheaderSearch from './SubheaderSearch.twig';
+import SubheaderSearch from './SubheaderSearch.html.twig';
 
 export default {
   title: 'Design System/Layout/Subheader/Search Results'

@@ -1,5 +1,5 @@
-import Footer from './Footer.twig';
-import FooterCheckout from './FooterCheckout.twig';
+import Footer from './Footer.htmltwig';
+import FooterCheckout from './FooterCheckout.html.twig';
 
 export default {
   title: 'Design System/Layout/Footer'

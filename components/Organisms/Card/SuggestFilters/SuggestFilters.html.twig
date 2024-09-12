@@ -1,0 +1,7 @@
+{% set customText = customText|default('') %}
+{% set button = button|default('') %}
+
+<div class="SuggestFilters">
+    <div class="SuggestFilters-desc">{{ customText }}</div>
+    {% include '@components/Molecules/Button/Button.html.twig' with {text: button, variant: "secondary", icon_left: "filter", classes: ' Button--medium'} %}
+</div>

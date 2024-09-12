@@ -1,4 +1,4 @@
-import FieldSelect from './FieldSelect.twig';
+import FieldSelect from './FieldSelect.html.twig';
 import fieldSelectFunction from './FieldSelect.js';
 
 export default {
@@ -11,12 +11,16 @@ export const Base = {
     fieldSelectFunction();
   },
   args: {
-    name: "Indication",
-    options: [{ value: 1, label: "selecteur 1" }, { value: 2, label: "selecteur 2" }, { value: 3, label: "selecteur 3" }],
-    label: "Indication",
-    placeholder: "Ex. Nom",
-    error: "",
-    tooltip: "",
+    name: 'Indication',
+    options: [
+      { value: 1, label: 'selecteur 1' },
+      { value: 2, label: 'selecteur 2' },
+      { value: 3, label: 'selecteur 3' }
+    ],
+    label: 'Indication',
+    placeholder: 'Ex. Nom',
+    error: '',
+    tooltip: ''
   },
   argTypes: {
     disabled: {
@@ -27,10 +31,10 @@ export const Base = {
     },
     size: {
       options: ['large', 'small'],
-      control: { type: 'select' },
+      control: { type: 'select' }
     },
     required: {
       control: { type: 'boolean' }
-    },
+    }
   }
 };

@@ -1,17 +1,16 @@
-import Hero from './Hero.twig';
+import Hero from './Hero.html.twig';
 
 export default {
   title: 'Design System/Layout/Hero'
 };
-
-
 
 export const Base = {
   render: (args) => Hero(args),
   args: {
     blocks: [
       {
-        image: 'https://sabatier-k.openstudio-lab.com/cache/images/carousel/design780x480-4-4.png',
+        image:
+          'https://sabatier-k.openstudio-lab.com/cache/images/carousel/design780x480-4-4.png',
         title: 'Ici une phrase d’accroche pour accompagner le visuel',
         href: 'http://sabatier-k.openstudio-lab.com/couteaux-sabatier.html',
         linkLabel: 'Je découvre'
@@ -31,7 +30,6 @@ export const Base = {
     ]
   },
   argTypes: {
-    blocks: { control: 'object' },
+    blocks: { control: 'object' }
   }
 };
-

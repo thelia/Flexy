@@ -1,13 +1,13 @@
-import Link from './Link.twig';
+import Link from './Link.html.twig';
 
 export default {
-  title: 'Design System/Molecules/Link',
+  title: 'Design System/Molecules/Link'
 };
 
 const commonProps = {
   args: {
-    customText: "Link",
-    href: "",
+    customText: 'Link',
+    href: '',
     target: ''
   },
   argTypes: {
@@ -16,7 +16,7 @@ const commonProps = {
     },
     size: {
       options: ['large', 'medium'],
-      control: { type: 'select' },
+      control: { type: 'select' }
     }
   }
 };
@@ -30,12 +30,8 @@ export const WithIcon = {
   render: (args) => Link(args),
   ...commonProps,
   args: {
-    iconLeft: "chevron-left",
-    iconRight: "chevron-right",
+    iconLeft: 'chevron-left',
+    iconRight: 'chevron-right',
     ...commonProps.args
-  },
+  }
 };
-
-
-
-

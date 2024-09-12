@@ -1,4 +1,4 @@
-import FilterPill from './FilterPill.twig';
+import FilterPill from './FilterPill.html.twig';
 
 export default {
   title: 'Design System/Molecules/Filters/FilterPill'

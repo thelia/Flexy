@@ -1,4 +1,4 @@
-import PromotionalBanner from './PromotionalBanner.twig';
+import PromotionalBanner from './PromotionalBanner.htmltwig';
 import promotionalBanner from './PromotionalBanner';
 
 export default {

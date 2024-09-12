@@ -1,4 +1,4 @@
-import SimilarContentCard from './SimilarContentCard.twig';
+import SimilarContentCard from './SimilarContentCard.html.twig';
 
 export default {
   title: 'Design System/Organisms/SimilarContentCard'

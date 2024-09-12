@@ -1,4 +1,4 @@
-import FilterList from './FilterList.twig';
+import FilterList from './FilterList.html.twig';
 
 export default {
   title: 'Design System/Molecules/Filters/FilterList'
@@ -9,9 +9,9 @@ export const Base = {
   args: {
     label: 'Item filtre et tri',
     value: 1,
-    onClick: {},
+    onClick: {}
   },
   parameters: {
-    backgrounds: { default: 'grey-lighter' },
-  },
+    backgrounds: { default: 'grey-lighter' }
+  }
 };

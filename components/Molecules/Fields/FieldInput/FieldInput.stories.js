@@ -1,4 +1,4 @@
-import FieldInput from './FieldInput.twig';
+import FieldInput from './FieldInput.html.twig';
 import fieldInputFunction from './FieldInput.js';
 
 export default {

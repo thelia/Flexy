@@ -1,4 +1,4 @@
-import Reinsurance from './Reinsurance.twig';
+import Reinsurance from './Reinsurance.html.twig';
 
 export default {
   title: 'Design System/Organisms/Reinsurance'

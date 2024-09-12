@@ -1,5 +1,5 @@
-import FilterColorComponent from './FilterColor.twig';
-import FilterClassicComponent from './FilterClassic.twig';
+import FilterColorComponent from './FilterColor.html.twig';
+import FilterClassicComponent from './FilterClassic.html.twig';
 import filterSelectFunction from '../../../Molecules/Filters/FilterSelect/FilterSelect';
 import MobileDrawer from '../../../../assets/js/mobileDrawer';
 

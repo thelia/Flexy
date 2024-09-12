@@ -13,20 +13,20 @@
     img: {url: '/legacy-image-library/category_image_'~c.id~'/full/%5E*!386,280/0/default.webp', alt: c.i18ns.i18ns.fr_FR.title}
   })) %}
 
-	{% include '@components/Layout/Subheader/ContentPage/SubheaderContentPage.twig' with {title: attr('content', 'title'), description: attr('content', 'chapo') }  %}
+	{% include '@components/Layout/Subheader/ContentPage/SubheaderContentPage.html.twig' with {title: attr('content', 'title'), description: attr('content', 'chapo') }  %}
 
 	<div class="px-[25px] lg:pr-[225px] lg:pl-[250px] xl:pr-[325px] xl:pl-[350px] flex gap-[173px] mt-[25px] lg:mt-[54px] mb-[80px] lg:mb-[120px]">
 		<article class="wysiwyg">
 			{{ attr('content', 'description') }}
 		</article>
 		<aside class="hidden lg:block w-[340px]">
-			{% include '@components/Molecules/Shortcut/Shortcut.twig' with {customText: "Section title" | trans} %}
-			{% include '@components/Molecules/Shortcut/Shortcut.twig' with {customText: "Section title" | trans} %}
-			{% include '@components/Molecules/Shortcut/Shortcut.twig' with {customText: "Section title" | trans} %}
+			{% include '@components/Molecules/Shortcut/Shortcut.html.twig' with {customText: "Section title" | trans} %}
+			{% include '@components/Molecules/Shortcut/Shortcut.html.twig' with {customText: "Section title" | trans} %}
+			{% include '@components/Molecules/Shortcut/Shortcut.html.twig' with {customText: "Section title" | trans} %}
 		</aside>
 	</div>
 
 	<div class="bg-theme-lighter">
-		{% include '@components/Layout/SimilarContent/SimilarContent.twig' with {title: "On the same topic" | trans, button: {label: "See all news" | trans, href: "/" }, similarContents: contentsFiltered}  %}
+		{% include '@components/Layout/SimilarContent/SimilarContent.html.twig' with {title: "On the same topic" | trans, button: {label: "See all news" | trans, href: "/" }, similarContents: contentsFiltered}  %}
 	</div>
 {% endblock %}

@@ -1,4 +1,4 @@
-import PickupPointModule from './PickupPointModule.twig';
+import PickupPointModule from './PickupPointModule.html.twig';
 import {
   pickupPoint,
   pickupPointHours

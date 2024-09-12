@@ -1,4 +1,4 @@
-import StoreDelivery from './StoreDelivery.twig';
+import StoreDelivery from './StoreDelivery.html.twig';
 import { storeDelivery } from './StoreDelivery';
 
 export default {

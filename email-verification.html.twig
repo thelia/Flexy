@@ -18,12 +18,12 @@
       <form id="email-verification-form">
 
         <div id="error-message" class="hidden mb-4 text-xs">
-          {% include "@components/Organisms/SnackBar/SnackBar.twig" with { text:"Le code saisi n’est pas le valide.", size:"full", variant: "error", withIcon: true } %}
+          {% include "@components/Organisms/SnackBar/SnackBar.html.twig" with { text:"Le code saisi n’est pas le valide.", size:"full", variant: "error", withIcon: true } %}
         </div>
 
         <div class="flex flex-row gap-4">
           {% for i in 1..6 %}
-            {% include "@components/Molecules/Fields/FieldInput/FieldInput.twig" with {
+            {% include "@components/Molecules/Fields/FieldInput/FieldInput.html.twig" with {
               name: "code",
               placeholder: '_',
               max: "1",

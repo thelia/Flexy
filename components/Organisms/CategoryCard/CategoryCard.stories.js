@@ -1,4 +1,4 @@
-import CategoryCard from './CategoryCard.twig';
+import CategoryCard from './CategoryCard.html.twig';
 
 export default {
   title: 'Design System/Organisms/Category Card'

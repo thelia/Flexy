@@ -9,10 +9,10 @@
 	{% set products = resources('/api/front/products', {itemsPerPage:9, page: page}) %}
 	{% set totalProducts = resources('/api/front/products', {itemsPerPage:9, page: page}) %}
 
-	{% include '@components/Layout/Subheader/SearchResult/SubheaderSearch.twig' with {title: "Search results" | trans, } %}
+	{% include '@components/Layout/Subheader/SearchResult/SubheaderSearch.html.twig' with {title: "Search results" | trans, } %}
   {% include '@components/Layout/CategoryProduct/CategoryProduct.html.twig' with {products: products, totalProducts:totalProducts} %}
 
-	{% include '@components/Layout/Reinsurance/Reinsurance.twig' with { data: [
+	{% include '@components/Layout/Reinsurance/Reinsurance.html.twig' with { data: [
       {
         strongText: 'Free delivery' | trans,
         text: 'For any order over €100' | trans,

@@ -1,4 +1,4 @@
-import Shortcut from './Shortcut.twig';
+import Shortcut from './Shortcut.html.twig';
 
 export default {
   title: 'Design System/Molecules/Shortcut'

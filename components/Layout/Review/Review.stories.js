@@ -1,4 +1,4 @@
-import Review from './Review.twig';
+import Review from './Review.html.twig';
 import { slider } from '../../../assets/js/slider';
 
 export default {

@@ -1,4 +1,4 @@
-import SelfPromotion from './SelfPromotion.twig';
+import SelfPromotion from './SelfPromotion.html.twig';
 
 export default {
   title: 'Design System/Organisms/Card/SelfPromotion'

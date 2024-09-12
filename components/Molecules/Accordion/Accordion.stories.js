@@ -1,6 +1,6 @@
-import Accordion from './Accordion.twig';
-import FilterList from '../Filters/FilterList/FilterList.twig';
-import FieldInput from '../Fields/FieldInput/FieldInput.twig';
+import Accordion from './Accordion.html.twig';
+import FilterList from '../Filters/FilterList/FilterList.html.twig';
+import FieldInput from '../Fields/FieldInput/FieldInput.html.twig';
 
 export default {
   title: 'Design System/Molecules/Accordion'
@@ -10,19 +10,19 @@ const commonProps = {
   args: {
     title: 'Concertina',
     iconPlus: null,
-    iconMinus: null,
+    iconMinus: null
   },
   argTypes: {
     variant: {
       options: ['text', 'promo', 'filter', 'faq'],
-      control: { type: 'select' },
+      control: { type: 'select' }
     },
-    iconPlus:  {
-      control: { type: 'text' },
+    iconPlus: {
+      control: { type: 'text' }
     },
-    iconMinus:  {
-      control: { type: 'text' },
-    },
+    iconMinus: {
+      control: { type: 'text' }
+    }
   }
 };
 

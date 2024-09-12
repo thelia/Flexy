@@ -1,4 +1,4 @@
-import Transporter from './Transporter.twig';
+import Transporter from './Transporter.html.twig';
 
 export default {
   title: 'Design System/Organisms/Card/Transporter'
@@ -11,9 +11,9 @@ export const Base = {
     title: 'Nom du transporteur',
     date: 'JJ/MM',
     price: '7,80€',
-    img: {alt: 'Logo Chronopost', src: "/images/chronopost.svg"}
+    img: { alt: 'Logo Chronopost', src: '/images/chronopost.svg' }
   },
   argTypes: {
-    date: {control: { type: 'text' }}
+    date: { control: { type: 'text' } }
   }
 };

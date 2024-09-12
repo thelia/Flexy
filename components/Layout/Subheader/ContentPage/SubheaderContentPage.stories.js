@@ -1,4 +1,4 @@
-import SubheaderContentPage from './SubheaderContentPage.twig';
+import SubheaderContentPage from './SubheaderContentPage.html.twig';
 
 export default {
   title: 'Design System/Layout/Subheader/Content Page'

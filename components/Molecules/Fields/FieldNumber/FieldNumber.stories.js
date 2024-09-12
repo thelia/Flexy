@@ -1,4 +1,4 @@
-import FieldNumber from './FieldNumber.twig';
+import FieldNumber from './FieldNumber.html.twig';
 import fieldNumberFunction from './FieldNumber.js';
 
 export default {
@@ -11,10 +11,10 @@ export const Base = {
     fieldNumberFunction();
   },
   args: {
-    name: "Indication",
-    min: "",
-    max: "",
-    error: "",
+    name: 'Indication',
+    min: '',
+    max: '',
+    error: ''
   },
   argTypes: {
     disabled: {
@@ -22,6 +22,6 @@ export const Base = {
     },
     required: {
       control: { type: 'boolean' }
-    },
+    }
   }
 };

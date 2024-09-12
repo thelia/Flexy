@@ -1,0 +1,23 @@
+{% set options = options|default([]) %}
+{# options:  [{ value: 1, color: '#6969B3', label: 'State Blue' }, ...] #}
+{% set label = label|default(null) %}
+
+{% set optionsColors = [] %}
+{% for option in options %}
+	{% set optionsColors = optionsColors|merge([{
+    'value': option.value,
+    'label':  "<span class='colorRounded' data-bg-color='" ~ option.color ~ "'></span>" ~ option.label
+  }]) %}
+{% endfor %}
+
+{% if label %}
+  <div class="paragraph-4 font-semibold mb-[9px]">{{ label }}</div>
+{% endif %}
+<div class='hidden md:flex gap-2 flex-wrap'>
+	{% for option in options %}
+		{% include '@components/Molecules/Filters/FilterPill/FilterPill.html.twig' with option|merge({customText: option.label,icon: 'circle',inputType: 'radio', name: 'color', value: option.value, iconColor: option.color}) %}
+	{% endfor %}
+</div>
+<div class='md:hidden'>
+  {% include '@components/Molecules/Filters/FilterSelect/FilterSelect.html.twig' with {id: id, options: optionsColors} %}
+</div>

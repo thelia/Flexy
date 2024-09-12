@@ -1,0 +1,7 @@
+<div>
+  {% include './Checkbox.html.twig' with {label: 'Unchecked',disabled: disabled, error:error} %}
+  {% include './Checkbox.html.twig' with {label: 'Checked',disabled: disabled, error:error, checked:true} %}
+  {% include './Checkbox.html.twig' with
+    {label: 'Undefined',disabled: disabled, error:error, classes:'indeterminate'}
+  %}
+</div>

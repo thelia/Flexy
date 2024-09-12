@@ -1,4 +1,4 @@
-import StoreInfo from './StoreInfo.twig';
+import StoreInfo from './StoreInfo.html.twig';
 import { storeInfo } from './StoreInfo';
 
 export default {
