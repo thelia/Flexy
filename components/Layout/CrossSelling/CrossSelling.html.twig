@@ -1,15 +1,13 @@
 {% set title = title|default('') %}
-{% set products = products|default(null) %}
+
 {% set button = button|default(null) %}
 
-{% if categoryId is defined %}
-  {% set products = resources('/api/front/products', {'productCategories.category.id':categoryId, itemsPerPage:3}) %}
-{% endif %}
+
 
 <div class="pt-[56px] pb-[68px] pl-[24px] md:pl-[48px] xl:pt-[68px] xl:pb-[104px] lg:px-0 lg:container lg:mx-auto">
 	<div class='pb-6 text-black h2'>{{ title }}</div>
 	<div class='CrossSelling slider'>
-		{% for product in products %}
+		{% for product in this.products %}
 		{% include '@components/Organisms/ProductCard/ProductCard.html.twig' with product|merge({displayWishButton: true}) %}
 		{% endfor %}
 	</div>
