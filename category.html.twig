@@ -7,7 +7,7 @@
 	{% set products = resources('/api/front/products', {'productCategories.category.id': attr('category', 'id'), itemsPerPage:9, page: page}) %}
 	{% set totalProducts = resources('/api/front/products', {'productCategories.category.id': attr('category', 'id'), itemsPerPage:9, page: page}) %}
 
-	{% include '@components/Layout/Subheader/Category/SimilarContent.html.twig' with {title: attr('category', 'title'), description: attr('category', 'description'), nbProducts: products|length}  %}
+	{% include '@components/Layout/SimilarContent/SimilarContent.html.twig' with {title: attr('category', 'title'), description: attr('category', 'description'), nbProducts: products|length}  %}
   {% include '@components/Layout/CategoryProduct/CategoryProduct.html.twig' with {products: products, totalProducts:totalProducts} %}
 
 	{% include '@components/Layout/Reinsurance/Reinsurance.html.twig' with { data: [

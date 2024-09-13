@@ -113,6 +113,6 @@
   </div>
 
   <div class="bg-theme-lighter">
-    {% include '@components/Layout/CrossSelling/CrossSelling.html.twig' with {title: 'Last seen products'|trans, categoryId: 1}  %}
+    {{ component('Flexy:CrossSelling', {categoryId: 1, title: 'Last seen products' | trans}) }}
   </div>
 {% endblock %}
