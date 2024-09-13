@@ -1,0 +1,44 @@
+{% set orderNumber = orderNumber|default('') %}
+{% set date = date|default('') %}
+{% set nbItems = nbItems|default(0) %}
+{% set price = price|default('') %}
+{% set deliveryDate = deliveryDate|default('') %}
+{% set productImages = productImages|default([]) %}
+
+<div class='OrderCard'>
+	<div class='justify-between 2xl:flex'>
+		<div>
+			<div class='OrderCard-title'>{{ 'Order N°'|trans }}
+				{{ orderNumber }}</div>
+			<div class='OrderCard-date'>{{ 'of'|trans }}
+				{{ date }}</div>
+		</div>
+		<div class='flex justify-between mt-1 2xl:block 2xl:mt-0'>
+			<div class='text-black paragraph-3'>{{ nbItems }}
+        {{ 'item'|trans }}
+				{% if nbItems > 1 %}s
+				{% endif %}
+			</div>
+			<div class='font-semibold text-black paragraph-1'>{{ price }}</div>
+		</div>
+	</div>
+
+	<div class='2xl:flex 2xl:items-center 2xl:gap-4 2xl:mb-4 2xl:mt-2'>
+		<div class='mt-1 mb-2 2xl:mt-0 2xl:mb-0'>
+			{% include '@components/Molecules/OrderTag/OrderTag.html.twig' with {customText: 'Order shipped'|trans, variant:'validated'} %}
+		</div>
+		<div class='OrderCard-delivery'>{{ 'Scheduled for delivery on'|trans }}
+			{{ deliveryDate }}</div>
+	</div>
+	<div class='OrderCard-images'>
+		{%  for img in productImages %}
+			<div class='OrderCard-image'>
+				<img src='{{ img.src }}' alt='{{ img.alt }}' loading="lazy"/>
+			</div>
+		{% endfor %}
+		<div class='OrderCard-nbImages'></div>
+	</div>
+	<div class='mt-6 text-center md:text-left'>
+		{% include '@components/Molecules/Button/Button.html.twig' with {text: 'See order details'|trans} %}
+	</div>
+</div>

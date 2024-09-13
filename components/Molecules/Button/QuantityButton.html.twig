@@ -1,0 +1,11 @@
+{% set classes = classes|default('') %}
+{% set value = value|default('') %}
+{% set disabled = disabled|default(false) %}
+{% set icon = icon|default(null) %}
+{% set text = text|default('') %}
+{% set fill = fill|default(false) %}
+
+<div class='Button-quantityButton'>
+  {% include '@components/Molecules/Button/Quantity.html.twig' with {disabled: disabled, value:value, classes:classes} %}
+  {% include '@components/Molecules/Button/Button.html.twig' with {disabled: disabled, text:text, classes:classes, icon_left: icon, fill:fill} %}
+</div>

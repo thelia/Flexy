@@ -1,4 +1,4 @@
-import SubheaderOrders from './SubheaderOrders.twig';
+import SubheaderOrders from './SubheaderOrders.html.twig';
 
 export default {
   title: 'Design System/Layout/Subheader/Orders'

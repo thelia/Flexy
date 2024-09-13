@@ -1,4 +1,4 @@
-import ItemHeader from './ItemHeader.twig';
+import ItemHeader from './ItemHeader.html.twig';
 
 export default {
   title: 'Design System/Molecules/ItemHeader'

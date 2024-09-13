@@ -37,18 +37,18 @@
     }
   ] %}
 
-	{% include '@components/Layout/Subheader/TitleOnly/SubheaderTitle.twig' with {title: "Mes adresses de livraison", position: "centered" }  %}
+	{% include '@components/Layout/Subheader/TitleOnly/SubheaderTitle.html.twig' with {title: "Mes adresses de livraison", position: "centered" }  %}
 
 	<div class="flex flex-col items-center justify-center mt-6 md:mt-11 mb-[80px] md:mb-[120px] px-6">
 		<div class="grid w-full max-w-screen-xl grid-cols-1 gap-6 mx-auto md:grid-cols-2">
 			{% for address in addresses %}
-				{% include '@components/Organisms/Card/Address/AddressCard.twig' with {
+				{% include '@components/Organisms/Card/Address/AddressCard.html.twig' with {
           address: address
         } %}
 			{% endfor %}
 		</div>
 
-		{% include '@components/Molecules/Button/Button.twig' with {
+		{% include '@components/Molecules/Button/Button.html.twig' with {
       text: "Ajouter une adresse",
       classes: "mt-8 w-[340px]",
     } %}

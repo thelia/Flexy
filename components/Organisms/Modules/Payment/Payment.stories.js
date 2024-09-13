@@ -1,4 +1,4 @@
-import Payment from './Payment.twig';
+import Payment from './Payment.html.twig';
 
 export default {
   title: 'Design System/Organisms/Modules/Payment'

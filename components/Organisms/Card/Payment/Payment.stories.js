@@ -1,4 +1,4 @@
-import PaymentCard from './PaymentCard.twig';
+import PaymentCard from './PaymentCard.html.twig';
 
 export default {
   title: 'Design System/Organisms/Card/PaymentCard'

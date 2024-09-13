@@ -1,4 +1,4 @@
-import SubheaderTitle from './SubheaderTitle.twig';
+import SubheaderTitle from './SubheaderTitle.html.twig';
 
 export default {
   title: 'Design System/Layout/Subheader/TitleOnly'

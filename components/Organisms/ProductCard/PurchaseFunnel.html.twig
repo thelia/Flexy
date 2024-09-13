@@ -1,0 +1,17 @@
+{% set isOutOfStock = isOutOfStock|default(0) %}
+{% set productTitle = productTitle|default('') %}
+
+{% if isOutOfStock %}
+	<div class="ProductCardWrapper ProductCardWrapper--outOfStock purchase-funnel-card-width">
+		<div class="ProductCardWrapper-outOfStockMessage">
+			<div>
+				{{ ux_icon("error") }}
+			</div>
+      <p class="paragraph-4">{{ productTitle }} {{ 'is no longer available and cannot be ordered.'|trans }}</p>
+		</div>
+		{% include '@components/Organisms/ProductCard/ProductCard.html.twig' with {classes:'ProductCardPurchaseFunnel', isPurchaseFunnelCard: true, imgWidth:'232', imgHeight:'232'} %}
+    {% include '@components/Molecules/Button/Button.html.twig' with { classes:"ProductCardWrapper-outOfStockButton", disabled: false, text:"See similar products"|trans } %}
+	</div>
+{% else %}
+	{% include '@components/Organisms/ProductCard/ProductCard.html.twig' with {classes:'ProductCardPurchaseFunnel purchase-funnel-card-width', isPurchaseFunnelCard: true, imgWidth:'232', imgHeight:'232'} %}
+{% endif %}

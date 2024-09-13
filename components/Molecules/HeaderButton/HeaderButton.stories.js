@@ -1,4 +1,4 @@
-import HeaderButton from './HeaderButton.twig';
+import HeaderButton from './HeaderButton.html.twig';
 
 export default {
   title: 'Design System/Molecules/Header Button'

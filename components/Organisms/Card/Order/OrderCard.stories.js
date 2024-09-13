@@ -1,4 +1,4 @@
-import OrderCard from './OrderCard.twig';
+import OrderCard from './OrderCard.html.twig';
 
 export default {
   title: 'Design System/Organisms/Card/OrderCard'

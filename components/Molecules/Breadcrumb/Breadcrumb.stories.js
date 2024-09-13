@@ -1,4 +1,4 @@
-import Breadcrumb from './Breadcrumb.twig';
+import Breadcrumb from './Breadcrumb.html.twig';
 import breadcrumbFunction from './Breadcrumb.js';
 
 export default {
@@ -19,7 +19,7 @@ export const Base = {
 export const Lengthy = {
   render: (args) => Breadcrumb(args),
   play: () => {
-    breadcrumbFunction()
+    breadcrumbFunction();
   },
   args: {
     items: [
@@ -29,6 +29,5 @@ export const Lengthy = {
       { label: 'Page mère', href: '#' },
       { label: 'Page actuelle' }
     ]
-
   }
 };

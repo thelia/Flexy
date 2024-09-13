@@ -1,4 +1,4 @@
-import AddToCart from './AddToCart.twig';
+import AddToCart from './AddToCart.html.twig';
 
 export default {
   title: 'Design System/Organisms/AddToCart'

@@ -1,4 +1,4 @@
-import SummaryCard from './SummaryCard.twig';
+import SummaryCard from './SummaryCard.html.twig';
 
 export default {
   title: 'Design System/Organisms/SummaryCard'

@@ -1,4 +1,4 @@
-import Base from './Base.twig';
+import Base from './Base.html.twig';
 
 export default {
   title: 'Design System/Molecules/SearchBar'

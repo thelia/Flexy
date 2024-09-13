@@ -1,4 +1,4 @@
-import Icon from './Icon.twig';
+import Icon from './Icon.html.twig';
 import icons from './icons.json';
 
 export default {

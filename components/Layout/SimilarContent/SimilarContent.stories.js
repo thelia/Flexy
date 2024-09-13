@@ -1,4 +1,4 @@
-import SimilarContent from './SimilarContent.twig';
+import SimilarContent from './SimilarContent.html.twig';
 import { slider } from '../../../assets/js/slider';
 
 export default {

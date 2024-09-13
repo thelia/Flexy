@@ -1,4 +1,4 @@
-import HomeDelivery from './HomeDelivery.twig';
+import HomeDelivery from './HomeDelivery.html.twig';
 import { homeDelivery } from './HomeDelivery';
 
 export default {

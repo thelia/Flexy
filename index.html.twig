@@ -4,31 +4,6 @@
 
 {% block body %}
 
-  <div data-controller="hello"></div>
-
-  <twig:Alert message="I am a success alert!" />
-  <twig:Flexy:Message message="I am a message" />
-  <twig:Flexy:RandomNumber />
-
-  <div {{ react_component('Hello', { fullName: 'React' }) }}>
-      Loading...
-  </div>
-
-
-
-
-
-
-  {% set categories = resources('/api/front/categories', {itemsPerPage:3}) %}
-
-
-  {% set categoriesFiltered = categories|map((c) => ({
-    title: c.i18ns.title,
-    button: {label: 'Discover'|trans, href: c.publicUrl},
-    img: {url: '/legacy-image-library/category_image_'~c.id~'/full/%5E*!386,280/0/default.webp', alt: c.i18ns.title},
-    url: c.publicUrl
-  })) %}
-
 
 {%
   set blocks = [
@@ -56,18 +31,20 @@
   ]
 %}
 
-  {% include '@components/Layout/Hero/Hero.twig' with { blocks: blocks } %}
+  {% include '@components/Layout/Hero/Hero.html.twig' with { blocks: blocks } %}
 
-  {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Last seen products' | trans, categoryId: 1}  %}
+  {{ component('Flexy:CrossSelling', {categoryId: 1, title: 'Last seen products' | trans}) }}
+
 
   <div class="bg-theme-lighter">
-    {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Popular products' | trans, categoryId: 2}  %}
+    {{ component('Flexy:CrossSelling', {categoryId: 2, title: 'Popular products' | trans}) }}
   </div>
   <div class="bg-theme-lightest">
-    {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Promotions' | trans, categoryId: 3}  %}
+    {{ component('Flexy:CrossSelling', {categoryId: 3, title: 'Promotions' | trans}) }}
   </div>
 
-  {% include '@components/Layout/ProductCategory/ProductCategory.twig' with {title: 'Our product categories' | trans, categories: categoriesFiltered}  %}
+  {{ component('Flexy:ProductCategory', {title: 'Our product categories' | trans})   }}
+
 
   {%
     set reviews = [4,2,3]|map((note) => ({
@@ -79,7 +56,7 @@
   %}
 
   <div class="bg-theme-lightest">
-    {% include '@components/Layout/Review/Review.twig' with {title: 'Our customers speak about us' | trans, reviews: reviews, button: {label: "See all reviews" | trans, href: "#"}}  %}
+    {% include '@components/Layout/Review/Review.html.twig' with {title: 'Our customers speak about us' | trans, reviews: reviews, button: {label: "See all reviews" | trans, href: "#"}}  %}
   </div>
 
   {% set news = resources('/api/front/contents', {itemsPerPage:3}) %}
@@ -92,7 +69,7 @@
   }))
   %}
   <div class="bg-theme-lighter">
-    {% include '@components/Layout/SimilarContent/SimilarContent.twig' with {title: 'Our news' | trans, similarContents: newsFiltered, button: {label: "See all news" | trans, href: "#"}}  %}
+    {% include '@components/Layout/SimilarContent/SimilarContent.html.twig' with {title: 'Our news' | trans, similarContents: newsFiltered, button: {label: "See all news" | trans, href: "#"}}  %}
   </div>
 {% endblock %}
 

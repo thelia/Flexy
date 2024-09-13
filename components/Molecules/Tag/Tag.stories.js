@@ -1,4 +1,4 @@
-import Tag from './Tag.twig';
+import Tag from './Tag.html.twig';
 import tagFunction from './Tag.js';
 
 export default {
@@ -8,35 +8,35 @@ export default {
 export const Base = {
   render: (args) => Tag(args),
   args: {
-    customText: "Commande validée",
-    icon: "carbone",
+    customText: 'Commande validée',
+    icon: 'carbone'
   },
   argTypes: {
     variant: {
       options: ['validated', 'error', 'vermillon'],
-      control: { type: 'select' },
-    },
-  },
+      control: { type: 'select' }
+    }
+  }
 };
 
 export const Action = {
   render: (args) => Tag(args),
   play: () => {
-    tagFunction()
+    tagFunction();
   },
   args: {
-    customText: "Commande validée",
-    icon: "carbone",
-    href: "",
-    onClick: {},
+    customText: 'Commande validée',
+    icon: 'carbone',
+    href: '',
+    onClick: {}
   },
   argTypes: {
     variant: {
       options: ['validated', 'error', 'vermillon'],
-      control: { type: 'select' },
+      control: { type: 'select' }
     },
     closeOnClick: {
       control: { type: 'boolean' }
-    },
-  },
+    }
+  }
 };

@@ -1,7 +1,7 @@
-import Compact from './Classic.twig';
-import Quantities from './Quantities.twig';
-import Rounds from './Rounds.twig';
-import {quantityButton} from "./button";
+import Compact from './Classic.html.twig';
+import Quantities from './Quantities.html.twig';
+import Rounds from './Rounds.html.twig';
+import { quantityButton } from './button';
 
 export default {
   title: 'Design System/Molecules/Button'

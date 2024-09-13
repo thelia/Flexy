@@ -1,6 +1,6 @@
-import PickupPoint from './PickupPoint.twig';
+import PickupPoint from './PickupPoint.html.twig';
 import { pickupPointHours, pickupPoint } from './PickupPoint';
-import PickupPointDrawer from './PickupPointDrawer.twig';
+import PickupPointDrawer from './PickupPointDrawer.html.twig';
 import MobileDrawerInit from '../../../../assets/js/mobileDrawer';
 
 export default {

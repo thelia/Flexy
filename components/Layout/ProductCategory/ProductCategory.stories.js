@@ -1,4 +1,4 @@
-import ProductCategory from './ProductCategory.twig';
+import ProductCategory from './ProductCategory.html.twig';
 
 export default {
   title: 'Design System/Layout/Product Category'

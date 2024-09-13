@@ -9,15 +9,15 @@
 {% endblock %}
 
 {% block header %}
-	{% include '@components/Layout/Header/HeaderCheckout.twig' %}
+	{% include '@components/Layout/Header/HeaderCheckout.html.twig' %}
 {% endblock %}
 {% block body %}
 	{% set products = resources('/api/front/products', {'productCategories.category.id':1, itemsPerPage:3}) %}
 	<div id="Checkout"></div>
 	<div class="bg-theme-lighter">
-		{% include '@components/Layout/CrossSelling/CrossSelling.twig' with {products: products, title: 'Consultés récemment'} %}
+		{% include '@components/Layout/CrossSelling/CrossSelling.html.twig' with {products: products, title: 'Consultés récemment'} %}
 	</div>
 {% endblock %}
 {% block footer %}
-	{% include '@components/Layout/Footer/FooterCheckout.twig' %}
+	{% include '@components/Layout/Footer/FooterCheckout.html.twig' %}
 {% endblock %}

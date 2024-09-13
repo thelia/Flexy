@@ -1,4 +1,4 @@
-import RadioCard from './RadioCard.twig';
+import RadioCard from './RadioCard.html.twig';
 
 export default {
   title: 'Design System/Molecules/RadioCard'

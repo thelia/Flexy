@@ -1,4 +1,4 @@
-import SnackBar from './SnackBar.twig';
+import SnackBar from './SnackBar.html.twig';
 
 export default {
   title: 'Design System/Organisms/SnackBar'

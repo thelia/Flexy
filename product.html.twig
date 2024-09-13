@@ -24,33 +24,32 @@
       <div class="lg:flex lg:justify-between gap-[46px]">
         <div>
           <section id="gallery" class="relative md:pl-[92px]">
-            {% include '@components/Layout/ProductGallery/ProductGallery.twig' with {productId:productId } %}
+            {% include '@components/Layout/ProductGallery/ProductGallery.html.twig' with {productId:productId } %}
           </section>
           <section id="description" class="lg:pl-[92px]">
             {% set descriptionContent %}
               <p>toto 2</p>
-              {% include '@components/Layout/ProductGallery/test.twig' %}
             {% endset %}
 
-            {% include '@components/Molecules/Accordion/Accordion.twig' with {
+            {% include '@components/Molecules/Accordion/Accordion.html.twig' with {
               title: 'Description'|trans,
               content: descriptionContent,
               iconPlus: "plus",
               iconMinus: "minus",
             } %}
-            {% include '@components/Molecules/Accordion/Accordion.twig' with {
+            {% include '@components/Molecules/Accordion/Accordion.html.twig' with {
               title: 'Features'|trans,
               content: "tata",
               iconPlus: "plus",
               iconMinus: "minus",
             } %}
-            {% include '@components/Molecules/Accordion/Accordion.twig' with {
+            {% include '@components/Molecules/Accordion/Accordion.html.twig' with {
               title: 'Shipping & Returns'|trans,
               content: "",
               iconPlus: "plus",
               iconMinus: "minus",
             } %}
-            {% include '@components/Molecules/Accordion/Accordion.twig' with {
+            {% include '@components/Molecules/Accordion/Accordion.html.twig' with {
               title: 'Verified Reviews'|trans,
               content: "",
               iconPlus: "plus",
@@ -66,10 +65,10 @@
           {% endif %}
           <div class="flex items-center justify-between mt-[30px]">
             <div class="flex items-center gap-2">
-              {% include '@components/Molecules/Score/Score.twig' with {score: 3} %}
+              {% include '@components/Molecules/Score/Score.html.twig' with {score: 3} %}
               <span class="indication text-grey">12 {{ 'reviews'|trans }}</span>
             </div>
-            {% include '@components/Molecules/OrderTag/OrderTag.twig' with { customText: 'In stock'|trans, variant: 'success', type: 'minimal' } %}
+            {% include '@components/Molecules/OrderTag/OrderTag.html.twig' with { customText: 'In stock'|trans, variant: 'success', type: 'minimal' } %}
           </div>
           {% set attributes = getAttributesAndValues(productId) %}
 
@@ -85,14 +84,14 @@
           {#            { value: 6, color: '#C17767', label: 'Old Rose' }, #}
           {#          ] %} #}
           {#          <div class="mt-4"> #}
-          {#            {% include '@components/Organisms/Modules/Filters/FilterColor.twig' with {options: colors, name: 'color', label: 'Couleur',id: 'filterColor'} %} #}
+          {#            {% include '@components/Organisms/Modules/Filters/FilterColor.html.twig' with {options: colors, name: 'color', label: 'Couleur',id: 'filterColor'} %} #}
           {#          </div> #}
 
           <div class="mt-[30px]">
-            {% include '@components/Molecules/Button/QuantityButton.twig' with {value:1, classes:'Button--large', text:'Add to cart'|trans, icon:'cart', fill:true} %}
+            {% include '@components/Molecules/Button/QuantityButton.html.twig' with {value:1, classes:'Button--large', text:'Add to cart'|trans, icon:'cart', fill:true} %}
           </div>
           <div class="mt-[30px]">
-            {% include '@components/Organisms/Reinsurance/Reinsurance.twig' with {data: [
+            {% include '@components/Organisms/Reinsurance/Reinsurance.html.twig' with {data: [
               {
                 strongText: 'Free delivery'|trans,
                 text: ' from 50€'|trans,
@@ -114,6 +113,6 @@
   </div>
 
   <div class="bg-theme-lighter">
-    {% include '@components/Layout/CrossSelling/CrossSelling.twig' with {title: 'Last seen products'|trans, categoryId: 1}  %}
+    {% include '@components/Layout/CrossSelling/CrossSelling.html.twig' with {title: 'Last seen products'|trans, categoryId: 1}  %}
   </div>
 {% endblock %}

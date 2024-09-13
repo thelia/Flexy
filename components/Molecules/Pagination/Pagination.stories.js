@@ -1,4 +1,4 @@
-import Pagination from './Pagination.twig';
+import Pagination from './Pagination.html.twig';
 
 export default {
   title: 'Design System/Molecules/Pagination'
@@ -10,6 +10,6 @@ export const Base = {
     prevText: 'Précédent',
     nextText: 'Suivant',
     currentPage: 2,
-    totalPages: 3,
+    totalPages: 3
   }
 };

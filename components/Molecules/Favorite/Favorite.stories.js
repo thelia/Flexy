@@ -1,4 +1,4 @@
-import Favorite from './Favorite.twig';
+import Favorite from './Favorite.html.twig';
 
 export default {
   title: 'Design System/Molecules/Favorite'

@@ -1,6 +1,6 @@
-import Header from './Header.twig';
+import Header from './Header.html.twig';
 import HeaderScript from './Header.js';
-import HeaderCheckout from './HeaderCheckout.twig';
+import HeaderCheckout from './HeaderCheckout.html.twig';
 
 export default {
   title: 'Design System/Layout/Header'
