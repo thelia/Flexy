@@ -52,7 +52,9 @@
 		{% endif %}
 		{% if iconButton %}
 			<div class="FieldInput-button FieldInput-buttonIcon">
-				<button type='submit'>{{ svg(iconButton) }}</button>
+				<button type='submit'>
+           {{ ux_icon(iconButton) }}
+        </button>
 			</div>
 		{% endif %}
 		{% if button %}
