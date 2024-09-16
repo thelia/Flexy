@@ -5,14 +5,14 @@
 	<div class='flex'>
 		{% if type == "searchbar" %}
 			<div class='hidden lg:block xl:hidden'>
-        {% include '@components/Molecules/HeaderButton/HeaderButton.html.twig' with {icon: 'menu', text: 'Cart', classes: 'HeaderButton--light', small: true } %}
+				{% include '@components/Molecules/HeaderButton/HeaderButton.html.twig' with {icon: 'menu', text: 'Cart', classes: 'HeaderButton--light', small: true } %}
 			</div>
 		{% endif %}
 
 		<div class='flex items-center self-center h-full'>
 			<a href="/" class='Header-logo'>
-      {{ ux_icon('thelia') }}
-      </a>
+				{{ ux_icon('thelia') }}
+			</a>
 		</div>
 	</div>
 
@@ -23,15 +23,15 @@
 	{% else %}
 		<nav id="Menu">
 			<button type="button" data-menu-back="-1">
-        {{ ux_icon('arrow-left') }}
-      </button>
+				{{ ux_icon('arrow-left') }}
+			</button>
 			<button type="button" data-menu-close>
-        {{ ux_icon('close') }}
-      </button>
+				{{ ux_icon('close') }}
+			</button>
 			<ul class="Header-navigation" data-menu-sub="0">
-        {% for category in categories %}
-				  {% include '@components/Molecules/ItemHeader/ItemHeader.html.twig' with { customText: category.i18ns.title, href: category.publicUrl} %}
-        {% endfor %}
+				{% for category in categories %}
+					{% include '@components/Molecules/ItemHeader/ItemHeader.html.twig' with { customText: category.i18ns.title, href: category.publicUrl} %}
+				{% endfor %}
 			</ul>
 		</nav>
 	{% endif %}
@@ -41,15 +41,15 @@
 	{% if type == "searchbar" %}
 		<nav id="Menu" class='Header-navWrap'>
 			<button type="button" data-menu-back="-1">
-        {{ ux_icon('arrow-left') }}
-      </button>
+				{{ ux_icon('arrow-left') }}
+			</button>
 			<button type="button" data-menu-close>
-        {{ ux_icon('close') }}
-      </button>
+				{{ ux_icon('close') }}
+			</button>
 			<ul class="Header-navigation">
-        {% for category in categories %}
-				  {% include '@components/Molecules/ItemHeader/ItemHeader.html.twig' with { customText: category.i18ns.title, href: category.publicUrl} %}
-        {% endfor %}
+				{% for category in categories %}
+					{% include '@components/Molecules/ItemHeader/ItemHeader.html.twig' with { customText: category.i18ns.title, href: category.publicUrl} %}
+				{% endfor %}
 			</ul>
 		</nav>
 	{% endif %}
