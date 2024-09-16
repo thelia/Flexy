@@ -17,29 +17,30 @@ use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 use TwigEngine\Service\DataAccess\DataAccessService;
 
-#[AsLiveComponent(template: 'components/Molecules/SearchBar/SearchBar.html.twig')]
+#[AsLiveComponent(template: '@components/Molecules/SearchBar/SearchBar.html.twig')]
 class SearchBar
 {
-  use DefaultActionTrait;
+    use DefaultActionTrait;
 
-  #[LiveProp(writable: true, url: true)]
-  public string $query = '';
+    #[LiveProp(writable: true, url: true)]
+    public string $query = '';
 
-  private DataAccessService $dataAccessService;
+    private DataAccessService $dataAccessService;
 
-  public function __construct(DataAccessService $dataAccessService)
-  {
-    $this->dataAccessService = $dataAccessService;
-  }
+    public function __construct(DataAccessService $dataAccessService)
+    {
+        $this->dataAccessService = $dataAccessService;
+    }
 
+    public function getProducts(): array
+    {
+        $data = $this->dataAccessService->resources('/api/front/products', ['title' => $this->query]);
 
-  public function getProducts(): array
-  {
-    return $this->dataAccessService->resources("/api/front/products", ["title" => $this->query, "ref" => $this->query]);
-  }
+        return $data;
+    }
 
-  public function getCategories(): array
-  {
-    return $this->dataAccessService->resources("/api/front/categories", ["title" => $this->query, "ref" => $this->query]);
-  }
+    public function getCategories(): array
+    {
+        return $this->dataAccessService->resources('/api/front/categories', ['title' => $this->query]);
+    }
 }
