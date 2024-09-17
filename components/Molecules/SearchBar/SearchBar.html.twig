@@ -21,11 +21,15 @@
 						Produits
 					</div>
 
-					<div class="SearchDropdown-results">
-						{% for product in this.products %}
-							{% include '@components/Organisms/ProductCard/ProductCard.html.twig' with product %}
-						{% endfor %}
-					</div>
+					{% if this.products|length == 0 %}
+						<div class="font-medium">Aucun résultat pour cette recherche</div>
+					{% else %}
+						<div class="SearchDropdown-results">
+							{% for product in this.products %}
+								{% include '@components/Organisms/ProductCard/ProductCard.html.twig' with product %}
+							{% endfor %}
+						</div>
+					{% endif %}
 				</div>
 				<div class="mb-8 SearchDropdown-results-categories">
 					<div class="mb-[14px] uppercase text-grey text-sm">Catégories</div>
@@ -40,7 +44,7 @@
 						</div>
 					</div>
 				</div>
-				{% if this.products|length > 4 or this.categories|length > 0 %}
+				{% if this.products|length > 4 %}
 					<a href="/search?query={{query}}" class="mx-auto mt-8 Button">
 						Voir tous les produits
 					</a>
