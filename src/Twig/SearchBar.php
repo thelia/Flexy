@@ -20,27 +20,27 @@ use TwigEngine\Service\DataAccess\DataAccessService;
 #[AsLiveComponent(template: '@components/Molecules/SearchBar/SearchBar.html.twig')]
 class SearchBar
 {
-    use DefaultActionTrait;
+  use DefaultActionTrait;
 
-    #[LiveProp(writable: true, url: true)]
-    public string $query = '';
+  #[LiveProp(writable: true)]
+  public string $query = '';
 
-    private DataAccessService $dataAccessService;
+  private DataAccessService $dataAccessService;
 
-    public function __construct(DataAccessService $dataAccessService)
-    {
-        $this->dataAccessService = $dataAccessService;
-    }
+  public function __construct(DataAccessService $dataAccessService)
+  {
+    $this->dataAccessService = $dataAccessService;
+  }
 
-    public function getProducts(): array
-    {
-        $data = $this->dataAccessService->resources('/api/front/products', ['title' => $this->query]);
+  public function getProducts(): array
+  {
+    $data = $this->dataAccessService->resources('/api/front/products', ['title' => $this->query, "limit" => 4]);
 
-        return $data;
-    }
+    return $data;
+  }
 
-    public function getCategories(): array
-    {
-        return $this->dataAccessService->resources('/api/front/categories', ['title' => $this->query]);
-    }
+  public function getCategories(): array
+  {
+    return $this->dataAccessService->resources('/api/front/categories', ['title' => $this->query, "limit" => 4]);
+  }
 }
