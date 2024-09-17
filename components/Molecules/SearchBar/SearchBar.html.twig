@@ -10,9 +10,7 @@
 <div {{ attributes }} class="w-[500px] 2xl:w-[800px] z-50 self-center">
 	<label class="SearchBar" aria-label={{"Search"|trans}}>
 		<button class='w-4 h-4'>{{ ux_icon("search") }}</button>
-		<input type="text" name="query" placeholder={{"e.g. Shoes, T-shirts, ..."|trans}} autocomplete='off' data-model="debounce(500)|query"/>
-
-		<span>{{ this.query }}</span>
+		<input type="text" name="query" placeholder={{"e.g. Shoes, T-shirts, ..."|trans}} autocomplete='off' data-model="debounce(300)|query"/>
 	</label>
 
 	{% if this.products|length > 0 or this.categories|length > 0 %}
@@ -22,10 +20,6 @@
 					<div class="mb-[14px] text-sm uppercase text-grey">
 						Produits
 					</div>
-
-					{# <pre>
-					            {{this.products|json_encode(constant('JSON_PRETTY_PRINT'))}}
-					          </pre> #}
 
 					<div class="SearchDropdown-results">
 						{% for product in this.products %}

@@ -34,13 +34,19 @@ class SearchBar
 
   public function getProducts(): array
   {
-    $data = $this->dataAccessService->resources('/api/front/products', ['title' => $this->query, "limit" => 4]);
+    if (empty($this->query)) {
+      return [];
+    }
 
-    return $data;
+    return $this->dataAccessService->resources('/api/front/products', ['title' => $this->query, "limit" => 4]);
   }
 
   public function getCategories(): array
   {
+    if (empty($this->query)) {
+      return [];
+    }
+
     return $this->dataAccessService->resources('/api/front/categories', ['title' => $this->query, "limit" => 4]);
   }
 }
