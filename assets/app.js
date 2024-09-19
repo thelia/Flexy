@@ -14,9 +14,12 @@ import HeaderScript from '@components/Layout/Header/Header.js';
 import MobileDrawer from './js/mobileDrawer';
 import filterSelectFunction from '@components/Molecules/Filters/FilterSelect/FilterSelect';
 import { quantityButton } from '@components/Molecules/Button/button';
+import { FieldInputFunction } from '@components/Molecules/Fields/FieldInput/FieldInput';
+import { ModalFunction } from '@components/Molecules/Modal/Modal';
 import { slider } from '@js/slider';
 import ProductGallery from '@components/Layout/ProductGallery/ProductGallery';
 import PasswordControlsFunction from '@components/Molecules/PasswordControls/PasswordControls';
+
 import StepsFunction from '@components/Molecules/Step/Steps.js';
 
 function main() {
@@ -30,6 +33,8 @@ function main() {
   ProductGallery();
   PasswordControlsFunction();
   StepsFunction();
+  FieldInputFunction();
+  ModalFunction();
 }
 
 document.addEventListener('DOMContentLoaded', () => {

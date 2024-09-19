@@ -15,7 +15,7 @@
     {% if withIcon and icon %}
     <div class='SnackBar-icon'>{{ ux_icon(icon) }}</div>
     {% endif %}
-    <div class='SnackBar-message'>{{ text }}</div>
+    <div class='SnackBar-message'>{{ text|raw }}</div>
   </div>
   {% if button %}
   <div class='SnackBar-button'>

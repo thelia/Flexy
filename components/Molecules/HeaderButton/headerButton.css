@@ -68,3 +68,23 @@
     @apply bg-black md:bg-inherit text-white md:text-black lg:text-white lg:bg-black hover:bg-black hover:text-white;
   }
 }
+
+.DropdownProfile {
+  opacity: 0;
+  visibility: hidden;
+  transition: 300ms;
+  position: absolute;
+  transform: translateY(-10px);
+  margin-top: 16px;
+  right: 18px;
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: 0px 3px 5px 0px rgba(84, 84, 84, 0.12);
+
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    width: max-content;
+  }
+}

@@ -1,7 +1,6 @@
 {% set classes = classes|default('') %}
 {% set success = success|default(false) %}
 {% set size = size|default(false) %}
-{# size: 'small'|'large' #}
 {% set disabled = disabled|default(false) %}
 {% set optional = optional|default(false) %}
 {% set tooltip = tooltip|default(false) %}
@@ -38,15 +37,25 @@
 		<label for='{{ name }}' class='FieldInput-label'>
 			{{ label }}
 			{% if optional and label %}
-				Optionnel
+				({{'optional' | trans}})
 			{% endif %}
 		</label>
 		{% if tooltip %}
 			{% include '../../Tooltip/Tooltip.html.twig' with {tooltip: tooltip, position: 'bottom'} %}
 		{% endif %}
 	</div>
-	<div class='FieldInput-blockInput {% if iconButton and iconButtonLeft %}FieldInput-blockInputIconLeft{% endif %}'>
-		<input class='FieldInput-input{% if unit %} FieldInput-input--unit{% endif %}{% if verificationCode %} FieldInput-input--verificationCode{% endif %}' type='{{ type }}' name='{{ name }}' id='{{ name }}' {% if value %} value='{{ value }}' {% endif %} {% if not optional %} required {% endif %} {% if placeholder %} placeholder='{{ placeholder }}{% if optional and not label %} Optionnel{% endif %}' {% endif %} {% if min %} minlength='{{ min }}' {% endif %} {% if max %} maxlength='{{ max }}' {% endif %}/>
+	<div class='FieldInput-blockInput {% if iconButton and iconButtonLeft %}FieldInput-blockInputIconLeft{% endif %}{% if type == 'password' %}FieldInput-blockInputIconRight{% endif %}'>
+		<input
+      class='FieldInput-input{% if unit %} FieldInput-input--unit{% endif %}{% if verificationCode %} FieldInput-input--verificationCode{% endif %}'
+      type='{{ type }}'
+      name='{{ name }}'
+      id='{{ name }}'
+      {% if value %} value='{{ value }}' {% endif %}
+      {% if not optional %} required {% endif %}
+      {% if placeholder %} placeholder='{{ placeholder }}{% if optional and not label %} ({{'optional' | trans}}){% endif %}' {% endif %}
+      {% if min %} minlength='{{ min }}' {% endif %}
+      {% if max %} maxlength='{{ max }}' {% endif %}
+    />
 		{% if unit %}
 			<span class="FieldInput-unit">{{ unit }}</span>
 		{% endif %}
@@ -62,6 +71,14 @@
 				{% include '../../Button/Button.html.twig' with {text: button, rectangle: true, type: "submit", classes: size == 'small' ? ' Button--small' : ''} %}
 			</div>
 		{% endif %}
+    {% if type == 'password' %}
+      <div class="FieldInput-button FieldInput-buttonIcon">
+        <button type="button" class="toggle-password w-4" aria-label="{{ name }}" data-id="{{ name }}">
+          <span id="showIcon-{{ name }}">{{ ux_icon('show') }}</span>
+          <span id="hideIcon-{{ name }}" class="hidden">{{ ux_icon('hide') }}</span>
+        </button>
+      </div>
+    {% endif %}
 	</div>
 	{% if error %}
 		<span class='FieldInput-error'>{{ error }}</span>

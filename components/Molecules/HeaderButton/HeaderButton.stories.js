@@ -1,4 +1,8 @@
 import HeaderButton from './HeaderButton.html.twig';
+import HeaderButtons from './HeaderButtons.html.twig';
+import HeaderButtonProfile from './HeaderButtonProfile.html.twig';
+import headerButtonProfileFunction from './HeaderButtonProfile.js';
+
 
 export default {
   title: 'Design System/Molecules/Header Button'
@@ -29,4 +33,19 @@ export const base = {
     }
   },
   parameters: {}
+};
+
+export const headerButtons = {
+  render: () => HeaderButtons(),
+};
+
+export const headerButtonProfile = {
+  render: (args) =>
+    `<div class='block h-[62px] w-[390px] flex'>${HeaderButtonProfile(args)}</div>`,
+  play: () => {
+    headerButtonProfileFunction();
+  },
+  parameters: {
+    backgrounds: { default: 'grey' }
+  }
 };

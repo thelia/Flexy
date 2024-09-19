@@ -15,8 +15,8 @@ History: History
 Order N°: Order N°
 of: of
 item: item
-Order shipped: Order shipped
 Scheduled for delivery on: Scheduled for delivery on
+Order details: Order details
 See order details: See order details
 Expired: Expired
 Expires on: Expires on
@@ -31,6 +31,7 @@ Opening hours: Opening hours
 Carrier logo: Carrier logo
 Please add a billing address to finalise your order: Please add a billing address to finalise your order
 Add a billing address: Add a billing address
+Billing address: Billing address
 Edit the address: Edit the address
 of billing: of billing
 Favourite: Favourite
@@ -42,7 +43,7 @@ Product unavailable: Product unavailable
 Add to cart: Add to cart
 New: New
 Your product has been added to the cart: Your product has been added to the cart
-Quantity: Quantity
+Quantity:: Quantity:
 has been removed from your cart.: has been removed from your cart.
 Restore: Restore
 Reviews: Reviews
@@ -50,10 +51,12 @@ Unavailable: Unavailable
 View product: View product
 View my cart: View my cart
 Continue shopping: Continue shopping
+Continue my shopping: Continue my shopping
 is no longer available and cannot be ordered.: is no longer available and cannot be ordered.
 See similar products: See similar products
 Wishlist: Wishlist
 Account: Account
+My account: My account
 Cart: Cart
 Menu: Menu
 Subtotal: Subtotal
@@ -74,6 +77,7 @@ Expiry date: Expiry date
 Payment is made via your bank's servers. We do not have access to your bank details.: Payment is made via your bank's servers. We do not have access to your bank details.
 Save this card for future purchases: Save this card for future purchases
 You have no registered address: You have no registered address
+You have no registered address yet: You have no registered address yet
 Add an address: Add an address
 Use this address for billing: Use this address for billing
 Choose this address: Choose this address
@@ -134,3 +138,35 @@ Secure payment: Secure payment
 Credit card, Paypal: Credit card, Paypal
 Satisfied or refunded: Satisfied or refunded
 Exchange or refund offered within 30 days: Exchange or refund offered within 30 days
+My orders: My orders
+My profile: My profile
+You have no orders yet: You have no orders yet
+My delivery addresses: My delivery addresses
+My contact information: My contact information
+Firstname: Firstname
+Lastname: Lastname
+Birthday: Birthday
+E-mail: E-mail
+Phone number: Phone number
+optional: optional
+Edit my information: Edit my information
+Change my password: Change my password
+New password: New password
+Current password: Current password
+Show password: Show password
+Yes: Yes
+Cancel: Cancel
+New Address: New Address
+Delivery & payment: Delivery & payment
+Track my package: Track my package
+Delivery tracking: Delivery tracking
+Order validated: Order validated
+Order in preparation: Order in preparation
+Order shipped: Order shipped
+Order delivered: Order delivered
+Tracking number: Tracking number
+Your password has been changed successfully: Your password has been changed successfully
+Your information has been successfully modified: Your information has been successfully modified
+Return to my profile: Return to my profile
+Please enter your current password so we can change it.: Please enter your current password so we can change it.
+I forgot my password: I forgot my password

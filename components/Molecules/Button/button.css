@@ -94,14 +94,13 @@
   }
 
   &--minimal {
-    background: var(--white);
+    background: none;
     color: var(--black);
     span {
       color: var(--black);
     }
     &:hover:not(:disabled) {
       color: var(--grey);
-      background: var(--white);
       span{
         color: var(--grey);
       }

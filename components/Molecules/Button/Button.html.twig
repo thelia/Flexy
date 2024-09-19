@@ -10,6 +10,8 @@
 {% set rectangle = rectangle|default(false) %}
 {% set sharp = sharp|default(false) %}
 {% set round = round|default(false) %}
+{% set name = name|default('') %}
+{% set onClick = onClick|default({}) %}
 
 {% if variant and variant != 'primary' %}{% set classes = classes ~ ' Button--' ~ variant %}{% endif %}
 {% if fill %}{% set classes = classes ~ ' Button--fill'%}{% endif %}
@@ -20,7 +22,7 @@
 {% if href %}{% set tag = 'a' %}{% endif %}
 
 
-<{{ tag }} class='Button {{ classes }}' {% if disabled %}disabled{% endif %} {% if href %}href='{{ href }}'{% else %}type='{{ type }}'{% endif %}>
+<{{ tag }} class='Button {{ classes }}' {% if disabled %}disabled{% endif %} {% if href %}href='{{ href }}'{% else %}type='{{ type }}'{% endif %} {% if onClick %}onclick="{{ onClick }}"{% endif %}{% if name %}data-id="{{ name }}"{% endif %}>
   {% if icon_left %}
     <span class='icon icon-left'>
       {{ux_icon(icon_left)}}

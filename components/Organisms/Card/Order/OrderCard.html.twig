@@ -15,9 +15,7 @@
 		</div>
 		<div class='flex justify-between mt-1 2xl:block 2xl:mt-0'>
 			<div class='text-black paragraph-3'>{{ nbItems }}
-        {{ 'item'|trans }}
-				{% if nbItems > 1 %}s
-				{% endif %}
+        {{ 'item'|trans }}{% if nbItems > 1 %}s{% endif %}
 			</div>
 			<div class='font-semibold text-black paragraph-1'>{{ price }}</div>
 		</div>

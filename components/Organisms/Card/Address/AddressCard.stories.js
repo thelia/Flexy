@@ -27,12 +27,18 @@ export const Base = {
     address: address,
     isDefault: true,
     selected: true,
-    radio: false
+    radio: false,
+    title: 'Adresse de livraison',
+    attributesDelete: {
+      'class': '',
+      'data-id': '',
+    },
   },
   argTypes: {
     radio: { if: { arg: 'purchaseFunnel', truthy: false } },
     selected: { if: { arg: 'purchaseFunnel', truthy: false } },
-    isDefault: { if: { arg: 'purchaseFunnel', truthy: false } }
+    isDefault: { if: { arg: 'purchaseFunnel', truthy: false } },
+    title: { if: { arg: 'purchaseFunnel', truthy: true } }
   }
 };
 export const ClientInformation = {

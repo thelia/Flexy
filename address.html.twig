@@ -1,0 +1,30 @@
+{%  extends 'base.html.twig' %}
+
+{% block title %}
+  {{ 'New Address'| trans }}
+{% endblock %}
+
+{% block body %}
+  <main>
+    {% include "@components/Molecules/Button/Button.html.twig" with {
+      text: 'My delivery addresses' | trans,
+      href: '/account-address',
+      variant: 'minimal',
+      icon_left: 'chevron-left',
+      classes: 'mt-2 lg:mt-6 lg:ml-5',
+    } %}
+    <div class="lg:w-[400px] mx-6 lg:mx-auto mt-8 lg:mt-4">
+      <div class='h3'>{{'New Address' | trans}}</div>
+      <div class="flex flex-col gap-6 mt-6 lg:mt-11 mb-[80px] md:mb-[120px] mx-2 lg:mx-0">
+        {% include '@components/Molecules/Fields/FieldInput/FieldInput.html.twig' with {name: "name", label: "Nom de l'adresse" }  %}
+        {% include '@components/Molecules/Fields/FieldInput/FieldInput.html.twig' with {name: "lastName", label: "Nom" }  %}
+        {% include '@components/Molecules/Fields/FieldInput/FieldInput.html.twig' with {name: "firstName", label: "Prénom" | trans }  %}
+        /!\ A compléter quand les formulaire seront disponibles
+      </div>
+    </div>
+  </main>
+{% endblock %}
+
+{% block footer %}
+	{% include '@components/Layout/Footer/FooterCheckout.html.twig' %}
+{% endblock %}

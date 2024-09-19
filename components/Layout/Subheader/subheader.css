@@ -11,15 +11,15 @@
     }
   }
   &--orders {
+    flex-direction: column;
     min-height: rem-convert(256px);
     padding: rem-convert(24px 0);
     @screen md {
       min-height: rem-convert(282px);
-      padding: rem-convert(32px 0);
+      padding: rem-convert(20px 0 32px);
     }
     @screen lg {
       min-height: rem-convert(284px);
-      padding: rem-convert(32px 0);
     }
   }
   &--search {
@@ -93,7 +93,7 @@
       max-width: 664px;
     }
   }
-  
+
   &--centered {
     text-align: center;
   }

@@ -32,6 +32,6 @@ const dropdownFunction = () => {
     };
     focusActive = !focusActive;
   });
-}
+};
 
 export default dropdownFunction;
