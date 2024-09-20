@@ -1,10 +1,55 @@
-{% set type = type|default('classic') %} {# type: 'classic'|'white' #}
+{% set type = type|default('classic') %}
+{# type: 'classic'|'white' #}
 {% set value = value|default('') %}
 
 {% set classes = '' %}
-{% if type != 'classic' %}{% set classes = classes ~ ' SearchBar--' ~ type %}{% endif %}
+{% if type != 'classic' %}
+	{% set classes = classes ~ ' SearchBar--' ~ type %}
+{% endif %}
 
-<label class="SearchBar {{ classes }}" aria-label={{"Search"|trans}}>
-	<button class='w-4 h-4'>{{ ux_icon("search") }}</button>
-	<input type="text" name="query" placeholder={{"e.g. Shoes, T-shirts, ..."|trans}} autocomplete='off' value="{{ value }}"/>
-</label>
+<div {{ attributes }} class="w-[500px] 2xl:w-[800px] z-50 self-center">
+	<label class="SearchBar" aria-label={{"Search"|trans}}>
+		<button class='w-4 h-4'>{{ ux_icon("search") }}</button>
+		<input type="text" name="query" placeholder={{"e.g. Shoes, T-shirts, ..."|trans}} autocomplete='off' data-model="debounce(300)|query"/>
+	</label>
+
+	{% if this.products|length > 0 or this.categories|length > 0 %}
+		<div class="SearchDropdown">
+			<div class="SearchDropdown-results-grid">
+				<div class="mb-8 SearchDropdown-results-products">
+					<div class="mb-[14px] text-sm uppercase text-grey">
+						Produits
+					</div>
+
+					{% if this.products|length == 0 %}
+						<div class="font-medium">Aucun résultat pour cette recherche</div>
+					{% else %}
+						<div class="SearchDropdown-results">
+							{% for product in this.products %}
+								{% include '@components/Organisms/ProductCard/ProductCard.html.twig' with product %}
+							{% endfor %}
+						</div>
+					{% endif %}
+				</div>
+				<div class="mb-8 SearchDropdown-results-categories">
+					<div class="mb-[14px] uppercase text-grey text-sm">Catégories</div>
+
+					<div class="SearchDropdown-results">
+						<div class="SearchDropdown-results-categories-list">
+							{% for category in this.categories %}
+								<a href={{category.publicUrl}} class="underline" key={result.id}>
+									{{category.i18ns.title}}
+								</a>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				{% if this.products|length > 4 %}
+					<a href="/search?query={{query}}" class="mx-auto mt-8 Button">
+						Voir tous les produits
+					</a>
+				{% endif %}
+			</div>
+		</div>
+	{% endif %}
+</div>

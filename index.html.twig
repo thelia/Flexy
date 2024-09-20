@@ -1,11 +1,12 @@
 {%  extends 'base.html.twig' %}
 
-{% block title %}index{% endblock %}
+{% block title %}index
+{% endblock %}
 
 {% block body %}
 
 
-{%
+	{%
   set blocks = [
     {
       "image": asset("dist/images/placeholder.webp"),
@@ -31,22 +32,22 @@
   ]
 %}
 
-  {% include '@components/Layout/Hero/Hero.html.twig' with { blocks: blocks } %}
+	{% include '@components/Layout/Hero/Hero.html.twig' with { blocks: blocks } %}
 
-  {{ component('Flexy:CrossSelling', {categoryId: 1, title: 'Last seen products' | trans}) }}
-
-
-  <div class="bg-theme-lighter">
-    {{ component('Flexy:CrossSelling', {categoryId: 2, title: 'Popular products' | trans}) }}
-  </div>
-  <div class="bg-theme-lightest">
-    {{ component('Flexy:CrossSelling', {categoryId: 3, title: 'Promotions' | trans}) }}
-  </div>
-
-  {{ component('Flexy:ProductCategory', {title: 'Our product categories' | trans})   }}
+	{{ component('Flexy:CrossSelling', {categoryId: 1, title: 'Last seen products' | trans}) }}
 
 
-  {%
+	<div class="bg-theme-lighter">
+		{{ component('Flexy:CrossSelling', {categoryId: 2, title: 'Popular products' | trans}) }}
+	</div>
+	<div class="bg-theme-lightest">
+		{{ component('Flexy:CrossSelling', {categoryId: 3, title: 'Promotions' | trans}) }}
+	</div>
+
+	{{ component('Flexy:ProductCategory', {title: 'Our product categories' | trans})   }}
+
+
+	{%
     set reviews = [4,2,3]|map((note) => ({
       author: 'Prénom N.',
       review:"“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.”",
@@ -55,22 +56,22 @@
     }))
   %}
 
-  <div class="bg-theme-lightest">
-    {% include '@components/Layout/Review/Review.html.twig' with {title: 'Our customers speak about us' | trans, reviews: reviews, button: {label: "See all reviews" | trans, href: "#"}}  %}
-  </div>
+	<div class="bg-theme-lightest">
+		{% include '@components/Layout/Review/Review.html.twig' with {title: 'Our customers speak about us' | trans, reviews: reviews, button: {label: "See all reviews" | trans, href: "#"}}  %}
+	</div>
 
-  {% set news = resources('/api/front/contents', {itemsPerPage:3}) %}
+	{% set news = resources('/api/front/contents', {itemsPerPage:3}) %}
 
-  {% set newsFiltered = news|map((n) => ({
+	{% set newsFiltered = news|map((n) => ({
     title: n.i18ns.title,
     date: n.createdAt|date("d/m/Y"),
     url: '#',
     img: {url: '/images/placeholder.webp', alt: n.i18ns.title}
   }))
   %}
-  <div class="bg-theme-lighter">
-    {% include '@components/Layout/SimilarContent/SimilarContent.html.twig' with {title: 'Our news' | trans, similarContents: newsFiltered, button: {label: "See all news" | trans, href: "#"}}  %}
-  </div>
+	<div class="bg-theme-lighter">
+		{% include '@components/Layout/SimilarContent/SimilarContent.html.twig' with {title: 'Our news' | trans, similarContents: newsFiltered, button: {label: "See all news" | trans, href: "#"}}  %}
+	</div>
 {% endblock %}
 
 {#<div class="font-bold sm:w-7/12">{{ format_money(number={$TOTAL_TAXED_AMOUNT}, currency_id=$CURRENCY) }}</div>#}
