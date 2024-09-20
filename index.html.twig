@@ -1,7 +1,6 @@
 {%  extends 'base.html.twig' %}
 
-{% block title %}index
-{% endblock %}
+{% block title %}index{% endblock %}
 
 {% block body %}
 
@@ -60,18 +59,10 @@
 		{% include '@components/Layout/Review/Review.html.twig' with {title: 'Our customers speak about us' | trans, reviews: reviews, button: {label: "See all reviews" | trans, href: "#"}}  %}
 	</div>
 
-	{% set news = resources('/api/front/contents', {itemsPerPage:3}) %}
-
-	{% set newsFiltered = news|map((n) => ({
-    title: n.i18ns.title,
-    date: n.createdAt|date("d/m/Y"),
-    url: '#',
-    img: {url: '/images/placeholder.webp', alt: n.i18ns.title}
-  }))
-  %}
 	<div class="bg-theme-lighter">
-		{% include '@components/Layout/SimilarContent/SimilarContent.html.twig' with {title: 'Our news' | trans, similarContents: newsFiltered, button: {label: "See all news" | trans, href: "#"}}  %}
+    {{ component('Flexy:Layout:SimilarContent', {title: 'Our news' | trans, button: {label: "See all news" | trans, href: "#"}}) }}
 	</div>
+
 {% endblock %}
 
 {#<div class="font-bold sm:w-7/12">{{ format_money(number={$TOTAL_TAXED_AMOUNT}, currency_id=$CURRENCY) }}</div>#}
