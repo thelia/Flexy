@@ -1,8 +1,8 @@
 <div class="h-full">
   {% include './HeaderButton.html.twig' with {icon: 'account-logged',inactive: inactive, text: 'Prénom N.', classes:"HeaderNav-btn HeaderButton--theme profile" } %}
   <ul class="DropdownProfile">
-    <li>{% include '@components/Molecules/UserMenu/UserMenu.html.twig' with {customText: 'Mes commandes', href: '#', variant: 'white'} %}</li>
-    <li>{% include '@components/Molecules/UserMenu/UserMenu.html.twig' with {customText: 'Mon profil', href: '#', variant: 'white'} %}</li>
-    <li>{% include '@components/Molecules/UserMenu/UserMenu.html.twig' with {customText: 'Mes adresses de livraison', href: '#', variant: 'white'} %}</li>
+    <li>{% include '@components/Molecules/userMenu/UserMenu.html.twig' with {customText: 'Mes commandes', href: '#', variant: 'white'} %}</li>
+    <li>{% include '@components/Molecules/userMenu/UserMenu.html.twig' with {customText: 'Mon profil', href: '#', variant: 'white'} %}</li>
+    <li>{% include '@components/Molecules/userMenu/UserMenu.html.twig' with {customText: 'Mes adresses de livraison', href: '#', variant: 'white'} %}</li>
   </ul>
 </div>
