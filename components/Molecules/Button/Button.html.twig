@@ -14,20 +14,20 @@
 {% set onClick = onClick|default({}) %}
 
 {% if variant and variant != 'primary' %}{% set classes = classes ~ ' Button--' ~ variant %}{% endif %}
-{% if fill %}{% set classes = classes ~ ' Button--fill'%}{% endif %}
-{% if rectangle %}{% set classes = classes ~ ' Button--rectangle'%}{% endif %}
-{% if sharp %}{% set classes = classes ~ ' Button--sharp'%}{% endif %}
-{% if round %}{% set classes = classes ~ ' Button--round'%}{% endif %}
+{% if fill %}{% set classes = classes ~ ' Button--fill' %}{% endif %}
+{% if rectangle %}{% set classes = classes ~ ' Button--rectangle' %}{% endif %}
+{% if sharp %}{% set classes = classes ~ ' Button--sharp' %}{% endif %}
+{% if round %}{% set classes = classes ~ ' Button--round' %}{% endif %}
 {% set tag = 'button' %}
 {% if href %}{% set tag = 'a' %}{% endif %}
 
 
 <{{ tag }} class='Button {{ classes }}' {% if disabled %}disabled{% endif %} {% if href %}href='{{ href }}'{% else %}type='{{ type }}'{% endif %} {% if onClick %}onclick="{{ onClick }}"{% endif %}{% if name %}data-id="{{ name }}"{% endif %}>
-  {% if icon_left %}
+{% if icon_left %}
     <span class='icon icon-left'>
       {{ux_icon(icon_left)}}
     </span>
-  {% endif %}
+{% endif %}
   {{ text|striptags('<span>')|raw }}
   {% if icon_right %}
     <span class='icon icon-right'>
