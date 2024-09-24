@@ -177,4 +177,13 @@
       padding-left: rem-convert(40px);
     }
   }
+
+  &-blockInputIconRight {
+    .FieldInput-buttonIcon {
+      right: 10px;
+    }
+    .FieldInput-input {
+      padding-right: rem-convert(40px);
+    }
+  }
 }

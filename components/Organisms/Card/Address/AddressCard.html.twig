@@ -1,3 +1,4 @@
+{% set title = title|default('') %}
 {% set contentType = "label" %}
 {% set disabled = disabled|default(false) %}
 {% set radio = radio|default(false) %}
@@ -13,7 +14,10 @@
   country: '',
   phone: '',
 }) %}
-
+{% set attributesDelete = attributesDelete|default({
+  'class': '',
+  'data-id': ''
+}) %}
 
 {% if purchaseFunnel %}
   {% set radio = false %}
@@ -30,7 +34,7 @@
     {% include '@components/Atoms/Form/Radio.html.twig' with {classes:radio ? "" : "invisible max-w-0", type:"span", name:"test", value:1, checked:selected} %}
 
     <span>
-      <span class='AddressCard-title'>{% if not purchaseFunnel %}{{ address.title }}{% else %}{{ 'Delivery address'|trans }}{% endif %}</span>
+      <span class='AddressCard-title'>{% if not purchaseFunnel %}{{ address.title }}{% else %}{{ title }}{% endif %}</span>
       <span class='AddressCard-name'>{{ address.name }}</span>
       <span class='AddressCard-address'>
         <span>{{ address.address1 }},{% if address.address2 %} {{ address.address2 }},{% endif %}</span>
@@ -46,7 +50,7 @@
         <span>{{ ux_icon("edit") }}</span>
         {{ 'Modify'|trans }}
       </button>
-      <button {% if disabled %}disabled{% endif %} class='hover:text-theme' type='button'>
+      <button {% if disabled %}disabled{% endif %} class='hover:text-theme{% if attributesDelete.class|default('') %} {{ attributesDelete.class }}{% endif %}' type='button' {% if attributesDelete['data-id']|default('') %}data-id="{{ attributesDelete['data-id'] }}"{% endif %}>
         <span>{{ ux_icon("delete") }}</span>
         {{ 'Delete'|trans }}
       </button>

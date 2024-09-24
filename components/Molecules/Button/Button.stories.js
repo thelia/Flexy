@@ -19,7 +19,9 @@ export const classic = {
     rectangle: false,
     sharp: false,
     icon_left: 'none',
-    icon_right: 'none'
+    icon_right: 'none',
+    name: '',
+    onClick: {},
   },
   argTypes: {
     variant: {

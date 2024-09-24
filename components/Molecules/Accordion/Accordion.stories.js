@@ -37,7 +37,6 @@ export const Text = {
   }
 };
 
-// TODO: manque input avec bouton à l'intérieur pour le code promo
 export const CodePromo = {
   render: (args) => Accordion(args),
   args: {

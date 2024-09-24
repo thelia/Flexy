@@ -9,6 +9,9 @@
 body {
   font-family: 'Poppins', 'Roboto', serif;
   color: var(--grey-dark);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 svg {
@@ -59,4 +62,13 @@ svg {
   &.active {
     display: block;
   }
+}
+
+hr {
+  height: 1px;
+  color: var(--grey-lighter);
+}
+
+footer {
+  margin-top: auto;
 }

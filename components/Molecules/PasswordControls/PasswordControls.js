@@ -1,5 +1,6 @@
 export default function PasswordControlsFunction() {
   const passwordInput = document.getElementById('password');
+  console.log('passwordInput', passwordInput);
   if (passwordInput) {
     passwordInput.addEventListener('focus', () => {
       document.querySelector('.PasswordControls').style.display = 'block';

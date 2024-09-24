@@ -1,0 +1,60 @@
+.DeliveryTracking {
+  border-radius: rem-convert(8px);
+  border: 1px solid var(--theme-medium);
+  background: var(--theme-lightest);
+  padding: rem-convert(24px) rem-convert(32px);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  &-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-title {
+    @apply paragraph-2;
+    font-weight: 700;
+    color: var(--black);
+    padding-bottom: rem-convert(4px);
+  }
+
+  &-desc {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: rem-convert(14px);
+    line-height: rem-convert(20px);
+  }
+
+  &-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  &-step {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    &:not(:last-child):after {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 8px;
+      height: 24px;
+      width: 1px;
+      background-color: var(--theme);
+    }
+  }
+
+  &-icon {
+    display: block;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--theme);
+    border-radius: 50%;
+  }
+}

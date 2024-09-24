@@ -15,9 +15,9 @@ History: Historique
 Order N°: Commande N°
 of: de
 item: article
-Order shipped: Commande expédiée
 Scheduled for delivery on: Prévu pour livraison le
-See order details: Voir les détails de la commande
+Order details: Détails de la commande
+See order details: Voir le détail de la commande
 Expired: Expiré
 Expires on: Expire le
 Delete: Supprimer
@@ -31,6 +31,7 @@ Opening hours: Horaires d'ouverture
 Carrier logo: Logo du transporteur
 Please add a billing address to finalise your order: Veuillez ajouter une adresse de facturation pour finaliser votre commande
 Add a billing address: Ajouter une adresse de facturation
+Billing address: Adresse de facturation
 Edit the address: Modifier l'adresse
 of billing: de facturation
 Favourite: Favori
@@ -42,7 +43,7 @@ Product unavailable: Produit indisponible
 Add to cart: Ajouter au panier
 New: Nouveau
 Your product has been added to the cart: Votre produit a été ajouté au panier
-Quantity: Quantité
+Quantity:: Quantité :
 Color: Couleur
 has been removed from your cart.: a été retiré de votre panier.
 Restore: Restaurer
@@ -51,10 +52,12 @@ Unavailable: Indisponible
 View product: Voir le produit
 View my cart: Voir mon panier
 Continue shopping: Continuer vos achats
+Continue my shopping: Continuer mon shopping
 is no longer available and cannot be ordered.: n'est plus disponible et ne peut pas être commandé.
 See similar products: Voir les produits similaires
 Wishlist: Liste de souhaits
 Account: Compte
+My account: Mon compte
 Cart: Panier
 Menu: Menu
 Subtotal: Sous-total
@@ -75,6 +78,7 @@ Expiry date: Date d'expiration
 Payment is made via your bank's servers. We do not have access to your bank details.: Le paiement est effectué via les serveurs de votre banque. Nous n'avons pas accès à vos coordonnées bancaires.
 Save this card for future purchases: Enregistrer cette carte pour des achats futurs
 You have no registered address: Vous n'avez pas d'adresse enregistrée
+You have no registered address yet: Vous n’avez pas encore d'adresse enregistrée
 Add an address: Ajouter une adresse
 Use this address for billing: Utiliser cette adresse pour la facturation
 Choose this address: Choisir cette adresse
@@ -134,3 +138,35 @@ Secure payment: Paiement sécurisé
 Credit card, Paypal: Carte bancaire, Paypal
 Satisfied or refunded: Satisfait ou remboursé
 Exchange or refund offered within 30 days: Échange ou remboursement offert sous 30 jours
+My orders: Mes commandes
+My profile: Mon profil
+You have no orders yet: Vous n'avez pas encore de commande
+My delivery addresses: Mes adresses de livraison
+My contact information: Mes informations de contact
+Firstname: Prénom
+Lastname: Nom
+Birthday: Anniversaire
+E-mail: E-mail
+Phone number: Numéro de téléphone
+optional: optionnel
+Edit my information: Modifier mes informations
+Change my password: Modifier mon mot de passe
+New password: Nouveau mot de passe
+Current password: Mot de passe actuel
+Show password: Afficher le mot de passe
+Yes: Oui
+Cancel: Annuler
+New Address: Nouvelle adresse
+Delivery & payment: Livraison & paiement
+Track my package: Suivre mon colis
+Delivery tracking: Suivi de la livraison
+Order validated: Commande validée
+Order in preparation: Commande en préparation
+Order shipped: Commande expédiée
+Order delivered: Commande livrée
+Tracking number: N° de suivi
+Your password has been changed successfully: Votre mot de passe a été modifié avec succès
+Your information has been successfully modified: Vos informations ont été modifiés avec succès
+Return to my profile: Revenir à mon profil
+Please enter your current password so we can change it.: Veuillez saisir votre mot de passe actuel afin de pouvoir le modifier.
+I forgot my password: J’ai oublié mon mot de passe
