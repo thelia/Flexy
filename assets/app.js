@@ -19,6 +19,7 @@ import { ModalFunction } from '@components/Molecules/Modal/Modal';
 import { slider } from '@js/slider';
 import ProductGallery from '@components/Layout/ProductGallery/ProductGallery';
 import PasswordControlsFunction from '@components/Molecules/PasswordControls/PasswordControls';
+import headerButtonProfileFunction from '@components/Molecules/HeaderButton/HeaderButtonProfile';
 
 import StepsFunction from '@components/Molecules/Step/Steps.js';
 
@@ -35,6 +36,7 @@ function main() {
   StepsFunction();
   FieldInputFunction();
   ModalFunction();
+  headerButtonProfileFunction();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
