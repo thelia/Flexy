@@ -7,13 +7,14 @@
 	<div class='pb-6 text-black h2'>{{ title }}</div>
 	<div class='CrossSelling slider'>
 		{% for product in this.products %}
-		{% include '@components/Organisms/ProductCard/ProductCard.html.twig' with product|merge({displayWishButton: true}) %}
+			{{ component('Flexy:Components:ProductCard', {productId: product.id}) }}
+			{# {{ component('Flexy:Components:ProductCard', {product}) }} #}
 		{% endfor %}
 	</div>
-  {% if button %}
-	<div class='mt-5'>
-		{% include '@components/Molecules/Button/Button.html.twig' with {text: button.label, href: button.href,icon_right:'chevron-right', variant:'secondary'} %}
-	</div>
-  {% endif %}
+	{% if button %}
+		<div class='mt-5'>
+			{% include '@components/Molecules/Button/Button.html.twig' with {text: button.label, href: button.href,icon_right:'chevron-right', variant:'secondary'} %}
+		</div>
+	{% endif %}
 </div>
 {% endif %}

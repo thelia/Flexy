@@ -1,3 +1,4 @@
+{% set product = product|default(this.getProduct) %}
 {% set classes = classes|default('') %}
 {% set productTitle = productTitle|default(i18ns.title ?? '') %}
 {% set productLink = publicUrl|default('#') %}
@@ -29,43 +30,43 @@
 
 {%  if productSaleElements is defined %}
 
-  {% set defaultPse = null %}
+	{% set defaultPse = null %}
 
-  {% for pse in productSaleElements %}
-    {% if pse.isDefault %}
-      {% set defaultPse = pse %}
-    {% endif %}
-  {% endfor %}
+	{% for pse in productSaleElements %}
+		{% if pse.isDefault %}
+			{% set defaultPse = pse %}
+		{% endif %}
+	{% endfor %}
 
-  {% set price = defaultPse.productPrices|first.price ~ '€' %}
-  {% set promoPrice = defaultPse.productPrices|first.promoPrice ~ '€' %}
+	{% set price = defaultPse.productPrices|first.price ~ '€' %}
+	{% set promoPrice = defaultPse.productPrices|first.promoPrice ~ '€' %}
 
-  {% set isPromo = defaultPse ? defaultPse.promo|default(false) : false %}
-  {% set isNew = defaultPse ? defaultPse.newness|default(false) : false %}
+	{% set isPromo = defaultPse ? defaultPse.promo|default(false) : false %}
+	{% set isNew = defaultPse ? defaultPse.newness|default(false) : false %}
 
 {% endif %}
 {%  if id is defined and img is not defined %}
-  {% set images = resources('/api/front/product_images', {'product.id':id, itemsPerPage:1}) %}
-  {% if images %}
-    {% set img = {url: '/legacy-image-library/product_image_'~ images|first.id ~'/full/%5E*!386,280/0/default.webp', alt: i18ns.title} %}
-  {% endif %}
+	{% set images = resources('/api/front/product_images', {'product.id':id, itemsPerPage:1}) %}
+	{% if images %}
+		{% set img = {url: '/legacy-image-library/product_image_'~ images|first.id ~'/full/%5E*!386,280/0/default.webp', alt: i18ns.title} %}
+	{% endif %}
 {% endif %}
 
 {% if img is not defined %}
-    {% set img = img|default({url: '@assets/images/placeholder2.webp', alt:''}) %}
+	{% set img = img|default({url: '@assets/images/placeholder2.webp', alt:''}) %}
 {% endif %}
-
-<div class="ProductCard {{ classes }}">
+{{productId}}
+{# <div class="ProductCard {{ classes }}">
 	{% if isAddToCartConfirmation or isRemoveProduct %}
 		<span class='ProductCard-iconClose'>{{ ux_icon("close") }}</span>
 	{% endif %}
 	<div class="ProductCard-header">
 		<div class="ProductCard-tagList">
 			{% if isNew %}
-        {% include '@components/Molecules/Tag/Tag.html.twig' with {customText: 'New'|trans, variant: 'vermillon'} %}
+				{% include '@components/Molecules/Tag/Tag.html.twig' with {customText: 'New'|trans, variant: 'vermillon'} %}
 			{% endif %}
 			{% if isPromo %}
-        {% include '@components/Molecules/Tag/Tag.html.twig' with {customText: '-15%', variant: 'error'} %}
+				{% include '@components/Molecules/Tag/Tag.html.twig' with {customText: '-15%', variant: 'error'} %}
 			{% endif %}
 		</div>
 
@@ -114,7 +115,8 @@
 					{% if attributesAvColor %}
 
 						<span class="flex items-center ProductCard-secondarySize">
-							<span class="mr-1 Colors-item" style="background-color:{{ attributesAvColor.hexa }}"></span>{{ t('Color') }}:
+							<span class="mr-1 Colors-item" style="background-color:{{ attributesAvColor.hexa }}"></span>
+							{{ t('Color') }}:
 							{{ attributesAvColor.name }}</span>
 					{% endif %}
 				</div>
@@ -124,10 +126,10 @@
 					{{ productTitle }}
 					{{ 'has been removed from your cart.' |trans }}
 				</div>
-        {% include '@components/Molecules/Button/Button.html.twig' with {classes:'Button--small', text: 'Restore'|trans , icon_left: "restore" } %}
+				{% include '@components/Molecules/Button/Button.html.twig' with {classes:'Button--small', text: 'Restore'|trans , icon_left: "restore" } %}
 			{% endif %}
 			<div class="ProductCard-footer">
-        {% if rate != null or colors|length > 0 %}
+				{% if rate != null or colors|length > 0 %}
 					<div class="ProductCard-footerLeft">
 						{% if rate != null %}
 							<div class="Rating">
@@ -183,7 +185,7 @@
 						</div>
 					{% else %}
 						<div class="ProductCard-quantity">
-              {% include '@components/Molecules/Button/Quantity.html.twig' with {disabled: false, value:quantityChoice, classes:'Button--small'} %}
+							{% include '@components/Molecules/Button/Quantity.html.twig' with {disabled: false, value:quantityChoice, classes:'Button--small'} %}
 						</div>
 					{% endif %}
 				{% endif %}
@@ -204,8 +206,8 @@
 	{% endif %}
 	{% if isAddToCartConfirmation %}
 		<div class="ProductCard-ProductCardAddToCartBottom">
-      {% include '@components/Molecules/Button/Button.html.twig' with {classes:'Button--medium', variant: "primary", text: "View my cart"|trans } %}
-      {% include '@components/Molecules/Button/Button.html.twig' with {classes:'Button--medium', variant: "secondary", text: "Continue shopping"|trans } %}
+			{% include '@components/Molecules/Button/Button.html.twig' with {classes:'Button--medium', variant: "primary", text: "View my cart"|trans } %}
+			{% include '@components/Molecules/Button/Button.html.twig' with {classes:'Button--medium', variant: "secondary", text: "Continue shopping"|trans } %}
 		</div>
 	{% endif %}
 	{% if isRemoveProduct %}
@@ -213,4 +215,4 @@
 			<div class="ProductCard-progressBarInner"></div>
 		</div>
 	{% endif %}
-</div>
+</div> #}
