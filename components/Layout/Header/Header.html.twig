@@ -20,17 +20,10 @@
 	{% if type == "searchbar" %}
 		{{ component('Flexy:SearchBar') }}
   {% endif %}
-  <nav class='Header-navWrap'>
-    <button type="button" data-menu-back="-1">
-      {{ ux_icon('arrow-left') }}
-    </button>
-    <button type="button" data-menu-close>
-      {{ ux_icon('close') }}
-    </button>
 
-    {% include '@components/Organisms/Navigation/Navigation.html.twig' with {
-      categories: categories,
-      complexNav: complexNav
-    } %}
-  </nav>
+  {% include '@components/Organisms/Navigation/Navigation.html.twig' with {
+    categories: categories,
+    complexNav: complexNav
+  } %}
+
 	{% include '@components/Organisms/HeaderNav/HeaderNav.html.twig' with {type: type} %}
