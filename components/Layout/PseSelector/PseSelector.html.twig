@@ -1,7 +1,28 @@
-<div {{attributes}}>
-	<input type="text" name="pseId" data-model="pseId">
-	{{pseId}}
-
-	<br>
-	{{dump(this.pse)}}
+<div class="mt-[30px] flex flex-col gap-[30px]" {{attributes}}>
+	{% if product.productSaleElements|length > 1 %}
+		<ul class="flex flex-col gap-4">
+			{% for attribute in productAttributes %}
+				{% if attribute.values|length > 1 %}
+					<div>
+						{% if attribute.label %}
+							<div class="mb-2 font-semibold text-black paragraph-4">{{attribute.label}}</div>
+							<div class="flex-wrap hidden gap-2 md:flex">
+								{% for availability in attribute.values %}
+									{% include '@components/Molecules/Filters/FilterPill/FilterPill.html.twig' with {value : availability.id, id: attribute.id~'_'~availability.id, name: attribute.id, customText: availability.label,inputType: 'radio', selected : currentCombination[attribute.id] == availability.id, model: 'currentCombination['~attribute.id~']' } %}
+								{% endfor %}
+							</div>
+						{% endif %}
+					</div>
+				{% endif %}
+			{% endfor %}
+		</ul>
+	{% endif %}
+	<div class="flex items-center gap-4">
+		<strong class="text-black h4">{{currentPse.isPromo ? currentPse.promoPrice: currentPse.price}}
+			€</strong>
+		{% if currentPse.isPromo %}
+			<span class="line-through paragraph-4">{{currentPse.price}}
+				€</span>
+		{% endif %}
+	</div>
 </div>

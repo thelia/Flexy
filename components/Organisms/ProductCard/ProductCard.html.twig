@@ -1,5 +1,4 @@
 {% set product = product|default(null) %}
-
 {% if product %}
 	{% set classes = classes|default('') %}
 	{% set id = id|default(product.id ?? null) %}
