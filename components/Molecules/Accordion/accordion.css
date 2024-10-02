@@ -92,9 +92,13 @@
       @apply paragraph-2;
       padding: 0 0 rem-convert(20px) 0;
     }
-
   }
 
+  &--category {
+    .Accordion-content {
+      border-bottom: none;
+    }
+  }
   .Accordion-icon--minus {
     display: none;
   }

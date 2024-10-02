@@ -1,6 +1,7 @@
 {% set id = id|default('') %}
 {% set value = value|default('') %}
-{% set name = name|default('') %}
+{% set model = model|default(null) %}
+{% set name = name|default(model)|default('') %}
 {% set customText = customText|default('') %}
 {% set selected = selected|default(false) %}
 {% set disabled = disabled|default(false) %}
@@ -8,7 +9,6 @@
 {% set closeButton = closeButton|default(null) %}
 {% set iconColor = iconColor|default(null) %}
 {% set inputType = inputType|default('checkbox') %}
-{% set model = model|default(null) %}
 
 {% set classes = '' %}
 {% if selected %}
@@ -19,7 +19,7 @@
 {% endif %}
 
 <label class="FilterPill{{ classes }}" for="{{id}}">
-	<input id="{{id}}" type='{{ inputType }}' class='hidden' value='{{ value }}' name='{{ model }}' {% if disabled %} disabled {% endif %} {% if model %} data-model="{{model}}" {% endif %} {% if selected %} checked {% endif %}/>
+	<input id="{{id}}" type='{{ inputType }}' class='hidden' value='{{ value }}' name='{{ name }}' {% if disabled %} disabled {% endif %} {% if model %} data-model="{{model}}" {% endif %} {% if selected %} checked {% endif %}/>
 	{% if icon %}
 		<span class="FilterPill-icon" {% if iconColor %} style="color:{{ iconColor }}" {% endif %}>{{ ux_icon(icon) }}</span>
 	{% endif %}

@@ -8,7 +8,7 @@
 							<div class="mb-2 font-semibold text-black paragraph-4">{{attribute.label}}</div>
 							<div class="flex-wrap hidden gap-2 md:flex">
 								{% for availability in attribute.values %}
-									{% include '@components/Molecules/Filters/FilterPill/FilterPill.html.twig' with {value : availability.id, id: attribute.id~'_'~availability.id, name: attribute.id, customText: availability.label,inputType: 'radio', selected : currentCombination[attribute.id] == availability.id, model: 'currentCombination['~attribute.id~']' } %}
+									{% include '@components/Molecules/Filters/FilterPill/FilterPill.html.twig' with {value : availability.id, id: attribute.id~'_'~availability.id, customText: availability.label,inputType: 'radio', selected : currentCombination[attribute.id] == availability.id, model: 'currentCombination['~attribute.id~']' } %}
 								{% endfor %}
 							</div>
 						{% endif %}

@@ -1,0 +1,83 @@
+{% set products = products|default([]) %}
+
+<section class="px-6 lg:px-[120px] py-6 lg:flex lg:gap-[115px] lg:justify-between" {{attributes}}>
+	{% if filters %}
+		<form class="w-[310px] lg:block hidden mt-[44px] sticky top-20" data-model="*">
+			{{dump(query)}}
+			<div class="h4 mb-[22px]">{{ 'Filter'|trans }}</div>
+			<ul>
+				{% for catFilter in filters %}
+					{% if catFilter.visible %}
+						{% set content = null %}
+						{% if catFilter.inputType  in ['checkbox','radio']  %}
+							{% set content %}
+							<ul class="flex flex-wrap gap-2">
+								{% for value in catFilter.values %}
+									<li>
+										{% include '@components/Molecules/Filters/FilterPill/FilterPill.html.twig' with {value : value.id, id: catFilter.id~'_'~value.id, name: ""~catFilter.type~"[]", customText: value.title,inputType: catFilter.inputType,closeButton: true } %}
+									</li>
+								{% endfor %}
+							</ul>
+							{% endset %}
+						{% endif %}
+						<li>
+							{% include '@components/Molecules/Accordion/Accordion.html.twig' with {
+              title: catFilter.title,
+              variant: 'category',
+              content,
+            } %}
+						</li>
+					{% endif %}
+				{% endfor %}
+			</ul>
+		</form>
+	{% endif %}
+
+	<div>
+		<div class="lg:justify-between lg:items-center mb-[29px] hidden lg:flex">
+			<span>{{ products|length }}
+				{{ 'item(s)'|trans }}</span>
+
+			<div class="w-[250px]">
+				{% include '@components/Molecules/Fields/FieldSelect/FieldSelect.html.twig' with {
+        label: "Sort by" | trans,
+        tooltip: "Sort the products" | trans,
+        placeholder: "Sort by" | trans,
+        options: [{
+          value: "priceASC",
+          label: "Price ascending" | trans
+        }, {
+          value: "priceDESC",
+          label: "Price descending" | trans
+        }, {
+          value: "newness",
+          label: "New arrivals" | trans
+        }, {
+          value: "promo",
+          label: "Promotions" | trans
+        }],
+      } %}
+			</div>
+
+		</div>
+
+		<div class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 mb-[40px]">
+			{% for product in products %}
+				{% include '@components/Organisms/ProductCard/ProductCard.html.twig' with  product|merge({displayWishButton: true}) %}
+			{% endfor %}
+		</div>
+
+		<div class='mx-auto lg:mx-0 lg:ml-auto w-max'>
+			{% include '@components/Molecules/Pagination/Pagination.html.twig' with {
+      prevText: 'Previous' | trans,
+      nextText: 'Next' | trans,
+      currentPage: page,
+      totalPages: 3
+    } %}
+		</div>
+
+		<p class="paragraph-4 lg:paragraph-2 lg:pt-[56px] lg:pb-[96px] max-w-[664px] pt-[102px] pb-[52px] mx-auto">
+			{{ attr('category', 'description') }}
+		</p>
+	</div>
+</section></li></li></li>
