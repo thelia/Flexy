@@ -17,8 +17,8 @@
   }
 
   &-iconClose {
-    width: rem-convert(21px);
-    height: rem-convert(21px);
+    width: rem-convert(20px);
+    height: rem-convert(20px);
     display: none;
     margin-left: rem-convert(4px);
   }

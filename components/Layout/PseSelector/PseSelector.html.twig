@@ -1,4 +1,5 @@
 <div class="mt-[30px] flex flex-col gap-[30px]" {{attributes}}>
+	{{dump(currentPse)}}
 	{% if product.productSaleElements|length > 1 %}
 		<ul class="flex flex-col gap-4">
 			{% for attribute in productAttributes %}

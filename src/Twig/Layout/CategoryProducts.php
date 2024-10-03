@@ -2,16 +2,23 @@
 
 namespace FlexyBundle\Twig\Layout;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
+use Symfony\Component\Form\FormInterface;
 use TwigEngine\Service\DataAccess\DataAccessService;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\TwigComponent\Attribute\ExposeInTemplate;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
+use Symfony\UX\LiveComponent\ComponentWithFormTrait;
+use Symfony\UX\LiveComponent\Attribute\LiveAction;
+use FlexyBundle\Form\Type\FilterChoiceType;
 
 #[AsLiveComponent(template: '@components/Layout/CategoryProducts/CategoryProducts.html.twig')]
-class CategoryProducts
+class CategoryProducts extends AbstractController
 {
   use DefaultActionTrait;
+  use ComponentWithFormTrait;
+
   public const FILTERS = [
     [
       "id" => 2,
@@ -65,7 +72,7 @@ class CategoryProducts
       "id" => 3,
       "title" => "Marques",
       "type" => "brands",
-      "inputType" => "radio",
+      "inputType" => "checkbox",
       "visible" => true,
       "values" => [
         [
@@ -87,8 +94,6 @@ class CategoryProducts
     ],
   ];
 
-  private DataAccessService $dataAccessService;
-
   #[LiveProp]
   public int $categoryId;
 
@@ -105,9 +110,38 @@ class CategoryProducts
   #[ExposeInTemplate]
   public ?array $query = [];
 
-  public function __construct(DataAccessService $dataAccessService)
+  public function __construct(private DataAccessService $dataAccessService) {}
+
+  protected function instantiateForm(): FormInterface
   {
-    $this->dataAccessService = $dataAccessService;
+    $formBuilder = $this->createFormBuilder();
+
+    foreach ($this->getFilters() as $filter) {
+      $values = [];
+      foreach ($filter["values"] as $value) {
+        $values[$value["title"]] = $value["value"];
+      }
+      $formBuilder->add(
+        $filter['type'] . "_" . $filter['id'] . "",
+        FilterChoiceType::class,
+        [
+          "label" => $filter['title'],
+          'choices' => $values,
+          'label' => $filter['title'],
+          'required' => false,
+          'attr' => ['class' => 'tinymce'],
+        ]
+      );
+    }
+    return $formBuilder->getForm();
+  }
+
+  #[LiveAction]
+  public function save()
+  {
+    $this->submitForm();
+    dd($this->getForm()->getData());
+    $this->query = $this->getForm()->getData();
   }
 
   public function getFilters(): array
@@ -132,11 +166,5 @@ class CategoryProducts
     if (null !== $this->query) {
       return $this->query;
     }
-  }
-
-
-  public function getFOrm()
-  {
-    $this->form = $this->createForm($thusis->filter);
   }
 }

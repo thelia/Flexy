@@ -1,0 +1,20 @@
+{% set choices = choices|default([]) %}
+{% set title = title|default('') %}
+
+{% if choices|length > 0 %}
+	{% set content %}
+	<ul class="flex flex-wrap gap-2">
+		{% for choice in choices %}
+			<li>
+				{% include '@components/Molecules/Filters/FilterPill/FilterPill.html.twig' with {value : choice.value, name: form.vars.full_name, customText: choice.label,closeButton: true } %}
+			</li>
+		{% endfor %}
+	</ul>
+	{% endset %}
+
+	{% include '@components/Molecules/Accordion/Accordion.html.twig' with {
+  title,
+  variant: 'category',
+  content,
+} %}
+{% endif %}
