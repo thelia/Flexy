@@ -69,14 +69,7 @@
 					{% if chapo %}
 						<div class="paragraph-3">{{ chapo }}</div>
 					{% endif %}
-					<div class="flex items-center justify-between mt-[30px]">
-						<div class="flex items-center gap-2">
-							{% include '@components/Molecules/Score/Score.html.twig' with {score: 3} %}
-							<span class="indication text-grey">12
-								{{ 'reviews'|trans }}</span>
-						</div>
-						{% include '@components/Molecules/OrderTag/OrderTag.html.twig' with { customText: 'In stock'|trans, variant: 'success', type: 'minimal' } %}
-					</div>
+					
 					{% set attributes = getAttributesAndValues(productId) %}
 
 					{{ component('Flexy:Layout:PseSelector', {product}) }}
@@ -94,10 +87,8 @@
 					{#            {% include '@components/Organisms/Modules/Filters/FilterColor.html.twig' with {options: colors, name: 'color', label: 'Couleur',id: 'filterColor'} %} #}
 					{#          </div> #}
 
-						<div class="mt-[30px]"> {% include '@components/Molecules/Button/QuantityButton.html.twig' with {value:1, classes:'Button--large', text:'Add to cart'|trans, icon:'cart', fill:true} %}
-					</div>
-					<div class="mt-[30px]">
-						{% include '@components/Organisms/Reinsurance/Reinsurance.html.twig' with {data: [
+
+						<div class="mt-[30px]"> {% include '@components/Organisms/Reinsurance/Reinsurance.html.twig' with {data: [
               {
                 strongText: 'Free delivery'|trans,
                 text: ' from 50€'|trans,

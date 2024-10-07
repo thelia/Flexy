@@ -1,9 +1,12 @@
 {% set classes = classes|default('') %}
 {% set value = value|default('') %}
 {% set disabled = disabled|default(false) %}
+{% set quantity = quantity|default(1) %}
+{% set btnLiveAction = btnLiveAction|default(null) %}
+{% set name = name|default('') %}
 
 <div role="button" class='Button Button-quantity {{ classes }} {% if disabled %}disabled{% endif %}'>
-  <button data-qty='minus' {% if disabled %}disabled{% endif %}>-</button>
-  <input type='number' {% if disabled %}disabled{% endif %} value='{{ value }}'>
-  <button data-qty='plus' {% if disabled %}disabled{% endif %}>+</button>
+	<button type="button" {% if btnLiveAction %} data-action="live#action" data-live-action-param="{{btnLiveAction}}" data-live-quantity-param="{{ quantity - 1 }}" {% else %} data-qty='minus' {% endif %} {% if disabled %} disabled {% endif %}>-</button>
+	<input type='number' name="{{name}}" {% if disabled %} disabled {% endif %} value='{{ value }}' min="1">
+	<button type="button" {% if btnLiveAction %} data-action="live#action" data-live-action-param="{{btnLiveAction}}" data-live-quantity-param="{{ quantity + 1 }}" {% else %} data-qty='plus' {% endif %} {% if disabled %} disabled {% endif %}>+</button>
 </div>

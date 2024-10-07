@@ -18,11 +18,19 @@ use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 use TwigEngine\Service\DataAccess\ProductSaleElementsAccessService;
 use Symfony\UX\TwigComponent\Attribute\ExposeInTemplate;
+use Symfony\UX\LiveComponent\Attribute\LiveAction;
+use Symfony\UX\LiveComponent\Attribute\LiveArg;
+use Thelia\Controller\Front\BaseFrontController;
+use Thelia\Form\Definition\FrontForm;
+use Symfony\UX\LiveComponent\ComponentWithFormTrait;
+use Symfony\Component\Form\FormInterface;
+use TwigEngine\Service\FormService;
 
 #[AsLiveComponent(template: '@components/Layout/PseSelector/PseSelector.html.twig')]
-class PseSelector
+class PseSelector extends BaseFrontController
 {
   use DefaultActionTrait;
+  use ComponentWithFormTrait;
 
   #[LiveProp]
   public array $product;
@@ -33,6 +41,9 @@ class PseSelector
   #[ExposeInTemplate]
   public ?array $currentPse = null;
 
+  #[LiveProp(writable: true)]
+  #[ExposeInTemplate]
+  public ?int $quantity = 1;
 
   #[LiveProp(writable: true)]
   #[ExposeInTemplate]
@@ -41,13 +52,23 @@ class PseSelector
   #[ExposeInTemplate]
   public ?array $productAttributes = [];
 
-  private DataAccessService $dataAccessService;
-  private readonly ProductSaleElementsAccessService $pseAccessService;
+  #[LiveProp]
+  public ?array $initialFormData = null;
 
-  public function __construct(DataAccessService $dataAccessService, ProductSaleElementsAccessService $pseAccessService)
+  public function __construct(
+    private DataAccessService $dataAccessService,
+    private ProductSaleElementsAccessService $pseAccessService,
+    private FormService $formService
+  ) {}
+
+  protected function instantiateForm(): FormInterface
   {
-    $this->dataAccessService = $dataAccessService;
-    $this->pseAccessService = $pseAccessService;
+    return $this->formService->getFormByName(FrontForm::CART_ADD, [
+      "product" => $this->product['id'],
+      "quantity" => 1,
+      'append' => 1,
+      'newness' => 1
+    ]);
   }
 
   public function getPses(): array
@@ -113,4 +134,31 @@ class PseSelector
 
     return $this->currentCombination;
   }
+
+  public function getQuantity()
+  {
+    return $this->quantity;
+  }
+
+  #[LiveAction]
+  public function updateQuantity(#[LiveArg] int $quantity): int
+  {
+    if ($quantity <= 1) {
+      $quantity = 1;
+    }
+
+    $this->quantity = $quantity;
+
+    return $this->quantity;
+  }
+
+  #[LiveAction]
+  public function addToCart()
+  {
+    $this->submitForm();
+  }
+
+
+  #[LiveAction]
+  public function restockingAlert() {}
 }

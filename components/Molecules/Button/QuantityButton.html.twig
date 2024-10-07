@@ -3,9 +3,14 @@
 {% set disabled = disabled|default(false) %}
 {% set icon = icon|default(null) %}
 {% set text = text|default('') %}
+{% set quantity = quantity|default(1) %}
 {% set fill = fill|default(false) %}
+{% set btnLiveAction = btnLiveAction|default(null) %}
+{% set addToCartAction = addToCartAction|default(null) %}
+{% set name = name|default('') %}
+{% set inLiveComp = inLiveComp|default(false) %}
 
 <div class='Button-quantityButton'>
-  {% include '@components/Molecules/Button/Quantity.html.twig' with {disabled: disabled, value:value, classes:classes} %}
-  {% include '@components/Molecules/Button/Button.html.twig' with {disabled: disabled, text:text, classes:classes, icon_left: icon, fill:fill} %}
+	{% include '@components/Molecules/Button/Quantity.html.twig' with {disabled, value, classes,name, quantity, btnLiveAction} %}
+	{% include '@components/Molecules/Button/Button.html.twig' with {disabled, text, classes, icon_left: icon, fill,liveAction : addToCartAction,inLiveComp} %}
 </div>
