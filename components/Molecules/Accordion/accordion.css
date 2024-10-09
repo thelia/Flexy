@@ -98,6 +98,11 @@
     .Accordion-content {
       border-bottom: none;
     }
+    .Accordion-content,
+    .Accordion-summary {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
   .Accordion-icon--minus {
     display: none;

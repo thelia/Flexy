@@ -1,8 +1,9 @@
 {% set classes = classes|default('') %}
 {% set variant = variant|default('text') %}
 {% set iconPlus = iconPlus|default(null) %}
+{% set open = open|default(false) %}
 {% set iconMinus = iconMinus|default(null) %}
-{% set classes = classes ~ ' Accordion--' ~ variant %}
+{% set classes = classes ~ 'Accordion--' ~ variant %}
 {% set title = title|default('') %}
 {% set content = content|default('') %}
 
@@ -14,7 +15,7 @@
 		{% set iconMinus = 'minus' %}
 	{% endif %}
 {% endif %}
-<details class='Accordion{{ classes }}'>
+<details class='Accordion {{ classes }}' {% if open %} open {% endif %}>
 	<summary class='Accordion-summary'>
 		{{ title }}
 		{% if variant == 'faq' or (iconPlus and iconMinus) %}
