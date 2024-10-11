@@ -1,8 +1,7 @@
 <div{{attributes}}>
 	{{ form_start(form, {attr :{
     class: 'mt-[30px] flex flex-col gap-[30px]',
-    'data-action': 'live#action:prevent',
-    'data-live-action-param': 'addToCart'
+    action: path('cart.add.process'),
   } })}}
 	<input type="hidden" name="{{ field_name(form.product) }}" value="{{ field_value(form.product)}}">
 	<input type="hidden" name="{{ field_name(form.product_sale_elements_id) }}" value="{{ currentPse.id }}">
