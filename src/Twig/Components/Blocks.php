@@ -58,18 +58,16 @@ class Blocks
 
     if (null !== $this->slug) {
       $search->filterBySlug($this->slug, Criteria::IN);
+    }
+    if (null !== $this->item_id && null !== $this->item_type) {
+      $search->useItemBlockGroupQuery()
+        ->filterByItemType($this->item_type)
+        ->filterByItemId($this->item_id)
+        ->endUse();
+    }
 
-
-      if (null !== $this->item_id && null !== $this->item_type) {
-        $search->useItemBlockGroupQuery()
-          ->filterByItemType($this->item_type)
-          ->filterByItemId($this->item_id)
-          ->endUse();
-      }
-
-      if ($this->visible !== BooleanOrBothType::ANY) {
-        $search->filterByVisible($this->visible ? 1 : 0);
-      }
+    if ($this->visible !== BooleanOrBothType::ANY) {
+      $search->filterByVisible($this->visible ? 1 : 0);
     }
     $blocks = $search->find();
 
