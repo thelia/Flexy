@@ -12,8 +12,8 @@
     display: flex;
     gap: rem-convert(8px);
 
-    &--isLink {
-      &::after {
+    &--isLink + .Breadcrumb-item--isLink {
+      &::before {
         content: '/';
         font-size: rem-convert(10px);
       }
@@ -27,7 +27,7 @@
         color: var(--grey);
       }
 
-      &:focus-visible{
+      &:focus-visible {
         background-color: var(--theme-light);
       }
     }
@@ -43,7 +43,7 @@
     text-decoration: none;
     margin-top: rem-convert(2px);
 
-    &:focus-visible{
+    &:focus-visible {
       background-color: var(--grey-lightest);
       border: solid 1px var(--theme-medium);
     }

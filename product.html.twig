@@ -11,14 +11,18 @@
 {% set product = resources('/api/front/products/' ~ productId) %}
 {% set productCategory = product.productCategories|filter(c => c.defaultCategory)|first.category %}
 
-{% dump(product) %}
 {% block body %}
-  <div class="px-6 lg:px-[120px] py-6">
-    <div class="lg:justify-between lg:items-center mb-[29px] lg:flex">
-      <a href="#" class="flex gap-3 typo-button-medium">
-        {{ ux_icon('chevron-left', {class: 'w-5 h-5'}) }} {{ productCategory.i18ns.title }}
-      </a>
-    </div>
+
+	<div class="px-6 lg:px-[120px] py-6">
+		<div class="lg:justify-between lg:items-center mb-[29px] lg:flex">
+      {{ component('Molecules:Breadcrumb:Breadcrumb', {
+        items: [
+          { href: productCategory.publicUrl|default('#'), label:productCategory.i18ns.title},
+        ],
+        backIcon: true
+      }) }}
+
+		</div>
 
     <div class="lg:container lg:w-full md:w-[540px] sm:w-[340px] w-full mx-auto">
       <div class="lg:flex lg:justify-between gap-[46px]">
@@ -112,7 +116,7 @@
     </div>
   </div>
 
-  <div class="bg-theme-lighter">
-    {{ component('Flexy:CrossSelling', {categoryId: 1, title: 'Last seen products' | trans}) }}
-  </div>
+	<div class="bg-theme-lighter">
+		{{ component('Flexy:CrossSelling', {categoryId: productCategory.id, title: 'Last seen products' | trans}) }}
+	</div>
 {% endblock %}
