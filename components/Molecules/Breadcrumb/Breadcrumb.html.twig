@@ -1,16 +1,25 @@
 {% set classes = classes|default('') %}
 {% set items = items|default([]) %}
+{% set backIcon = backIcon|default(false) %}
 
+
+{% if items is not empty %}
 <nav class="Breadcrumb{{ classes }}" aria-label="Fil d'Ariane">
   <ol class="Breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
-    {% if items.length > 3 %}
+    {% if backIcon %}
+      <li class="Breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span class="w-5 h-5">{{ ux_icon('chevron-left') }}</span>
+      </li>
+    {% endif %}
+
+    {% if items|length > 3 %}
       <li id="Breadcrumb-compressed" class="Breadcrumb-item Breadcrumb-item--isLink">
         <button class="Breadcrumb-item-link Breadcrumb-compressed">...</button>
       </li>
     {% endif %}
 
     {% for item in items %}
-      <li class="Breadcrumb-item{% if item.href %} Breadcrumb-item--isLink{% endif %}{% if loop.index <= (items.length - 3) %} hide{% endif %}" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+      <li class="Breadcrumb-item{% if item.href %} Breadcrumb-item--isLink{% endif %}{% if loop.index <= (items|length - 3) %} hide{% endif %}" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
         {% if item.href %}
           <a class="Breadcrumb-item-link" href="{{ item.href }}" itemprop="item">
             <span itemprop="name">{{ item.label }}</span>
@@ -26,3 +35,4 @@
     {% endfor %}
   </ol>
 </nav>
+{% endif %}
