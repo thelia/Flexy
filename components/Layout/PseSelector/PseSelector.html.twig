@@ -1,12 +1,15 @@
 <div{{attributes}}>
 	{{ form_start(form, {attr :{
     class: 'mt-[30px] flex flex-col gap-[30px]',
-    action: path('cart.add.process'),
+    'data-action': 'live#action:prevent',
+    'data-live-action-param': 'addToCart'
   } })}}
+	{{ form_errors(form) }}
+
 	<input type="hidden" name="{{ field_name(form.product) }}" value="{{ field_value(form.product)}}">
-	<input type="hidden" name="{{ field_name(form.product_sale_elements_id) }}" value="{{ currentPse.id }}">
-	<input type="hidden" name="{{ field_name(form.append)}}" value="1">
-	<input type="hidden" name="{{ field_name(form.newness)}}" value="1">
+	<input type="hidden" name="{{ field_name(form.product_sale_elements_id) }}" value="{{ field_value(form.product_sale_elements_id) }}">
+	<input type="hidden" name="{{ field_name(form.append)}}" value="{{ field_value(form.append) }}">
+	<input type="hidden" name="{{ field_name(form.newness)}}" value="{{ field_value(form.newness) }}">
 
 	<div class="flex items-center justify-between">
 		<div class="flex items-center gap-2">

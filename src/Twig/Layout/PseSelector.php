@@ -65,6 +65,7 @@ class PseSelector extends BaseFrontController
   {
     return $this->formService->getFormByName(FrontForm::CART_ADD, [
       "product" => $this->product['id'],
+      'product_sale_elements_id' => $this->getCurrentPse()['id'],
       "quantity" => 1,
       'append' => 1,
       'newness' => 1
@@ -95,10 +96,6 @@ class PseSelector extends BaseFrontController
 
   public function getCurrentPse()
   {
-    if (null !== $this->currentPse) {
-      return $this->currentPse;
-    }
-
     $pses = $this->getPses();
 
     if (0 === count($pses)) {
@@ -116,7 +113,7 @@ class PseSelector extends BaseFrontController
         return $pse['isDefault'];
       })[0];
     }
-
+    $this->formValues['product_sale_elements_id'] = $this->currentPse['id'];
     return $this->currentPse;
   }
 
@@ -137,6 +134,7 @@ class PseSelector extends BaseFrontController
 
   public function getQuantity()
   {
+
     return $this->quantity;
   }
 
@@ -156,6 +154,9 @@ class PseSelector extends BaseFrontController
   public function addToCart()
   {
     $this->submitForm();
+
+
+    dd($this->getForm()->getData());
   }
 
 

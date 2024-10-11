@@ -1,0 +1,23 @@
+{%  extends 'base.html.twig' %}
+
+{% block title %}
+	{{ 'Folder page'|trans }}
+{% endblock %}
+
+{% block body %}
+
+
+	{% include '@components/Layout/Subheader/ContentPage/SubheaderContentPage.html.twig' with {title: attr('folder', 'title'), description: attr('folder', 'chapo') }  %}
+
+	<div class="px-[25px] lg:pr-[225px] lg:pl-[250px] xl:pr-[325px] xl:pl-[350px] flex gap-[173px] mt-[25px] lg:mt-[54px] mb-[80px] lg:mb-[120px]">
+		<article class="wysiwyg">
+			{{ attr('folder', 'description') }}
+			{{ component('Flexy:Components:Blocks', {item_type: 'folder', item_id: attr('folder', 'id')}) }}
+		</article>
+		<aside class="hidden lg:block w-[340px]">
+			{% include '@components/Molecules/Shortcut/Shortcut.html.twig' with {customText: "Section title" | trans} %}
+			{% include '@components/Molecules/Shortcut/Shortcut.html.twig' with {customText: "Section title" | trans} %}
+			{% include '@components/Molecules/Shortcut/Shortcut.html.twig' with {customText: "Section title" | trans} %}
+		</aside>
+	</div>
+{% endblock %}

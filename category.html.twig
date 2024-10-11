@@ -1,5 +1,6 @@
 {%  extends 'base.html.twig' %}
 {% set page = app.request.get('page')|default(1) %}
+{% set categoryId = attr('category', 'id') %}
 
 {% block javascripts %}
 	{{ parent() }}
@@ -12,7 +13,7 @@
 
 {% block body %}
 	{% include '@components/Layout/Subheader/Category/SubheaderCategory.html.twig' with {title: attr('category', 'title'), description: attr('category', 'description'), nbProducts: 9}  %}
-	{{ component('Flexy:Layout:CategoryProducts', {categoryId: attr('category', 'id'), page}) }}
+	{{ component('Flexy:Layout:CategoryProducts', {categoryId, page}) }}
 	{% include '@components/Layout/Reinsurance/Reinsurance.html.twig' with { data: [
       {
         strongText: 'Free delivery' | trans,
