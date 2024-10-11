@@ -4,7 +4,7 @@ namespace FlexyBundle\Form\Type;
 
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
-class FilterChoiceType extends ChoiceType
+class SortChoiceType extends ChoiceType
 {
   public static function getExtendedTypes(): iterable
   {
@@ -13,6 +13,6 @@ class FilterChoiceType extends ChoiceType
 
   public function getBlockPrefix(): string
   {
-    return 'filter';
+    return 'sort';
   }
 }

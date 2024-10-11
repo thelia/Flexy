@@ -4,17 +4,12 @@
 	{% set widget_attr = form.vars.attr %}
 	{% set label = label is defined ? label : form.vars.label %}
 	{% set placeholder = placeholder is defined ? placeholder : form.vars.placeholder is defined ? form.vars.placeholder : null %}
+
 	{% if type == 'checkbox' %}
 		{% elseif type == 'filter' %}
 			{% include '@formTwig/fields/filter.html.twig' with {choices: form.vars.choices, title: form.vars.label, values: widget_value} %}
-		{% elseif type == 'select' %}
-			<div class="w-[250px]">
-				{% include '@components/Molecules/Fields/FieldSelect/FieldSelect.html.twig' with {
-        label: form.vars.label,
-        placeholder: form.vars.label,
-        options: form.vars.choices,
-      } %}
-			</div>
+		{% elseif type == 'sort' %}
+			{% include '@formTwig/fields/sort.html.twig' with {choices: form.vars.choices, title: form.vars.label, values: widget_value} %}
 		{% elseif type == 'text' or type == 'email' %}
 			{% include "@components/Molecules/Fields/FieldInput/FieldInput.html.twig" with {
       label:  label,
@@ -31,10 +26,8 @@
       placeholder: placeholder,
       required: form.vars.required,
     } %}
-
 			{% include "@components/Molecules/PasswordControls/PasswordControls.html.twig" %}
-		{% else %}
-
+		{%  else %}
 			{# Appel du rendu par défaut si vous n'avez pas besoin de personnaliser davantage #}
 			{{ block('form_widget_simple') }}
 	{% endif %}
@@ -47,4 +40,22 @@
 	{% for error in errors %}
 		{% include "@components/Organisms/SnackBar/SnackBar.html.twig" with {text: error.message, variant: 'error', withIcon:true} %}
 	{% endfor %}
+{% endblock %}
+
+{% block fieldset_row %}
+	{% set class = form.vars.attr.class|default('') %}
+	{% set label = form.vars.label|default(null) %}
+
+	<fieldset {% if class %} class="{{class}}" {% endif %}>
+		{% if label %}
+			<legend class="block mb-[22px] h4">{{label}}</legend>
+		{% endif %}
+		<ul class="flex flex-col gap-1 lg:divide-y lg:gap-0">
+			{% for row in form.vars.form.children %}
+				<li>
+					{{ form_row(row) }}
+				</li>
+			{% endfor %}
+		</ul>
+	</fieldset>
 {% endblock %}

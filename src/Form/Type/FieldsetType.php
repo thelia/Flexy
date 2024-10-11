@@ -2,17 +2,17 @@
 
 namespace FlexyBundle\Form\Type;
 
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 
-class FilterChoiceType extends ChoiceType
+class FieldsetType extends FormType
 {
   public static function getExtendedTypes(): iterable
   {
-    return [ChoiceType::class];
+    return [FormType::class];
   }
 
   public function getBlockPrefix(): string
   {
-    return 'filter';
+    return 'fieldset';
   }
 }

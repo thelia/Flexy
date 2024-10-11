@@ -1,0 +1,56 @@
+.Category {
+  &-grid {
+    display: grid;
+    padding: 24px;
+
+    @screen lg {
+      padding: 24px 120px;
+      grid-template-columns: 240px 1fr;
+      gap: 48px;
+    }
+    @screen 2xl {
+      grid-template-columns: 310px 1fr;
+      gap: 66px;
+    }
+  }
+}
+
+.CategoryFilter {
+  display: block;
+  color: var(--black);
+
+  @screen lg {
+    padding: 0;
+    margin-top: 48px;
+    transform: none;
+    position: relative;
+  }
+
+  &:before {
+    @apply lg:hidden;
+  }
+  &-erase {
+    @screen lg {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    &::empty {
+      display: none;
+    }
+  }
+
+  .FilterPill {
+    background-color: white;
+  }
+
+  .Accordion--filter {
+    @apply lg:bg-white;
+
+    .Accordion-summary,
+    .Accordion-content {
+      @apply lg:px-0;
+    }
+  }
+}

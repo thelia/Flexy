@@ -1,17 +1,21 @@
 {% set products = products|default([]) %}
 {% set filtersCount = filters_count(formValues|filter(f => f is iterable)) %}
 
-<section class="px-6 lg:px-[120px] py-6 lg:flex lg:gap-[115px]" {{ attributes.defaults(stimulus_controller('filters')) }}>
+<section class="Category-grid" {{ attributes.defaults(stimulus_controller('filters')) }}>
 	{% if filters %}
-		<div class="w-[310px] lg:block hidden mt-[48px] sticky top-20" data-action="change->filters#filterChange">
-			<div class="h4 mb-[22px] flex items-center justify-between gap-4 text-black">{{ 'Filter'|trans }}
-				{% if filtersCount %}
-					<button type="button" class="leading-3 Button Button--secondary Button--small" data-action="click->filters#resetForm">{{'Erase'|trans}}
-						({{filtersCount}})
-					</button>
-				{% endif %}
+		<div id="FilterDrawer" class="CategoryFilter MobileDrawer" data-action="change->filters#filterChange">
+			<div class='MobileDrawer-header lg:hidden'>
+				<button class='MobileDrawer-close' type='button' data-drawer-close>{{ ux_icon("close") }}</button>
 			</div>
 			{{ form(form)}}
+				<div class="flex items-center mt-[30px] flex-row-reverse">
+					<button type="button" class="ml-auto leading-3 Button Button--primary Button--large lg:hidden" data-drawer-close="#FilterDrawer">{{'Apply'|trans}}</button>
+					{% if filtersCount %}
+						<button type="button" class="leading-3 Button Button--secondary CategoryFilter-erase" data-action="click->filters#resetForm">{{'Erase'|trans}}
+							({{filtersCount}})
+						{% endif %}
+					</button>
+				</div>
 			</div>
 		{% endif %}
 		<div class="flex-1">
@@ -20,15 +24,15 @@
 					{{ 'item(s)'|trans }}</span>
 				<div class="w-[250px]">
 					{% include '@components/Molecules/Fields/FieldSelect/FieldSelect.html.twig' with {
-            label: "Sort by" | trans,
-            placeholder: "Sort by" | trans,
-            options: sorts,
-            dataAction: 'change->filters#sortChange'
-          } %}
+              label: "Sort by" | trans,
+              placeholder: "Sort by" | trans,
+              options: sorts|map(sort => sort|merge({'label':sort.title})),
+              dataAction: 'change->filters#sortChange'
+            } %}
 				</div>
 			</div>
 
-			<div class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 mb-[40px]">
+			<div class="grid grid-cols-2 xl:grid-cols-3 gap-8 mb-[40px] transition" data-loading="addClass(opacity-50)">
 				{% for product in products %}
 					{% include '@components/Organisms/ProductCard/ProductCard.html.twig' with  product|merge({displayWishButton: true}) %}
 				{% endfor %}

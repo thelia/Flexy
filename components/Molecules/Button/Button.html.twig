@@ -14,6 +14,7 @@
 {% set round = round|default(false) %}
 {% set name = name|default('') %}
 {% set onClick = onClick|default({}) %}
+{% set toggleDrawer = toggleDrawer|default(null) %}
 
 {% if variant and variant != 'primary' %}
 	{% set classes = classes ~ ' Button--' ~ variant %}
@@ -36,7 +37,7 @@
 {% endif %}
 
 
-<{{tag}} class='Button {{ classes }}' {% if disabled %} disabled {% endif %} {% if href %} href='{{ href }}' {% else %} type='{{ type }}' {% endif %} {% if onClick %} onclick="{{ onClick }}" {% endif %} {% if name %} data-id="{{ name }}" {% endif %} {% if liveAction %} data-action="live#action" data-live-action-param="{{liveAction}}" {% endif %}>
+<{{tag}} class='Button {{ classes }}' {% if disabled %} disabled {% endif %} {% if href %} href='{{ href }}' {% else %} type='{{ type }}' {% endif %} {% if onClick %} onclick="{{ onClick }}" {% endif %} {% if name %} data-id="{{ name }}" {% endif %} {% if liveAction %} data-action="live#action" data-live-action-param="{{liveAction}}" {% endif %} {% if toggleDrawer %} data-drawer-toggle="{{toggleDrawer}}" {% endif %}>
 	{% if icon_left %}
 		<span class='icon icon-left'>
 			{{ux_icon(icon_left)}}

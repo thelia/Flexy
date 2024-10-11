@@ -14,6 +14,8 @@ use Symfony\UX\LiveComponent\ComponentWithFormTrait;
 use Symfony\UX\LiveComponent\Attribute\LiveAction;
 use FlexyBundle\Form\Type\FilterChoiceType;
 use FlexyBundle\Form\Type\SelectChoiceType;
+use FlexyBundle\Form\Type\FieldsetType;
+use FlexyBundle\Form\Type\SortChoiceType;
 
 #[AsLiveComponent(template: '@components/Layout/CategoryProducts/CategoryProducts.html.twig')]
 class CategoryProducts extends AbstractController
@@ -23,74 +25,74 @@ class CategoryProducts extends AbstractController
 
   public const FILTERS = [
     [
-      "id" => 2,
-      "title" => "Taille",
-      "type" => "attribute",
-      "inputType" => "checkbox",
-      "visible" => true,
-      "values" => [
+      'id' => 2,
+      'title' => 'Taille',
+      'type' => 'attribute',
+      'inputType' => 'checkbox',
+      'visible' => true,
+      'values' => [
         [
-          "id" => 1,
-          "title" => "S",
-          "value" => 1
+          'id' => 1,
+          'title' => 'S',
+          'value' => 1
         ],
         [
-          "id" => 2,
-          "title" => "M",
-          "value" => 2
+          'id' => 2,
+          'title' => 'M',
+          'value' => 2
         ],
         [
-          "id" => 3,
-          "title" => "L",
-          "value" => 3
+          'id' => 3,
+          'title' => 'L',
+          'value' => 3
         ]
       ]
     ],
     [
-      "id" => 1,
-      "title" => "Couleurs",
-      "type" => "feature",
-      "inputType" => "checkbox",
-      "visible" => true,
-      "values" => [
+      'id' => 1,
+      'title' => 'Couleurs',
+      'type' => 'feature',
+      'inputType' => 'checkbox',
+      'visible' => true,
+      'values' => [
         [
-          "id" => 4,
-          "title" => "Rouge",
-          "value" => 4
+          'id' => 4,
+          'title' => 'Rouge',
+          'value' => 4
         ],
         [
-          "id" => 5,
-          "title" => "Vert",
-          "value" => 5
+          'id' => 5,
+          'title' => 'Vert',
+          'value' => 5
         ],
         [
-          "id" => 6,
-          "title" => "Bleu",
-          "value" => 6
+          'id' => 6,
+          'title' => 'Bleu',
+          'value' => 6
         ]
       ]
     ],
     [
-      "id" => 3,
-      "title" => "Marques",
-      "type" => "brands",
-      "inputType" => "checkbox",
-      "visible" => true,
-      "values" => [
+      'id' => 3,
+      'title' => 'Marques',
+      'type' => 'brands',
+      'inputType' => 'checkbox',
+      'visible' => true,
+      'values' => [
         [
-          "id" => 4,
-          "title" => "Rouge",
-          "value" => 4
+          'id' => 4,
+          'title' => 'Rouge',
+          'value' => 4
         ],
         [
-          "id" => 5,
-          "title" => "Vert",
-          "value" => 5
+          'id' => 5,
+          'title' => 'Vert',
+          'value' => 5
         ],
         [
-          "id" => 6,
-          "title" => "Bleu",
-          "value" => 6
+          'id' => 6,
+          'title' => 'Bleu',
+          'value' => 6
         ]
       ]
     ]
@@ -98,14 +100,14 @@ class CategoryProducts extends AbstractController
 
   public const SORTS = [
     [
-      "id" => 4,
-      "label" => "Ascending price",
-      "value" => "asc"
+      'id' => 4,
+      'title' => 'Ascending price',
+      'value' => 'asc'
     ],
     [
-      "id" => 5,
-      "label" => "Descending price",
-      "value" => "desc"
+      'id' => 5,
+      'title' => 'Descending price',
+      'value' => 'desc'
     ]
   ];
 
@@ -124,39 +126,77 @@ class CategoryProducts extends AbstractController
   #[ExposeInTemplate]
   public ?array $sorts = [];
 
-  #[LiveProp(writable: true, url: true)]
-  #[ExposeInTemplate]
-  public ?array $query = [];
-
   public function __construct(private DataAccessService $dataAccessService) {}
 
   protected function instantiateForm(): FormInterface
   {
-    $formBuilder = $this->createFormBuilder();
+    $formBuilder = $this->createFormBuilder(null, ['attr' => ['class' => 'relative flex flex-col gap-[30px]']]);
 
-    foreach ($this->getFilters() as $filter) {
+    if (!empty($this->getSorts())) {
+
       $values = [];
-      foreach ($filter["values"] as $value) {
-        $values[$value["title"]] = $value["value"];
+
+      foreach ($this->getSorts() as $sort) {
+        $values[$sort['title']] = $sort['value'];
       }
 
-      $formBuilder->add(
-        $filter['type'] . "_" . $filter['id'] . "",
-        $filter['inputType'] === 'select' ? SelectChoiceType::class : FilterChoiceType::class,
+      $formBuilder->add($formBuilder->create(
+        'sorts',
+        FieldsetType::class,
         [
-          "label" => $filter['title'],
-          'choices' => $values,
-          'multiple' => true,
-          'required' => false,
+          'by_reference' => true,
+          'label' => 'Sort By',
+          'inherit_data' => true,
+          'attr' => [
+            'class' => 'Category-filter lg:hidden'
+          ]
         ]
-      );
+      )->add('sort', SortChoiceType::class, [
+        'label' => 'Choose',
+        'choices' => $values,
+        'required' => false,
+      ]));
+    }
+
+    if (!empty($this->getFilters())) {
+      $formBuilder->add($formBuilder->create(
+        'filters',
+        FieldsetType::class,
+        [
+          'by_reference' => true,
+          'label' => 'Filter By',
+          'inherit_data' => true,
+          'attr' => [
+            'class' => 'Category-filter'
+          ]
+        ]
+      ));
+
+      foreach ($this->getFilters() as $filter) {
+        $values = [];
+
+        foreach ($filter['values'] as $value) {
+          $values[$value['title']] = $value['value'];
+        }
+
+        $formBuilder->get('filters')->add(
+          $filter['type'] . '_' . $filter['id'] . '',
+          $filter['inputType'] === 'select' ? SelectChoiceType::class : FilterChoiceType::class,
+          [
+            'label' => $filter['title'],
+            'choices' => $values,
+            'multiple' => true,
+            'required' => false,
+          ]
+        );
+      }
     }
 
     return $formBuilder->getForm();
   }
 
   #[LiveAction]
-  public function save(#[LiveArg] ?string $order = "asc", #[LiveArg] ?bool $reset = false)
+  public function save(#[LiveArg] ?string $order = 'asc', #[LiveArg] ?bool $reset = false)
   {
 
     // TODO BACK
@@ -175,7 +215,7 @@ class CategoryProducts extends AbstractController
       'itemsPerPage' => 9,
       'page' => $this->page,
       'order' => [
-        "ref" => $order
+        'ref' => $order
       ]
     ]);
 
@@ -201,17 +241,10 @@ class CategoryProducts extends AbstractController
         'itemsPerPage' => 2,
         'page' => $this->page,
         'order' => [
-          "ref" => 'asc'
+          'ref' => 'asc'
         ]
       ]);
     }
     return $this->products;
-  }
-
-  public function getQuery()
-  {
-    if (null !== $this->query) {
-      return $this->query;
-    }
   }
 }

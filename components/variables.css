@@ -140,4 +140,6 @@
   --letter-spacing-indication-small: rem-convert(0.6px);
 
   --header-nav-height: 62px;
+
+  --screen-mobile-drawer: theme('screens.md');
 }

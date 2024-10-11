@@ -1,10 +1,10 @@
 .Product {
-   &-imageContainer {
-     width: 594px;
-     img {
-       width: 100%;
-     }
-   }
+  &-imageContainer {
+    width: 594px;
+    img {
+      width: 100%;
+    }
+  }
 
   &Gallery-item {
     border: 1px solid transparent;

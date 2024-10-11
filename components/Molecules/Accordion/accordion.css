@@ -65,6 +65,7 @@
 
   &--filter {
     background-color: var(--theme-lightest);
+    border-bottom: none;
 
     .Accordion-summary {
       @apply paragraph-4;
@@ -94,7 +95,7 @@
     }
   }
 
-  &--category {
+  /* &--category {
     .Accordion-content {
       border-bottom: none;
     }
@@ -103,7 +104,7 @@
       padding-left: 0;
       padding-right: 0;
     }
-  }
+  } */
   .Accordion-icon--minus {
     display: none;
   }
