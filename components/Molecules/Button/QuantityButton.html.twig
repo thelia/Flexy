@@ -11,6 +11,6 @@
 {% set inLiveComp = inLiveComp|default(false) %}
 
 <div class='Button-quantityButton'>
-	{% include '@components/Molecules/Button/Quantity.html.twig' with {disabled, value, classes,name, quantity, btnLiveAction} %}
+	{% include '@components/Molecules/Button/Quantity.html.twig' with {disabled, value, classes,name, btnLiveAction} %}
 	{% include '@components/Molecules/Button/Button.html.twig' with {disabled, text, classes, icon_left: icon, fill,liveAction : addToCartAction,inLiveComp} %}
 </div>

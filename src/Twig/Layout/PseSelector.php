@@ -43,10 +43,6 @@ class PseSelector extends BaseFrontController
 
   #[LiveProp(writable: true)]
   #[ExposeInTemplate]
-  public ?int $quantity = 1;
-
-  #[LiveProp(writable: true)]
-  #[ExposeInTemplate]
   public ?array $currentCombination = null;
 
   #[ExposeInTemplate]
@@ -132,33 +128,23 @@ class PseSelector extends BaseFrontController
     return $this->currentCombination;
   }
 
-  public function getQuantity()
-  {
-
-    return $this->quantity;
-  }
-
   #[LiveAction]
-  public function updateQuantity(#[LiveArg] int $quantity): int
+  public function getQuantity(#[LiveArg] ?int $quantity = 1)
   {
-    if ($quantity <= 1) {
-      $quantity = 1;
+    $this->formValues['quantity'] = $quantity;
+
+    if ($quantity < 2) {
+      $this->formValues['quantity'] = 1;
     }
 
-    $this->quantity = $quantity;
-
-    return $this->quantity;
+    return  $this->formValues['quantity'];
   }
 
   #[LiveAction]
   public function addToCart()
   {
     $this->submitForm();
-
-
-    dd($this->getForm()->getData());
   }
-
 
   #[LiveAction]
   public function restockingAlert() {}
