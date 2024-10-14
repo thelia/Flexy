@@ -36,6 +36,8 @@
   &--category {
     min-height: rem-convert(336px);
     padding: rem-convert(24px);
+    flex-direction: column;
+    align-items: initial;
     @screen md {
       min-height: rem-convert(344px);
       padding: rem-convert(24px 48px);

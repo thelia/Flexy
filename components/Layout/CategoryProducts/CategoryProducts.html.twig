@@ -32,7 +32,7 @@
 				</div>
 			</div>
 
-			<div class="grid grid-cols-2 xl:grid-cols-3 gap-8 mb-[40px] transition" data-loading="addClass(opacity-50)">
+			<div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-8 mb-[40px] transition" data-loading="addClass(opacity-50)">
 				{% for product in products %}
 					{% include '@components/Organisms/ProductCard/ProductCard.html.twig' with  product|merge({displayWishButton: true}) %}
 				{% endfor %}
@@ -40,16 +40,20 @@
 
 			<div class='mx-auto lg:mx-0 lg:ml-auto w-max'>
 				{% include '@components/Molecules/Pagination/Pagination.html.twig' with {
-    prevText: 'Previous' | trans,
-    nextText: 'Next' | trans,
-    currentPage: page,
-    totalPages: 3
-  } %}
+          prevText: 'Previous' | trans,
+          nextText: 'Next' | trans,
+          currentPage: page,
+          totalPages: 3
+        } %}
+			</div>
+			<div id="description" class="lg:pt-[56px] lg:pb-[96px] max-w-[664px] pt-[102px] pb-[52px] mx-auto">
+				{% if attr('category', 'description') %}
+					<div class=" paragraph-4 lg:paragraph-2">
+						{{ attr('category', 'description') }}
+					</div>
+				{% endif %}
+				{{ component('Flexy:Components:Blocks', {item_type: 'category', item_id: categoryId}) }}
 			</div>
 
-			<p class="paragraph-4 lg:paragraph-2 lg:pt-[56px] lg:pb-[96px] max-w-[664px] pt-[102px] pb-[52px] mx-auto">
-				{{ attr('category', 'description') }}
-			</p>
-			{{ component('Flexy:Components:Blocks', {item_type: 'category', item_id: categoryId}) }}
 		</div>
 	</section>

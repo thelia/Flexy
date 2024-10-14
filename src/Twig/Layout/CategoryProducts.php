@@ -238,7 +238,7 @@ class CategoryProducts extends AbstractController
     if (empty($this->products)) {
       $this->products = $this->dataAccessService->resources('/api/front/products', [
         'productCategories.category.id' => $this->categoryId,
-        'itemsPerPage' => 2,
+        'itemsPerPage' => 9,
         'page' => $this->page,
         'order' => [
           'ref' => 'asc'

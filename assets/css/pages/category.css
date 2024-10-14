@@ -3,14 +3,25 @@
     display: grid;
     padding: 24px;
 
+    @screen md {
+      padding: 24px 48px;
+    }
     @screen lg {
-      padding: 24px 120px;
+      padding: 44px 0;
       grid-template-columns: 240px 1fr;
       gap: 48px;
+      margin: auto;
+      max-width: calc(theme('screens.lg') - 80px);
     }
+
+    @screen xl {
+      gap: 66px;
+      max-width: calc(theme('screens.xl') - 84px);
+    }
+
     @screen 2xl {
       grid-template-columns: 310px 1fr;
-      gap: 66px;
+      max-width: calc(theme('screens.2xl') - 100px);
     }
   }
 }
