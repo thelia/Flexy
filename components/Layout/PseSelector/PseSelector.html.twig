@@ -1,15 +1,9 @@
-<div {{attributes}}>
+<div {{ attributes.defaults(stimulus_controller('pse_selector'))}}>
 	{{ form_start(form, {attr :{
     class: 'mt-[30px] flex flex-col gap-[30px]',
     'data-action': 'live#action:prevent',
     'data-live-action-param': 'addToCart'
   } })}}
-
-	<input type="hidden" name="{{ field_name(form.product) }}" value="{{ field_value(form.product)}}">
-	<input type="hidden" name="{{ field_name(form.product_sale_elements_id) }}" value="{{ field_value(form.product_sale_elements_id) }}">
-	<input type="hidden" name="{{ field_name(form.append)}}" value="{{ field_value(form.append) }}">
-	<input type="hidden" name="{{ field_name(form.newness)}}" value="{{ field_value(form.newness) }}">
-
 	<div class="flex items-center justify-between">
 		<div class="flex items-center gap-2">
 			{% include '@components/Molecules/Score/Score.html.twig' with {score: 3} %}
@@ -22,24 +16,13 @@
 		{% include "@components/Organisms/SnackBar/SnackBar.html.twig" with {text: 'Unavailable product'|trans, variant: 'warning', withIcon:true, size: "full"} %}
 	{% endif %}
 
-	{% if product.productSaleElements|length > 1 %}
-		<ul class="flex flex-col gap-4">
-			{% for attribute in productAttributes %}
-				{% if attribute.values|length > 1 %}
-					<div>
-						{% if attribute.label %}
-							<div class="mb-2 font-semibold text-black paragraph-4">{{attribute.label}}</div>
-							<div class="flex-wrap hidden gap-2 md:flex">
-								{% for availability in attribute.values %}
-									{% include '@components/Molecules/Filters/FilterPill/FilterPill.html.twig' with {value : availability.id, id: attribute.id~'_'~availability.id, customText: availability.label,inputType: 'radio', selected : currentCombination[attribute.id] == availability.id, model: 'currentCombination['~attribute.id~']' } %}
-								{% endfor %}
-							</div>
-						{% endif %}
-					</div>
-				{% endif %}
-			{% endfor %}
-		</ul>
-	{% endif %}
+	<input type="hidden" name="{{ field_name(form.product) }}" value="{{ field_value(form.product)}}">
+	<input type="hidden" name="{{ field_name(form.product_sale_elements_id) }}" value="{{ field_value(form.product_sale_elements_id) }}">
+	<input type="hidden" name="{{ field_name(form.append)}}" value="{{ field_value(form.append) }}">
+	<input type="hidden" name="{{ field_name(form.newness)}}" value="{{ field_value(form.newness) }}">
+
+	{{ form_row(form.currentCombination) }}
+
 	<div class="flex items-center gap-4">
 		<strong class="text-black h4">{{currentPse.isPromo ? currentPse.promoPrice: currentPse.price}}
 			€</strong>

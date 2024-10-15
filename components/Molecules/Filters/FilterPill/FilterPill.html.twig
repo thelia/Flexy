@@ -19,7 +19,7 @@
 {% endif %}
 
 <label class="FilterPill{{ classes }}">
-	<input type='{{ inputType }}' class='hidden' value='{{ value }}' name='{{ name }}' {% if disabled %} disabled {% endif %} {% if model %} data-model="{{model}}" {% endif %} {% if selected %} checked {% endif %}/>
+	<input type='{{ inputType }}' class='hidden' value='{{ value }}' name='{{ name }}' {% if disabled %} disabled {% endif %} {% if model %} data-model="{{model}}" {% endif %} {% if selected %} checked {% endif %} data-action='change->pse_selector#change:stop'/>
 	{% if icon %}
 		<span class="FilterPill-icon" {% if iconColor %} style="color:{{ iconColor }}" {% endif %}>{{ ux_icon(icon) }}</span>
 	{% endif %}

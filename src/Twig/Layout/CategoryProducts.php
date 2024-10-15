@@ -153,6 +153,9 @@ class CategoryProducts extends AbstractController
         ]
       )->add('sort', SortChoiceType::class, [
         'label' => 'Choose',
+        'label_attr' => [
+          'class' => 'block mb-[22px] h4'
+        ],
         'choices' => $values,
         'required' => false,
       ]));
@@ -166,6 +169,9 @@ class CategoryProducts extends AbstractController
           'by_reference' => true,
           'label' => 'Filter By',
           'inherit_data' => true,
+          'label_attr' => [
+            'class' => 'block mb-[22px] h4'
+          ],
           'attr' => [
             'class' => 'Category-filter'
           ]

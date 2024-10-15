@@ -1,0 +1,14 @@
+{% set choices = choices|default([]) %}
+{% set value = value|default(null) %}
+{% set title = title|default('') %}
+{% set attrId = attrId|default(null) %}
+<div>
+	<div class="mb-2 font-semibold text-black paragraph-4">{{title}}</div>
+	<ul class="flex-wrap hidden gap-2 md:flex">
+		{% for choice in choices %}
+			<li>
+				{% include '@components/Molecules/Filters/FilterPill/FilterPill.html.twig' with {value : choice.value, customText: choice.label,inputType: 'radio', selected: value == choice.value, name: form.vars.full_name} %}
+			</li>
+		{% endfor %}
+	</ul>
+</div>

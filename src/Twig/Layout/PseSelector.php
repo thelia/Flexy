@@ -12,6 +12,7 @@
 
 namespace FlexyBundle\Twig\Layout;
 
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use TwigEngine\Service\DataAccess\DataAccessService;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
@@ -25,6 +26,7 @@ use Thelia\Form\Definition\FrontForm;
 use Symfony\UX\LiveComponent\ComponentWithFormTrait;
 use Symfony\Component\Form\FormInterface;
 use TwigEngine\Service\FormService;
+use FlexyBundle\Form\Type\FieldsetType;
 
 #[AsLiveComponent(template: '@components/Layout/PseSelector/PseSelector.html.twig')]
 class PseSelector extends BaseFrontController
@@ -59,13 +61,45 @@ class PseSelector extends BaseFrontController
 
   protected function instantiateForm(): FormInterface
   {
-    return $this->formService->getFormByName(FrontForm::CART_ADD, [
+    $form = $this->formService->getFormByName(FrontForm::CART_ADD, [
       "product" => $this->product['id'],
       'product_sale_elements_id' => $this->getCurrentPse()['id'],
       "quantity" => 1,
       'append' => 1,
-      'newness' => 1
+      'newness' => 1,
     ]);
+
+    $form->add(
+      'currentCombination',
+      FieldsetType::class,
+      [
+        'by_reference' => true,
+        'label' => 'Filter By',
+        'label_attr' => [
+          'class' => 'lg:hidden'
+        ],
+        'inherit_data' => true,
+        'attr' => [
+          'class' => 'PseSelector'
+        ]
+      ]
+    );
+
+    foreach ($this->getProductAttributes() as $attribute) {
+      $choices = [];
+      foreach ($attribute['values'] as $value) {
+        $choices[$value['label']] = $value['id'];
+      }
+
+      $form->get('currentCombination')->add($attribute['id'], ChoiceType::class, [
+        'label' => $attribute['label'],
+        'choices' => $choices,
+        'data' => $this->getCurrentCombination()[$attribute['id']],
+        'multiple' => false,
+        'required' => false,
+      ]);
+    };
+    return $form;
   }
 
   public function getPses(): array
