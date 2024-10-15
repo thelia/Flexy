@@ -49,7 +49,7 @@
 	{% set label = form.vars.label|default(null) %}
 	<fieldset {% if class %} class="{{class}}" {% endif %}>
 		{% if label %}
-			<legend class="{{form.vars.label_attr.class}}">{{label}}</legend>
+			<legend class="{{form.vars.label_attr.class|default("")}}">{{label}}</legend>
 		{% endif %}
 		<ul class="flex flex-col gap-1 lg:divide-y lg:gap-0">
 			{% for row in form.vars.form.children %}
