@@ -4,6 +4,12 @@
     'data-action': 'live#action:prevent',
     'data-live-action-param': 'addToCart'
   } })}}
+
+	<input type="hidden" name="{{ field_name(form.product) }}" value="{{ field_value(form.product)}}">
+	<input type="hidden" name="{{ field_name(form.product_sale_elements_id) }}" value="{{ field_value(form.product_sale_elements_id) }}">
+	<input type="hidden" name="{{ field_name(form.append)}}" value="{{ field_value(form.append) }}">
+	<input type="hidden" name="{{ field_name(form.newness)}}" value="{{ field_value(form.newness) }}">
+
 	<div class="flex items-center justify-between">
 		<div class="flex items-center gap-2">
 			{% include '@components/Molecules/Score/Score.html.twig' with {score: 3} %}
@@ -15,7 +21,7 @@
 	{% if currentPse.quantity == 0 %}
 		{% include "@components/Organisms/SnackBar/SnackBar.html.twig" with {text: 'Unavailable product'|trans, variant: 'warning', withIcon:true, size: "full"} %}
 	{% endif %}
-
+	{% do form.quantity.setRendered %}
 	{{ form_rest(form) }}
 
 	<div class="flex items-center gap-4">

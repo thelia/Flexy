@@ -64,4 +64,8 @@
       @apply lg:px-0;
     }
   }
+
+  .Fieldset-group {
+    @apply flex flex-col gap-1 lg:divide-y lg:gap-0;
+  }
 }

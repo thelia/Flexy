@@ -15,9 +15,10 @@
 }
 
 .PseSelector {
-  display: grid;
-  gap: 30px;
-
+  .Fieldset-group {
+    display: grid;
+    gap: 30px;
+  }
   legend {
     @sreen lg {
       display: none;

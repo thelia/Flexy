@@ -149,7 +149,10 @@ class CategoryProducts extends AbstractController
           'inherit_data' => true,
           'attr' => [
             'class' => 'Category-filter lg:hidden'
-          ]
+          ],
+          'label_attr' => [
+            'class' => 'block mb-[22px] h4'
+          ],
         ]
       )->add('sort', SortChoiceType::class, [
         'label' => 'Choose',
