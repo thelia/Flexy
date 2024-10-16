@@ -1,7 +1,7 @@
 {% set type = type|default("generic") %}
 {% set categories = resources('/api/front/categories') %}
 
-<header class='Header  {% if type == "sticky" %}is-sticky{% endif %} {% if type == "searchbar" %}Header--withSearchBar{% endif %}'>
+<header class='Header {% if type == "sticky" %}is-sticky{% endif %} {% if type == "searchbar" %}Header--withSearchBar{% endif %}'>
 	<div class='flex'>
 		{% if type == "searchbar" %}
 			<div class='hidden lg:block xl:hidden'>

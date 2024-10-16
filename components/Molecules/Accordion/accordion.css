@@ -65,6 +65,7 @@
 
   &--filter {
     background-color: var(--theme-lightest);
+    border-bottom: none;
 
     .Accordion-summary {
       @apply paragraph-4;
@@ -92,9 +93,18 @@
       @apply paragraph-2;
       padding: 0 0 rem-convert(20px) 0;
     }
-
   }
 
+  /* &--category {
+    .Accordion-content {
+      border-bottom: none;
+    }
+    .Accordion-content,
+    .Accordion-summary {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  } */
   .Accordion-icon--minus {
     display: none;
   }

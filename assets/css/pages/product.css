@@ -1,15 +1,26 @@
 .Product {
-   &-imageContainer {
-     width: 594px;
-     img {
-       width: 100%;
-     }
-   }
+  &-imageContainer {
+    width: 594px;
+    img {
+      width: 100%;
+    }
+  }
 
   &Gallery-item {
     border: 1px solid transparent;
     &.is-active {
       border: 1px solid var(--theme-dark);
+    }
+  }
+}
+
+.PseSelector {
+  display: grid;
+  gap: 30px;
+
+  legend {
+    @sreen lg {
+      display: none;
     }
   }
 }

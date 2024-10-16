@@ -1,0 +1,7 @@
+{% if blocks is iterable and blocks|length > 0%}
+	<div class="wysiwyg Blocks">
+		{% for block in blocks %}
+			{{block|raw}}
+		{% endfor %}
+	</div>
+{% endif %}

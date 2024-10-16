@@ -8,6 +8,7 @@ export default function MobileDrawer() {
     drawer.addEventListener('click', () => {
       if (!drawer.dataset?.drawerToggle) return;
       const currentDrawer = document.querySelector(drawer.dataset.drawerToggle);
+      console.log(currentDrawer);
 
       if (!currentDrawer) return;
       openDrawer(currentDrawer);
@@ -15,9 +16,9 @@ export default function MobileDrawer() {
   });
   closeDrawers.forEach(function (drawer) {
     drawer.addEventListener('click', () => {
-      console.log({drawer});
+      console.log({ drawer });
       const parent = drawer.closest('.MobileDrawer');
-      console.log({parent});
+      console.log({ parent });
 
       if (!parent) return;
       closeDrawer(parent);

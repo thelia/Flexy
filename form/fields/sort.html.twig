@@ -1,0 +1,19 @@
+{% set choices = choices|default([]) %}
+{% set values = values|default([]) %}
+{% set title = title|default('') %}
+{% set open = false %}
+
+{% if choices|length > 0 %}
+	{% set content %}
+	{% for choice in choices %}
+		{% include '@components/Molecules/Filters/FilterList/FilterList.html.twig' with {value : choice.value,label: choice.label,type:"radio", name: form.vars.full_name, selected: choice.value in values } %}
+	{% endfor %}
+	{% endset %}
+
+	{% include '@components/Molecules/Accordion/Accordion.html.twig' with {
+  title,
+  variant: 'filter',
+  content,
+} %}
+	{% set open = false %}
+{% endif %}
