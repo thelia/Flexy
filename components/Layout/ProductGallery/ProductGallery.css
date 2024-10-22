@@ -1,0 +1,138 @@
+.ProductGallery {
+  position: relative;
+  @screen md {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+    width: auto;
+    margin: 0;
+  }
+  &-main {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+    aspect-ratio: 1/1;
+    grid-column: 1 /-1;
+
+    @screen lg {
+      grid-column: 2 /7;
+    }
+  }
+
+  &-list {
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(calc(-100% - 1rem), 0);
+    width: 54px;
+
+    @screen md {
+      display: flex;
+    }
+
+    @screen lg {
+      position: static;
+      width: auto;
+      transform: none;
+    }
+  }
+
+  &-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    border: 2px solid transparent;
+    aspect-ratio: 1/1;
+
+    &:focus-within,
+    &.is-active {
+      border-color: var(--theme);
+    }
+  }
+
+  &-thumbnail {
+    width: 100%;
+    cursor: pointer;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .splide {
+    position: static;
+
+    &__pagination {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, -14px);
+
+      li {
+        display: flex;
+      }
+
+      &__page {
+        width: 6px;
+        height: 6px;
+        margin: 4px;
+        background-color: var(--black);
+        opacity: 0.3;
+        border-radius: 50%;
+        &.is-active {
+          transform: scale(1.33);
+          opacity: 1;
+        }
+      }
+    }
+
+    &__arrows {
+      align-items: center;
+      justify-content: end;
+      gap: 8px;
+      display: none;
+      @screen sm {
+        display: flex;
+      }
+    }
+
+    &__arrow {
+      position: static;
+      box-sizing: content-box;
+      padding: 16px 24px;
+      color: var(--black);
+      background: none;
+      border-radius: 0;
+      transform: none;
+      opacity: 1;
+
+      &:disabled {
+        opacity: 0.5;
+      }
+
+      svg {
+        width: 24px;
+        height: 12px;
+      }
+    }
+  }
+}
+
+.no-js {
+  .splide {
+    visibility: visible;
+
+    &__slide {
+      max-width: 100%;
+    }
+    &__arrows {
+      display: none;
+    }
+  }
+}

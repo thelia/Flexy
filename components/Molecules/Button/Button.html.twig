@@ -2,7 +2,9 @@
 {% set text = text|default('') %}
 {% set disabled = disabled|default(false) %}
 {% set href = href|default(false) %}
-{% set type = type|default('button') %}
+{% set liveAction = liveAction|default(null) %}
+{% set inLiveComp = inLiveComp|default(false) %}
+{% set type = type|default(inLiveComp ? 'submit':'button') %}
 {% set icon_left = icon_left|default(false) %}
 {% set icon_right = icon_right|default(false) %}
 {% set fill = fill|default(false) %}
@@ -12,26 +14,39 @@
 {% set round = round|default(false) %}
 {% set name = name|default('') %}
 {% set onClick = onClick|default({}) %}
+{% set toggleDrawer = toggleDrawer|default(null) %}
 
-{% if variant and variant != 'primary' %}{% set classes = classes ~ ' Button--' ~ variant %}{% endif %}
-{% if fill %}{% set classes = classes ~ ' Button--fill' %}{% endif %}
-{% if rectangle %}{% set classes = classes ~ ' Button--rectangle' %}{% endif %}
-{% if sharp %}{% set classes = classes ~ ' Button--sharp' %}{% endif %}
-{% if round %}{% set classes = classes ~ ' Button--round' %}{% endif %}
-{% set tag = 'button' %}
-{% if href %}{% set tag = 'a' %}{% endif %}
-
-
-<{{ tag }} class='Button {{ classes }}' {% if disabled %}disabled{% endif %} {% if href %}href='{{ href }}'{% else %}type='{{ type }}'{% endif %} {% if onClick %}onclick="{{ onClick }}"{% endif %}{% if name %}data-id="{{ name }}"{% endif %}>
-{% if icon_left %}
-    <span class='icon icon-left'>
-      {{ux_icon(icon_left)}}
-    </span>
+{% if variant and variant != 'primary' %}
+	{% set classes = classes ~ ' Button--' ~ variant %}
 {% endif %}
-  {{ text|striptags('<span>')|raw }}
-  {% if icon_right %}
-    <span class='icon icon-right'>
-      {{ux_icon(icon_right)}}
-    </span>
-  {% endif %}
-</{{ tag }}>
+{% if fill %}
+	{% set classes = classes ~ ' Button--fill' %}
+{% endif %}
+{% if rectangle %}
+	{% set classes = classes ~ ' Button--rectangle' %}
+{% endif %}
+{% if sharp %}
+	{% set classes = classes ~ ' Button--sharp' %}
+{% endif %}
+{% if round %}
+	{% set classes = classes ~ ' Button--round' %}
+{% endif %}
+{% set tag = 'button' %}
+{% if href %}
+	{% set tag = 'a' %}
+{% endif %}
+
+
+<{{tag}} class='Button {{ classes }}' {% if disabled %} disabled {% endif %} {% if href %} href='{{ href }}' {% else %} type='{{ type }}' {% endif %} {% if onClick %} onclick="{{ onClick }}" {% endif %} {% if name %} data-id="{{ name }}" {% endif %} {% if liveAction %} data-action="live#action" data-live-action-param="{{liveAction}}" {% endif %} {% if toggleDrawer %} data-drawer-toggle="{{toggleDrawer}}" {% endif %}>
+	{% if icon_left %}
+		<span class='icon icon-left'>
+			{{ux_icon(icon_left)}}
+		</span>
+	{% endif %}
+	{{ text|striptags('<span>')|raw }}
+	{% if icon_right %}
+		<span class='icon icon-right'>
+			{{ux_icon(icon_right)}}
+		</span>
+	{% endif %}
+</{{tag}}>

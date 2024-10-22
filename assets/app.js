@@ -12,12 +12,11 @@ import './bootstrap.js';
 
 import HeaderScript from '@components/Layout/Header/Header.js';
 import MobileDrawer from './js/mobileDrawer';
-import filterSelectFunction from '@components/Molecules/Filters/FilterSelect/FilterSelect';
+import filterSelect from '@components/Molecules/Filters/FilterSelect/FilterSelect';
 import { quantityButton } from '@components/Molecules/Button/button';
 import { FieldInputFunction } from '@components/Molecules/Fields/FieldInput/FieldInput';
 import { ModalFunction } from '@components/Molecules/Modal/Modal';
 import { slider } from '@js/slider';
-import ProductGallery from '@components/Layout/ProductGallery/ProductGallery';
 import PasswordControlsFunction from '@components/Molecules/PasswordControls/PasswordControls';
 import headerButtonProfileFunction from '@components/Molecules/HeaderButton/HeaderButtonProfile';
 
@@ -28,10 +27,9 @@ function main() {
 
   HeaderScript();
   MobileDrawer();
-  filterSelectFunction();
+  filterSelect();
   quantityButton();
   slider();
-  ProductGallery();
   PasswordControlsFunction();
   StepsFunction();
   FieldInputFunction();

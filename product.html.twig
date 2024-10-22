@@ -1,122 +1,138 @@
 {% extends 'base.html.twig' %}
 
-{% block javascripts %}
-  {{ parent() }}
-  {{ encore_entry_script_tags('product') }}
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('product') }}
 {% endblock %}
 
+{% block javascripts %}
+	{{ parent() }}
+	{{ encore_entry_script_tags('product') }}
+{% endblock %}
+
+
 {% set productId = attr('product', 'id') %}
-{% block title %}{{ attr('product', 'title') }}{% endblock %}
+{% block title %}
+	{{ attr('product', 'title') }}
+{% endblock %}
 
 {% set product = resources('/api/front/products/' ~ productId) %}
 {% set productCategory = product.productCategories|filter(c => c.defaultCategory)|first.category %}
-
 {% block body %}
 
-	<div class="px-6 lg:px-[120px] py-6">
+	<div class="ProductPage">
 		<div class="lg:justify-between lg:items-center mb-[29px] lg:flex">
-      {{ component('Molecules:Breadcrumb:Breadcrumb', {
+			{{ component('Molecules:Breadcrumb:Breadcrumb', {
         items: [
           { href: productCategory.publicUrl|default('#'), label:productCategory.i18ns.title},
-        ],
-        backIcon: true
-      }) }}
-
+          ],
+          backIcon: true
+        }) }}
 		</div>
+		<div class="container">
+			<div class="ProductPage-grid">
+				<section id="infos" class="ProductPage-infos">
+					<h1 class="mb-3 h3">{{ attr('product', 'title') }}</h1>
+					{% set chapo = attr('product', 'chapo') %}
+					{% if chapo %}
+						<div class="paragraph-3 text-grey">{{ chapo }}</div>
+					{% endif %}
 
-    <div class="lg:container lg:w-full md:w-[540px] sm:w-[340px] w-full mx-auto">
-      <div class="lg:flex lg:justify-between gap-[46px]">
-        <div>
-          <section id="gallery" class="relative md:pl-[92px]">
-            {% include '@components/Layout/ProductGallery/ProductGallery.html.twig' with {productId:productId } %}
-          </section>
-          <section id="description" class="lg:pl-[92px]">
-            {% set descriptionContent %}
-              <p>toto 2</p>
-            {% endset %}
+					{% set attributes = getAttributesAndValues(productId) %}
 
-            {% include '@components/Molecules/Accordion/Accordion.html.twig' with {
-              title: 'Description'|trans,
-              content: descriptionContent,
-              iconPlus: "plus",
-              iconMinus: "minus",
-            } %}
-            {% include '@components/Molecules/Accordion/Accordion.html.twig' with {
-              title: 'Features'|trans,
-              content: "tata",
-              iconPlus: "plus",
-              iconMinus: "minus",
-            } %}
-            {% include '@components/Molecules/Accordion/Accordion.html.twig' with {
-              title: 'Shipping & Returns'|trans,
-              content: "",
-              iconPlus: "plus",
-              iconMinus: "minus",
-            } %}
-            {% include '@components/Molecules/Accordion/Accordion.html.twig' with {
-              title: 'Verified Reviews'|trans,
-              content: "",
-              iconPlus: "plus",
-              iconMinus: "minus",
-            } %}
-          </section>
-        </div>
-        <aside class="lg:w-[400px] lg:mx-0 md:w-[540px] mx-auto">
-          <h1 class="mb-3 h3">{{ attr('product', 'title') }}</h1>
-          {% set chapo = attr('product', 'chapo') %}
-          {% if chapo %}
-            <div class="paragraph-3">{{ chapo }}</div>
-          {% endif %}
-          <div class="flex items-center justify-between mt-[30px]">
-            <div class="flex items-center gap-2">
-              {% include '@components/Molecules/Score/Score.html.twig' with {score: 3} %}
-              <span class="indication text-grey">12 {{ 'reviews'|trans }}</span>
-            </div>
-            {% include '@components/Molecules/OrderTag/OrderTag.html.twig' with { customText: 'In stock'|trans, variant: 'success', type: 'minimal' } %}
-          </div>
-          {% set attributes = getAttributesAndValues(productId) %}
+					{{ component('Flexy:Layout:PseSelector', {product}) }}
 
-          {% include '@react/Layout/PseSelector/PseSelector.twig' %}
+					{#     TODO : ajouter les couleurs aux attributs (voir ex commenté)    #}
+					{#          {% set colors = [ #}
+					{#            { value: 1, color: '#6969B3', label: 'State Blue' }, #}
+					{#            { value: 2, color: '#FFB698', label: 'Vermillon' }, #}
+					{#            { value: 3, color: '#767676', label: 'Grey' }, #}
+					{#            { value: 4, color: '#84DCC6', label: 'Tiffany Blue', disabled: true }, #}
+					{#            { value: 5, color: '#DD6E42', label: 'Sienna' }, #}
+					{#            { value: 6, color: '#C17767', label: 'Old Rose' }, #}
+					{#          ] %} #}
+					{#          <div class="mt-4"> #}
+					{#            {% include '@components/Organisms/Modules/Filters/FilterColor.html.twig' with {options: colors, name: 'color', label: 'Couleur',id: 'filterColor'} %} #}
+					{#          </div> #}
 
-          {#     TODO : ajouter les couleurs aux attributs (voir ex commenté)    #}
-          {#          {% set colors = [ #}
-          {#            { value: 1, color: '#6969B3', label: 'State Blue' }, #}
-          {#            { value: 2, color: '#FFB698', label: 'Vermillon' }, #}
-          {#            { value: 3, color: '#767676', label: 'Grey' }, #}
-          {#            { value: 4, color: '#84DCC6', label: 'Tiffany Blue', disabled: true }, #}
-          {#            { value: 5, color: '#DD6E42', label: 'Sienna' }, #}
-          {#            { value: 6, color: '#C17767', label: 'Old Rose' }, #}
-          {#          ] %} #}
-          {#          <div class="mt-4"> #}
-          {#            {% include '@components/Organisms/Modules/Filters/FilterColor.html.twig' with {options: colors, name: 'color', label: 'Couleur',id: 'filterColor'} %} #}
-          {#          </div> #}
 
-          <div class="mt-[30px]">
-            {% include '@components/Molecules/Button/QuantityButton.html.twig' with {value:1, classes:'Button--large', text:'Add to cart'|trans, icon:'cart', fill:true} %}
-          </div>
-          <div class="mt-[30px]">
-            {% include '@components/Organisms/Reinsurance/Reinsurance.html.twig' with {data: [
-              {
-                strongText: 'Free delivery'|trans,
-                text: ' from 50€'|trans,
-                icon: 'reinsurance-delivery'
-              },
-              {
-                strongText: 'Shipping'|trans,
-                text: ' within 24 hours'|trans,
-                icon: 'reinsurance-shipping'
-              }
-            ]} %}
-          </div>
-        </aside>
-      </div>
-    </div>
+						<div class="mt-[30px]"> {% include '@components/Organisms/Reinsurance/Reinsurance.html.twig' with {data: [
+            {
+              strongText: 'Free delivery'|trans,
+              text: ' from 50€'|trans,
+              icon: 'reinsurance-delivery'
+            },
+            {
+              strongText: 'Shipping'|trans,
+              text: ' within 24 hours'|trans,
+              icon: 'reinsurance-shipping'
+            }
+          ]} %}
+					</div>
+				</section>
+				<section id="gallery" class="ProductPage-gallery">
+					{% include '@components/Layout/ProductGallery/ProductGallery.html.twig' with {productId:productId } %}
+				</section>
+				<section id="description" class="ProductPage-description">
+					{% set descriptionContent %}
+					<p>toto 2</p>
+					{% endset %}
 
-    <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 mb-[40px]">
-    </div>
-  </div>
-
-	<div class="bg-theme-lighter">
-		{{ component('Flexy:CrossSelling', {categoryId: productCategory.id, title: 'Last seen products' | trans}) }}
+					{% include '@components/Molecules/Accordion/Accordion.html.twig' with {
+            title: 'Description'|trans,
+            content: descriptionContent,
+            iconPlus: "plus",
+            iconMinus: "minus",
+          } %}
+					{% include '@components/Molecules/Accordion/Accordion.html.twig' with {
+            title: 'Features'|trans,
+            content: "tata",
+            iconPlus: "plus",
+            iconMinus: "minus",
+          } %}
+					{% include '@components/Molecules/Accordion/Accordion.html.twig' with {
+            title: 'Shipping & Returns'|trans,
+            content: "",
+            iconPlus: "plus",
+            iconMinus: "minus",
+          } %}
+					{% include '@components/Molecules/Accordion/Accordion.html.twig' with {
+            title: 'Verified Reviews'|trans,
+            content: "",
+            iconPlus: "plus",
+            iconMinus: "minus",
+          } %}
+				</section>
+			</div>
+		</div>
+		<div class="container mx-auto">
+			{{ component('Flexy:Components:Blocks', {item_type: 'product', item_id: product.id}) }}
+		</div>
+		<div class="bg-theme-lighter mt-[50px]">
+			{{component('Flexy:CrossSelling',{categoryId:productCategory.id,title:'Lastseenproducts'|trans})}}
+		</div>
+		{% include '@components/Layout/Reinsurance/Reinsurance.html.twig' with { data: [
+      {
+        strongText: 'Free delivery' | trans,
+        text: 'For any order over €100' | trans,
+        linkLabel: 'See conditions' | trans,
+        link: '#',
+        icon: 'reinsurance-delivery'
+      },
+      {
+        strongText: 'Secure payment' | trans,
+        text: 'Credit card, Paypal' | trans,
+        linkLabel: 'See conditions' | trans,
+        link: '#',
+        icon: 'reinsurance-payment'
+      },
+      {
+        strongText: 'Satisfied or refunded' | trans,
+        text: 'Exchange or refund offered within 30 days' | trans,
+        linkLabel: 'See conditions' | trans,
+        link: '#',
+        icon: 'reinsurance-satisfied'
+      }
+    ] } %}
 	</div>
 {% endblock %}

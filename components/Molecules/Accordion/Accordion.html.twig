@@ -1,37 +1,37 @@
-{% set classes = '' %}
+{% set classes = classes|default('') %}
 {% set variant = variant|default('text') %}
 {% set iconPlus = iconPlus|default(null) %}
+{% set open = open|default(false) %}
 {% set iconMinus = iconMinus|default(null) %}
-{% set classes = classes ~ ' Accordion--' ~ variant %}
+{% set classes = classes ~ 'Accordion--' ~ variant %}
 {% set title = title|default('') %}
 {% set content = content|default('') %}
 
 {% if variant == 'faq' %}
-  {% if iconPlus == null %}
-    {% set iconPlus = 'plus' %}
-  {% endif %}
-  {% if iconMinus == null %}
-    {% set iconMinus = 'minus' %}
-  {% endif %}
+	{% if iconPlus == null %}
+		{% set iconPlus = 'plus' %}
+	{% endif %}
+	{% if iconMinus == null %}
+		{% set iconMinus = 'minus' %}
+	{% endif %}
 {% endif %}
-
-<details class='Accordion{{ classes }}'>
-  <summary class='Accordion-summary'>
-    {{ title }}
-    {% if variant == 'faq' or (iconPlus and iconMinus) %}
-      <span class='Accordion-icon Accordion-icon--plus'>
-        {{ux_icon(iconPlus)}}
-      </span>
-      <span class='Accordion-icon Accordion-icon--minus'>
-        {{ux_icon(iconMinus)}}
-      </span>
-    {% else %}
-      <span class='Accordion-icon'>
-        {{ ux_icon('chevron-down') }}
-      </span>
-    {% endif %}
-  </summary>
-  <div class="Accordion-content">
-    {{ content }}
-  </div>
+<details class='Accordion {{ classes }}' {% if open %} open {% endif %}>
+	<summary class='Accordion-summary'>
+		{{ title }}
+		{% if variant == 'faq' or (iconPlus and iconMinus) %}
+			<span class='Accordion-icon Accordion-icon--plus'>
+				{{ux_icon(iconPlus)}}
+			</span>
+			<span class='Accordion-icon Accordion-icon--minus'>
+				{{ux_icon(iconMinus)}}
+			</span>
+		{% else %}
+			<span class='Accordion-icon'>
+				{{ ux_icon('chevron-down') }}
+			</span>
+		{% endif %}
+	</summary>
+	<div class="Accordion-content">
+		{{ content }}
+	</div>
 </details>

@@ -1,8 +1,11 @@
 {% set value = value|default('') %}
+{% set name = name|default(null) %}
 {% set label = label|default('') %}
+{% set type = type|default('checkbox') %}
+{% set selected = selected|default(false) %}
 {% set onClick = onClick|default(null) %}
 
 <div class="FilterList" tabindex="1">
-  <input class="FilterList-input" type="checkbox" id="{{ value }}" value="{{ value }}" {% if onClick %}onclick=onClick{% endif %}>
-  <label class="FilterList-label" for="{{ value }}">{{ label }}</label>
+	<input class="FilterList-input" type="{{type}}" id="{{ value }}" value="{{ value }}" {% if name %} name="{{name}}" {% endif %} {% if onClick %} onclick="{{onClick}}" {% endif %} {% if selected %} selected {% endif %}>
+	<label class="FilterList-label" for="{{ value }}">{{ label }}</label>
 </div>

@@ -25,6 +25,7 @@
       "@components/*": ["./components/*"],
       "@react/*": ["./react-components/*"],
       "@utils/*": ["./assets/js/utils/*"],
+      "@assets/*": ["./assets/*"]
     },
     // Source Map
     "sourceMap": true, // enables the use of source maps for debuggers and error reporting etc

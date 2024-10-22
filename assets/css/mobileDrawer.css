@@ -1,4 +1,6 @@
 .MobileDrawer {
+  @apply transition-transform translate-y-full;
+
   position: fixed;
   left: 0;
   right: 0;
@@ -9,10 +11,10 @@
   padding-top: rem-convert(50px);
   padding-bottom: rem-convert(42px);
   border-radius: rem-convert(20px) rem-convert(20px) 0px 0px;
-  @apply transition-transform translate-y-full;
   z-index: 20;
+
   &:before {
-    content: "";
+    content: '';
     position: absolute;
     top: rem-convert(16px);
     left: calc(50% - 21px);
@@ -41,10 +43,6 @@
     @apply translate-y-0;
   }
 
-  @screen md {
-    display: none;
-  }
-
   &-overlay {
     position: fixed;
     top: 0;
@@ -54,5 +52,71 @@
     background: var(--grey);
     mix-blend-mode: multiply;
     z-index: 10;
+  }
+
+  &--reset-sm {
+    @screen sm {
+      all: revert;
+
+      &:before {
+        content: none;
+      }
+      .MobileDrawer-header {
+        display: none;
+      }
+      & + .MobileDrawer-overlay {
+        display: none;
+      }
+    }
+  }
+  &--reset-md {
+    @screen md {
+      all: revert;
+
+      &:before {
+        content: none;
+      }
+      .MobileDrawer-header {
+        display: none;
+      }
+      & + .MobileDrawer-overlay {
+        display: none;
+      }
+    }
+  }
+
+  &--reset-lg {
+    @screen lg {
+      all: revert;
+
+      &:before {
+        content: none;
+      }
+
+      .MobileDrawer-header {
+        display: none;
+      }
+      & + .MobileDrawer-overlay {
+        display: none;
+      }
+    }
+  }
+
+  &--reset-xl {
+    @screen xl {
+      all: revert;
+
+      &:before {
+        content: none;
+      }
+
+      .MobileDrawer-header {
+        display: none;
+      }
+
+      & + .MobileDrawer-overlay {
+        display: none;
+      }
+    }
   }
 }

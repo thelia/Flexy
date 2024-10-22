@@ -23,13 +23,17 @@
       outline: none;
       text-decoration: underline;
 
-      a&:hover {
+      &:hover {
         color: var(--grey);
       }
 
       &:focus-visible {
         background-color: var(--theme-light);
       }
+    }
+
+    &:last-child {
+      color: var(--grey);
     }
   }
 

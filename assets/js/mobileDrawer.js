@@ -2,7 +2,7 @@ export default function MobileDrawer() {
   const toggleDrawers = document.querySelectorAll('[data-drawer-toggle]');
   const closeDrawers = document.querySelectorAll('[data-drawer-close]');
   const drawers = document.querySelectorAll('.MobileDrawer');
-  const drawerOptions = document.querySelectorAll('.FilterSelect-option');
+  const drawerOptions = document.querySelectorAll('[data-select-option]');
 
   toggleDrawers.forEach(function (drawer) {
     drawer.addEventListener('click', () => {
@@ -15,9 +15,7 @@ export default function MobileDrawer() {
   });
   closeDrawers.forEach(function (drawer) {
     drawer.addEventListener('click', () => {
-      console.log({drawer});
       const parent = drawer.closest('.MobileDrawer');
-      console.log({parent});
 
       if (!parent) return;
       closeDrawer(parent);
@@ -53,22 +51,22 @@ export default function MobileDrawer() {
 
 function openDrawer(currentDrawer) {
   const isOpen = currentDrawer.classList.toggle('MobileDrawer-show');
-  toggleOverlay(isOpen);
+  document.body.classList.toggle('locked');
+  toggleOverlay(isOpen, currentDrawer);
 }
 
 function closeDrawer(currentDrawer) {
   currentDrawer.classList.remove('MobileDrawer-show');
+  document.body.classList.remove('locked');
   toggleOverlay(false);
 }
 
-function toggleOverlay(open) {
+function toggleOverlay(open, currentDrawer) {
   if (open) {
     const div = document.createElement('div');
     div.classList.add('MobileDrawer-overlay');
-    document.body.prepend(div);
+    currentDrawer.parentNode.insertBefore(div, currentDrawer.nextSibling);
     return;
   }
-
-  console.log('close overlays');
-  document.querySelector('.MobileDrawer-overlay').remove();
+  document.querySelector('.MobileDrawer-overlay')?.remove();
 }

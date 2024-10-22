@@ -1,23 +1,28 @@
+import Splide from '@splidejs/splide';
+
 export default function ProductGallery() {
-  const main = document.getElementById('MainImage');
+  const galleryNode = document.getElementById('ProductGallery');
+  const thumbnails = document.querySelectorAll('.ProductGallery-thumbnail');
 
-  const thumbs = document.querySelectorAll('.ProductGallery-thumbnail');
+  if (!galleryNode) return null;
 
-  if (!main || thumbs.length === 0) return null;
-
-  [...thumbs].forEach((img) => {
-    img.addEventListener('click', (e) => {
-      resetFocus();
-      main.src =
-        '/legacy-image-library/product_image_' +
-        img.dataset.imageId +
-        '/full/%5E*!594,594/0/default.webp';
-
-      img.parentNode.classList.add('is-active');
-    });
+  const main = new Splide(galleryNode, {
+    pagination: false,
+    arrows: true,
+    breakpoints: {
+      768: {
+        pagination: true,
+        arrows: false
+      }
+    }
   });
+  main.mount();
 
-  function resetFocus() {
-    [...thumbs].forEach((el) => el.parentNode.classList.remove('is-active'));
+  if (thumbnails.length > 0) {
+    thumbnails.forEach((thumb, index) => {
+      thumb.addEventListener('click', function () {
+        main.go(index);
+      });
+    });
   }
 }

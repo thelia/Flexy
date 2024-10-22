@@ -1,0 +1,59 @@
+{% set products = products|default([]) %}
+{% set filtersCount = filters_count(formValues|filter(f => f is iterable)) %}
+
+<section class="Category-grid" {{ attributes.defaults(stimulus_controller('filters')) }}>
+	{% if filters %}
+		<div id="FilterDrawer" class="CategoryFilter MobileDrawer MobileDrawer--reset-lg" data-action="change->filters#filterChange">
+			<div class='MobileDrawer-header lg:hidden'>
+				<button class='MobileDrawer-close' type='button' data-drawer-close>{{ ux_icon("close") }}</button>
+			</div>
+			{{ form(form)}}
+				<div class="flex items-center mt-[30px] flex-row-reverse">
+					<button type="button" class="ml-auto leading-3 Button Button--primary Button--large lg:hidden" data-drawer-close="#FilterDrawer">{{'Apply'|trans}}</button>
+					{% if filtersCount %}
+						<button type="button" class="leading-3 Button Button--secondary CategoryFilter-erase" data-action="click->filters#resetForm">{{'Erase'|trans}}
+							({{filtersCount}})
+						{% endif %}
+					</button>
+				</div>
+			</div>
+		{% endif %}
+		<div class="flex-1">
+			<div class="justify-between items-end mb-[29px] hidden lg:flex">
+				<span>{{ products|length }}
+					{{ 'item(s)'|trans }}</span>
+				<div class="w-[250px]">
+					{% include '@components/Molecules/Fields/FieldSelect/FieldSelect.html.twig' with {
+              label: "Sort by" | trans,
+              placeholder: "Sort by" | trans,
+              options: sorts|map(sort => sort|merge({'label':sort.title})),
+              dataAction: 'change->filters#sortChange'
+            } %}
+				</div>
+			</div>
+
+			<div class="grid sm:grid-cols-2 xl:grid-cols-3 gap-8 mb-[40px] transition" data-loading="addClass(opacity-50)">
+				{% for product in products %}
+					{% include '@components/Organisms/ProductCard/ProductCard.html.twig' with  product|merge({displayWishButton: true}) %}
+				{% endfor %}
+			</div>
+
+			<div class='mx-auto lg:mx-0 lg:ml-auto w-max'>
+				{% include '@components/Molecules/Pagination/Pagination.html.twig' with {
+          prevText: 'Previous' | trans,
+          nextText: 'Next' | trans,
+          currentPage: page,
+          totalPages: 3
+        } %}
+			</div>
+			<div id="description" class="lg:pt-[56px] lg:pb-[96px] max-w-[664px] pt-[102px] pb-[52px] mx-auto">
+				{% if attr('category', 'description') %}
+					<div class=" paragraph-4 lg:paragraph-2">
+						{{ attr('category', 'description') }}
+					</div>
+				{% endif %}
+				{{ component('Flexy:Components:Blocks', {item_type: 'category', item_id: categoryId}) }}
+			</div>
+
+		</div>
+	</section>

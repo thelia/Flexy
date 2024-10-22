@@ -1,0 +1,47 @@
+.FilterChoice {
+  &-label {
+    @apply flex sm:text-black sm:font-semibold paragraph-4 sm:mb-2;
+  }
+
+  &-list {
+    @apply flex-wrap gap-2 divide-y divide-grey-lighter sm:divide-y-0 sm:flex;
+  }
+
+  &--drawer {
+    .FilterChoice-label {
+      @media screen and (max-width: theme('screens.sm')) {
+        position: relative;
+        cursor: pointer;
+        outline: none;
+        border: 1px solid var(--grey-lighter);
+        padding: 16px 14px;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 0;
+        &:before {
+          content: attr(data-select-label);
+          font-size: rem-convert(14px);
+        }
+        &:after {
+          content: '';
+          display: block;
+          background: url('/assets/icons/chevron-small-down.svg') no-repeat
+            center;
+          height: rem-convert(20px);
+          width: rem-convert(20px);
+        }
+      }
+    }
+
+    &.FilterChoice--rounded {
+      .FilterChoice-label {
+        @media screen and (max-width: theme('screens.md')) {
+          border-radius: 50px;
+          justify-content: center;
+          color: var(--dark);
+          border-color: currentColor;
+        }
+      }
+    }
+  }
+}

@@ -1,24 +1,13 @@
-const filterSelectFunction = () => {
-  // Gestion de la couleur des pastilles
-  const elements = document.querySelectorAll('.colorRounded');
-
-  if (elements.length) {
-    elements.forEach(function (element) {
-      const bgColor = element.getAttribute('data-bg-color');
-      if (bgColor) {
-        element.style.setProperty('--default-bg-color', bgColor);
-      }
-    });
-  }
-
+const renderfilterSelect = (wrapper) => {
   let focusActive = false;
-  const currentOption = document.querySelector('.FilterSelect-current');
-  const options = document.querySelectorAll('.FilterSelect-option');
+  const options = wrapper.querySelectorAll('[data-select-option]');
+  const label = wrapper.querySelector('[data-select-label]');
   const liOptions = document.querySelectorAll('.FilterSelect-listItem');
 
   // Supprimer le focus de l'option pour refermer le filtre
   options.forEach(function (option) {
     option.addEventListener('click', function () {
+      label.dataset.selectLabel = option.dataset.selectOption;
       if (focusActive) {
         option.blur();
       }
@@ -36,16 +25,21 @@ const filterSelectFunction = () => {
       }
     });
   });
-
-  // Refermer le filtre si on reclic sur l'option currente (en-tête)
-  if (currentOption) {
-    currentOption.addEventListener('click', function () {
-      if (focusActive) {
-        currentOption.blur();
-      }
-      focusActive = !focusActive;
-    });
-  }
 };
 
-export default filterSelectFunction;
+export default function filterSelect() {
+  // Gestion de la couleur des pastilles
+  const bullets = document.querySelectorAll('.colorRounded');
+
+  if (bullets.length) {
+    bullets.forEach(function (element) {
+      const bgColor = element.getAttribute('data-bg-color');
+      if (bgColor) {
+        element.style.setProperty('--default-bg-color', bgColor);
+      }
+    });
+  }
+
+  const selects = document.querySelectorAll(['[data-select]']);
+  selects.forEach((select) => renderfilterSelect(select));
+}

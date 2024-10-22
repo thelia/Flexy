@@ -1,14 +1,23 @@
 {%  extends 'base.html.twig' %}
 {% set page = app.request.get('page')|default(1) %}
-{% block title %}{{ 'Category'|trans }}
+{% set categoryId = attr('category', 'id') %}
+{% set breadcrumb = [
+  {label: 'Home'|trans, href:"/"},
+  {label: attr('category', 'title')}
+] %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	{{ encore_entry_link_tags('category') }}
+{% endblock %}
+
+{% block title %}
+	{{ 'Category'|trans }}
 {% endblock %}
 
 {% block body %}
-	{% set products = resources('/api/front/products', {'productCategories.category.id': attr('category', 'id'), itemsPerPage:9, page: page}) %}
-
-	{% include '@components/Layout/Subheader/Category/SubheaderCategory.html.twig' with {title: attr('category', 'title'), description: attr('category', 'description'), nbProducts: products|length}  %}
-  {{ component('Flexy:Layout:CategoryProduct', {categoryId: attr('category', 'id'), page}) }}
-
+	{% include '@components/Layout/Subheader/Category/SubheaderCategory.html.twig' with {title: attr('category', 'title'), description: attr('category', 'chapo'), nbProducts: 9, breadcrumb}  %}
+	{{ component('Flexy:Layout:CategoryProducts', {categoryId, page}) }}
 	{% include '@components/Layout/Reinsurance/Reinsurance.html.twig' with { data: [
       {
         strongText: 'Free delivery' | trans,

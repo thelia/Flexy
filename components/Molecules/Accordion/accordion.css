@@ -34,7 +34,6 @@
     @apply paragraph-5;
     padding: rem-convert(18px) rem-convert(28px) rem-convert(30px)
       rem-convert(16px);
-    border-bottom: 1px solid var(--grey-lighter);
     color: var(--black);
   }
 
@@ -65,6 +64,7 @@
 
   &--filter {
     background-color: var(--theme-lightest);
+    border-bottom: none;
 
     .Accordion-summary {
       @apply paragraph-4;
@@ -92,7 +92,6 @@
       @apply paragraph-2;
       padding: 0 0 rem-convert(20px) 0;
     }
-
   }
 
   .Accordion-icon--minus {

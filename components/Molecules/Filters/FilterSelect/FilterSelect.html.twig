@@ -3,42 +3,42 @@
 {% set options = options|default([]) %}
 
 <div class="FilterSelect {% if isRounded %}FilterSelect--isRounded{% endif %}" data-drawer-toggle='#FilterSelectDrawer-{{ id }}'>
-  <div class="FilterSelect-current" tabindex="1">
-      {% if placeholder %}
-      <div class="Dropdown-value">
-        <input class="Dropdown-input" type="radio" value="" name="{{ id }}" checked="checked"/>
-        <p class="Dropdown-text">{{ placeholder }}</p>
-      </div>
-    {% endif %}
-    {% for option in options %}
-      <div class="FilterSelect-value">
-        <input class="FilterSelect-input" type="radio" id="{{ id }}-{{ option.value }}" value="{{ option.value }}" name="{{ id }}" {% if not placeholder and loop.index == 1 %}checked="checked"{% endif %}/>
-        <p class="FilterSelect-text">{{ option.label|raw }}</p>
-      </div>
-    {% endfor %}
-     <span class='FilterSelect-icon'>{{ ux_icon("chevron-down") }}</span>
-  </div>
-  <ul class="FilterSelect-list">
-    {% for option in options %}
-      <li class="FilterSelect-listItem">
-        <label tabindex="1" class="FilterSelect-option" for="{{ id }}-{{ option.value }}" aria-hidden="true">{{ option.label|raw }}</label>
-      </li>
-    {% endfor %}
-  </ul>
+	<div class="FilterSelect-current" tabindex="1">
+		{% if placeholder %}
+			<div class="Dropdown-value">
+				<input class="Dropdown-input" type="radio" value="" name="{{ id }}" checked="checked"/>
+				<p class="Dropdown-text">{{ placeholder }}</p>
+			</div>
+		{% endif %}
+		{% for option in options %}
+			<div class="FilterSelect-value">
+				<input class="FilterSelect-input" type="radio" id="{{ id }}-{{ option.value }}" value="{{ option.value }}" name="{{ id }}" {% if not placeholder and loop.index == 1 %} checked="checked" {% endif %}/>
+				<p class="FilterSelect-text">{{ option.label|raw }}</p>
+			</div>
+		{% endfor %}
+		<span class='FilterSelect-icon'>{{ ux_icon("chevron-down") }}</span>
+	</div>
+	<ul class="FilterSelect-list">
+		{% for option in options %}
+			<li class="FilterSelect-listItem">
+				<label tabindex="1" class="FilterSelect-option" for="{{ id }}-{{ option.value }}" aria-hidden="true">{{ option.label|raw }}</label>
+			</li>
+		{% endfor %}
+	</ul>
 </div>
 
 
 <div class='MobileDrawer FilterSelect-mobileDrawer' id='FilterSelectDrawer-{{ id }}'>
-  <div class='MobileDrawer-header'>
-    <button class='MobileDrawer-close' type='button' data-drawer-close>{{ ux_icon("close") }}</button>
-  </div>
-  <div>
-    <ul class="FilterSelect-mobileList">
-      {% for option in options %}
-        <li class="FilterSelect-ListItem" >
-          <label tabindex="1" class="FilterSelect-option" for="{{ id }}-{{ option.value }}" >{{ option.label|raw }}</label>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
+	<div class='MobileDrawer-header'>
+		<button class='MobileDrawer-close' type='button' data-drawer-close>{{ ux_icon("close") }}</button>
+	</div>
+	<div>
+		<ul class="FilterSelect-mobileList">
+			{% for option in options %}
+				<li class="FilterSelect-ListItem">
+					<label tabindex="1" class="FilterSelect-option" for="{{ id }}-{{ option.value }}">{{ option.label|raw }}</label>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
 </div>
