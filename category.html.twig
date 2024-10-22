@@ -6,9 +6,9 @@
   {label: attr('category', 'title')}
 ] %}
 
-{% block javascripts %}
+{% block stylesheets %}
 	{{ parent() }}
-	{{ encore_entry_script_tags('product') }}
+	{{ encore_entry_link_tags('category') }}
 {% endblock %}
 
 {% block title %}

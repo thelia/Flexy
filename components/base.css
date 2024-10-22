@@ -1,5 +1,5 @@
 @import 'variables.css';
-@import '../assets/css/**/*.css';
+@import '../assets/css/*.css';
 @import url('./**/*.css');
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
@@ -12,6 +12,10 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+
+  &.locked {
+    overflow: hidden;
+  }
 }
 
 svg {

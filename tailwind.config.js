@@ -50,6 +50,7 @@ module.exports = {
       }
     },
     screens: {
+      xs: '390px',
       sm: '640px',
       md: '768px',
       lg: '1024px',
@@ -72,15 +73,17 @@ module.exports = {
     function ({ addComponents }) {
       addComponents({
         '.container': {
-          maxWidth: '100%',
+          maxWidth: '272px',
+          marginLeft: 'auto',
+          marginRight: 'auto',
           '@screen xs': {
-            maxWidth: '272px'
+            maxWidth: 'calc(100% - 56px)'
           },
           '@screen sm': {
-            maxWidth: '340px'
+            maxWidth: 'calc(100% - 108px)'
           },
           '@screen md': {
-            maxWidth: '664px'
+            maxWidth: '540px'
           },
           '@screen lg': {
             maxWidth: '864px'

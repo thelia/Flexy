@@ -1,14 +1,32 @@
 {% set choices = choices|default([]) %}
 {% set value = value|default(null) %}
 {% set title = title|default('') %}
-{% set attrId = attrId|default(null) %}
-<div>
-	<div class="mb-2 font-semibold text-black paragraph-4">{{title}}</div>
-	<ul class="flex-wrap hidden gap-2 md:flex">
-		{% for choice in choices %}
-			<li>
-				{% include '@components/Molecules/Filters/FilterPill/FilterPill.html.twig' with {value : choice.value, customText: choice.label,inputType: 'radio', selected: value == choice.value, name: form.vars.full_name} %}
-			</li>
-		{% endfor %}
-	</ul>
+{% set name = name|default(null) %}
+{% set drawer = drawer|default(true) %}
+{% set isRounded = isRounded|default(false) %}
+
+{% set classes = '' %}
+{% if drawer %}
+	{% set classes = classes ~ ' FilterChoice--drawer' %}
+{% endif %}
+{% if isRounded %}
+	{% set classes = classes ~ ' FilterChoice--rounded' %}
+{% endif %}
+
+<div class="FilterChoice {{classes}}" data-select>
+	{% if title %}
+		<div class="FilterChoice-label" {% if drawer %} data-drawer-toggle="#Drawer-{{name}}" data-select-label="{{title}}" {% endif %}>{{title}}</div>
+	{% endif %}
+	<div {% if drawer %} id="Drawer-{{name}}" {% endif %} class="{% if drawer %}MobileDrawer MobileDrawer--reset-sm{% endif %}">
+		<div class='MobileDrawer-header lg:hidden'>
+			<button class='MobileDrawer-close' type='button' data-drawer-close>{{ ux_icon("close") }}</button>
+		</div>
+		<ul class="FilterChoice-list">
+			{% for choice in choices %}
+				<li>
+					{% include '@components/Molecules/Filters/FilterPill/FilterPill.html.twig' with {value : choice.value, customText: choice.label,inputType: 'radio', selected: value == choice.value, name: form.vars.full_name, drawer} %}
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
 </div>

@@ -3,7 +3,7 @@
 
 <section class="Category-grid" {{ attributes.defaults(stimulus_controller('filters')) }}>
 	{% if filters %}
-		<div id="FilterDrawer" class="CategoryFilter MobileDrawer" data-action="change->filters#filterChange">
+		<div id="FilterDrawer" class="CategoryFilter MobileDrawer MobileDrawer--reset-lg" data-action="change->filters#filterChange">
 			<div class='MobileDrawer-header lg:hidden'>
 				<button class='MobileDrawer-close' type='button' data-drawer-close>{{ ux_icon("close") }}</button>
 			</div>

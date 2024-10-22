@@ -12,7 +12,7 @@
 }
 
 .Header {
-  @apply h-[var(--header-height)] flex justify-center md:justify-between  sm:pl-[30px] py-px relative;
+  @apply h-[var(--header-height)] flex justify-center md:justify-between  sm:pl-[30px] sticky md:relative top-0 z-[1] bg-white;
 
   .HeaderButton {
     &--search,

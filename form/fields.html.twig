@@ -4,7 +4,6 @@
 	{% set widget_attr = form.vars.attr %}
 	{% set label = label is defined ? label : form.vars.label %}
 	{% set placeholder = placeholder is defined ? placeholder : form.vars.placeholder is defined ? form.vars.placeholder : null %}
-
 	{% if type == 'checkbox' %}
 		{% elseif type == 'filter' %}
 			{% include '@formTwig/fields/filter.html.twig' with {choices: form.vars.choices, title: form.vars.label, values: widget_value} %}
@@ -47,11 +46,11 @@
 {% block fieldset_row %}
 	{% set class = form.vars.attr.class|default('') %}
 	{% set label = form.vars.label|default(null) %}
-	<fieldset {% if class %} class="{{class}}" {% endif %}>
+	<fieldset {% if class %} class="Fieldset {{class}}" {% endif %}>
 		{% if label %}
-			<legend class="{{form.vars.label_attr.class|default("")}}">{{label}}</legend>
+			<legend class="Fieldset-legend {{form.vars.label_attr.class|default(" ")}}">{{label}}</legend>
 		{% endif %}
-		<ul class="flex flex-col gap-1 lg:divide-y lg:gap-0">
+		<ul class="Fieldset-group">
 			{% for row in form.vars.form.children %}
 				<li>
 					{{ form_row(row) }}

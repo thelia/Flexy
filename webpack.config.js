@@ -24,7 +24,8 @@ Encore
     '@components': path.resolve(__dirname, './components'),
     '@react': path.resolve(__dirname, './react-components'),
     '@js': path.resolve(__dirname, './assets/js'),
-    '@utils': path.resolve(__dirname, './assets/js/utils')
+    '@utils': path.resolve(__dirname, './assets/js/utils'),
+    '@assets': path.resolve(__dirname, './assets')
   })
 
   /*
@@ -35,6 +36,7 @@ Encore
    */
   .addEntry('app', './assets/app.js')
   .addEntry('product', './assets/js/routes/product.js')
+  .addEntry('category', './assets/js/routes/category.js')
   .addEntry('checkout', './assets/js/routes/checkout.js')
   .addEntry('register', './assets/js/routes/register.js')
   .addEntry('email_verification', './assets/js/routes/email_verification.js')

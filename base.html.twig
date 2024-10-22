@@ -17,7 +17,7 @@
 	</head>
 	<body class="no-js">
 		{% block header %}
-			{% include '@components/Layout/Header/Header.html.twig' with { type: "searchbar" } %}
+			{% include '@components/Layout/Header/Header.html.twig' with { type: "generic" } %}
 		{% endblock %}
 
 		{% block body %}{% endblock %}
@@ -26,6 +26,6 @@
 			{% include '@components/Layout/Footer/Footer.html.twig' %}
 		{% endblock %}
 
-    {% block modals %}{% endblock %}
+		{% block modals %}{% endblock %}
 	</body>
 </html>

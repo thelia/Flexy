@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@openstudio/thelia-api-utils": "^0.5.2",
+    "@splidejs/splide": "^4.1.4",
     "@storybook/addon-a11y": "^8.0.9",
     "@symfony/ux-live-component": "https://gitpkg.vercel.app/symfony/ux-live-component/assets?2.x",
     "@symfony/ux-react": "https://gitpkg.vercel.app/symfony/ux-react/assets?2.x",
