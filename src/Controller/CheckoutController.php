@@ -36,6 +36,7 @@ use Thelia\Domain\Checkout\Exception\GuestCheckoutNotAllowedException;
 use Thelia\Domain\Checkout\Exception\IncompleteInvoiceAddressException;
 use Thelia\Domain\Checkout\Exception\InvalidDeliveryException;
 use Thelia\Domain\Checkout\Exception\MissingAddressException;
+use Thelia\Domain\Checkout\Exception\MissingConsentException;
 use Thelia\Domain\Shipping\ShippingFacade;
 use Thelia\Model\Order;
 
@@ -197,8 +198,25 @@ class CheckoutController extends FlexyController
         } catch (IncompleteInvoiceAddressException $e) {
             // Back to the payment step, which is where this theme puts the billing address
             // form: it opens on the selected address, ready to be completed.
+            $this->addFlash('error', $e->getMessage());
+
+            throw new RedirectException($this->generateUrl('checkout_payment'), Response::HTTP_FOUND, $e->getMessage());
+        } catch (MissingConsentException $e) {
+            // This is the rule, not the greyed-out button: the boxes live on the payment
+            // step, and a request that reaches here without them ticked — a typed url, a
+            // consent the shop made mandatory while the page was open — places no order.
+            // The message names the consent that is missing, so the step it lands on
+            // shows the buyer what is left to do. The core redirect listener only reads
+            // the url and the status off RedirectException, dropping its message: a flash
+            // is what actually gets the wording onto the page the buyer lands on.
+            $this->addFlash('error', $e->getMessage());
+
             throw new RedirectException($this->generateUrl('checkout_payment'), Response::HTTP_FOUND, $e->getMessage());
         } catch (MissingAddressException|InvalidDeliveryException $e) {
+            // Same silent-redirect defect as the consents had: the message only reaches
+            // the delivery step through the flash bag, never through RedirectException.
+            $this->addFlash('error', $e->getMessage());
+
             throw new RedirectException($this->generateUrl('checkout_delivery'), Response::HTTP_FOUND, $e->getMessage());
         }
     }

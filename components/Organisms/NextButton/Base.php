@@ -22,6 +22,8 @@ use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\ComponentToolsTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
 use Thelia\Domain\Cart\CartFacade;
+use Thelia\Domain\Checkout\Exception\MissingConsentException;
+use Thelia\Domain\Checkout\Service\ConsentGuard;
 use Thelia\Domain\Legal\CompanyIdentifierRules;
 use Thelia\Model\Cart;
 use Thelia\Model\CartAddressQuery;
@@ -40,6 +42,7 @@ class Base
 
     public function __construct(
         private readonly CartFacade $cartFacade,
+        private readonly ConsentGuard $consentGuard,
     ) {
     }
 
@@ -53,6 +56,8 @@ class Base
     #[LiveListener(CheckoutEvents::ADD_ITEM_EVENT)]
     #[LiveListener(CheckoutEvents::SET_PAYMENT_MODULE_ID)]
     #[LiveListener(CheckoutEvents::SET_INVOICE_ORDER_ADDRESS_ID)]
+    // The generic one: every checkout component that changes something the button
+    // depends on emits it, the consent boxes of the payment step included.
     #[LiveListener('updateNextButton')]
     public function getIsValid(): bool
     {
@@ -85,7 +90,27 @@ class Base
         return $this->isDeliveryValid()
             && $cart->getPaymentModuleId()
             && $cart->getAddressInvoiceId()
-            && $this->hasBillableInvoiceAddress($cart);
+            && $this->hasBillableInvoiceAddress($cart)
+            && $this->hasGivenEveryRequiredConsent();
+    }
+
+    /**
+     * Greys out the button until every box the shop requires is ticked.
+     *
+     * Asked of the very guard that refuses the order rather than re-reading the
+     * acceptances here: which consents are mandatory, and what counts as an answer,
+     * stays decided in one place. The refusal is a business one, and the only thing
+     * this needs from it is that it happened.
+     */
+    private function hasGivenEveryRequiredConsent(): bool
+    {
+        try {
+            $this->consentGuard->checkMandatoryConsentsAccepted();
+        } catch (MissingConsentException) {
+            return false;
+        }
+
+        return true;
     }
 
     /**

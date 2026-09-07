@@ -16,6 +16,12 @@ namespace FlexyBundle\Event;
 
 /**
  * Browser-side LiveComponent event names shared by the checkout components.
+ *
+ * Alongside these, the checkout uses one unnamed event: 'updateNextButton'. It carries
+ * no argument and means "something the next button depends on has changed" — a delivery
+ * choice, an invoice address, a pickup point, a consent box. Every component that
+ * changes such a thing emits it and NextButton listens to it, which is why a new one
+ * of those does not need an event of its own here.
  */
 final class CheckoutEvents
 {
