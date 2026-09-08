@@ -23,6 +23,7 @@ use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\ComponentToolsTrait;
 use Symfony\UX\LiveComponent\ComponentWithFormTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
+use FlexyBundle\Service\GuestCheckoutGate;
 use Thelia\Core\Form\FormServiceInterface;
 use Thelia\Domain\Addressing\Exception\AddressNotFoundException;
 use Thelia\Domain\Addressing\Service\AddressService;
@@ -51,6 +52,7 @@ class Base
         private readonly FormServiceInterface $formService,
         private readonly AddressService $addressService,
         private readonly CustomerFacade $customerFacade,
+        private readonly GuestCheckoutGate $guestCheckoutGate,
     ) {
     }
 
@@ -74,9 +76,12 @@ class Base
     }
 
     /**
-     * Scoped to the session customer: `addressId` reaches this component from the page,
+     * Scoped to the checkout in hand: `addressId` reaches this component from the page,
      * and the core `Get` on this resource carries no security expression, so nothing
-     * upstream guarantees the address belongs to whoever is asking.
+     * upstream guarantees the address belongs to whoever is asking. The customer row is
+     * not enough either — a guest row is shared by everyone who ever ordered on that
+     * email address — so the gate is asked, and an address it does not recognise opens
+     * an empty form rather than showing what somebody else wrote.
      *
      * @return array<string, mixed>
      */
@@ -85,6 +90,10 @@ class Base
         $customer = $this->customerFacade->getCurrentCustomer();
 
         if (!$this->addressId || null === $customer) {
+            return [];
+        }
+
+        if (!$this->guestCheckoutGate->isVisible($this->addressId)) {
             return [];
         }
 
@@ -111,6 +120,12 @@ class Base
     {
         if (null === $this->customerFacade->getCurrentCustomer()) {
             return;
+        }
+
+        // Editing writes over whatever `addressId` names, so the same scope that decides
+        // what may be read decides what may be overwritten. A creation names nothing yet.
+        if (null !== $this->addressId) {
+            $this->guestCheckoutGate->assertVisible($this->addressId);
         }
 
         $this->submitForm();

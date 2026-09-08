@@ -101,12 +101,19 @@ class Base
     #[LiveListener(CheckoutEvents::EDIT_DELIVERY_ADDRESS)]
     public function setEditingAddress(#[LiveArg] int $addressId): void
     {
+        $this->guestCheckoutGate->assertVisible($addressId);
+
         $this->editingAddressId = $addressId;
     }
 
     #[LiveListener(CheckoutEvents::DELETE_DELIVERY_ADDRESS)]
     public function deleteAddress(#[LiveArg] int $addressId): void
     {
+        // Ahead of the try: the deletion below turns a refusal into a logged line and a
+        // silent no-op, which is the right answer to a race and the wrong one to an
+        // address this checkout was never given.
+        $this->guestCheckoutGate->assertVisible($addressId);
+
         try {
             $this->addressService->deleteAddress($addressId);
         } catch (PropelException|AddressNotFoundException|CustomerException $e) {
@@ -198,6 +205,8 @@ class Base
     #[LiveListener(CheckoutEvents::SET_DELIVERY_ORDER_ADDRESS_ID)]
     public function selectDeliveryAddress(#[LiveArg] int $addressId): void
     {
+        $this->guestCheckoutGate->assertVisible($addressId);
+
         $cart = $this->cartFacade->getOrCreateFromSession();
         $this->cartFacade->setDeliveryAddress(new CheckoutDTO(
             cart: $cart,
@@ -214,6 +223,11 @@ class Base
     #[LiveListener(CheckoutEvents::SET_INVOICE_ORDER_ADDRESS_ID)]
     public function selectInvoiceAddress(#[LiveArg] ?int $addressId): void
     {
+        // Null is "bill me where you ship me", and names no address to check.
+        if (null !== $addressId) {
+            $this->guestCheckoutGate->assertVisible($addressId);
+        }
+
         $this->cartFacade->setInvoiceAddress(new CheckoutDTO(
             cart: $this->cartFacade->getOrCreateFromSession(),
             invoiceAddressId: $addressId,

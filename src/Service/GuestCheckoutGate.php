@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace FlexyBundle\Service;
 
+use FlexyBundle\Exception\AddressNotInCheckoutException;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\Exception\PropelException;
 use Propel\Runtime\Map\TableMap;
@@ -193,6 +194,43 @@ final readonly class GuestCheckoutGate
             $addresses,
             static fn (array $address): bool => \in_array((int) $address['id'], $ownAddressIds, true),
         ));
+    }
+
+    /**
+     * Whether the session in hand is entitled to act on that address at all.
+     *
+     * The same answer as {@see visibleAddresses()}, asked about one address: belonging to
+     * the customer row is not enough, because a guest row is shared by everyone who ever
+     * ordered on that email address.
+     *
+     * @throws PropelException
+     */
+    public function isVisible(int $addressId): bool
+    {
+        foreach ($this->visibleAddresses() as $address) {
+            if ((int) $address['id'] === $addressId) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * The guard the checkout puts in front of an address id that came in with a request.
+     *
+     * Every action of the delivery and billing steps takes the address to work on as a
+     * plain number, and the components are reachable one by one: the list being narrowed
+     * on screen decides nothing. This is where the narrowing is enforced.
+     *
+     * @throws AddressNotInCheckoutException when the address is not this checkout's
+     * @throws PropelException
+     */
+    public function assertVisible(int $addressId): void
+    {
+        if (!$this->isVisible($addressId)) {
+            throw new AddressNotInCheckoutException();
+        }
     }
 
     /**
