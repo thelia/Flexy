@@ -62,6 +62,18 @@ final readonly class GuestOrderTracking
         return $this->guestOrderAccessService->findOrderForToken($token);
     }
 
+    /**
+     * The order a link would still open, were the account behind it not open already.
+     *
+     * The one refusal worth explaining: the buyer's order is not gone, it is waiting
+     * behind a sign-in. No budget is spent here — findOrder() has already spent it for
+     * this token, and this only asks why it came back empty.
+     */
+    public function findOrderNowBehindAnAccount(string $token): ?Order
+    {
+        return $this->guestOrderAccessService->findOrderNowBehindAnAccount($token);
+    }
+
     public function rememberPlacedOrder(Order $order): void
     {
         $this->session()?->set(
