@@ -23,7 +23,7 @@
         </p>
 
         {{ form_start(form, {attr: {
-            action: path('customer_register_create'),
+            action: returnUrl|default(false) ? path('customer_register_create', {redirect: returnUrl}) : path('customer_register_create'),
             method: 'POST',
             class: 'flex flex-col gap-6 mb-3',
         }}) }}
@@ -39,7 +39,7 @@
 
             <div class="flex flex-col gap-2">
                 <p class="paragraph-2 text-black">{{ 'You already have an account ?'|trans }}</p>
-                <twig:Molecules:Link:Base href="{{ path('customer_login') }}" customText="{{ 'Log in'|trans }}" />
+                <twig:Molecules:Link:Base href="{{ returnUrl|default(false) ? path('customer_login', {redirect: returnUrl}) : path('customer_login') }}" customText="{{ 'Log in'|trans }}" />
             </div>
         </div>
         {{ form_end(form) }}

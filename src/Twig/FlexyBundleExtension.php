@@ -14,7 +14,10 @@ declare(strict_types=1);
 
 namespace FlexyBundle\Twig;
 
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Thelia\Core\Security\SecurityContext;
+use Thelia\Domain\Customer\Service\AuthenticationReturnUrl;
 use Thelia\Domain\Localization\Service\LangService;
 use Thelia\Model\Customer;
 use Twig\Extension\AbstractExtension;
@@ -22,9 +25,35 @@ use Twig\TwigFunction;
 
 class FlexyBundleExtension extends AbstractExtension
 {
+    /**
+     * Pages of the sign-in journey never become a return destination: coming back to the
+     * form that was just filled in is a detour, not where the visitor was going.
+     */
+    private const AUTHENTICATION_ROUTES = [
+        'customer_login',
+        'customer_login_action',
+        'customer_register',
+        'customer_register_create',
+        'customer_informations',
+        'customer_informations_create',
+        'customer_activation',
+        'customer_send_code',
+        'password_forgotten',
+        'password_forgotten_send',
+        'password_reset_link',
+        'password_resend',
+        'password_reset',
+        'password_reset_action',
+        'password_reset_confirm',
+        'checkout_identify',
+        'checkout_identify_guest',
+    ];
+
     public function __construct(
         private readonly SecurityContext $securityContext,
         private readonly LangService $langService,
+        private readonly RequestStack $requestStack,
+        private readonly UrlGeneratorInterface $urlGenerator,
     ) {
     }
 
@@ -34,6 +63,7 @@ class FlexyBundleExtension extends AbstractExtension
             new TwigFunction('getCurrentCustomer', [$this, 'getCurrentCustomer']),
             new TwigFunction('current_locale', [$this, 'currentLocale']),
             new TwigFunction('hasCustomerAccount', [$this, 'hasCustomerAccount']),
+            new TwigFunction('sign_in_path', [$this, 'signInPath']),
         ];
     }
 
@@ -54,6 +84,26 @@ class FlexyBundleExtension extends AbstractExtension
     public function hasCustomerAccount(): bool
     {
         return $this->securityContext->hasAuthenticatedCustomerUser();
+    }
+
+    /**
+     * Path of the sign-in page, carrying the page it is called from.
+     *
+     * Signing in interrupts what the visitor was doing, so the link says where to come
+     * back to and the account pages stay the destination of last resort.
+     */
+    public function signInPath(): string
+    {
+        $request = $this->requestStack->getCurrentRequest();
+        $route = $request?->attributes->get('_route');
+
+        if (null === $request || \in_array($route, self::AUTHENTICATION_ROUTES, true)) {
+            return $this->urlGenerator->generate('customer_login');
+        }
+
+        return $this->urlGenerator->generate('customer_login', [
+            AuthenticationReturnUrl::PARAMETER => $request->getRequestUri(),
+        ]);
     }
 
     /**

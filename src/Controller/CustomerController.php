@@ -32,12 +32,14 @@ use Thelia\Core\Security\Exception\CustomerNotConfirmedException;
 use Thelia\Core\Security\Exception\WrongPasswordException;
 use Thelia\Domain\Addressing\Service\AddressService;
 use Thelia\Domain\Customer\DTO\CustomerRegisterDTO;
+use Thelia\Domain\Customer\Service\AuthenticationReturnUrl;
 use Thelia\Domain\Customer\Service\CustomerAuthenticator;
 use Thelia\Domain\Customer\Service\CustomerCodeManager;
 use Thelia\Domain\Customer\Service\CustomerRegistrationService;
 use Thelia\Domain\Customer\Service\CustomerUpdateService;
 use Thelia\Domain\Localization\Service\LangService;
 use Thelia\Domain\Marketing\Service\NewsletterSubscriber;
+use Thelia\Form\BaseForm;
 use Thelia\Form\CustomerLogin;
 use Thelia\Form\Exception\FormValidationException;
 use Thelia\Model\ConfigQuery;
@@ -52,13 +54,21 @@ class CustomerController extends FlexyController
     use RememberMeTrait;
 
     #[Route('/login', name: 'login', methods: ['GET'])]
-    public function login(): Response
+    public function login(AuthenticationReturnUrl $authenticationReturnUrl): Response
     {
+        // Remembered rather than only posted with the form: a wrong password, a detour
+        // through the registration form or the activation code all come back to this page
+        // without the parameter, and the page the visitor left has to survive that.
+        $authenticationReturnUrl->capture();
+
         if ($this->getSecurityContext()->hasAuthenticatedCustomerUser()) {
-            return $this->generateRedirect('/account');
+            return $this->generateRedirect($authenticationReturnUrl->consume($this->generateUrl('account_index')));
         }
 
-        return $this->render('login');
+        // The form carries the destination as well, so that a cached sign-in page still
+        // knows it: "/customer/login?redirect=/checkout/cart" and "/customer/login" are
+        // two URLs, each cached with the field it rendered.
+        return $this->render('login', ['returnUrl' => $authenticationReturnUrl->requested()]);
     }
 
     #[Route('/login', name: 'login_action', methods: ['POST'])]
@@ -67,6 +77,7 @@ class CustomerController extends FlexyController
         CustomerAuthenticator $customerLoginProcessor,
         SessionInterface $session,
         GuestCheckoutGate $guestCheckoutGate,
+        AuthenticationReturnUrl $authenticationReturnUrl,
     ): ?Response {
         // A guest holds a session customer but no account: signing in is exactly what
         // they are here to do, and turning them away would leave the "log in" block of
@@ -111,7 +122,7 @@ class CustomerController extends FlexyController
                     );
                 }
 
-                return $this->generateSuccessRedirect($customerLoginForm);
+                return $this->redirectAfterSignIn($authenticationReturnUrl, $customerLoginForm);
             } catch (UserNotFoundException|WrongPasswordException) {
                 // Both cases must be indistinguishable: a message specific to an unknown
                 // email would tell an attacker which addresses have an account here.
@@ -159,15 +170,23 @@ class CustomerController extends FlexyController
     }
 
     #[Route('/register', name: 'register', methods: ['GET'])]
-    public function register(): Response
+    public function register(AuthenticationReturnUrl $authenticationReturnUrl, SessionInterface $session): Response
     {
+        $authenticationReturnUrl->capture();
+
         // Without this, a logged-in visitor creates a second, orphaned Customer row and the
-        // informations step then writes onto their original account.
+        // informations step then writes onto their original account. A registration under
+        // way is the exception: its first step signs the visitor in, so coming back to this
+        // page (a reload, the stepper) belongs to the step that follows.
         if ($this->getSecurityContext()->hasAuthenticatedCustomerUser()) {
-            return $this->generateRedirect('/account');
+            return $this->generateRedirect($this->generateUrl(
+                null !== $session->get('registration_customer_id') ? 'customer_informations' : 'account_index'
+            ));
         }
 
-        return $this->render('register');
+        // Handed to the form so that its POST carries the destination too: a cached
+        // registration page would not have run this controller to remember it.
+        return $this->render('register', ['returnUrl' => $authenticationReturnUrl->requested()]);
     }
 
     #[Route('/register', name: 'register_create', methods: ['POST'])]
@@ -175,6 +194,9 @@ class CustomerController extends FlexyController
         CustomerRegistrationService $customerRegistrationProcessor,
         SessionInterface $session,
         LangService $langService,
+        CustomerAuthenticator $customerLoginProcessor,
+        GuestCheckoutGate $guestCheckoutGate,
+        AuthenticationReturnUrl $authenticationReturnUrl,
     ): RedirectResponse {
         if ($this->getSecurityContext()->hasAuthenticatedCustomerUser()) {
             return $this->generateRedirect('/account');
@@ -197,6 +219,17 @@ class CustomerController extends FlexyController
             ));
 
             $session->set('registration_customer_id', $customer->getId());
+            $authenticationReturnUrl->capture();
+
+            // A shop that does not confirm email addresses has nothing left to check, so
+            // the visitor is signed in right away: the step that follows edits their own
+            // address as an authenticated customer, and the registration ends on the page
+            // they came from instead of a sign-in form they have just filled in. An account
+            // waiting for its activation code stays signed out, as the code is the check.
+            if ($customer->getEnable()) {
+                $customerLoginProcessor->processLogin($customer);
+                $guestCheckoutGate->markAsAuthenticated();
+            }
 
             return $this->generateSuccessRedirect($form);
         } catch (FormValidationException $e) {
@@ -214,8 +247,10 @@ class CustomerController extends FlexyController
     }
 
     #[Route('/informations', name: 'informations', methods: ['GET'])]
-    public function informations(SessionInterface $session): Response
+    public function informations(SessionInterface $session, AuthenticationReturnUrl $authenticationReturnUrl): Response
     {
+        $authenticationReturnUrl->capture();
+
         $customer = $this->retrieveCustomerFromSession($session);
 
         // Second registration step: it completes the account the first step created, and the
@@ -237,6 +272,7 @@ class CustomerController extends FlexyController
         AddressService $addressService,
         SessionInterface $session,
         NewsletterSubscriber $newsletterProcessor,
+        AuthenticationReturnUrl $authenticationReturnUrl,
     ): RedirectResponse {
         $form = $this->createForm(CustomerInformationsForm::class);
 
@@ -255,7 +291,9 @@ class CustomerController extends FlexyController
             $addressService->createAddress($formValidated, $customer);
 
             if ($customer->getEnable()) {
-                return $this->generateSuccessRedirect($form);
+                // End of the registration: back to whatever the visitor was doing when they
+                // were asked for an account, their own account pages by default.
+                return $this->redirectAfterSignIn($authenticationReturnUrl, $form);
             }
 
             // No code is sent here: the account creation of the previous step already
@@ -378,6 +416,26 @@ class CustomerController extends FlexyController
         }
 
         return $this->generateRedirectFromRoute('account_index');
+    }
+
+    /**
+     * Where a visitor goes once the session holds their account.
+     *
+     * A form that posts a destination of its own decides: the checkout identification step
+     * sends the visitor to the delivery step, whatever page they came from. Everything else
+     * goes back to the page the sign-in interrupted.
+     */
+    private function redirectAfterSignIn(AuthenticationReturnUrl $authenticationReturnUrl, ?BaseForm $form = null): RedirectResponse
+    {
+        $accountIndex = $this->generateUrl('account_index');
+
+        if ($form?->hasSuccessUrl()) {
+            $authenticationReturnUrl->forget();
+
+            return $this->generateSuccessRedirect($form) ?? $this->generateRedirect($accountIndex);
+        }
+
+        return $this->generateRedirect($authenticationReturnUrl->consume($accountIndex));
     }
 
     protected function getRememberMeCookieName(): string

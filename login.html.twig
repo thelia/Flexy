@@ -18,8 +18,10 @@
             method: 'POST',
             class: 'flex flex-col gap-6 mb-3',
         }}) }}
-        {{ form_row(form.success_url, {value: '/account'}) }}
-        {{ form_row(form.error_url, {value: path('customer_login')}) }}
+        {# Empty unless the visitor was sent here from somewhere: the controller then reads
+           the page to come back to from the session, or falls back to the account pages. #}
+        {{ form_row(form.success_url, {value: returnUrl|default('')}) }}
+        {{ form_row(form.error_url, {value: returnUrl|default(false) ? path('customer_login', {redirect: returnUrl}) : path('customer_login')}) }}
         <input type="hidden" name="{{ field_name(form.account) }}" value="1">
         {{ form_row(form.email, {label: 'Email'|trans, placeholder: 'Your email'|trans}) }}
         {{ form_row(form.password, {label: 'Password'|trans, placeholder: 'Your password'|trans}) }}
