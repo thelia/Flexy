@@ -16,6 +16,7 @@ namespace FlexyBundle\Components\Organisms\NextButton;
 
 use FlexyBundle\Components\Molecules\CheckoutSteps\Base as CheckoutSteps;
 use FlexyBundle\Event\CheckoutEvents;
+use Propel\Runtime\Exception\PropelException;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
 use Symfony\UX\LiveComponent\Attribute\LiveListener;
 use Symfony\UX\LiveComponent\Attribute\LiveProp;
@@ -101,12 +102,16 @@ class Base
      * acceptances here: which consents are mandatory, and what counts as an answer,
      * stays decided in one place. The refusal is a business one, and the only thing
      * this needs from it is that it happened.
+     *
+     * A database incident is caught too: the guard reads the consent table, and a
+     * button left grey is a far better outcome than a 500 swallowing the whole payment
+     * step. The order is refused for the same reason a moment later, by the same guard.
      */
     private function hasGivenEveryRequiredConsent(): bool
     {
         try {
             $this->consentGuard->checkMandatoryConsentsAccepted();
-        } catch (MissingConsentException) {
+        } catch (MissingConsentException|PropelException) {
             return false;
         }
 
