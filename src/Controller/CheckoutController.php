@@ -53,6 +53,7 @@ class CheckoutController extends FlexyController
         CheckoutFacade $checkoutFacade,
         CartGuard $cartGuard,
         CartFacade $cartFacade,
+        GuestCheckoutGate $guestCheckoutGate,
     ): Response {
         $cart = $cartFacade->getOrCreateFromSession();
         $checkoutFacade->resetCheckout();
@@ -67,6 +68,10 @@ class CheckoutController extends FlexyController
         return $this->render('checkout-cart', [
             'emptyCart' => $emptyCart,
             'current' => CheckoutSteps::CART,
+            // The trail has to name the step the "next" button actually leads to. A
+            // visitor the session does not know yet is taken to the identification page
+            // whenever this cart may be ordered without an account.
+            'identifies_next' => !$guestCheckoutGate->mayEnterCheckout() && $guestCheckoutGate->isOfferedForCurrentCart(),
         ]);
     }
 
