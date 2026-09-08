@@ -1,6 +1,5 @@
 {# @prop showPromoCodeForm bool Renders the coupon form above the totals #}
-{# @prop cgvLink string|null Link to the terms and conditions shown under the total #}
-{% props showPromoCodeForm = true, cgvLink = null %}
+{% props showPromoCodeForm = true %}
 <div {{ attributes.defaults(stimulus_controller('live-refresh-on-focus')) }}>
     {% set summary = this.summary %}
     {% set coupons = summary.coupons ?? [] %}
@@ -67,12 +66,6 @@
                     {{ 'Taxes of'|trans }}
                     {{ summary.total_tax_amount|format_currency('EUR', locale: lang_code) }}
                     {{ 'included'|trans }}
-                </div>
-            {% endif %}
-            {% if cgvLink %}
-                <div class="mt-2">
-                    {{ 'By paying for your order, you agree to our'|trans }}
-                    <a href="{{ cgvLink }}">{{ 'terms and conditions'|trans }}</a>.
                 </div>
             {% endif %}
         </div>

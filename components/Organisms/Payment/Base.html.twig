@@ -10,4 +10,47 @@
         {% endfor %}
     </ul>
     <twig:Organisms:Invoice:Base />
+
+    {% set consents = this.consents %}
+    {% if consents|length %}
+        <h2 class="text-black h4">
+            {{ 'Before placing your order'|trans }}
+        </h2>
+        {# Each box carries its own live action instead of a form: the answer is kept by
+           the server (session), so the state rendered here is the state the order is
+           checked against, and it survives the morph that follows every answer. #}
+        <ul class="flex flex-col gap-2 my-5">
+            {% for consent in consents %}
+                <li>
+                    <div class="flex flex-wrap items-center gap-2">
+                        {{ component('Fields:Checkbox:Base', {
+                            label: consent.title,
+                            required: consent.mandatory,
+                            'input:id': 'consent-' ~ consent.code,
+                            'input:checked': consent.accepted,
+                            'input:data-action': 'change->live#action',
+                            'input:data-live-action-param': 'toggleConsent',
+                            'input:data-live-code-param': consent.code,
+                            'input:data-live-accepted-param': consent.accepted ? 'false' : 'true',
+                        }|merge(consent.description ? {'input:aria-describedby': 'consent-description-' ~ consent.code} : {})) }}
+                        {% if consent.url %}
+                            <twig:Molecules:Link:Base
+                                size="small"
+                                href="{{ consent.url }}"
+                                customText="{{ 'Read'|trans }}"
+                                aria-label="{{ 'Read %consent%'|trans({'%consent%': consent.title}) }}"
+                                target="_blank"
+                                rel="noopener"
+                            />
+                        {% endif %}
+                    </div>
+                    {% if consent.description %}
+                        <p id="consent-description-{{ consent.code }}" class="paragraph-4 text-grey-dark mt-1">
+                            {{ consent.description }}
+                        </p>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 </div>

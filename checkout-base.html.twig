@@ -16,6 +16,26 @@
     {# Turbo Drive is opt-in (disabled globally in app.js): the whole tunnel
        zone navigates client-side between the checkout steps. #}
     <div data-turbo="true" class="contents">
+    {# The refusals of the checkout land here as 'error' flashes: the core redirect
+       listener only reads the url and the status off RedirectException, so the flash
+       bag is the one channel that gets the wording onto the step the buyer lands on.
+       Thelia's Twig `app` has no flashes() helper — the bag is read via the session.
+       Some of these messages quote back-office wording (a consent title): they must
+       come out escaped, so no SnackBar component here (its `text` prop renders |raw). #}
+    {% set checkoutFlashes %}
+        {% for message in app.session ? app.session.flashBag.get('error') : [] %}
+            <div class="SnackBar bg-error-lightest border-error SnackBar--error mb-6">
+                <div class="SnackBar-content">
+                    <span class="SnackBar-icon">
+                        {{ ux_icon('error') }}
+                    </span>
+                    <div class="SnackBar-message">
+                        {{ message }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endset %}
     {% set checkoutContent = block('checkoutContent') is defined ? block('checkoutContent') : '' %}
     {% set checkoutSummary = block('checkoutSummary') is defined ? block('checkoutSummary') : '' %}
     {% set checkoutNextButton = block('checkoutNextButton') is defined ? block('checkoutNextButton') : '' %}
@@ -40,6 +60,7 @@
         <div class="container-double-1">
             <div>
                 <div class="py-9 lg:py-12">
+                    {{ checkoutFlashes }}
                     {{ checkoutContent|raw }}
                     {{ checkoutBackButton|raw }}
                 </div>
@@ -61,6 +82,7 @@
         </div>
     {% else %}
         <div class="container-m py-9 lg:py-12">
+            {{ checkoutFlashes }}
             {{ checkoutContent|raw }}
             {{ checkoutBackButton|raw }}
         </div>

@@ -1,0 +1,23 @@
+<div class="Story">
+<div class="Story-section">
+    <h4 class="Story-title">Base (LiveComponent — the payment step)</h4>
+    <p class="Story-label">
+        Lists the payment modules the shop offers for the cart of the session, so the list stands
+        empty until there is one. Picking a module stores it on the cart and refreshes the step
+        button.
+    </p>
+    <p class="Story-label">
+        Under the modules come the consent boxes the shop asks for, in the order the merchant put
+        them in, so this block is empty on a shop asking for none. A box carries its own live
+        action rather than sitting in a form: the answer is kept by the server, which is both what
+        the order is checked against and what gets frozen on it. A required box shows an asterisk
+        and keeps the step button grey until it is ticked; the wording is printed as text, and the
+        link to the full terms sits next to the box rather than inside its label, where clicking it
+        would toggle the box. The long text the shop wrote, when there is one, is rendered under
+        the box and tied to it for screen readers.
+    </p>
+    <div class="Story-stage Story-stage--roomy">
+        <twig:Organisms:Payment:Base />
+    </div>
+</div>
+</div>
