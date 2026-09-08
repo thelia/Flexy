@@ -28,7 +28,6 @@ use Thelia\Domain\Checkout\DTO\CheckoutDTO;
 use Thelia\Domain\Checkout\Service\ConsentAcceptanceStore;
 use Thelia\Domain\Checkout\Service\ConsentProvider;
 use Thelia\Domain\Localization\Service\LangService;
-use Thelia\Tools\I18n;
 
 #[AsLiveComponent]
 class Base
@@ -98,9 +97,7 @@ class Base
             $consents[] = [
                 'code' => $code,
                 'title' => $this->consentProvider->title($consent, $locale),
-                // No fallback wording asked for: an untranslated description is left
-                // empty and its paragraph is not rendered at all.
-                'description' => (string) I18n::forceI18nRetrieving($locale, 'Consent', $consent->getId(), [])->getDescription(),
+                'description' => $this->consentProvider->description($consent, $locale),
                 'url' => null !== $consent->getContentId() ? $consent->getContent()?->getUrl($locale) : null,
                 'mandatory' => $consent->isMandatory(),
                 'accepted' => $this->consentAcceptances[$code] ?? false,
@@ -120,21 +117,30 @@ class Base
      *
      * A code the shop is not asking for right now is ignored: the answers written back
      * are those of the active consents and nothing else.
+     *
+     * Each answer goes down with the wording and the long text that were on screen when
+     * it was given, because that is what the order will carry as the proof. The store
+     * keeps the ones it already holds for the boxes this call does not move.
      */
     #[LiveAction]
     public function toggleConsent(#[LiveArg] string $code, #[LiveArg] bool $accepted): void
     {
-        $acceptances = [];
+        $locale = (string) $this->langService->getLocale();
+        $answers = [];
 
         foreach ($this->consentProvider->activeConsents() as $consent) {
             $consentCode = (string) $consent->getCode();
 
-            $acceptances[$consentCode] = $consentCode === $code
-                ? $accepted
-                : $this->consentAcceptanceStore->isAccepted($consentCode);
+            $answers[$consentCode] = [
+                'accepted' => $consentCode === $code
+                    ? $accepted
+                    : $this->consentAcceptanceStore->isAccepted($consentCode),
+                'title' => $this->consentProvider->title($consent, $locale),
+                'description' => $this->consentProvider->description($consent, $locale),
+            ];
         }
 
-        $this->consentAcceptanceStore->replace($acceptances);
+        $this->consentAcceptanceStore->replace($answers);
 
         $this->consentAcceptances = $this->consentAcceptanceStore->all();
 
