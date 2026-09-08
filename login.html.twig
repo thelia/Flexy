@@ -7,6 +7,13 @@
     {% form_theme form with flexy_form_themes only %}
 
     <div class="container-s pt-8 pb-14 lg:pt-12 lg:pb-30">
+        {# Why the visitor was sent here: an order now behind their account, a cart that
+           needs one. Thelia's Twig `app` is a plain object with request/session only, so
+           the bag is read through the session, as the activation page does. #}
+        {% for message in app.session ? app.session.flashBag.get('information') : [] %}
+            <twig:Molecules:SnackBar:Base variant="informative" withIcon text="{{ message }}" class="mb-6" />
+        {% endfor %}
+
         {% for error in form.vars.errors %}
             <twig:Molecules:SnackBar:Base variant="error" text="{{ error.message }}" />
         {% endfor %}

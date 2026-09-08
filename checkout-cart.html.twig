@@ -2,6 +2,21 @@
 
 {% block title %}{{ 'Cart'|trans }}{% endblock %}
 
+{# The trail names the step the "next" button leads to. A visitor with no session is
+   taken to the identification page whenever this cart may be ordered without an
+   account, and announcing "Delivery" made the trail rename itself between two pages. #}
+{% block checkoutSteps %}
+    <twig:Molecules:CheckoutSteps:Base
+        :steps="[
+            {text: 'Your cart', link: path('checkout_cart')},
+            {text: identifies_next|default(false) ? 'Identification' : 'Delivery'},
+            {text: 'Payment'},
+            {text: 'Confirmation'},
+        ]"
+        :current="current"
+    />
+{% endblock %}
+
 {% block checkoutContent %}
     {{ theme_hook('cart.top') }}
     <twig:Organisms:Cart:Base />

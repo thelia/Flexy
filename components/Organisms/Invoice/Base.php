@@ -72,6 +72,8 @@ class Base
     #[LiveListener(CheckoutEvents::EDIT_INVOICE_ADDRESS)]
     public function setEditingAddress(#[LiveArg] int $addressId): void
     {
+        $this->guestCheckoutGate->assertVisible($addressId);
+
         $this->editingAddressId = $addressId;
     }
 
@@ -102,6 +104,11 @@ class Base
     #[LiveListener(CheckoutEvents::SET_INVOICE_ORDER_ADDRESS_ID)]
     public function selectInvoiceAddress(#[LiveArg] ?int $addressId): void
     {
+        // Null is "bill me where you ship me", and names no address to check.
+        if (null !== $addressId) {
+            $this->guestCheckoutGate->assertVisible($addressId);
+        }
+
         $this->cartFacade->setInvoiceAddress(new CheckoutDTO(
             cart: $this->cartFacade->getOrCreateFromSession(),
             invoiceAddressId: $addressId,

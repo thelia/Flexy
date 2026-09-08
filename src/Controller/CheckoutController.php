@@ -53,6 +53,7 @@ class CheckoutController extends FlexyController
         CheckoutFacade $checkoutFacade,
         CartGuard $cartGuard,
         CartFacade $cartFacade,
+        GuestCheckoutGate $guestCheckoutGate,
     ): Response {
         $cart = $cartFacade->getOrCreateFromSession();
         $checkoutFacade->resetCheckout();
@@ -67,6 +68,10 @@ class CheckoutController extends FlexyController
         return $this->render('checkout-cart', [
             'emptyCart' => $emptyCart,
             'current' => CheckoutSteps::CART,
+            // The trail has to name the step the "next" button actually leads to. A
+            // visitor the session does not know yet is taken to the identification page
+            // whenever this cart may be ordered without an account.
+            'identifies_next' => !$guestCheckoutGate->mayEnterCheckout() && $guestCheckoutGate->isOfferedForCurrentCart(),
         ]);
     }
 
@@ -263,21 +268,52 @@ class CheckoutController extends FlexyController
      */
     private function checkCheckoutAccess(GuestCheckoutGate $guestCheckoutGate): void
     {
-        if ($guestCheckoutGate->mayEnterCheckout()) {
-            return;
+        if (!$guestCheckoutGate->mayEnterCheckout()) {
+            // A cart that cannot be ordered without an account is a refusal worth naming,
+            // and it has one way out: signing in. The identification page needs nothing —
+            // its own form sends the visitor on to the delivery step.
+            if ($guestCheckoutGate->isRefusedByTheCart()) {
+                throw $this->signInFirstBecauseAProductNeedsAnAccount();
+            }
+
+            $entryPoint = $guestCheckoutGate->entryPointRoute();
+
+            // The step being guarded travels with the redirection to the login page, so that
+            // signing in comes back to the checkout instead of the account pages.
+            throw new RedirectException($this->generateUrl(
+                $entryPoint,
+                'customer_login' === $entryPoint
+                    ? [AuthenticationReturnUrl::PARAMETER => $this->getRequest()->getRequestUri()]
+                    : [],
+            ));
         }
 
-        $entryPoint = $guestCheckoutGate->entryPointRoute();
+        // Asked again on every step, not only on the way in: a guest already in the
+        // checkout may add such a product afterwards, and the cart is what decides. Left
+        // to the last click, the buyer would fill in delivery and payment for an order
+        // that was never going to be placed.
+        if ($guestCheckoutGate->isCheckingOutAsAGuest() && $guestCheckoutGate->isRefusedByTheCart()) {
+            throw $this->signInFirstBecauseAProductNeedsAnAccount();
+        }
+    }
 
-        // The step being guarded travels with the redirection to the login page, so that
-        // signing in comes back to the checkout instead of the account pages. The
-        // identification page needs nothing: its own form sends the visitor on to the
-        // delivery step, whichever way they identify themselves.
-        throw new RedirectException($this->generateUrl(
-            $entryPoint,
-            'customer_login' === $entryPoint
-                ? [AuthenticationReturnUrl::PARAMETER => $this->getRequest()->getRequestUri()]
-                : [],
+    /**
+     * The sign-in page, carrying the reason and the way back.
+     *
+     * Without the reason the page appears out of nowhere and reads as the shop having
+     * changed its mind; without the way back, signing in lands on the account pages and
+     * the buyer has to find their cart again.
+     */
+    private function signInFirstBecauseAProductNeedsAnAccount(): RedirectException
+    {
+        $this->addFlash(
+            'information',
+            $this->translator->trans('One of the products in your cart requires an account. Please sign in or create one to place this order.'),
+        );
+
+        return new RedirectException($this->generateUrl(
+            'customer_login',
+            [AuthenticationReturnUrl::PARAMETER => $this->getRequest()->getRequestUri()],
         ));
     }
 

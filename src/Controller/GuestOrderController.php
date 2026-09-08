@@ -21,6 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Thelia\Core\HttpKernel\Exception\RedirectException;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Thelia\Core\Event\Product\VirtualProductOrderDownloadResponseEvent;
@@ -217,16 +218,34 @@ class GuestOrderController extends FlexyController
 
     /**
      * The order a token names, or a 404 that says nothing more.
+     *
+     * One refusal is worth explaining and only one: an order whose account has since
+     * been opened is not gone, it is waiting behind a sign-in, and a buyer who reads
+     * "this page does not exist" concludes their order was lost. Every other refusal —
+     * expired, forged, naming no order — keeps the same silent 404, so that holding a
+     * token nobody was issued still teaches nothing.
+     *
+     * @throws RedirectException when the order is now reached by signing in
      */
     private function orderOfToken(string $token, GuestOrderTracking $guestOrderTracking): Order
     {
         $order = $guestOrderTracking->findOrder($token);
 
-        if (!$order instanceof Order) {
-            throw new NotFoundHttpException();
+        if ($order instanceof Order) {
+            return $order;
         }
 
-        return $order;
+        if ($guestOrderTracking->findOrderNowBehindAnAccount($token) instanceof Order) {
+            $message = $this->translator->trans('This order is now in your customer account. Please sign in to see it.');
+
+            // The redirect exception carries its message for the log, not for the page:
+            // the flash is what the visitor actually reads on the page they land on.
+            $this->addFlash('information', $message);
+
+            throw new RedirectException($this->generateUrl('customer_login'), Response::HTTP_FOUND, $message);
+        }
+
+        throw new NotFoundHttpException();
     }
 
     /**

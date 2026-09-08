@@ -64,6 +64,13 @@ class GuestCheckoutController extends FlexyController
             return $this->generateRedirect($this->generateUrl('checkout_cart'));
         }
 
+        // The page exists to present a choice, and there is none left when this cart
+        // cannot be ordered without an account: reachable by a bookmark or a shared link,
+        // it would stand as an orphan page of something the shop never turned on.
+        if (!$guestCheckoutGate->isOfferedForCurrentCart()) {
+            return $this->generateRedirect($this->generateUrl('customer_login'));
+        }
+
         return $this->renderIdentificationPage($guestCheckoutGate);
     }
 
@@ -249,6 +256,15 @@ class GuestCheckoutController extends FlexyController
         return $billingAddress;
     }
 
+    /**
+     * The page again, carrying what went wrong — and saying, in its status, that this is
+     * a refusal.
+     *
+     * The checkout navigates client-side, and client-side navigation drops a form
+     * response that answers 200 without redirecting: the buyer clicks, the browser
+     * discards the page and nothing moves, whatever the page holds. A status in the 4xx
+     * range is what makes the answer to a rejected submission be painted at all.
+     */
     private function renderIdentificationPageWithError(
         GuestCheckoutGate $guestCheckoutGate,
         BaseForm $form,
@@ -258,12 +274,17 @@ class GuestCheckoutController extends FlexyController
         $form->setErrorMessage($message);
         $this->getParserContext()->addForm($form);
 
-        return $this->renderIdentificationPage($guestCheckoutGate, $signInFirst);
+        return $this->renderIdentificationPage(
+            $guestCheckoutGate,
+            $signInFirst,
+            Response::HTTP_UNPROCESSABLE_ENTITY,
+        );
     }
 
     private function renderIdentificationPage(
         GuestCheckoutGate $guestCheckoutGate,
         bool $signInFirst = false,
+        int $status = Response::HTTP_OK,
     ): Response {
         return $this->render('checkout-identify', [
             'current' => CheckoutSteps::DELIVERY,
@@ -271,6 +292,6 @@ class GuestCheckoutController extends FlexyController
             // Set when the address the visitor typed already has an account: the page then
             // opens on the login block instead of the form that cannot go through.
             'sign_in_first' => $signInFirst,
-        ]);
+        ], $status);
     }
 }

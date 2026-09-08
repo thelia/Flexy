@@ -95,12 +95,16 @@ class GuestCheckoutForm extends AddressCreateForm
     {
         parent::buildForm();
 
-        // The delivery block is the buyer's own address: no label to pick, no default flag
-        // to set — a guest has a single address book entry — and no company details, which
-        // belong to the invoice.
-        foreach (['label', 'is_default', 'address3', 'company', 'siret', 'vat_number'] as $unusedField) {
+        // The delivery block is the buyer's own address: no label to pick and no default
+        // flag to set, a guest having a single address book entry. The company name stays:
+        // a professional buyer has parcels delivered in the name of their company, and a
+        // carrier reads it off the label. The legal identifiers do not — they belong to the
+        // invoice, and they are asked for in the billing block.
+        foreach (['label', 'is_default', 'address3', 'siret', 'vat_number'] as $unusedField) {
             $this->formBuilder->remove($unusedField);
         }
+
+        $this->makeCompanyOptional();
 
         $this->formBuilder = new DynamicFormBuilder($this->formBuilder);
 
@@ -149,6 +153,21 @@ class GuestCheckoutForm extends AddressCreateForm
             'constraints' => [new NotBlank()],
             'label' => Translator::getInstance()->trans('Mobile phone'),
             'label_attr' => ['for' => 'cellphone'],
+        ]);
+    }
+
+    /**
+     * The company name is offered, never demanded: most buyers have none, and the core
+     * address form marks it as it does the rest.
+     */
+    private function makeCompanyOptional(): void
+    {
+        $this->formBuilder->remove('company');
+        $this->formBuilder->add('company', TextType::class, [
+            'required' => false,
+            'constraints' => [new Constraints\Length(max: 255)],
+            'label' => $this->translation->trans('Company'),
+            'label_attr' => ['for' => 'company'],
         ]);
     }
 

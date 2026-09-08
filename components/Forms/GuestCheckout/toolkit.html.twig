@@ -1,0 +1,14 @@
+<div class="Story">
+<div class="Story-section">
+    <h4 class="Story-title">Base (LiveComponent — the "order without an account" form of the identification step)</h4>
+    <p class="Story-label">
+        Shown whatever the shop setting says: the story renders the form itself, not the step that
+        decides whether to offer it. The state field is rebuilt from the country, the legal
+        identifiers appear with a company name, and the billing block opens when the buyer says the
+        two addresses differ.
+    </p>
+    <div class="Story-stage Story-stage--roomy">
+        <twig:Forms:GuestCheckout:Base />
+    </div>
+</div>
+</div>

@@ -1,0 +1,31 @@
+<div class="Story">
+<div class="Story-section">
+    <h4 class="Story-title">Base (LiveComponent — delivery address, no company)</h4>
+    <p class="Story-label">
+        Empty here: the component fills itself from an <code>addressId</code> the checkout in
+        progress is entitled to see, and the toolkit has none. Log in on the front office and pass
+        an identifier to preview an address being edited.
+    </p>
+    <div class="Story-stage Story-stage--roomy">
+        <twig:Forms:Address:Base />
+    </div>
+</div>
+
+<div class="Story-section">
+    <h4 class="Story-title">Base with <code>withCompany</code> (billing address)</h4>
+    <p class="Story-label">
+        The company name only belongs to the billing address, and the legal identifiers come with
+        it: they appear once a company name is typed.
+    </p>
+    <div class="Story-stage Story-stage--roomy">
+        <twig:Forms:Address:Base :withCompany="true" />
+    </div>
+</div>
+
+<div class="Story-section">
+    <h4 class="Story-title">Account (the same form on the account address book)</h4>
+    <div class="Story-stage Story-stage--roomy">
+        <twig:Forms:Address:Account />
+    </div>
+</div>
+</div>

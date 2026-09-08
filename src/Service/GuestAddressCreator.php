@@ -17,6 +17,7 @@ namespace FlexyBundle\Service;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Thelia\Core\Event\Address\AddressCreateOrUpdateEvent;
 use Thelia\Core\Event\TheliaEvents;
+use Thelia\Model\AddressQuery;
 use Thelia\Model\Customer;
 
 /**
@@ -48,6 +49,12 @@ final readonly class GuestAddressCreator
         string $lastname,
         bool $isDefault,
     ): int {
+        $existing = $this->addressAlreadyWritten($customer, $address, $titleId, $firstname, $lastname);
+
+        if (null !== $existing) {
+            return $existing;
+        }
+
         $event = new AddressCreateOrUpdateEvent(
             $label,
             $titleId,
@@ -76,5 +83,73 @@ final readonly class GuestAddressCreator
         // with buyers who came before, so the addresses of this identification are the
         // only ones this visitor is entitled to see.
         return (int) $event->getAddress()->getId();
+    }
+
+    /**
+     * The very same address, already on this record.
+     *
+     * A buyer ordering again from the address they ordered from before types the same
+     * thing again, and the record is kept from one order to the next: without this, every
+     * order leaves another copy of it, and the day they open an account they find their
+     * own address several times over. Every field the form asks for has to match — one
+     * different character is a different address, not a correction.
+     *
+     * @param array<string, mixed> $address
+     */
+    private function addressAlreadyWritten(
+        Customer $customer,
+        array $address,
+        int $titleId,
+        string $firstname,
+        string $lastname,
+    ): ?int {
+        // Compared in PHP rather than filtered in SQL: an unfilled field reaches the row
+        // as NULL and the form as an empty string, and the two have to read as the same
+        // "nothing" — which is exactly what a SQL equality does not do.
+        $typed = [
+            $titleId,
+            $firstname,
+            $lastname,
+            self::text($address, 'company'),
+            self::text($address, 'address1'),
+            self::text($address, 'address2'),
+            self::text($address, 'zipcode'),
+            self::text($address, 'city'),
+            (int) ($address['country'] ?? 0),
+            self::text($address, 'state'),
+            self::text($address, 'phone'),
+            self::text($address, 'cellphone'),
+        ];
+
+        foreach (AddressQuery::create()->filterByCustomerId($customer->getId())->find() as $candidate) {
+            $written = [
+                (int) $candidate->getTitleId(),
+                (string) $candidate->getFirstname(),
+                (string) $candidate->getLastname(),
+                (string) $candidate->getCompany(),
+                (string) $candidate->getAddress1(),
+                (string) $candidate->getAddress2(),
+                (string) $candidate->getZipcode(),
+                (string) $candidate->getCity(),
+                (int) $candidate->getCountryId(),
+                (string) $candidate->getStateId(),
+                (string) $candidate->getPhone(),
+                (string) $candidate->getCellphone(),
+            ];
+
+            if ($written === $typed) {
+                return (int) $candidate->getId();
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @param array<string, mixed> $address
+     */
+    private static function text(array $address, string $field): string
+    {
+        return (string) ($address[$field] ?? '');
     }
 }
