@@ -1,0 +1,14 @@
+<div class="Story">
+<div class="Story-section">
+    <h4 class="Story-title">Base (the icon row of the header: language, search, account, cart, menu)</h4>
+    <p class="Story-label">
+        The account icon follows <code>hasCustomerAccount()</code>, not the front session alone: a
+        guest checking out is signed in for the length of the tunnel, and the account menu leads
+        nowhere for them. So this story shows the "Login" state until a real account is logged in
+        on the front office.
+    </p>
+    <div class="Story-bar Story-bar--stretch">
+        <twig:Organisms:HeaderNav:Base />
+    </div>
+</div>
+</div>
