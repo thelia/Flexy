@@ -104,6 +104,32 @@ final readonly class GuestCheckoutGate
     }
 
     /**
+     * Whether it is the cart, and not the shop setting, that closes the guest checkout.
+     *
+     * The two refusals look the same from outside and are not the same thing to say: a
+     * shop that requires an account has nothing to explain, while a shop that allows the
+     * guest checkout everywhere but on one product owes the buyer that reason.
+     *
+     * @throws PropelException
+     */
+    public function isRefusedByTheCart(): bool
+    {
+        if (!$this->guestCheckoutPolicy->isGuestCheckoutEnabled()) {
+            return false;
+        }
+
+        return !$this->isOfferedForCurrentCart();
+    }
+
+    /**
+     * Whether the session in hand belongs to someone going through without an account.
+     */
+    public function isCheckingOutAsAGuest(): bool
+    {
+        return true === $this->securityContext->getCustomerUser()?->isGuest();
+    }
+
+    /**
      * The guest row that already carries a password for that address, if there is one.
      *
      * Such a row is a buyer who chose a password and never answered the activation code:
