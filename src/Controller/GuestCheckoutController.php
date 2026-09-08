@@ -64,6 +64,13 @@ class GuestCheckoutController extends FlexyController
             return $this->generateRedirect($this->generateUrl('checkout_cart'));
         }
 
+        // The page exists to present a choice, and there is none left when this cart
+        // cannot be ordered without an account: reachable by a bookmark or a shared link,
+        // it would stand as an orphan page of something the shop never turned on.
+        if (!$guestCheckoutGate->isOfferedForCurrentCart()) {
+            return $this->generateRedirect($this->generateUrl('customer_login'));
+        }
+
         return $this->renderIdentificationPage($guestCheckoutGate);
     }
 
