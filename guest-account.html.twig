@@ -32,8 +32,10 @@
             method: 'POST',
             class: 'flex flex-col gap-6 mb-3',
         }}) }}
-        {{ form_row(form.password.first) }}
-        {{ form_row(form.password.second) }}
+        {# Labelled here rather than in the form class: a label built in PHP goes through the
+           core catalogue, which knows nothing of this theme's own strings. #}
+        {{ form_row(form.password.first, {label: 'Password'|trans}) }}
+        {{ form_row(form.password.second, {label: 'Confirm password'|trans}) }}
         {{ form_rest(form) }}
 
         <twig:Molecules:Button:Base
