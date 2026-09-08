@@ -31,6 +31,7 @@ use Thelia\Core\Template\Parser\ParserResolver;
 use Thelia\Core\Template\ParserContext;
 use Thelia\Core\Template\TemplateDefinition;
 use Thelia\Core\Template\TemplateHelperInterface;
+use Thelia\Domain\Customer\Service\AuthenticationReturnUrl;
 
 class FlexyController extends BaseController
 {
@@ -77,7 +78,12 @@ class FlexyController extends BaseController
     public function checkAuth(): void
     {
         if (!$this->securityContext->hasAuthenticatedCustomerUser()) {
-            throw new RedirectException($this->generateUrl('customer_login'));
+            // The guarded page travels with the redirection: signing in is a detour, and
+            // dropping the visitor on their account afterwards leaves them to find their
+            // own way back to the checkout step or the order they had asked for.
+            throw new RedirectException($this->generateUrl('customer_login', [
+                AuthenticationReturnUrl::PARAMETER => $this->getRequest()->getRequestUri(),
+            ]));
         }
     }
 

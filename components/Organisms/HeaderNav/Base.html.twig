@@ -22,7 +22,7 @@
         <twig:Organisms:HeaderProfile:Base />
     {% else %}
         <twig:Molecules:HeaderButton:Base
-            href="{{ path('customer_login') }}"
+            href="{{ sign_in_path() }}"
             icon="account"
             color="theme"
             class="HeaderNav-btn"

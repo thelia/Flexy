@@ -1,7 +1,8 @@
 {% form_theme form with flexy_form_themes only %}
 <div {{ attributes }}>
     {{ form_start(form, {attr: {class: 'flex flex-col gap-6'}}) }}
-    {{ form_row(form.success_url, {value: path('account_index')}) }}
+    {# No success_url: the controller sends the new customer back to the page that asked
+       them for an account, and to the account pages when there was none. #}
 
     {{ form_row(form.label, {help: 'This name will allow you to easily identify each of your addresses'|trans}) }}
     {{ form_row(form.title) }}

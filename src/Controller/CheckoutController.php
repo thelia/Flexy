@@ -26,6 +26,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Thelia\Core\HttpFoundation\Request;
 use Thelia\Core\HttpFoundation\Session\Session;
 use Thelia\Core\HttpKernel\Exception\RedirectException;
+use Thelia\Domain\Customer\Service\AuthenticationReturnUrl;
 use Thelia\Domain\Cart\CartFacade;
 use Thelia\Domain\Cart\Service\CartGuard;
 use Thelia\Domain\Checkout\CheckoutFacade;
@@ -266,7 +267,18 @@ class CheckoutController extends FlexyController
             return;
         }
 
-        throw new RedirectException($this->generateUrl($guestCheckoutGate->entryPointRoute()));
+        $entryPoint = $guestCheckoutGate->entryPointRoute();
+
+        // The step being guarded travels with the redirection to the login page, so that
+        // signing in comes back to the checkout instead of the account pages. The
+        // identification page needs nothing: its own form sends the visitor on to the
+        // delivery step, whichever way they identify themselves.
+        throw new RedirectException($this->generateUrl(
+            $entryPoint,
+            'customer_login' === $entryPoint
+                ? [AuthenticationReturnUrl::PARAMETER => $this->getRequest()->getRequestUri()]
+                : [],
+        ));
     }
 
     /**
