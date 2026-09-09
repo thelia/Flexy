@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{# The rewriting router resolves a sale's public URL and poses `sale_id` as a query
+   parameter, the way it poses `brand_id` or `category_id`. The 404 for a missing or
+   forbidden operation is already decided by the time this renders — FlexyBundle's
+   SaleViewCheckSubscriber answers TheliaEvents::VIEW_CHECK before the parser ever asks
+   for this template, the way core's own Brand/Category viewCheck() listeners do for
+   theirs. saleOrNotFound() below is only the data read for the head (title, meta
+   description): memoized, so it costs nothing on top of the check that already ran. #}
+{% set saleId = app.request.query.getInt('sale_id') %}
+{% set sale = saleOrNotFound(saleId) %}
+
+{% block title %}{{ sale.i18ns.title|default(null) ?: 'Sale'|trans }}{% endblock %}
+{% block meta_description %}{{ sale.i18ns.chapo|default('')|striptags|trim }}{% endblock %}
+
+{% block body %}
+    <twig:Layouts:SaleShowcase:Base :sale="sale" />
+{% endblock %}

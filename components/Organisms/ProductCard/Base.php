@@ -18,6 +18,7 @@ use FlexyBundle\DTO\ProductDTO;
 use FlexyBundle\DTO\ProductSaleElementDTO;
 use FlexyBundle\Service\ProductImageResolver;
 use FlexyBundle\Service\ProductTaxationResolver;
+use FlexyBundle\Service\RunningSaleResolver;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 use Symfony\UX\TwigComponent\Attribute\PreMount;
 use Thelia\Api\Service\DataAccess\DataAccessService;
@@ -33,10 +34,14 @@ class Base extends AbstractProductCard
     private bool $isPromo = false;
     private bool $isNew = false;
 
+    /** @var RunningSaleResolver::forProduct()'s return type */
+    private ?array $runningSaleTag = null;
+
     public function __construct(
         DataAccessService $dataAccessService,
         ProductImageResolver $productImageResolver,
         private readonly ProductTaxationResolver $productTaxationResolver,
+        private readonly RunningSaleResolver $runningSaleResolver,
     ) {
         parent::__construct($dataAccessService, $productImageResolver);
     }
@@ -58,6 +63,7 @@ class Base extends AbstractProductCard
         }
 
         $this->loadProductImageId();
+        $this->runningSaleTag = $this->runningSaleResolver->forProduct($this->product->id);
 
         $defaultPse = $this->findDefaultPse($this->product->productSaleElements);
 
@@ -105,6 +111,18 @@ class Base extends AbstractProductCard
     public function getIsNew()
     {
         return $this->isNew;
+    }
+
+    /**
+     * The running-sale label the product carries, or null when no active operation
+     * asked to show one on it. Comes from a per-request map (RunningSaleResolver), so
+     * a listing of N cards costs one collection read, not N.
+     *
+     * @return array{saleLabel: string, shouldDisplayCountdown: bool, countdownRemainingSeconds: int|null, publicUrl: string|null}|null
+     */
+    public function getRunningSaleTag(): ?array
+    {
+        return $this->runningSaleTag;
     }
 
     public function getPromoRate(): float

@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace FlexyBundle\Components\Layouts\ProductDetails;
 
 use FlexyBundle\Event\CheckoutEvents;
+use FlexyBundle\Service\RunningSaleResolver;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\UX\LiveComponent\Attribute\AsLiveComponent;
@@ -90,6 +91,18 @@ class Base
     #[LiveProp]
     public bool $noAvailablePse = false;
 
+    /**
+     * The running-sale label/countdown for this product, or null when no active
+     * operation asks to show one on it. A LiveProp, not a plain property computed once
+     * in mount(): the component re-renders on every PSE selection, in a fresh process
+     * that never calls mount() again, and a plain property would vanish from the
+     * second render on — mirrors brandTitle/brandUrl above for the same reason.
+     *
+     * @var array{saleLabel: string, shouldDisplayCountdown: bool, countdownRemainingSeconds: int|null, publicUrl: string|null}|null
+     */
+    #[LiveProp]
+    public ?array $runningSaleTag = null;
+
     private ?array $pses = null;
 
     public function __construct(
@@ -98,6 +111,7 @@ class Base
         private readonly FormServiceInterface $formService,
         private readonly CartFacade $cartFacade,
         private readonly RequestStack $requestStack,
+        private readonly RunningSaleResolver $runningSaleResolver,
     ) {
     }
 
@@ -111,6 +125,7 @@ class Base
         $this->brandUrl = $brand['publicUrl'] ?? null;
         // Keyed by attribute id upstream; re-indexed so the LiveProp round-trips as a list.
         $this->productAttrs = array_values($this->pseAccessService->attrAvByProduct($this->productId));
+        $this->runningSaleTag = $this->runningSaleResolver->forProduct($this->productId);
 
         $this->setInitialCurrentPse();
         $this->setImages();

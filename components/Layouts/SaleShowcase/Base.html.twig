@@ -1,0 +1,39 @@
+<div class="{{ ('SaleShowcase ' ~ attributes.render('class'))|tailwind_merge }}" {{ attributes.without('class') }}>
+    <twig:Layouts:Subheader:Category
+        title="{{ this.sale.title }}"
+        description="{{ this.sale.chapo }}"
+        :readMore="this.sale.description is not empty or this.sale.postscriptum is not empty"
+        container="large"
+        :breadcrumb="[{title: this.sale.title, url: this.sale.publicUrl}]"
+    />
+
+    {% if this.sale.saleLabel or (this.sale.shouldDisplayCountdown and this.sale.countdownRemainingSeconds is not null) %}
+        <div class="container-l SaleShowcase-highlight">
+            {% if this.sale.saleLabel %}
+                <twig:Molecules:Tag:Base customText="{{ this.sale.saleLabel }}" color="sale" />
+            {% endif %}
+            {% if this.sale.shouldDisplayCountdown and this.sale.countdownRemainingSeconds is not null %}
+                <twig:Molecules:Countdown:Base :remainingSeconds="this.sale.countdownRemainingSeconds" size="lg" />
+            {% endif %}
+        </div>
+    {% endif %}
+
+    {# No dedicated visual exists for an operation (Thelia has no sale_image table): the page
+       relies on the label, the countdown and the product grid rather than a banner. #}
+    <twig:Layouts:CrossSelling:Base :productIds="this.sale.productIds" title="{{ 'Products in this operation'|trans }}" />
+
+    {% if this.sale.description or this.sale.postscriptum %}
+        <div id="description" class="container-single-3 pb-20 lg:pb-30">
+            <div class="wysiwyg wysiwyg-theme flex flex-col gap-10 min-w-0">
+                {# Editorial html entered by an admin, not sanitized by the core: same trust
+                   contract as the category description (see category.html.twig). #}
+                {% if this.sale.description %}
+                    <div>{{ this.sale.description|raw }}</div>
+                {% endif %}
+                {% if this.sale.postscriptum %}
+                    <small>{{ this.sale.postscriptum|raw }}</small>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+</div>
