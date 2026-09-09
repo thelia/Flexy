@@ -1,0 +1,68 @@
+{# @prop remainingSeconds int Seconds left before the operation ends, resolved server-side.
+    Never an absolute date: the client only ever counts down from a duration, so a visitor's
+    clock being wrong never desynchronises the display from the server.
+   @prop size 'lg'|'md'|'sm' Visual density: 'lg' for the operation page hero, 'md' for the
+    product sheet, 'sm' for a compact single line on a product card. Defaults to 'md'. In
+    'sm' the seconds unit is dropped from the markup entirely rather than hidden with CSS —
+    the controller already tolerates a missing seconds target — so the compact line never
+    reflows from a change nobody sees. #}
+{% props remainingSeconds = 0, size = null %}
+
+{% set totalSeconds = remainingSeconds|default(0) < 0 ? 0 : remainingSeconds|default(0) %}
+{% set days = totalSeconds // 86400 %}
+{% set hours = (totalSeconds % 86400) // 3600 %}
+{% set minutes = (totalSeconds % 3600) // 60 %}
+{% set seconds = totalSeconds % 60 %}
+{% set compact = size == 'sm' %}
+
+{% set Countdown = html_cva(
+    base: 'Countdown',
+    variants: {
+        size: {
+            lg: 'Countdown--lg',
+            sm: 'Countdown--sm',
+        },
+    },
+    default_variant: {
+        size: 'md',
+    }
+) %}
+
+<div
+    class="{{ Countdown.apply({size}, attributes.render('class')) }}"
+    data-countdown-expired-message="{{ 'This offer has ended.'|trans }}"
+    {{ stimulus_controller('Molecules--Countdown--base', {remainingSeconds: totalSeconds}) }}
+    {{ attributes.without('class') }}
+>
+    <span class="sr-only">{{ 'Time left before this offer ends'|trans }}</span>
+
+    {% if compact %}
+        <span class="Countdown-icon" aria-hidden="true">{{ ux_icon('clock') }}</span>
+    {% endif %}
+
+    {# Decorative and ever-changing: kept out of the accessibility tree entirely rather than
+       announced every second. The one announcement that matters — the offer has ended — is
+       the status region below, updated once. #}
+    <div class="Countdown-digits" aria-hidden="true">
+        <div class="Countdown-unit">
+            <span class="Countdown-value" {{ stimulus_target('Molecules--Countdown--base', 'days') }}>{{ '%02d'|format(days) }}</span>
+            <span class="Countdown-label">{{ 'd'|trans }}</span>
+        </div>
+        <div class="Countdown-unit">
+            <span class="Countdown-value" {{ stimulus_target('Molecules--Countdown--base', 'hours') }}>{{ '%02d'|format(hours) }}</span>
+            <span class="Countdown-label">{{ 'h'|trans }}</span>
+        </div>
+        <div class="Countdown-unit">
+            <span class="Countdown-value" {{ stimulus_target('Molecules--Countdown--base', 'minutes') }}>{{ '%02d'|format(minutes) }}</span>
+            <span class="Countdown-label">{{ 'm'|trans }}</span>
+        </div>
+        {% if not compact %}
+            <div class="Countdown-unit">
+                <span class="Countdown-value" {{ stimulus_target('Molecules--Countdown--base', 'seconds') }}>{{ '%02d'|format(seconds) }}</span>
+                <span class="Countdown-label">{{ 's'|trans }}</span>
+            </div>
+        {% endif %}
+    </div>
+
+    <p class="sr-only" role="status" aria-live="polite" {{ stimulus_target('Molecules--Countdown--base', 'announcement') }}></p>
+</div>

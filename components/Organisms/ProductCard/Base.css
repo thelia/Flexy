@@ -238,3 +238,13 @@
   color: var(--color-black);
   text-decoration-line: line-through;
 }
+
+.ProductCard-countdown {
+  /* Centered in the card's content width: positioning relative to the card is a ProductCard
+     concern, not something the compact Countdown--sm variant should know about. */
+  display: flex;
+  width: fit-content;
+  margin-inline: auto;
+  margin-top: 0.625rem;
+  margin-bottom: 0.625rem;
+}

@@ -1,0 +1,86 @@
+<div class="Story">
+    <div class="Story-section">
+        <h4 class="Story-title">lg — operation page hero (SaleShowcase)</h4>
+        <div class="Story-grid Story-grid--2">
+            <div class="Story-col">
+                <span class="Story-label">days left (3d 04h 20m 10s)</span>
+                <twig:Molecules:Countdown:Base :remainingSeconds="270010" size="lg" />
+            </div>
+            <div class="Story-col">
+                <span class="Story-label">about to end (ticks live)</span>
+                <twig:Molecules:Countdown:Base :remainingSeconds="12" size="lg" />
+            </div>
+        </div>
+    </div>
+
+    <div class="Story-section">
+        <h4 class="Story-title">md — product sheet (ProductDetails)</h4>
+        <div class="Story-grid Story-grid--2">
+            <div class="Story-col">
+                <span class="Story-label">days left (3d 04h 20m 10s)</span>
+                <twig:Molecules:Countdown:Base :remainingSeconds="270010" size="md" />
+            </div>
+            <div class="Story-col">
+                <span class="Story-label">hours left, no days</span>
+                <twig:Molecules:Countdown:Base :remainingSeconds="18055" size="md" />
+            </div>
+        </div>
+    </div>
+
+    <div class="Story-section">
+        <h4 class="Story-title">sm — product card, one compact line (ProductCard)</h4>
+        <p class="Story-label">
+            Seconds are dropped from the markup at this size, not hidden with CSS: the
+            controller already skips a missing target, so the line never reflows from a tick
+            nobody sees.
+        </p>
+        <div class="Story-grid Story-grid--3">
+            <div class="Story-col">
+                <span class="Story-label">days left (3d 04h 20m 10s)</span>
+                <twig:Molecules:Countdown:Base :remainingSeconds="270010" size="sm" />
+            </div>
+            <div class="Story-col">
+                <span class="Story-label">hours left, no days</span>
+                <twig:Molecules:Countdown:Base :remainingSeconds="18055" size="sm" />
+            </div>
+            <div class="Story-col Story-col--slim">
+                <span class="Story-label">in its real context: centered under the price by .ProductCard-countdown</span>
+                <div class="ProductCard border border-grey-lighter">
+                    <div class="ProductCard-mainContent">
+                        <div class="ProductCard-desc">
+                            <div class="ProductCard-footer">
+                                <div class="ProductCard-price">€90.00</div>
+                            </div>
+                            <twig:Molecules:Countdown:Base :remainingSeconds="270010" size="sm" class="ProductCard-countdown" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="Story-section">
+        <h4 class="Story-title">Expired</h4>
+        <p class="Story-label">
+            Already at zero on load: the digits render at 00 in every size and the component
+            never auto-reloads the page on its own — only a countdown that reaches zero while
+            the visitor is watching does that, once, after announcing it through the status
+            region (aria-live="polite"), which is empty here since nothing ticked down to
+            trigger it.
+        </p>
+        <div class="Story-grid Story-grid--4">
+            <div class="Story-col">
+                <span class="Story-label">lg</span>
+                <twig:Molecules:Countdown:Base :remainingSeconds="0" size="lg" />
+            </div>
+            <div class="Story-col">
+                <span class="Story-label">md</span>
+                <twig:Molecules:Countdown:Base :remainingSeconds="0" size="md" />
+            </div>
+            <div class="Story-col">
+                <span class="Story-label">sm</span>
+                <twig:Molecules:Countdown:Base :remainingSeconds="0" size="sm" />
+            </div>
+        </div>
+    </div>
+</div>

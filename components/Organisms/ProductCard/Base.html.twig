@@ -16,6 +16,9 @@
 			{% if this.isPromo %}
 				{{ include('@Flexy/Molecules/Tag/Base.html.twig', {customText: this.promoRate|format_number(style: 'percent'), color: 'error'}) }}
 			{% endif %}
+			{% if this.runningSaleTag %}
+				{{ include('@Flexy/Molecules/Tag/Base.html.twig', {customText: this.runningSaleTag.saleLabel, color: 'sale'}) }}
+			{% endif %}
 		</div>
 
 		{% if wishButton %}
@@ -97,6 +100,9 @@
 					<div class="ProductCard-price">{{ this.taxedPrice|format_currency('EUR', locale: lang_code) }}</div>
 				{% endif %}
 			</div>
+			{% if this.runningSaleTag and this.runningSaleTag.shouldDisplayCountdown and this.runningSaleTag.countdownRemainingSeconds is not null %}
+				<twig:Molecules:Countdown:Base :remainingSeconds="this.runningSaleTag.countdownRemainingSeconds" size="sm" class="ProductCard-countdown" />
+			{% endif %}
 		</div>
 	</div>
 </div>

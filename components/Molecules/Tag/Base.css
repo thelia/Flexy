@@ -62,6 +62,13 @@
     --tag-color: var(--color-warning-dark);
     --tag-border-color: var(--color-warning);
   }
+  .Tag--sale {
+    /* The brand color, not --color-error like the generic promo tag: a reserved-sale
+       operation is its own kind of discount and reads as a distinct badge next to one. */
+    --tag-background: var(--color-lightest);
+    --tag-color: var(--color-dark);
+    --tag-border-color: var(--color-dark);
+  }
 }
 
 @layer utilities {

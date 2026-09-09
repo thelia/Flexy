@@ -1,0 +1,8 @@
+{# The component only shapes an already-resolved sale payload (the 404 decision lives in
+   sale.html.twig / FlexyBundle\Service\SaleResolver, not here), so the story resolves one
+   itself the same way the page does. Sale 1 exists in the demo fixtures as a public,
+   running operation. #}
+<div class="Story">
+    <span class="Story-label">real data (saleId)</span>
+    <twig:Layouts:SaleShowcase:Base :sale="resources('/api/front/sales/1')" />
+</div>

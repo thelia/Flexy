@@ -416,3 +416,11 @@ Activate my account: Activer mon compte
 Your account is waiting for its activation code. Enter it below to finish, then place your order.: Votre compte attend son code d'activation. Saisissez-le ci-dessous pour terminer, puis passez votre commande.
 Your account has been created. Enter the activation code we sent to %email to finish.: Votre compte a été créé. Saisissez le code d'activation envoyé à %email pour terminer.
 This order can no longer be placed without an account. Please sign in or create one.: Cette commande ne peut plus être passée sans compte. Connectez-vous ou créez un compte.
+Time left before this offer ends: Temps restant avant la fin de cette offre
+This offer has ended.: Cette offre est terminée.
+d: j
+h: h
+m: min
+s: s
+Products in this operation: Les produits de cette opération
+Sale: Vente

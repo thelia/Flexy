@@ -1,0 +1,11 @@
+# The theme ships full catalogs for en_US and fr_FR only. This file carries the
+# strings of the commercial operation page and its countdown, so the feature
+# reads correctly in every language the demo shop activates.
+Products in this operation: I prodotti di questa operazione
+Sale: Vendita
+Time left before this offer ends: Tempo rimanente prima della fine di questa offerta
+This offer has ended.: Questa offerta è terminata.
+d: g
+h: h
+m: min
+s: s

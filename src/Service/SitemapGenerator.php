@@ -24,9 +24,11 @@ use Symfony\Component\Cache\Adapter\AdapterInterface;
 use Symfony\Component\Cache\CacheItem;
 use Thelia\Action\Image;
 use Thelia\Core\Template\ParserInterface;
+use Thelia\Domain\Sale\ReservedSaleVisibility;
 use Thelia\Model\CategoryQuery;
 use Thelia\Model\ConfigQuery;
 use Thelia\Model\LangQuery;
+use Thelia\Model\Map\ProductTableMap;
 use Thelia\Model\ModuleQuery;
 use Thelia\Model\ProductCategoryQuery;
 use Thelia\Model\ProductImageQuery;
@@ -71,6 +73,7 @@ final readonly class SitemapGenerator
     public function __construct(
         private readonly AdapterInterface $cache,
         private readonly CacheManager $cacheManager,
+        private readonly ReservedSaleVisibility $reservedSaleVisibility,
     ) {
     }
 
@@ -170,11 +173,17 @@ final readonly class SitemapGenerator
 
         $products = ProductQuery::create()
             ->filterByVisible(1)
-            ->orderByPosition()
-            ->find();
+            ->orderByPosition();
+
+        // Raw Propel query, unlike /api/front/products: the core's reserved-sale
+        // filtering lives in the API extensions and the loops, not in ProductQuery
+        // itself, so a hidden-drop's products must be excluded here explicitly —
+        // a sitemap is crawled anonymously, and must show no more than an anonymous
+        // visitor's own catalog does.
+        $this->reservedSaleVisibility->applyTo($products, ProductTableMap::COL_ID);
 
         $urls = [];
-        foreach ($products as $product) {
+        foreach ($products->find() as $product) {
             $productId = $product->getId();
 
             if (\in_array($productId, $excluded, true)) {
@@ -210,11 +219,14 @@ final readonly class SitemapGenerator
             ->filterByVisible(1)
             ->useProductCategoryQuery()
             ->orderByPosition()
-            ->endUse()
-            ->find();
+            ->endUse();
+
+        // Same rule as getProductUrls(): this is a raw Propel query, so the hidden
+        // products of a reserved drop are excluded by hand.
+        $this->reservedSaleVisibility->applyTo($products, ProductTableMap::COL_ID);
 
         $entries = [];
-        foreach ($products as $product) {
+        foreach ($products->find() as $product) {
             $productId = $product->getId();
 
             if (\in_array($productId, $excluded, true)) {

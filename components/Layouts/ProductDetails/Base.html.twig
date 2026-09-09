@@ -5,7 +5,8 @@
     {{ attributes.without('class') }}
 >
     {# Newness and promo are carried by the product sale element, not by the product: the badges
-       follow the selected variant. #}
+       follow the selected variant. A running-sale label is not: it is the same whichever
+       variant is selected, so it is added whether or not the current combination has a PSE. #}
     {% set galleryTags = [] %}
     {% if not noAvailablePse %}
         {% if currentPse.isNew|default(false) %}
@@ -14,6 +15,9 @@
         {% if currentPse.isPromo|default(false) %}
             {% set galleryTags = galleryTags|merge([{text: this.promoRate|format_number(style: 'percent'), color: 'error'}]) %}
         {% endif %}
+    {% endif %}
+    {% if runningSaleTag %}
+        {% set galleryTags = galleryTags|merge([{text: runningSaleTag.saleLabel, color: 'sale'}]) %}
     {% endif %}
 
     <section id="gallery" class="ProductPage-gallery">
@@ -36,6 +40,10 @@
         {% if chapo %}
             {# Editorial html, sanitized by the core on save, like the category description #}
             <div class="paragraph-3 text-grey">{{ chapo|raw }}</div>
+        {% endif %}
+
+        {% if runningSaleTag and runningSaleTag.shouldDisplayCountdown and runningSaleTag.countdownRemainingSeconds is not null %}
+            <twig:Molecules:Countdown:Base :remainingSeconds="runningSaleTag.countdownRemainingSeconds" size="md" class="mb-5" />
         {% endif %}
 
         <twig:Organisms:PseSelector:Base
