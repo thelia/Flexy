@@ -16,7 +16,7 @@
             {% set galleryTags = galleryTags|merge([{text: this.promoRate|format_number(style: 'percent'), color: 'error'}]) %}
         {% endif %}
     {% endif %}
-    {% if runningSaleTag %}
+    {% if runningSaleTag and runningSaleTag.saleLabel %}
         {% set galleryTags = galleryTags|merge([{text: runningSaleTag.saleLabel, color: 'sale'}]) %}
     {% endif %}
 

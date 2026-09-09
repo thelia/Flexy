@@ -16,7 +16,7 @@
 			{% if this.isPromo %}
 				{{ include('@Flexy/Molecules/Tag/Base.html.twig', {customText: this.promoRate|format_number(style: 'percent'), color: 'error'}) }}
 			{% endif %}
-			{% if this.runningSaleTag %}
+			{% if this.runningSaleTag and this.runningSaleTag.saleLabel %}
 				{{ include('@Flexy/Molecules/Tag/Base.html.twig', {customText: this.runningSaleTag.saleLabel, color: 'sale'}) }}
 			{% endif %}
 		</div>

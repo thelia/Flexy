@@ -92,9 +92,14 @@ final class RunningSaleResolver implements ResetInterface
                 'publicUrl' => isset($sale['publicUrl']) ? (string) $sale['publicUrl'] : null,
             ];
 
-            // A label-less operation (no title given to the discount) has nothing worth
-            // showing on a card, so its products are left out of the map entirely.
-            if ('' === $tag['saleLabel']) {
+            // A label-less operation with no countdown to show has nothing worth putting
+            // on a card, so its products are left out of the map entirely. The countdown
+            // is not conditioned on the label: naming the discount is optional, asking
+            // for a countdown is a setting of its own, and a merchant who only sets the
+            // second one still gets it on the cards and the product sheets.
+            $showsCountdown = $tag['shouldDisplayCountdown'] && null !== $tag['countdownRemainingSeconds'];
+
+            if ('' === $tag['saleLabel'] && !$showsCountdown) {
                 continue;
             }
 
