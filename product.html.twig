@@ -14,10 +14,10 @@
     {% set productId = attr('product', 'id') %}
     {% set product = resources('/api/front/products/' ~ productId) %}
 
-    {# The accessories the merchant picked for this product. The product resource carries none,
-       so they are read through the core loop, which answers them in the picked order. Read once
-       into a variable: the strip below is rendered only when there is something to show. #}
-    {% set accessoryIds = loop('accessories', 'accessory', {product: productId, visible: 1, limit: 8})|map(accessory => accessory.ACCESSORY_ID) %}
+    {# The types the merchant offers, hidden ones left out by the endpoint. The accessories
+       are one of them now: what used to be read through the core loop is a relation like any
+       other, so the blocks below cover them and the loop is gone. #}
+    {% set relationTypes = resources('/api/front/product_association_types', {'order[position]': 'asc'})|default([]) %}
 
     {# Cross-selling browses the category the product is filed under by default. #}
     {% set defaultCategory = product.productCategories|filter(productCategory => productCategory.defaultCategory)|first.category|default(null) %}
@@ -91,14 +91,19 @@
             <twig:Organisms:Blocks:Base itemType="product" itemId="{{ productId }}" />
         </div>
 
-        {% if accessoryIds is not empty %}
+        {# One block per type that has something under it, in the order the types are
+           arranged, before the automatic category strip. A type nothing was picked under
+           renders nothing: the block guards on its own list, so no empty title is left
+           behind. #}
+        {% for relationType in relationTypes %}
             <div class="mt-12">
                 <twig:Layouts:CrossSelling:Base
-                    :productIds="accessoryIds"
-                    title="{{ 'Accessories'|trans }}"
+                    :productId="productId"
+                    :typeCode="relationType.code"
+                    title="{{ relationType.i18ns.title|default(relationType.code) }}"
                 />
             </div>
-        {% endif %}
+        {% endfor %}
 
         {% if defaultCategory %}
             <div class="bg-lighter mt-12">
