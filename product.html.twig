@@ -108,6 +108,7 @@
                 />
             </div>
         {% endif %}
+    {{ theme_hook('product.bottom', {product: product}) }}
 
         <twig:Layouts:ReinsuranceModule:Base :items="[
             {
@@ -136,5 +137,4 @@
 
     <twig:Organisms:AddToCartToast:Base />
 
-    {{ theme_hook('product.bottom', {product: product}) }}
 {% endblock %}

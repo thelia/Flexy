@@ -1,7 +1,10 @@
-{% props author = '', review = '', date = '', note = 0, maxNote = 5 %}
+{% props author = '', title = '', review = '', date = '', note = 0, maxNote = 5 %}
 
 <div class="{{ ('ReviewCard ' ~ attributes.render('class'))|tailwind_merge }}" {{ attributes.without('class') }}>
     <div class="ReviewCard-author">{{ author }}</div>
+    {% if title %}
+        <div class="ReviewCard-title">{{ title }}</div>
+    {% endif %}
     <div class="ReviewCard-review">{{ review }}</div>
     <div class="ReviewCard-footer">
         <twig:Molecules:Score:Base score="{{ note }}" maxScore="{{ maxNote }}" />
