@@ -18,6 +18,18 @@
             />
         {% endif %}
 
+        {# SnackBar prints its text raw, and these labels are merchant-authored: escaped here,
+           once, rather than trusted. #}
+        {% for promotion in this.unavailablePromotionMessages %}
+            <twig:Molecules:SnackBar:Base
+                variant="warning"
+                withIcon
+                class="mb-6"
+                data-cart-unavailable-promotion="true"
+                text="{{ 'promotion_unavailable_out_of_stock'|trans({'%promotion%': promotion})|escape('html') }}"
+            />
+        {% endfor %}
+
         <div class="text-right mb-1 paragraph-6 hidden sm:block">
             {{ this.totalItems }}
             {{ (this.totalItems <= 1 ? 'item' : 'items')|trans }}

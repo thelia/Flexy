@@ -24,6 +24,15 @@ class CartItemDto
     public float $price = 0.0;
     public float $promoPrice = 0.0;
     public int $promo = 0;
+    /** The line was put in the cart by a promotion: the shop owns it, not the customer. */
+    public bool $isOffered = false;
+    /**
+     * What the promotion owning this line takes off the cart because of it, taxes
+     * included. Zero on every line the shopper put there, and on an offered line the
+     * core has not priced — a gift given at a percentage off carries less than the
+     * line is worth, one given outright carries all of it.
+     */
+    public float $offeredTaxedDiscount = 0.0;
     public ?ProductDTO $product = null;
     public int $stock = 0;
     public bool $stockManaged = true;
@@ -41,6 +50,12 @@ class CartItemDto
         $cartItem->price = isset($data['price']) ? (float) $data['price'] : 0.0;
         $cartItem->promoPrice = isset($data['promoPrice']) ? (float) $data['promoPrice'] : 0.0;
         $cartItem->promo = isset($data['promo']) ? (int) $data['promo'] : 0;
+        // TINYINT column: the model hands it over as an int, and a core that predates
+        // offered lines hands over nothing at all.
+        $cartItem->isOffered = (bool) ($data['isOffered'] ?? false);
+        // Not a column: the core publishes it alongside the line, in whichever spelling
+        // its data access layer uses, and a core that predates it publishes nothing.
+        $cartItem->offeredTaxedDiscount = (float) ($data['offeredTaxedDiscount'] ?? $data['offered_taxed_discount'] ?? 0.0);
         $cartItem->stock = isset($data['stock']) ? (int) $data['stock'] : 0;
         $cartItem->stockManaged = isset($data['stockManaged']) ? (bool) $data['stockManaged'] : true;
         $cartItem->title = $data['title'] ?? '';

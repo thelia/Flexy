@@ -26,6 +26,7 @@ use Symfony\UX\LiveComponent\Attribute\LiveProp;
 use Symfony\UX\LiveComponent\Attribute\PreReRender;
 use Symfony\UX\LiveComponent\ComponentToolsTrait;
 use Symfony\UX\LiveComponent\DefaultActionTrait;
+use Thelia\Api\Service\DataAccess\AttributeAccessService;
 use Thelia\Core\Form\FormServiceInterface;
 use Thelia\Domain\Cart\CartFacade;
 use Thelia\Domain\Cart\DTO\CartItemAddDTO;
@@ -52,10 +53,19 @@ class Base
 
     public bool $itemHasInsufficientStockMessage = false;
 
+    /**
+     * Labels of the promotions the shop could not apply to this cart — the gift they carry
+     * is out of stock. Published by the core; the theme only prints them.
+     *
+     * @var list<string>
+     */
+    public array $unavailablePromotionMessages = [];
+
     public function __construct(
         private readonly CartFacade $cartFacade,
         private readonly FormServiceInterface $formService,
         private readonly CartStockService $cartStockService,
+        private readonly AttributeAccessService $attributeAccessService,
     ) {
     }
 
@@ -86,12 +96,18 @@ class Base
         $this->items = [];
         $this->itemHasNoStockMessage = false;
         $this->itemHasInsufficientStockMessage = false;
+        $this->unavailablePromotionMessages = [];
         $cart = $this->cartFacade->getCartFromSession();
 
         if (null === $cart) {
             return;
         }
 
+        $this->unavailablePromotionMessages = $this->readUnavailablePromotions();
+        $offeredDiscounts = $this->readOfferedLineDiscounts();
+
+        // TYPE_CAMELNAME, so `is_offered` reaches the DTO as `isOffered` along with every
+        // other column of the line.
         foreach ($cart->getCartItems()->toArray(null, false, TableMap::TYPE_CAMELNAME) as $item) {
             $pse = ProductSaleElementsQuery::create()->findOneById($item['productSaleElementsId']);
 
@@ -103,9 +119,14 @@ class Base
 
             $cartItem = CartItemDto::fromArray([
                 ...$item,
+                // toArray() dumps any relation a previous evaluation happened to load on the
+                // line, and a dumped product does not survive LiveComponent dehydration.
+                // This path never carried one: the line is priced by its own columns.
+                'product' => null,
                 'stock' => (int) $pse->getQuantity(),
                 'stockManaged' => $stockManaged,
                 'title' => $pse->getProduct()->getTitle(),
+                'offeredTaxedDiscount' => $offeredDiscounts[(int) $item['id']] ?? 0.0,
             ]);
 
             $this->items[] = $cartItem;
@@ -116,6 +137,76 @@ class Base
                 $this->itemHasInsufficientStockMessage = true;
             }
         }
+    }
+
+    /**
+     * A core that predates automatic promotions answers an attribute it does not know with
+     * an empty string, so the shape is checked rather than assumed.
+     *
+     * @return list<string>
+     */
+    private function readUnavailablePromotions(): array
+    {
+        $labels = $this->attributeAccessService->attributeCart('unavailable_promotions');
+
+        if (!\is_array($labels)) {
+            return [];
+        }
+
+        $messages = [];
+
+        foreach ($labels as $label) {
+            if (!\is_scalar($label)) {
+                continue;
+            }
+
+            $label = trim((string) $label);
+
+            if ('' !== $label) {
+                $messages[] = $label;
+            }
+        }
+
+        return $messages;
+    }
+
+    /**
+     * What each offered line costs the shop, taxes included, indexed by the id of the
+     * line — the figure the cart page strikes the gift's price with.
+     *
+     * The lines come from the model above, which only carries columns; this one is not a
+     * column, it is what the promotion owning the line takes off the cart, and only the
+     * core can price it. A core that predates automatic promotions publishes nothing here
+     * and every line reads as undiscounted, which is what the template falls back to.
+     *
+     * @return array<int, float>
+     */
+    private function readOfferedLineDiscounts(): array
+    {
+        $items = $this->attributeAccessService->attributeCart('cart_items');
+
+        if (!\is_array($items)) {
+            return [];
+        }
+
+        $discounts = [];
+
+        foreach ($items as $item) {
+            if (!\is_array($item)) {
+                continue;
+            }
+
+            $id = (int) ($item['id'] ?? $item['ID'] ?? 0);
+            $discount = $item['offered_taxed_discount'] ?? $item['offeredTaxedDiscount'] ?? null;
+
+            if (0 === $id || !is_numeric($discount)) {
+                continue;
+            }
+
+            $discounts[$id] = (float) $discount;
+        }
+
+        return $discounts;
     }
 
     public function getTotalItems(): int
