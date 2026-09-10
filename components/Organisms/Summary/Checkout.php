@@ -49,8 +49,69 @@ class Checkout
             'taxed_postage' => $this->attributeAccessService->attributeCart('taxed_postage'),
             'taxed_discount' => $this->attributeAccessService->attributeCart('taxed_discount'),
             'discount' => $this->attributeAccessService->attributeCart('discount'),
+            'discounts' => $this->readDiscounts(),
             'coupons' => $this->attributeAccessService->attributeCoupon('coupon_list'),
         ];
+    }
+
+    /**
+     * One line per promotion the cart kept — a code the customer typed or a promotion the
+     * shop applies on its own — so the summary says what each of them takes off rather than
+     * one unexplained total.
+     *
+     * A core that predates automatic promotions answers an attribute it does not know with
+     * an empty string: the shape is checked, and the template falls back to the single
+     * global line.
+     *
+     * A promotion taking nothing off — free shipping, a gift that ran out — carries no
+     * figure and gets no line.
+     *
+     * @return list<array{label: string, taxed_amount: float}>
+     */
+    private function readDiscounts(): array
+    {
+        $discounts = $this->attributeAccessService->attributeCart('discounts');
+
+        if (!\is_array($discounts)) {
+            return [];
+        }
+
+        $lines = [];
+        $namedTotal = 0.0;
+
+        foreach ($discounts as $discount) {
+            if (!\is_array($discount) || !isset($discount['taxed_amount'])) {
+                continue;
+            }
+
+            $taxedAmount = (float) $discount['taxed_amount'];
+
+            if (0.0 === $taxedAmount) {
+                continue;
+            }
+
+            $namedTotal += $taxedAmount;
+
+            $lines[] = [
+                'label' => trim((string) ($discount['label'] ?? '')),
+                'taxed_amount' => $taxedAmount,
+            ];
+        }
+
+        if ([] === $lines) {
+            return [];
+        }
+
+        // Belt: the core prorates these amounts onto the discount the cart actually charges,
+        // so they add up. If they ever stop adding up, the summary shows the one global line
+        // rather than a set of figures that contradicts the total the shopper pays.
+        $taxedDiscount = (float) $this->attributeAccessService->attributeCart('taxed_discount');
+
+        if (abs($namedTotal - $taxedDiscount) > 0.01) {
+            return [];
+        }
+
+        return $lines;
     }
 
     public function hasTax(): bool

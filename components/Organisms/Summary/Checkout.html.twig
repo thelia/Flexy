@@ -3,6 +3,7 @@
 <div {{ attributes.defaults(stimulus_controller('live-refresh-on-focus')) }}>
     {% set summary = this.summary %}
     {% set coupons = summary.coupons ?? [] %}
+    {% set discounts = summary.discounts %}
 
     <div class="Summary">
         {% if showPromoCodeForm %}
@@ -44,7 +45,16 @@
                     </ul>
                 </div>
             {% endif %}
-            {% if this.hasDiscount %}
+            {# Named lines when the core publishes them, the single global line otherwise:
+               the theme has to render against both, the core and the theme ship apart. #}
+            {% if discounts|length %}
+                {% for discount in discounts %}
+                    <div class="Summary-line Summary-discountLine" data-summary-discount-label="{{ discount.label }}">
+                        <div>{{ discount.label ?: 'Discount'|trans }}</div>
+                        <div>&minus;{{ discount.taxed_amount|format_currency('EUR', locale: lang_code) }}</div>
+                    </div>
+                {% endfor %}
+            {% elseif this.hasDiscount %}
                 <div class="Summary-line">
                     <div>{{ 'Discount'|trans }}</div>
                     <div>&minus;{{ summary.taxed_discount|format_currency('EUR', locale: lang_code) }}</div>
