@@ -108,7 +108,8 @@
                 />
             </div>
         {% endif %}
-    {{ theme_hook('product.bottom', {product: product}) }}
+
+        {{ theme_hook('product.bottom', {product: product}) }}
 
         <twig:Layouts:ReinsuranceModule:Base :items="[
             {
