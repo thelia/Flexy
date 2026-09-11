@@ -38,8 +38,10 @@ class ProductDTO
     /**
      * The average of the accepted reviews of the product, null when it has none. Never 0:
      * a product nobody reviewed has no average, and a zero would read as the worst score
-     * there is. Both fields are optional in the payload — the module that computes them is
-     * one a shop installs, and the theme has to render without it.
+     * there is. Both travel nested under `CommentRating`, the key the core gives an addon
+     * (its own short class name), exactly like the colours under `ProductColor` above. The
+     * module that computes them is one a shop installs: without it the key is absent from
+     * the payload, and the theme has to render all the same.
      */
     public ?float $ratingAverage = null;
 
@@ -81,8 +83,8 @@ class ProductDTO
         $dto->description = isset($data['i18ns']['description']) ? (string) $data['i18ns']['description'] : '';
         $dto->postscriptum = isset($data['i18ns']['postscriptum']) ? (string) $data['i18ns']['postscriptum'] : '';
         $dto->publicUrl = isset($data['publicUrl']) ? (string) $data['publicUrl'] : null;
-        $dto->ratingAverage = isset($data['ratingAverage']) ? (float) $data['ratingAverage'] : null;
-        $dto->ratingCount = isset($data['ratingCount']) ? (int) $data['ratingCount'] : 0;
+        $dto->ratingAverage = isset($data['CommentRating']['ratingAverage']) ? (float) $data['CommentRating']['ratingAverage'] : null;
+        $dto->ratingCount = isset($data['CommentRating']['ratingCount']) ? (int) $data['CommentRating']['ratingCount'] : 0;
 
         return $dto;
     }

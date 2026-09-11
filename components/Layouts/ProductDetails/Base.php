@@ -92,8 +92,8 @@ class Base
     public bool $noAvailablePse = false;
 
     /**
-     * The rating of the product, as the front payload carries it: the average of its accepted
-     * reviews and how many there are. LiveProps for the same reason as brandTitle above — the
+     * The rating of the product, as the front payload carries it under the `CommentRating`
+     * addon key: the average of its accepted reviews and how many there are. LiveProps for the same reason as brandTitle above — the
      * component re-renders on every variant selection, in a process that never calls mount()
      * again. Two scalars, so the round-trip stays cheap.
      *
@@ -138,8 +138,8 @@ class Base
         $this->title = $title ?: ($product['i18ns']['title'] ?? null);
         $this->brandTitle = $brand['i18ns']['title'] ?? null;
         $this->brandUrl = $brand['publicUrl'] ?? null;
-        $this->ratingAverage = isset($product['ratingAverage']) ? (float) $product['ratingAverage'] : null;
-        $this->ratingCount = isset($product['ratingCount']) ? (int) $product['ratingCount'] : 0;
+        $this->ratingAverage = isset($product['CommentRating']['ratingAverage']) ? (float) $product['CommentRating']['ratingAverage'] : null;
+        $this->ratingCount = isset($product['CommentRating']['ratingCount']) ? (int) $product['CommentRating']['ratingCount'] : 0;
         // Keyed by attribute id upstream; re-indexed so the LiveProp round-trips as a list.
         $this->productAttrs = array_values($this->pseAccessService->attrAvByProduct($this->productId));
         $this->runningSaleTag = $this->runningSaleResolver->forProduct($this->productId);

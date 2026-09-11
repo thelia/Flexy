@@ -181,13 +181,15 @@ final class ProductRatingRenderTest extends KernelTestCase
 
     /**
      * The other half of the same wiring, with the payload a shop running the review module
-     * answers. The fields are given in their string form on purpose: API Platform serializes a
-     * decimal as a string often enough that the page must not hand a template "4.5".
+     * answers: the two fields nested under the addon key the core names after the addon class,
+     * never at the root of the product. They are given in their string form on purpose — API
+     * Platform serializes a decimal as a string often enough that the page must not hand a
+     * template "4.5".
      */
     public function testTheProductPageHoldsTheRatingItsPayloadCarries(): void
     {
         $page = $this->mountProductPage(
-            array_merge(self::PRODUCT_PAYLOAD, ['ratingAverage' => '4.5', 'ratingCount' => '12'])
+            array_merge(self::PRODUCT_PAYLOAD, ['CommentRating' => ['ratingAverage' => '4.5', 'ratingCount' => '12']])
         );
 
         self::assertSame(4.5, $page->ratingAverage);
@@ -234,7 +236,7 @@ final class ProductRatingRenderTest extends KernelTestCase
     public function testACardShowsTheRatingItsProductCarries(): void
     {
         $html = $this->render('Organisms:ProductCard:Base', [
-            'product' => array_merge(self::PRODUCT_PAYLOAD, ['ratingAverage' => 4.5, 'ratingCount' => 12]),
+            'product' => array_merge(self::PRODUCT_PAYLOAD, ['CommentRating' => ['ratingAverage' => 4.5, 'ratingCount' => 12]]),
         ]);
 
         self::assertStringContainsString('Rating-reviewCount', $html);
