@@ -140,6 +140,22 @@ final class ProductRatingRenderTest extends KernelTestCase
     }
 
     /**
+     * A filled star and an empty one differ by their colour alone, so the row of stars carries
+     * no information a screen reader could read — the value and the number of reviews next to it
+     * say the whole thing in words. The row is therefore marked as decoration rather than left
+     * to be announced as five anonymous graphics.
+     */
+    public function testTheStarRowIsMarkedAsDecoration(): void
+    {
+        $html = $this->render('Molecules:Rating:Base', ['average' => 4.5, 'count' => 12]);
+
+        preg_match('/<div[^>]*\bScore\b[^>]*>/', $html, $starRow);
+
+        self::assertNotEmpty($starRow, 'the star row is rendered');
+        self::assertStringContainsString('aria-hidden="true"', $starRow[0]);
+    }
+
+    /**
      * The product page holds the rating as two scalars read off the payload it loaded, and hands
      * them to the same component the card uses. A shop that runs no review module answers a
      * payload carrying neither field, and the page must then hold no rating and render none —

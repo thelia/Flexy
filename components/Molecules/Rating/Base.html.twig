@@ -8,8 +8,12 @@
 {% if average is not null and count > 0 %}
 	<div class="{{ ('Rating ' ~ attributes.render('class'))|tailwind_merge }}" {{ attributes.without('class') }}>
 		{# Rounded to the half star the component can draw. The exact value is written next to it,
-		   so the rounding never becomes the only thing the shopper is told. #}
-		<twig:Molecules:Score:Base :score="(average * 2)|round / 2" :maxScore="maxScore" />
+		   so the rounding never becomes the only thing the shopper is told.
+
+		   Hidden from assistive technology: a filled star and an empty one differ by their colour
+		   alone, so the row says nothing the sentence beside it does not already say, and five
+		   unnamed graphics in its place would only get in the way. #}
+		<twig:Molecules:Score:Base :score="(average * 2)|round / 2" :maxScore="maxScore" aria-hidden="true" />
 
 		{# Stars carry nothing for a screen reader, and the core's HTML sanitizer strips aria-*
 		   attributes on some rendering paths: what says the score out loud is text, completed
