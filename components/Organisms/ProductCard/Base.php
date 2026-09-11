@@ -78,9 +78,19 @@ class Base extends AbstractProductCard
         }
     }
 
-    public function getRate()
+    /**
+     * The average of the accepted reviews, or null for a product that has none. Read from the
+     * product the listing already loaded, so a page of forty cards costs no query of its own:
+     * the two fields travel in the product payload.
+     */
+    public function getRate(): ?float
     {
-        return null;
+        return $this->product?->ratingAverage;
+    }
+
+    public function getReviewCount(): int
+    {
+        return $this->product?->ratingCount ?? 0;
     }
 
     public function getPrice()

@@ -53,6 +53,7 @@
   @import "../../components/Molecules/Tabulation/Base.css";
   @import "../../components/Molecules/Pagination/Base.css";
   @import "../../components/Molecules/Score/Base.css";
+  @import "../../components/Molecules/Rating/Base.css";
   @import "../../components/Molecules/Countdown/Base.css";
   @import "../../components/Molecules/Tooltip/Base.css";
   @import "../../components/Molecules/Favorite/Base.css";

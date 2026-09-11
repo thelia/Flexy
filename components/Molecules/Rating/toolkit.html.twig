@@ -1,0 +1,63 @@
+<div class="Story">
+
+    <div class="Story-section">
+        <h4 class="Story-title">A rated product</h4>
+        <p class="Story-note">
+            The stars are rounded to the half; the value next to them is the one the shop
+            computed, and it is what a screen reader reads, followed by the number of reviews.
+        </p>
+        <div class="Story-col">
+            <div class="Story-row">
+                <span class="Story-count">4.5 — 12 reviews</span>
+                <twig:Molecules:Rating:Base :average="4.5" :count="12" />
+            </div>
+            <div class="Story-row">
+                <span class="Story-count">5 — 3 reviews</span>
+                <twig:Molecules:Rating:Base :average="5" :count="3" />
+            </div>
+            <div class="Story-row">
+                <span class="Story-count">3.2 — 1 review</span>
+                <twig:Molecules:Rating:Base :average="3.2" :count="1" />
+            </div>
+            <div class="Story-row">
+                <span class="Story-count">1 — 48 reviews</span>
+                <twig:Molecules:Rating:Base :average="1" :count="48" />
+            </div>
+        </div>
+    </div>
+
+    <div class="Story-section">
+        <h4 class="Story-title">A product with no review: nothing at all</h4>
+        <p class="Story-note">
+            Every row below renders empty, on purpose. A product nobody reviewed has no average,
+            and zero stars would read as the worst score there is. The three rows are the three
+            ways a payload can say it: no rating at all, no average, and an average with no
+            review behind it.
+        </p>
+        <div class="Story-col">
+            <div class="Story-row">
+                <span class="Story-count">nothing passed</span>
+                <twig:Molecules:Rating:Base />
+            </div>
+            <div class="Story-row">
+                <span class="Story-count">no average, 7 reviews</span>
+                <twig:Molecules:Rating:Base :average="null" :count="7" />
+            </div>
+            <div class="Story-row">
+                <span class="Story-count">4.5, no review</span>
+                <twig:Molecules:Rating:Base :average="4.5" :count="0" />
+            </div>
+        </div>
+    </div>
+
+    <div class="Story-section">
+        <h4 class="Story-title">Out of something other than 5</h4>
+        <div class="Story-col">
+            <div class="Story-row">
+                <span class="Story-count">7.5 out of 10</span>
+                <twig:Molecules:Rating:Base :average="7.5" :count="12" :maxScore="10" />
+            </div>
+        </div>
+    </div>
+
+</div>

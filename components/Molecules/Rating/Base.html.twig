@@ -1,0 +1,21 @@
+{% props average = null, count = 0, maxScore = 5 %}
+
+{# The rating of a product as the pages show it: the stars, the value, the number of reviews.
+   A product nobody reviewed has no average, and drawing zero stars for it would read as the
+   worst score there is — so nothing at all is rendered rather than an empty rating. The count
+   guards the same thing from the other side, for a payload that answers an average with no
+   review behind it. #}
+{% if average is not null and count > 0 %}
+	<div class="{{ ('Rating ' ~ attributes.render('class'))|tailwind_merge }}" {{ attributes.without('class') }}>
+		{# Rounded to the half star the component can draw. The exact value is written next to it,
+		   so the rounding never becomes the only thing the shopper is told. #}
+		<twig:Molecules:Score:Base :score="(average * 2)|round / 2" :maxScore="maxScore" />
+
+		{# Stars carry nothing for a screen reader, and the core's HTML sanitizer strips aria-*
+		   attributes on some rendering paths: what says the score out loud is text, completed
+		   here so the value reads as "4.5 out of 5 stars" instead of a bare number. #}
+		<span class="Rating-value">{{ average|format_number({fraction_digit: 1}) }}<span class="sr-only"> {{ 'out of %maxScore% stars'|trans({'%maxScore%': maxScore}) }}</span></span>
+
+		<span class="Rating-reviewCount indication-small">{{ count }} {{ 'Reviews'|trans }}</span>
+	</div>
+{% endif %}

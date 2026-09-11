@@ -2,8 +2,7 @@
     imgWidth = 300,
     imgHeight = 300,
     wishButton = false,
-    inWishlist = false,
-    reviewCount = 0
+    inWishlist = false
 %}
 
 
@@ -57,26 +56,12 @@
 			{% endif %}
 
 			<div class="ProductCard-footer">
-				{% if this.rate != null or this.product.colors|length > 0 %}
+				{# Same rule as the rating component itself, so the column it lives in is not
+				   rendered empty for a product that has neither review nor colour variant. #}
+				{% set hasRating = this.rate is not null and this.reviewCount > 0 %}
+				{% if hasRating or this.product.colors|length > 0 %}
 					<div class="ProductCard-footerLeft">
-						{% if this.rate != null %}
-							<div class="Rating">
-								<div class="Rating-mark">
-									{% for i in 1..5 %}
-										{% if this.rate >= i %}
-											<div>{{ ux_icon('star-full') }}</div>
-										{% elseif this.rate <= i and this.rate > i - 1 %}
-											<div>{{ ux_icon('star-half-empty') }}</div>
-										{% else %}
-											<div class="star-empty">{{ ux_icon('star-full') }}</div>
-										{% endif %}
-									{% endfor %}
-								</div>
-								<span class="Rating-reviewCount indication-small">
-									{{ reviewCount }} {{ 'Reviews'|trans }}
-								</span>
-							</div>
-						{% endif %}
+						<twig:Molecules:Rating:Base :average="this.rate" :count="this.reviewCount" />
 						{% if this.product.colors|length > 0 %}
 							<div class="Colors">
 								{% set limit = 6 %}

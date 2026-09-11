@@ -37,6 +37,10 @@
             </p>
         {% endif %}
 
+        {# Renders nothing at all for a product without review, so the heading closes up
+           instead of showing an empty rating. #}
+        <twig:Molecules:Rating:Base :average="ratingAverage" :count="ratingCount" class="mb-3" />
+
         {% if chapo %}
             {# Editorial html, sanitized by the core on save, like the category description #}
             <div class="paragraph-3 text-grey">{{ chapo|raw }}</div>
