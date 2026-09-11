@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- The theme's own test suite. It has no PHPUnit of its own: it runs with the one of the
+     Thelia checkout the theme is installed in, from that checkout's root:
+
+       vendor/bin/phpunit -c templates/frontOffice/flexy/phpunit.xml.dist
+
+     `unit` needs nothing but the autoloader. `component` boots the host kernel and renders
+     the real component templates, so it needs the test database `bin/test-prepare` creates. -->
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/phpunit/phpunit/phpunit.xsd"
+         bootstrap="tests/bootstrap.php"
+         cacheDirectory=".phpunit.cache"
+         colors="true"
+         backupGlobals="false"
+         failOnWarning="true"
+         failOnNotice="true"
+         failOnDeprecation="true"
+>
+    <php>
+        <ini name="error_reporting" value="-1"/>
+        <server name="SHELL_VERBOSITY" value="-1"/>
+        <server name="KERNEL_CLASS" value="App\Kernel"/>
+        <server name="APP_ENV" value="test" force="true"/>
+        <server name="APP_DEBUG" value="0" force="true"/>
+
+        <!-- DDEV publishes the dev credentials to the whole container (DATABASE_NAME=db), and
+             Dotenv never overrides an environment variable that is already set: without this
+             line the suite would boot the kernel on the development database. The core's own
+             `composer test:*` scripts solve it by unsetting the five DATABASE_* variables
+             before calling PHP; forcing the name here makes the config self-sufficient. -->
+        <server name="DATABASE_NAME" value="test" force="true"/>
+
+        <server name="SYMFONY_DEPRECATIONS_HELPER" value="weak"/>
+    </php>
+
+    <testsuites>
+        <testsuite name="unit">
+            <directory>tests/Unit</directory>
+        </testsuite>
+        <testsuite name="component">
+            <directory>tests/Component</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
