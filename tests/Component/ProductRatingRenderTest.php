@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace FlexyBundle\Tests\Component;
 
+use FlexyBundle\Components\Layouts\ProductDetails\Base as ProductDetailsComponent;
 use PHPUnit\Framework\Attributes\IgnoreDeprecations;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -136,6 +137,62 @@ final class ProductRatingRenderTest extends KernelTestCase
 
         self::assertStringContainsString('1 review', $text);
         self::assertStringNotContainsString('1 reviews', $text);
+    }
+
+    /**
+     * The product page holds the rating as two scalars read off the payload it loaded, and hands
+     * them to the same component the card uses. A shop that runs no review module answers a
+     * payload carrying neither field, and the page must then hold no rating and render none —
+     * not an average of zero, which would read as the worst score there is.
+     *
+     * Asserted on the page component itself rather than on its whole rendering: the page also
+     * renders the sale-element selector, which needs a product the test database does not have.
+     */
+    public function testTheProductPageHoldsNoRatingForAPayloadThatCarriesNone(): void
+    {
+        $page = $this->mountProductPage(self::PRODUCT_PAYLOAD);
+
+        self::assertNull($page->ratingAverage);
+        self::assertSame(0, $page->ratingCount);
+
+        $html = $this->render('Molecules:Rating:Base', [
+            'average' => $page->ratingAverage,
+            'count' => $page->ratingCount,
+        ]);
+
+        self::assertSame('', trim($html), 'the heading of a product without review holds no rating markup');
+    }
+
+    /**
+     * The other half of the same wiring, with the payload a shop running the review module
+     * answers. The fields are given in their string form on purpose: API Platform serializes a
+     * decimal as a string often enough that the page must not hand a template "4.5".
+     */
+    public function testTheProductPageHoldsTheRatingItsPayloadCarries(): void
+    {
+        $page = $this->mountProductPage(
+            array_merge(self::PRODUCT_PAYLOAD, ['ratingAverage' => '4.5', 'ratingCount' => '12'])
+        );
+
+        self::assertSame(4.5, $page->ratingAverage);
+        self::assertSame(12, $page->ratingCount);
+
+        $html = $this->render('Molecules:Rating:Base', [
+            'average' => $page->ratingAverage,
+            'count' => $page->ratingCount,
+        ]);
+
+        self::assertStringContainsString('Rating-reviewCount', $html);
+        self::assertMatchesRegularExpression('/4[.,]5/', $html);
+    }
+
+    private function mountProductPage(array $product): ProductDetailsComponent
+    {
+        /** @var ProductDetailsComponent $page */
+        $page = self::getContainer()->get(ProductDetailsComponent::class);
+        $page->mount($product);
+
+        return $page;
     }
 
     #[IgnoreDeprecations]
