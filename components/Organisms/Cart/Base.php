@@ -214,9 +214,23 @@ class Base
         return array_sum(array_map(static fn (CartItemDto $item): int => $item->quantity, $this->items));
     }
 
+    /**
+     * The line a quantity or delete action may act on.
+     *
+     * An offered line belongs to the promotion, not to the buyer: the template hides its
+     * controls, but the index still travels in the request and a replayed action names any
+     * line it likes. The core refuses the write too; this guard puts the refusal where the
+     * action is read.
+     */
     private function findCartItemByIndex(int $index): ?CartItemDto
     {
-        return $this->items[$index] ?? null;
+        $cartItem = $this->items[$index] ?? null;
+
+        if (null === $cartItem || $cartItem->isOffered) {
+            return null;
+        }
+
+        return $cartItem;
     }
 
     #[LiveAction]
