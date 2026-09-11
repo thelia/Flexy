@@ -35,6 +35,16 @@ class ProductDTO
 
     public ?string $publicUrl = null;
 
+    /**
+     * The average of the accepted reviews of the product, null when it has none. Never 0:
+     * a product nobody reviewed has no average, and a zero would read as the worst score
+     * there is. Both fields are optional in the payload — the module that computes them is
+     * one a shop installs, and the theme has to render without it.
+     */
+    public ?float $ratingAverage = null;
+
+    public int $ratingCount = 0;
+
     public static function fromArray(array $data): self
     {
         $dto = new self();
@@ -71,6 +81,8 @@ class ProductDTO
         $dto->description = isset($data['i18ns']['description']) ? (string) $data['i18ns']['description'] : '';
         $dto->postscriptum = isset($data['i18ns']['postscriptum']) ? (string) $data['i18ns']['postscriptum'] : '';
         $dto->publicUrl = isset($data['publicUrl']) ? (string) $data['publicUrl'] : null;
+        $dto->ratingAverage = isset($data['ratingAverage']) ? (float) $data['ratingAverage'] : null;
+        $dto->ratingCount = isset($data['ratingCount']) ? (int) $data['ratingCount'] : 0;
 
         return $dto;
     }
