@@ -31,6 +31,9 @@ class Base
     public bool $outOfStock = false;
     public bool $insufficientStock = false;
     public bool $promo = false;
+    public bool $isOffered = false;
+    /** The promotion owning this line takes something off the cart because of it. */
+    public bool $offeredIsDiscounted = false;
     public ?int $pseImageId = null;
     public array $prices = [];
     public string $title = '';
@@ -50,6 +53,17 @@ class Base
     {
         $this->cartItem = $cartItem;
 
+        // Read before the model lookup: a line the shop put in the cart still renders as
+        // offered even when nothing else about it can be resolved.
+        $this->isOffered = $cartItem->isOffered;
+
+        if ($this->isOffered) {
+            // Set before anything is priced: the early return below still leaves a line
+            // that renders as offered, and it must not print a figure that is not there.
+            $this->prices['offeredTaxedPrice'] = 0.0;
+            $this->prices['offeredEffectiveTaxedPrice'] = 0.0;
+        }
+
         $cartItemModel = CartItemQuery::create()->findPk($cartItem->id);
 
         if (null === $cartItemModel) {
@@ -64,6 +78,22 @@ class Base
             'taxedPrice' => $cartItemModel->getTaxedPrice($taxCountry),
             'promoTaxedPrice' => $cartItemModel->getTaxedPromoPrice($taxCountry),
         ];
+
+        if ($this->isOffered) {
+            // The whole line, not one unit: the promotion prices what it gives away by the
+            // line, and a gift given by twos is struck and charged as one figure.
+            $offeredTotal = $cartItemModel->getTotalRealTaxedPrice($taxCountry);
+            // A discount worth more than the line is a discount worth the line: the shopper
+            // is never shown a negative price, whatever the promotion was configured with.
+            $offeredDiscount = min(max($cartItem->offeredTaxedDiscount, 0.0), $offeredTotal);
+
+            // Half a cent: below it the two figures print the same, and striking a price to
+            // show the same price again says nothing.
+            $this->offeredIsDiscounted = $offeredDiscount >= 0.005;
+
+            $this->prices['offeredTaxedPrice'] = $offeredTotal;
+            $this->prices['offeredEffectiveTaxedPrice'] = $offeredTotal - $offeredDiscount;
+        }
 
         $this->promo = (bool) $cartItemModel->getPromo();
         $this->title = $product->getTitle();

@@ -42,6 +42,13 @@
   }
 }
 
+/* The label comes from the merchant and can be a sentence: it wraps instead of pushing the
+   amount out of the panel. */
+.Summary-discountLine > div:first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
 .Summary-footer {
   background: var(--color-medium);
   border-bottom-left-radius: var(--summary-border-radius);

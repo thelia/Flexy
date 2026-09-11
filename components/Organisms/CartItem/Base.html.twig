@@ -1,6 +1,9 @@
 {# @prop index int Position of the item in the parent Cart items list (live actions target it) #}
-{# @prop disabled bool Renders the item read-only (no quantity/delete controls) #}
+{# @prop disabled bool Renders the item read-only and actionless (no controls at all) #}
 {% props index = null, disabled = false %}
+{# A line the shop offers is read-only for the same reason a summary line is: the customer
+   does not own it. The server refuses to change it either way. #}
+{% set readOnly = disabled or this.isOffered %}
 <div
     class="{{ (this.outOfStock ? 'CartItem-wrapper CartItem-wrapper--outOfStock ' : 'CartItem-wrapper ') ~ attributes.render('class')|tailwind_merge }}"
     {{ attributes.without('class') }}
@@ -22,7 +25,10 @@
         </div>
     {% endif %}
 
-    <div class="CartItem {{ this.outOfStock ? 'CartItem--outOfStock' : '' }}">
+    <div
+        class="CartItem {{ this.outOfStock ? 'CartItem--outOfStock' : '' }} {{ this.isOffered ? 'CartItem--offered' : '' }}"
+        {% if this.isOffered %}data-cart-item-offered="true"{% endif %}
+    >
         <div class="CartItem-mainContent">
             <a class="CartItem-imgLink" href="{{ this.url }}">
                 {% if this.pseImageId %}
@@ -46,6 +52,13 @@
                 <a href="{{ this.url }}" class="CartItem-title">
                     {{ this.title }}
                 </a>
+                {% if this.isOffered %}
+                    <twig:Molecules:Tag:Base
+                        color="success"
+                        customText="{{ 'Offered'|trans }}"
+                        class="mb-1"
+                    />
+                {% endif %}
                 <div class="CartItem-orderInfos paragraph-6">
                     {% if this.desc %}
                         <span>{{ this.desc }}</span>
@@ -68,7 +81,28 @@
                 </div>
 
                 <div class="CartItem-footer">
-                    {% if this.promo %}
+                    {# A gift is priced by the line and not by the unit: what the promotion
+                       takes off covers the whole line. Given outright the line falls to zero,
+                       given at a discount it keeps what is left to pay — the price the gift
+                       would have cost is struck beside it either way. #}
+                    {% if this.isOffered %}
+                        <div class="CartItem-footerRight">
+                            {% if this.offeredIsDiscounted %}
+                                <div class="CartItem-price">
+                                    <span class="sr-only">{{ 'This product is offered by a promotion, the discount is deducted in the order summary.'|trans }}</span>
+                                    {{ this.prices.offeredEffectiveTaxedPrice|format_currency('EUR', locale: lang_code) }}
+                                </div>
+                                <div class="CartItem-originalPrice">
+                                    {{ this.prices.offeredTaxedPrice|format_currency('EUR', locale: lang_code) }}
+                                </div>
+                            {% else %}
+                                <div class="CartItem-price">
+                                    <span class="sr-only">{{ 'This product was added to your cart by a promotion.'|trans }}</span>
+                                    {{ this.prices.offeredTaxedPrice|format_currency('EUR', locale: lang_code) }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% elseif this.promo %}
                         <div class="CartItem-footerRight">
                             <div class="CartItem-price">
                                 {{ this.prices.promoTaxedPrice|format_currency('EUR', locale: lang_code) }}
@@ -87,7 +121,7 @@
                         <div class="CartItem-unavailable">
                             {{ 'Unavailable'|trans }}
                         </div>
-                    {% elseif not disabled %}
+                    {% elseif not readOnly %}
                         <div class="CartItem-quantity" {{ stimulus_controller('Organisms--CartItem--quantity') }}>
                             <button
                                 type="button"
@@ -131,10 +165,14 @@
                     <span>{{ ux_icon('show') }}</span>
                     {{ 'View product'|trans }}
                 </a>
-                <button type="button" {{ live_action('remove', {index}) }}>
-                    <span>{{ ux_icon('delete') }}</span>
-                    {{ 'Delete'|trans }}
-                </button>
+                {# An offered line keeps its way to the product sheet and loses its way out of
+                   the cart: the promotion decides whether it belongs there. #}
+                {% if not readOnly %}
+                    <button type="button" {{ live_action('remove', {index}) }}>
+                        <span>{{ ux_icon('delete') }}</span>
+                        {{ 'Delete'|trans }}
+                    </button>
+                {% endif %}
             </div>
         {% endif %}
     </div>

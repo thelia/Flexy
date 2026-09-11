@@ -18,6 +18,10 @@
   }
 }
 
+.CartItem--offered {
+  border: 1px solid var(--color-success);
+}
+
 .CartItem-mainContent {
   display: flex;
   flex-direction: column;
