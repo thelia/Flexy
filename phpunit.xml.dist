@@ -34,6 +34,20 @@
         <server name="SYMFONY_DEPRECATIONS_HELPER" value="weak"/>
     </php>
 
+    <!-- The suite boots the kernel of the host, which compiles its container and loads every
+         module class the shop has installed. On a PHP release newer than those vendors support,
+         that alone raises dozens of engine deprecations (implicit nullable parameters, for one)
+         from files this theme does not own, and `failOnDeprecation` above would turn them into a
+         red build the theme cannot fix. Naming the theme's own code as the source keeps the gate
+         where it belongs: a deprecation raised inside src/ or components/ still fails the run,
+         one raised in a vendor file called by another vendor file no longer does. -->
+    <source ignoreIndirectDeprecations="true">
+        <include>
+            <directory>src</directory>
+            <directory>components</directory>
+        </include>
+    </source>
+
     <testsuites>
         <testsuite name="unit">
             <directory>tests/Unit</directory>
