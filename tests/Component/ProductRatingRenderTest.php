@@ -122,7 +122,20 @@ final class ProductRatingRenderTest extends KernelTestCase
         $text = trim(preg_replace('/\s+/', ' ', strip_tags($html)));
 
         self::assertMatchesRegularExpression('/4[.,]5 out of 5 stars/', $text);
-        self::assertStringContainsString('12 Reviews', $text);
+        self::assertStringContainsString('12 reviews', $text);
+    }
+
+    /**
+     * A single review is not "1 reviews": the count is pluralized, and one is the form a
+     * newly reviewed product shows first.
+     */
+    public function testASingleReviewIsCountedInTheSingular(): void
+    {
+        $html = $this->render('Molecules:Rating:Base', ['average' => 3.0, 'count' => 1]);
+        $text = trim(preg_replace('/\s+/', ' ', strip_tags($html)));
+
+        self::assertStringContainsString('1 review', $text);
+        self::assertStringNotContainsString('1 reviews', $text);
     }
 
     #[IgnoreDeprecations]

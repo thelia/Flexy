@@ -52,6 +52,7 @@ has been removed from your cart.: has been removed from your cart.
 Restore: Restore
 Reviews: Reviews
 out of %maxScore% stars: out of %maxScore% stars
+product_reviews_count: '{0}no review|{1}%count% review|]1,Inf[%count% reviews'
 Unavailable: Unavailable
 Offered: Offered
 This product is offered by a promotion, the discount is deducted in the order summary.: This product is offered by a promotion, the discount is deducted in the order summary.

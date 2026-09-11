@@ -54,6 +54,7 @@ has been removed from your cart.: a été retiré de votre panier.
 Restore: Restaurer
 Reviews: Avis
 out of %maxScore% stars: sur %maxScore% étoiles
+product_reviews_count: '{0}aucun avis|{1}%count% avis|]1,Inf[%count% avis'
 Unavailable: Indisponible
 Offered: Offert
 This product is offered by a promotion, the discount is deducted in the order summary.: Ce produit est offert par une promotion, la remise est déduite dans le récapitulatif de commande.

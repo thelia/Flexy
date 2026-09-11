@@ -16,6 +16,8 @@
 		   here so the value reads as "4.5 out of 5 stars" instead of a bare number. #}
 		<span class="Rating-value">{{ average|format_number({fraction_digit: 1}) }}<span class="sr-only"> {{ 'out of %maxScore% stars'|trans({'%maxScore%': maxScore}) }}</span></span>
 
-		<span class="Rating-reviewCount indication-small">{{ count }} {{ 'Reviews'|trans }}</span>
+		{# Pluralized: one review is not "1 reviews", and a freshly reviewed product shows that
+		   form first. #}
+		<span class="Rating-reviewCount indication-small">{{ 'product_reviews_count'|trans({'%count%': count}) }}</span>
 	</div>
 {% endif %}
