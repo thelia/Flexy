@@ -5,6 +5,9 @@
 
 {% set base         = {id: 99999, i18ns: {title: 'Organic cotton t-shirt', chapo: 'Crew neck, straight cut'}, publicUrl: '/test-product', ProductColor: {colors: []}, productSaleElements: [pse]} %}
 {% set withColors   = base|merge({ProductColor: {colors: ['#282828', '#d6d6d6', '#ff4822', '#37e17b', '#40b1ca']}}) %}
+{# The two fields the front payload carries once the reviews module is installed. `base` has
+   neither, which is what a shop without it answers — and what the card must show nothing for. #}
+{% set rated        = base|merge({ratingAverage: 4.5, ratingCount: 12}) %}
 {% set orderProduct = {id: 99999, i18ns: {title: 'Organic cotton t-shirt', chapo: 'Crew neck, straight cut'}, publicUrl: '/test-product'} %}
 {% set orderPse     = {attributeCombinations: [{attribute: {i18ns: {title: 'Size'}}, attributeAv: {i18ns: {title: 'M'}}}]} %}
 
@@ -39,6 +42,21 @@
             <div class="Story-col">
                 <span class="Story-label">color variants</span>
                 <twig:Organisms:ProductCard:Base :product="withColors" />
+            </div>
+
+            <div class="Story-col">
+                <span class="Story-label">rated (4.5, 12 reviews)</span>
+                <twig:Organisms:ProductCard:Base :product="rated" />
+            </div>
+
+            <div class="Story-col">
+                <span class="Story-label">not rated: no stars, no zero</span>
+                <twig:Organisms:ProductCard:Base :product="base" />
+            </div>
+
+            <div class="Story-col">
+                <span class="Story-label">rated, with colors and a discount</span>
+                <twig:Organisms:ProductCard:Base :product="rated|merge({ProductColor: withColors.ProductColor, productSaleElements: [psePromo]})" />
             </div>
 
             <div class="Story-col">

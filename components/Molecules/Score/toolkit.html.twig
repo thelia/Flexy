@@ -35,6 +35,28 @@
     </div>
 
     <div class="Story-section">
+        <h4 class="Story-title">Half stars</h4>
+        <p class="Story-note">
+            An average is rarely a whole number: the fraction of a star is drawn rather than
+            dropped. Anything below the half fills no more than the stars before it.
+        </p>
+        <div class="Story-col">
+            <div class="Story-row">
+                <span class="Story-count">4.5/5</span>
+                <twig:Molecules:Score:Base :score="4.5" maxScore="5" />
+            </div>
+            <div class="Story-row">
+                <span class="Story-count">3.1/5</span>
+                <twig:Molecules:Score:Base :score="3.1" maxScore="5" />
+            </div>
+            <div class="Story-row">
+                <span class="Story-count">0.5/5</span>
+                <twig:Molecules:Score:Base :score="0.5" maxScore="5" />
+            </div>
+        </div>
+    </div>
+
+    <div class="Story-section">
         <h4 class="Story-title">Out of 3 stars</h4>
         <div class="Story-col">
             <div class="Story-row">
