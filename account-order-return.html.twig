@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% set order = resources('/api/front/account/orders/' ~ orderId) %}
+{% set heading = 'Return request'|trans %}
+
+{% block title %}{{ heading }}{% endblock %}
+
+{% block body %}
+    {{ theme_hook('account-order-return.top', {order: order}) }}
+
+    <div class="pt-2 pb-3 md:pt-5 md:pl-5">
+        <twig:Molecules:Breadcrumb:Base :items="[
+            {title: 'My account'|trans, url: path('account_index')},
+            {title: 'My orders'|trans, url: path('account_orders')},
+            {title: 'Order N°'|trans ~ ' ' ~ order.ref, url: path('account_order', {orderId: orderId})},
+            {title: heading},
+        ]" />
+    </div>
+
+    <div class="container-s pb-20">
+        <h1 class="h3 text-black mt-4 mb-2 lg:mt-8">{{ heading }}</h1>
+        <p class="paragraph-3 mb-6 lg:mb-11">{{ 'Order N°'|trans }} {{ order.ref }}</p>
+
+        {# Refusals of the request land here: the controller redirects back with the reason
+           in the flash bag, which is the only thing that survives a redirect. Written out
+           rather than handed to SnackBar, whose `text` prop renders raw. #}
+        {% for message in app.session ? app.session.flashBag.get('error') : [] %}
+            <div class="SnackBar bg-error-lightest border-error SnackBar--error mb-6" role="alert">
+                <div class="SnackBar-content">
+                    <span class="SnackBar-icon">{{ ux_icon('error') }}</span>
+                    <div class="SnackBar-message">{{ message }}</div>
+                </div>
+            </div>
+        {% endfor %}
+
+        <twig:Forms:OrderReturn:Request
+            :orderId="orderId"
+            :returnableQuantities="returnableQuantities"
+        />
+    </div>
+
+    {{ theme_hook('account-order-return.bottom', {order: order}) }}
+{% endblock %}
+
+{% block footer %}
+    <twig:Layouts:Footer:Checkout />
+{% endblock %}

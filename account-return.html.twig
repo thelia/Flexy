@@ -1,0 +1,123 @@
+{% extends 'base.html.twig' %}
+
+{% set orderReturn = resources('/api/front/account/order_returns/' ~ returnId) %}
+{% set statusCode = orderReturn.orderReturnStatus.code|default('') %}
+{% set heading = 'Return %ref%'|trans({'%ref%': orderReturn.ref}) %}
+{% set resolutionLabels = {
+    refund: 'A refund'|trans,
+    credit: 'A store credit'|trans,
+    exchange: 'An exchange'|trans,
+} %}
+
+{% block title %}{{ heading }}{% endblock %}
+
+{% block body %}
+    {{ theme_hook('account-return.top', {orderReturn: orderReturn}) }}
+
+    <div class="pt-2 pb-3 md:pt-5 md:pl-5">
+        <twig:Molecules:Breadcrumb:Base :items="[
+            {title: 'My account'|trans, url: path('account_index')},
+            {title: 'My orders'|trans, url: path('account_orders')},
+            {title: 'Order N°'|trans ~ ' ' ~ orderReturn.orderRef, url: path('account_order', {orderId: orderId})},
+            {title: heading},
+        ]" />
+    </div>
+
+    <div class="container-m pb-14 md:pb-24">
+        {% if app.request.query.get('created') %}
+            <twig:Molecules:SnackBar:Base
+                variant="success"
+                :withIcon="true"
+                text="{{ 'Your return request has been sent. You will be notified as soon as it has been reviewed.'|trans }}"
+                class="w-full mb-6"
+            />
+        {% endif %}
+
+        <h1 class="h3 text-black">{{ heading }}</h1>
+        <p class="paragraph-3 mb-6">{{ orderReturn.createdAt|format_date() }}</p>
+
+        <twig:Molecules:Tag:OrderReturn
+            status="{{ statusCode }}"
+            customText="{{ orderReturn.orderReturnStatus.i18ns.title|default(statusCode) }}"
+            class="mb-8"
+        />
+
+        {% if orderReturn.refusalReason|default('') is not empty %}
+            <div class="SnackBar bg-error-lightest border-error SnackBar--error mb-8" role="alert">
+                <div class="SnackBar-content">
+                    <span class="SnackBar-icon">{{ ux_icon('error') }}</span>
+                    <div class="SnackBar-message">
+                        <strong>{{ 'Reason given by the shop'|trans }}</strong>
+                        <p>{{ orderReturn.refusalReason }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
+        <h2 class="h4 mt-6 mb-4">{{ 'Returned products'|trans }}</h2>
+
+        {# `lines` comes from the controller, not from the payload above: see the note on
+           AccountOrderController::returnLines(). #}
+        <ul class="flex flex-col gap-2 list-none p-0 m-0">
+            {% for line in lines %}
+                <li class="flex flex-wrap items-center justify-between gap-3 border border-grey-lighter rounded-lg p-4">
+                    <div class="flex flex-col gap-1">
+                        <span class="font-medium">{{ line.title }}</span>
+                        <span class="paragraph-3">{{ line.ref }}</span>
+                    </div>
+                    <div class="flex flex-col gap-1 text-right">
+                        <span>{{ 'Quantity:'|trans }} {{ line.quantity }}</span>
+                        <span class="paragraph-3">{{ line.refund|format_currency('EUR', locale: lang_code) }}</span>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <dl class="grid grid-cols-1 gap-4 mt-8 sm:grid-cols-2">
+            {% if orderReturn.reasonTitle|default('') is not empty %}
+                <div>
+                    <dt class="paragraph-3">{{ 'Reason for the return'|trans }}</dt>
+                    <dd class="m-0">{{ orderReturn.reasonTitle }}</dd>
+                </div>
+            {% endif %}
+            <div>
+                <dt class="paragraph-3">{{ 'What do you expect?'|trans }}</dt>
+                <dd class="m-0">{{ resolutionLabels[orderReturn.expectedResolution]|default(orderReturn.expectedResolution|default('')) }}</dd>
+            </div>
+            <div>
+                <dt class="paragraph-3">{{ 'Refundable amount'|trans }}</dt>
+                <dd class="m-0">{{ orderReturn.refundAmount|default(0)|format_currency('EUR', locale: lang_code) }}</dd>
+            </div>
+            {% if orderReturn.customerComment|default('') is not empty %}
+                <div class="sm:col-span-2">
+                    <dt class="paragraph-3">{{ 'Comment'|trans }}</dt>
+                    <dd class="m-0 whitespace-pre-line">{{ orderReturn.customerComment }}</dd>
+                </div>
+            {% endif %}
+        </dl>
+
+        <div class="flex flex-wrap gap-4 mt-10">
+            <twig:Molecules:Button:Base
+                text="{{ 'Back to the order'|trans }}"
+                href="{{ path('account_order', {orderId: orderId}) }}"
+                color="secondary"
+            />
+            {# The document only exists once the shop has accepted the return, and only if the
+               active PDF template ships it: the controller answers 404 otherwise, so the link
+               is shown only where it leads somewhere. #}
+            {% if documentAvailable %}
+                <twig:Molecules:Button:Base
+                    text="{{ 'Download the return document'|trans }}"
+                    href="{{ path('account_return_pdf', {returnId: returnId}) }}"
+                    icon_right="download"
+                />
+            {% endif %}
+        </div>
+    </div>
+
+    {{ theme_hook('account-return.bottom', {orderReturn: orderReturn}) }}
+{% endblock %}
+
+{% block footer %}
+    <twig:Layouts:Footer:Checkout />
+{% endblock %}

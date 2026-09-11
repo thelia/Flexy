@@ -1,0 +1,31 @@
+{# The form itself needs an order of the signed-in customer to render, which the toolkit
+   has none of. What is worth showing here is the row the form is built from: the product
+   is ticked, and the quantity carries the bound the server allows. #}
+<div class="Story">
+    <div class="Story-section">
+        <h4 class="Story-title">One returnable line</h4>
+        <div class="flex flex-col gap-3 border border-grey-lighter rounded-lg p-4 max-w-xl">
+            <twig:Fields:Checkbox:Base label="Blue tea cup" input:name="demo_return_line" input:value="1" input:id="demo-return-line" />
+            <twig:Fields:Input:Base
+                type="number"
+                label="Quantity to return (up to 2)"
+                name="demo_return_quantity"
+                id="demo-return-quantity"
+                value="1"
+                class="max-w-64"
+                input:min="1"
+                input:max="2"
+                input:step="1"
+            />
+        </div>
+    </div>
+
+    <div class="Story-section">
+        <h4 class="Story-title">What the customer expects</h4>
+        <div class="flex flex-col gap-3">
+            <twig:Fields:Checkbox:Base type="radio" label="A refund" input:name="demo_resolution" input:value="refund" input:id="demo-resolution-refund" input:checked />
+            <twig:Fields:Checkbox:Base type="radio" label="A store credit" input:name="demo_resolution" input:value="credit" input:id="demo-resolution-credit" />
+            <twig:Fields:Checkbox:Base type="radio" label="An exchange" input:name="demo_resolution" input:value="exchange" input:id="demo-resolution-exchange" />
+        </div>
+    </div>
+</div>

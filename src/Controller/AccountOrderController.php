@@ -14,22 +14,52 @@ declare(strict_types=1);
 
 namespace FlexyBundle\Controller;
 
+use FlexyBundle\Exception\TooManyReturnRequestsException;
+use FlexyBundle\Service\OrderReturnRequestService;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Csrf\CsrfToken;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Thelia\Api\Service\DataAccess\DataAccessService;
 use Thelia\Core\Event\Product\VirtualProductOrderDownloadResponseEvent;
 use Thelia\Core\Event\TheliaEvents;
 use Thelia\Core\Template\Exception\ResourceNotFoundException;
+use Thelia\Domain\OrderReturn\Exception\ReturnNotAllowedException;
+use Thelia\Domain\OrderReturn\Service\OrderReturnPdfService;
+use Thelia\Domain\OrderReturn\Service\ReturnEligibilityChecker;
 use Thelia\Model\ConfigQuery;
+use Thelia\Model\Customer;
 use Thelia\Model\Order;
 use Thelia\Model\OrderProductQuery;
 use Thelia\Model\OrderQuery;
+use Thelia\Model\OrderReturn as OrderReturnModel;
+use Thelia\Model\OrderReturnQuery;
+use Thelia\Model\OrderReturnStatus;
 
 #[Route('/account', name: 'account_')]
 class AccountOrderController extends FlexyController
 {
+    public const RETURN_REQUEST_TOKEN_ID = 'order_return_request';
+
+    /**
+     * The name of the return document in the active PDF template.
+     */
+    private const RETURN_DOCUMENT = 'order_return';
+
+    /**
+     * A return document is only worth printing once the merchant has agreed to take the
+     * parcel back; before that there is nothing to slip into it.
+     */
+    private const DOCUMENT_STATUS_CODES = [
+        OrderReturnStatus::CODE_ACCEPTED,
+        OrderReturnStatus::CODE_RECEIVED,
+        OrderReturnStatus::CODE_SETTLED,
+    ];
+
     #[Route('/orders', name: 'orders')]
     public function orders(): Response
     {
@@ -103,6 +133,116 @@ class AccountOrderController extends FlexyController
     }
 
     /**
+     * The form opening a return on an order. Everything it offers — which lines, and how
+     * many of each — is read from the eligibility service, and read again on submit.
+     */
+    #[Route('/order/{orderId}/return', name: 'order_return_new', requirements: ['orderId' => '\d+'], methods: ['GET'])]
+    public function orderReturnNew(
+        ReturnEligibilityChecker $eligibility,
+        OrderReturnRequestService $returnRequestService,
+        int $orderId,
+    ): Response {
+        $this->assertReturnsEnabled($eligibility);
+        $order = $this->findCustomerOrder($orderId);
+
+        // Nothing left to return, or the window has closed: the page that would open a
+        // return no longer exists, exactly as the button offering it no longer shows.
+        if (!$eligibility->isReturnable($order)) {
+            throw new NotFoundHttpException();
+        }
+
+        return $this->render('account-order-return', [
+            'orderId' => $orderId,
+            'returnableQuantities' => $returnRequestService->returnableQuantities($order),
+        ]);
+    }
+
+    #[Route('/order/{orderId}/return', name: 'order_return_create', requirements: ['orderId' => '\d+'], methods: ['POST'])]
+    public function orderReturnCreate(
+        ReturnEligibilityChecker $eligibility,
+        OrderReturnRequestService $returnRequestService,
+        CsrfTokenManagerInterface $csrfTokenManager,
+        Request $request,
+        int $orderId,
+    ): Response {
+        $this->assertReturnsEnabled($eligibility);
+        $order = $this->findCustomerOrder($orderId);
+        $this->checkReturnRequestToken($csrfTokenManager, $request);
+
+        $customer = $this->getSecurityContext()->getCustomerUser();
+
+        if (!$customer instanceof Customer) {
+            throw new NotFoundHttpException();
+        }
+
+        try {
+            $return = $returnRequestService->open(
+                $order,
+                $customer,
+                $this->readRequestedLines($request),
+                $this->readOptionalId($request, 'reason'),
+                (string) $request->request->get('resolution', ''),
+                $this->readComment($request),
+            );
+        } catch (ReturnNotAllowedException|TooManyReturnRequestsException $exception) {
+            // The core states its refusals in English; the theme carries the catalogue,
+            // and an entry it does not have falls back to the sentence itself.
+            $this->addFlash('error', $this->translator->trans($exception->getMessage()));
+
+            return $this->generateRedirect($this->generateUrl('account_order_return_new', ['orderId' => $orderId]));
+        }
+
+        return $this->generateRedirect($this->generateUrl('account_return', [
+            'returnId' => $return->getId(),
+            'created' => 1,
+        ]));
+    }
+
+    /**
+     * The tracking page of one return, read-only.
+     */
+    #[Route('/return/{returnId}', name: 'return', requirements: ['returnId' => '\d+'], methods: ['GET'])]
+    public function orderReturn(ReturnEligibilityChecker $eligibility, int $returnId): Response
+    {
+        $this->assertReturnsEnabled($eligibility);
+        $return = $this->findCustomerReturn($returnId);
+
+        return $this->render('account-return', [
+            'returnId' => $returnId,
+            'orderId' => (int) $return->getOrderId(),
+            'lines' => $this->returnLines($return),
+            'documentAvailable' => $this->returnDocumentAvailable($return),
+        ]);
+    }
+
+    /**
+     * The printable return document. Guarded like the invoice: the return is reached
+     * through its owner, and an id belonging to someone else answers the same 404 as an
+     * id that does not exist.
+     */
+    #[Route('/return/pdf/{returnId}', name: 'return_pdf', requirements: ['returnId' => '\d+'], methods: ['GET'])]
+    public function generateReturnPdf(
+        ReturnEligibilityChecker $eligibility,
+        OrderReturnPdfService $pdfService,
+        int $returnId,
+    ): Response {
+        $this->assertReturnsEnabled($eligibility);
+        $return = $this->findCustomerReturn($returnId);
+
+        if (!$this->returnDocumentAvailable($return)) {
+            throw new NotFoundHttpException();
+        }
+
+        $pdf = $pdfService->render($return);
+
+        if (null === $pdf) {
+            throw new NotFoundHttpException();
+        }
+
+        return $this->pdfResponse($pdf, (string) $return->getRef());
+    }
+
+    /**
      * Serves the file bought with a virtual product. The theme never reads that file: it
      * says who is asking and for which order line, and the module that stores the file
      * answers with it. Anything else would tie the theme to one way of storing documents.
@@ -164,6 +304,135 @@ class AccountOrderController extends FlexyController
         }
 
         return true;
+    }
+
+    /**
+     * A shop with the returns feature off has no return pages at all: not a refusal, a 404,
+     * the same answer the core gives on the API resources of the feature. The core listener
+     * guards the API routes only — a theme controller never passes through it.
+     */
+    private function assertReturnsEnabled(ReturnEligibilityChecker $eligibility): void
+    {
+        if (!$eligibility->isFeatureEnabled()) {
+            throw new NotFoundHttpException();
+        }
+    }
+
+    /**
+     * Opening a return changes state, so the form is POST-only and carries a CSRF token:
+     * the session cookie is SameSite=Lax, which a top-level navigation would still send.
+     * The token is session-bound rather than stateless — account pages are never served
+     * from a shared cache, so there is no snapshot to replay.
+     */
+    private function checkReturnRequestToken(CsrfTokenManagerInterface $csrfTokenManager, Request $request): void
+    {
+        $token = new CsrfToken(self::RETURN_REQUEST_TOKEN_ID, (string) $request->request->get('_token'));
+
+        if (!$csrfTokenManager->isTokenValid($token)) {
+            throw new AccessDeniedHttpException();
+        }
+    }
+
+    /**
+     * The lines the customer ticked, as quantity by order product id. Nothing here is
+     * trusted: an id that is not a line of the order, and a quantity above what is still
+     * returnable, are both refused further down by the eligibility service — which reads
+     * the order from the database, not from this payload.
+     *
+     * @return array<int, float>
+     */
+    private function readRequestedLines(Request $request): array
+    {
+        $lines = $request->request->all('lines');
+        $requested = [];
+
+        foreach ($lines as $orderProductId => $line) {
+            if (!\is_array($line) || !isset($line['selected'])) {
+                continue;
+            }
+
+            $quantity = (float) ($line['quantity'] ?? 0);
+
+            if ($quantity > 0) {
+                $requested[(int) $orderProductId] = $quantity;
+            }
+        }
+
+        return $requested;
+    }
+
+    private function readOptionalId(Request $request, string $field): ?int
+    {
+        $value = $request->request->get($field);
+
+        return null === $value || '' === $value ? null : (int) $value;
+    }
+
+    private function readComment(Request $request): ?string
+    {
+        $comment = trim((string) $request->request->get('comment', ''));
+
+        return '' === $comment ? null : $comment;
+    }
+
+    /**
+     * Returns are only ever reached through their owner, on the model of findCustomerOrder():
+     * an unknown id and someone else's return answer the same 404, so neither response
+     * confirms that the other return exists.
+     */
+    private function findCustomerReturn(int $returnId): OrderReturnModel
+    {
+        $this->checkAuth();
+
+        $customerId = $this->getSecurityContext()->getCustomerUser()?->getId();
+        $return = null === $customerId
+            ? null
+            : OrderReturnQuery::create()->filterByCustomerId($customerId)->findPk($returnId);
+
+        if (null === $return) {
+            throw new NotFoundHttpException();
+        }
+
+        return $return;
+    }
+
+    /**
+     * The returned lines, as the page shows them.
+     *
+     * Read off the models rather than through the API: the core exposes the order product
+     * of a return line as a relation, but none of that product's own properties carry the
+     * return's front read group, so the nested object normalizes to nothing. Same shape as
+     * the context the core hands the PDF template, so both read alike.
+     *
+     * @return list<array{title: string, ref: string, quantity: float, refund: float}>
+     */
+    private function returnLines(OrderReturnModel $return): array
+    {
+        $lines = [];
+
+        foreach ($return->getOrderReturnLines() as $line) {
+            $orderProduct = $line->getOrderProduct();
+
+            $lines[] = [
+                'title' => (string) $orderProduct?->getTitle(),
+                'ref' => (string) $orderProduct?->getProductRef(),
+                'quantity' => (float) $line->getQuantity(),
+                'refund' => (float) $line->getRefundAmount(),
+            ];
+        }
+
+        return $lines;
+    }
+
+    /**
+     * Whether the printable document exists for this return: the merchant has accepted it,
+     * and the active PDF template ships the document. The PDF template is its own package
+     * on its own release cycle, so a shop running an older one gets a 404, not a 500.
+     */
+    private function returnDocumentAvailable(OrderReturnModel $return): bool
+    {
+        return \in_array($return->getStatusCode(), self::DOCUMENT_STATUS_CODES, true)
+            && $this->pdfDocumentExists(self::RETURN_DOCUMENT);
     }
 
     /**

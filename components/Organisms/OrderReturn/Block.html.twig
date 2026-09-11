@@ -1,0 +1,33 @@
+{% if this.isVisible %}
+    <div {{ attributes.defaults({class: 'flex flex-col gap-4'}) }}>
+        <h2 class="h4">{{ 'Returns'|trans }}</h2>
+
+        {% if this.returns is not empty %}
+            <ul class="flex flex-col gap-2 list-none p-0 m-0">
+                {% for orderReturn in this.returns %}
+                    <li class="flex flex-wrap items-center justify-between gap-3 border border-grey-lighter rounded-lg p-4">
+                        <div class="flex flex-col gap-1">
+                            <twig:Molecules:Link:Base
+                                href="{{ path('account_return', {returnId: orderReturn.id}) }}"
+                                customText="{{ 'Return %ref%'|trans({'%ref%': orderReturn.ref}) }}"
+                            />
+                            <span class="paragraph-3">{{ orderReturn.createdAt|format_date() }}</span>
+                        </div>
+                        <twig:Molecules:Tag:OrderReturn
+                            status="{{ orderReturn.orderReturnStatus.code|default('') }}"
+                            customText="{{ orderReturn.orderReturnStatus.i18ns.title|default(orderReturn.orderReturnStatus.code|default('')) }}"
+                        />
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if this.canOpen %}
+            <twig:Molecules:Button:Base
+                text="{{ 'Request a return'|trans }}"
+                href="{{ path('account_order_return_new', {orderId: this.orderId}) }}"
+                class="w-max"
+            />
+        {% endif %}
+    </div>
+{% endif %}
