@@ -68,6 +68,11 @@
                 class="mt-8"
             />
         {% endif %}
+
+        {# Returns. The component answers for itself: it renders nothing when the shop has
+           the feature off, when there is nothing left to return and no return was ever
+           opened, so the separator comes from inside it rather than from here. #}
+        <twig:Organisms:OrderReturn:Block :orderId="order.id" class="mt-10 pt-10 border-t border-grey-lighter" />
     </div>
 
     {{ theme_hook('account-order.bottom', {order: order}) }}

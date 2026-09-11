@@ -1,0 +1,24 @@
+{# @prop status string The canonical return status code, driving the colour #}
+{# @prop customText string The translated label shown inside the pill #}
+{% props htmlTag = 'span', customText = '', status = null %}
+
+{# Shares the shape and the dot of OrderTag: only the palette differs, so only the
+   modifiers below are declared in OrderReturnTag.css. #}
+{% set OrderReturnTag = html_cva(
+    base: 'OrderTag OrderReturnTag ',
+    variants: {
+        status: {
+            requested: 'OrderReturnTag--requested',
+            info_awaited: 'OrderReturnTag--info-awaited',
+            accepted: 'OrderReturnTag--accepted',
+            refused: 'OrderReturnTag--refused',
+            received: 'OrderReturnTag--received',
+            settled: 'OrderReturnTag--settled',
+            expired: 'OrderReturnTag--expired',
+        },
+    }
+) %}
+
+<{{ htmlTag }} class="{{ OrderReturnTag.apply({status}, attributes.render('class')) }} " {{ attributes.without('class') }}>
+    {{ customText }}
+</{{ htmlTag }}>

@@ -430,3 +430,40 @@ m: m
 s: s
 Products in this operation: Products in this operation
 Sale: Sale
+Returns: Returns
+Return %ref%: Return %ref%
+Request a return: Request a return
+Return request: Return request
+Products to return: Products to return
+Quantity to return (up to %quantity%): Quantity to return (up to %quantity%)
+Reason for the return: Reason for the return
+Select a reason: Select a reason
+What do you expect?: What do you expect?
+A refund: A refund
+A store credit: A store credit
+An exchange: An exchange
+Comment: Comment
+Anything the shop should know about this return: Anything the shop should know about this return
+Send my return request: Send my return request
+Your return request has been sent. You will be notified as soon as it has been reviewed.: Your return request has been sent. You will be notified as soon as it has been reviewed.
+Reason given by the shop: Reason given by the shop
+Returned products: Returned products
+Refundable amount: Refundable amount
+Back to the order: Back to the order
+Download the return document: Download the return document
+Select at least one product to return.: Select at least one product to return.
+The expected resolution is not one the shop offers.: The expected resolution is not one the shop offers.
+The comment is too long.: The comment is too long.
+Too many return requests, please try again later.: Too many return requests, please try again later.
+The return could not be opened.: The return could not be opened.
+The product returns feature is disabled.: The product returns feature is disabled.
+This order cannot be used for a return.: This order cannot be used for a return.
+The return window for this order has closed.: The return window for this order has closed.
+A virtual product cannot be returned.: A virtual product cannot be returned.
+The returned quantity must be positive.: The returned quantity must be positive.
+The returned quantity exceeds the returnable quantity of this line.: The returned quantity exceeds the returnable quantity of this line.
+The order does not exist.: The order does not exist.
+Unknown order product in a return line.: Unknown order product in a return line.
+This product line does not belong to the order.: This product line does not belong to the order.
+The postage of this order is already included in another return.: The postage of this order is already included in another return.
+Return %product%: Return %product%

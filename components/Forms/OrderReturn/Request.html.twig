@@ -1,0 +1,100 @@
+{% set resolutionLabels = {
+    refund: 'A refund'|trans,
+    credit: 'A store credit'|trans,
+    exchange: 'An exchange'|trans,
+} %}
+
+<form
+    method="POST"
+    action="{{ path('account_order_return_create', {orderId: this.orderId}) }}"
+    class="{{ ('flex flex-col gap-8 ' ~ attributes.render('class'))|tailwind_merge }}"
+    {{ attributes.without('class') }}
+>
+    {# Session-bound token: account pages carry a session and are never served from a
+       shared cache, so there is no snapshot for a stateless token to guard against. #}
+    <input type="hidden" name="_token" value="{{ csrf_token('order_return_request') }}" />
+
+    <fieldset class="flex flex-col gap-4 border-0 p-0 m-0">
+        <legend class="h4 mb-2">{{ 'Products to return'|trans }}</legend>
+
+        {% for line in this.lines %}
+            {% set orderProductId = line.orderProduct.id %}
+            {% set maxQuantity = this.returnableQuantity(orderProductId) %}
+            <div class="flex flex-col gap-3 border border-grey-lighter rounded-lg p-4">
+                <twig:Fields:Checkbox:Base
+                    label="{{ 'Return %product%'|trans({'%product%': line.orderProduct.title|default('')}) }}"
+                    input:name="lines[{{ orderProductId }}][selected]"
+                    input:value="1"
+                    input:id="return-line-{{ orderProductId }}"
+                />
+
+                <twig:Organisms:ProductCard:Order
+                    :orderProduct="line.orderProduct"
+                    :product="line.product"
+                    :pse="line.pse"
+                    :imageId="line.imageId"
+                />
+
+                {# The bound is the server's answer, printed in the label so it is read out
+                   and not only enforced by the widget. The same number is recomputed on
+                   submit: a browser that ignores `max` is refused all the same. #}
+                <twig:Fields:Input:Base
+                    type="number"
+                    label="{{ 'Quantity to return (up to %quantity%)'|trans({'%quantity%': maxQuantity}) }}"
+                    name="lines[{{ orderProductId }}][quantity]"
+                    id="return-quantity-{{ orderProductId }}"
+                    value="1"
+                    class="max-w-64"
+                    input:min="1"
+                    input:max="{{ maxQuantity }}"
+                    input:step="1"
+                    input:inputmode="numeric"
+                />
+            </div>
+        {% endfor %}
+    </fieldset>
+
+    {% if this.reasons is not empty %}
+        <twig:Fields:Select:Base
+            label="{{ 'Reason for the return'|trans }}"
+            id="return-reason"
+            placeholder="{{ 'Select a reason'|trans }}"
+            :choices="this.reasons|map(reason => {
+                value: reason.id,
+                label: reason.i18ns.title|default(reason.code|default(''))
+            })"
+            select:name="reason"
+            select:required="required"
+        />
+    {% endif %}
+
+    <fieldset class="flex flex-col gap-3 border-0 p-0 m-0">
+        <legend class="h4 mb-2">{{ 'What do you expect?'|trans }}</legend>
+        {% for resolution in this.resolutions %}
+            <twig:Fields:Checkbox:Base
+                type="radio"
+                label="{{ resolutionLabels[resolution]|default(resolution) }}"
+                input:name="resolution"
+                input:value="{{ resolution }}"
+                input:id="return-resolution-{{ resolution }}"
+                input:required="required"
+            />
+        {% endfor %}
+    </fieldset>
+
+    <twig:Fields:TextArea:Base
+        label="{{ 'Comment'|trans }}"
+        name="comment"
+        id="return-comment"
+        rows="4"
+        optional
+        placeholder="{{ 'Anything the shop should know about this return'|trans }}"
+        textarea:maxlength="{{ this.maxCommentLength }}"
+    />
+
+    <twig:Molecules:Button:Base
+        text="{{ 'Send my return request'|trans }}"
+        type="submit"
+        class="w-max"
+    />
+</form>

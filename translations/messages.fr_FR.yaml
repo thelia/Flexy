@@ -430,3 +430,40 @@ m: min
 s: s
 Products in this operation: Les produits de cette opération
 Sale: Vente
+Returns: Retours
+Return %ref%: Retour %ref%
+Request a return: Demander un retour
+Return request: Demande de retour
+Products to return: Produits à retourner
+Quantity to return (up to %quantity%): Quantité à retourner (jusqu'à %quantity%)
+Reason for the return: Motif du retour
+Select a reason: Choisissez un motif
+What do you expect?: Que souhaitez-vous ?
+A refund: Un remboursement
+A store credit: Un avoir
+An exchange: Un échange
+Comment: Commentaire
+Anything the shop should know about this return: Ce que la boutique doit savoir sur ce retour
+Send my return request: Envoyer ma demande de retour
+Your return request has been sent. You will be notified as soon as it has been reviewed.: Votre demande de retour est envoyée. Vous serez averti dès qu'elle aura été examinée.
+Reason given by the shop: Motif donné par la boutique
+Returned products: Produits retournés
+Refundable amount: Montant remboursable
+Back to the order: Retour à la commande
+Download the return document: Télécharger le document de retour
+Select at least one product to return.: Sélectionnez au moins un produit à retourner.
+The expected resolution is not one the shop offers.: La résolution demandée n'est pas proposée par la boutique.
+The comment is too long.: Le commentaire est trop long.
+Too many return requests, please try again later.: Trop de demandes de retour, merci de réessayer plus tard.
+The return could not be opened.: La demande de retour n'a pas pu être ouverte.
+The product returns feature is disabled.: Les retours produits ne sont pas proposés par cette boutique.
+This order cannot be used for a return.: Cette commande ne peut pas faire l'objet d'un retour.
+The return window for this order has closed.: Le délai de retour de cette commande est écoulé.
+A virtual product cannot be returned.: Un produit dématérialisé ne peut pas être retourné.
+The returned quantity must be positive.: La quantité à retourner doit être supérieure à zéro.
+The returned quantity exceeds the returnable quantity of this line.: La quantité demandée dépasse la quantité encore retournable pour ce produit.
+The order does not exist.: Cette commande n'existe pas.
+Unknown order product in a return line.: Une ligne de la demande ne correspond à aucun produit de la commande.
+This product line does not belong to the order.: Ce produit n'appartient pas à cette commande.
+The postage of this order is already included in another return.: Les frais de port de cette commande sont déjà portés par un autre retour.
+Return %product%: Retourner %product%

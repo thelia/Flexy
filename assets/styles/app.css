@@ -28,6 +28,7 @@
 @import "../../components/Molecules/Link/Base.css";
 @import "../../components/Molecules/Tag/Base.css";
 @import "../../components/Molecules/Tag/OrderTag.css";
+@import "../../components/Molecules/Tag/OrderReturnTag.css";
 @import "../../components/Molecules/Tag/StockTag.css";
 @import "../../components/Molecules/MobileDrawer/Base.css";
 @import "../../components/Layouts/Header/Base.css";
