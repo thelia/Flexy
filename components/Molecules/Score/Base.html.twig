@@ -4,7 +4,10 @@
     base: 'Score',
 ) %}
 
-<div class="{{ scoreStyle.apply({size}, attributes.render('class')) }} " {{ attributes.without('class') }}>
+{# No variant is declared above, so nothing is selected here: the component only merges the
+   classes it is given. It used to name a `size` variant that neither the props nor the cva
+   define, which throws wherever Twig runs with strict_variables on — the test environment. #}
+<div class="{{ scoreStyle.apply({}, attributes.render('class')) }} " {{ attributes.without('class') }}>
     {% for star in 1..maxScore %}
       <span class="Score-star {% if star > score %}Score-star--empty{% endif %}">{{ ux_icon('star') }}</span>
     {% endfor %}
