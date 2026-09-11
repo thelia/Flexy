@@ -7,6 +7,13 @@
   width: 0.875rem;
   height: 0.875rem;
   color: var(--color-black);
+
+  /* The icons of the set do not agree on a size: the half star carries its own 475px
+     width, and would overflow the page at its intrinsic size. The span is the reference. */
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .Score-star--empty {

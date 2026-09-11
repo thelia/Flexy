@@ -92,6 +92,21 @@ class Base
     public bool $noAvailablePse = false;
 
     /**
+     * The rating of the product, as the front payload carries it under the `CommentRating`
+     * addon key: the average of its accepted reviews and how many there are. LiveProps for the same reason as brandTitle above — the
+     * component re-renders on every variant selection, in a process that never calls mount()
+     * again. Two scalars, so the round-trip stays cheap.
+     *
+     * The average is null for a product with no review, never 0, and the heading then shows
+     * no rating at all.
+     */
+    #[LiveProp]
+    public ?float $ratingAverage = null;
+
+    #[LiveProp]
+    public int $ratingCount = 0;
+
+    /**
      * The running-sale label/countdown for this product, or null when no active
      * operation asks to show one on it. A LiveProp, not a plain property computed once
      * in mount(): the component re-renders on every PSE selection, in a fresh process
@@ -123,6 +138,8 @@ class Base
         $this->title = $title ?: ($product['i18ns']['title'] ?? null);
         $this->brandTitle = $brand['i18ns']['title'] ?? null;
         $this->brandUrl = $brand['publicUrl'] ?? null;
+        $this->ratingAverage = isset($product['CommentRating']['ratingAverage']) ? (float) $product['CommentRating']['ratingAverage'] : null;
+        $this->ratingCount = isset($product['CommentRating']['ratingCount']) ? (int) $product['CommentRating']['ratingCount'] : 0;
         // Keyed by attribute id upstream; re-indexed so the LiveProp round-trips as a list.
         $this->productAttrs = array_values($this->pseAccessService->attrAvByProduct($this->productId));
         $this->runningSaleTag = $this->runningSaleResolver->forProduct($this->productId);

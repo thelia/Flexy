@@ -4,8 +4,16 @@
     base: 'Score',
 ) %}
 
-<div class="{{ scoreStyle.apply({size}, attributes.render('class')) }} " {{ attributes.without('class') }}>
+{# No variant is declared above, so nothing is selected here: the component only merges the
+   classes it is given. It used to name a `size` variant that neither the props nor the cva
+   define, which throws wherever Twig runs with strict_variables on — the test environment. #}
+<div class="{{ scoreStyle.apply({}, attributes.render('class')) }} " {{ attributes.without('class') }}>
+    {# An average is rarely a whole number: a score of 4.5 fills four stars and half of the
+       fifth, rather than dropping the half and reading as a 4. A whole score renders exactly
+       as it did before, so a score given as an integer is unaffected. #}
     {% for star in 1..maxScore %}
-      <span class="Score-star {% if star > score %}Score-star--empty{% endif %}">{{ ux_icon('star') }}</span>
+      {% set isFull = score >= star %}
+      {% set isHalf = not isFull and score > star - 1 %}
+      <span class="Score-star {% if isHalf %}Score-star--half{% elseif not isFull %}Score-star--empty{% endif %}">{{ ux_icon(isHalf ? 'star-half-empty' : 'star') }}</span>
     {% endfor %}
 </div>

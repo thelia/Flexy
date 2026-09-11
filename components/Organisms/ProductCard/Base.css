@@ -60,13 +60,6 @@
     align-items: center;
   }
 
-  .Rating {
-    display: flex;
-    gap: 0.625rem;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-
   &:hover,
   &:focus-visible {
     .ProductCard-img img {
@@ -93,31 +86,6 @@
 
 .Colors-others {
   margin-left: 0.125rem;
-}
-
-.Rating-mark {
-  display: flex;
-  gap: 0.25rem;
-  max-width: 5.75rem;
-
-  svg {
-    color: var(--color-black);
-  }
-
-  .star-empty svg {
-    color: var(--color-grey-lighter);
-  }
-}
-
-.Rating-reviewCount {
-  margin-top: 0.25rem;
-  text-transform: uppercase;
-  color: var(--color-grey);
-
-  @variant md {
-    font-size: var(--text-xs);
-    letter-spacing: 0.04375rem;
-  }
 }
 
 .ProductCard-header {

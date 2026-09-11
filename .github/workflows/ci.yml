@@ -128,6 +128,14 @@ jobs:
         working-directory: thelia
         run: php bin/console lint:twig --env=test templates/frontOffice/flexy
 
+      - name: Run the theme's own test suite
+        # A theme has no vendor/ and no kernel of its own, so its suite runs with the host's
+        # PHPUnit and autoloader, from the host root. `unit` needs neither database nor kernel;
+        # `component` boots the kernel and renders the real components, which is why it comes
+        # after the test database and the asset steps rather than next to the PHP lint job.
+        working-directory: thelia
+        run: php vendor/bin/phpunit -c templates/frontOffice/flexy/phpunit.xml.dist
+
       - name: Run the core http-flexy suite against this checkout
         # --display-deprecations because PHPUnit otherwise reports deprecations
         # as a bare count in the summary and the job still passes. On PHP 8.4

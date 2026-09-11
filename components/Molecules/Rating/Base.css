@@ -1,0 +1,20 @@
+.Rating {
+  display: flex;
+  gap: 0.625rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.Rating-value {
+  color: var(--color-black);
+}
+
+.Rating-reviewCount {
+  text-transform: uppercase;
+  color: var(--color-grey);
+
+  @variant md {
+    font-size: var(--text-xs);
+    letter-spacing: 0.04375rem;
+  }
+}
