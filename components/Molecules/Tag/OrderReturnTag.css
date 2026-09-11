@@ -1,0 +1,40 @@
+@layer components {
+  /* The base shape, size and dot come from .OrderTag, which this tag also carries:
+     a return pill and an order pill sit side by side on the order page and must
+     read as the same object. Only the palette is declared here. */
+  .OrderReturnTag--requested {
+    --order-tag-background-color: var(--color-informative-lightest);
+    --order-tag-border-color: var(--color-informative);
+    --order-tag-dot-color: var(--color-informative);
+  }
+  .OrderReturnTag--info-awaited {
+    --order-tag-background-color: var(--color-warning-lightest);
+    --order-tag-border-color: var(--color-warning);
+    --order-tag-dot-color: var(--color-warning);
+  }
+  .OrderReturnTag--accepted {
+    --order-tag-background-color: var(--color-processing-lightest);
+    --order-tag-border-color: var(--color-processing);
+    --order-tag-dot-color: var(--color-processing);
+  }
+  .OrderReturnTag--refused {
+    --order-tag-background-color: var(--color-error-lightest);
+    --order-tag-border-color: var(--color-error);
+    --order-tag-dot-color: var(--color-error-light);
+  }
+  .OrderReturnTag--received {
+    --order-tag-background-color: var(--color-processing-lightest);
+    --order-tag-border-color: var(--color-processing);
+    --order-tag-dot-color: var(--color-processing);
+  }
+  .OrderReturnTag--settled {
+    --order-tag-background-color: var(--color-success-lightest);
+    --order-tag-border-color: var(--color-success);
+    --order-tag-dot-color: var(--color-success-dark);
+  }
+  .OrderReturnTag--expired {
+    --order-tag-background-color: var(--color-grey-lightest);
+    --order-tag-border-color: var(--color-grey);
+    --order-tag-dot-color: var(--color-grey);
+  }
+}
