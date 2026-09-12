@@ -20,13 +20,34 @@ use FlexyBundle\Service\ProductTaxationResolver;
 use Symfony\UX\TwigComponent\Attribute\AsTwigComponent;
 use Thelia\Api\Service\DataAccess\DataAccessService;
 
+/**
+ * A strip of products: a category, a hand-picked list of ids, or the relations a
+ * merchant filed under one type for one product.
+ *
+ * The typed strip reads `/api/front/product_associations`, which carries the
+ * related product whole rather than as a link, so a block costs one call, cards
+ * included, already in the order the merchant arranged. Visibility is not passed
+ * to it: that endpoint hands out neither a product taken offline nor the
+ * relations of a hidden type, so a caller cannot widen it.
+ */
 #[AsTwigComponent]
 class Base
 {
     private const DEFAULT_ITEMS_PER_PAGE = 4;
 
+    /**
+     * A block holds what a merchant picked by hand, so it is short, and cutting it
+     * at the four of a category strip would drop relations without saying so. The
+     * slider carries the rest.
+     */
+    private const DEFAULT_RELATIONS_PER_BLOCK = 12;
+
     public int|string|null $categoryId = null;
     public int $itemsPerPage = self::DEFAULT_ITEMS_PER_PAGE;
+
+    /** Read the relations of this product, under {@see $typeCode}, instead of a category. */
+    public int|string|null $productId = null;
+    public ?string $typeCode = null;
 
     /** @var array<string, mixed> extra /api/front/products query parameters, e.g. {'productSaleElements.promo': true} */
     public array $filters = [];
@@ -51,14 +72,29 @@ class Base
 
     public function mount(
         int|string|null $categoryId = null,
-        int $itemsPerPage = self::DEFAULT_ITEMS_PER_PAGE,
+        ?int $itemsPerPage = null,
         array $filters = [],
         array $productIds = [],
+        int|string|null $productId = null,
+        ?string $typeCode = null,
     ): void {
         $this->categoryId = $categoryId;
-        $this->itemsPerPage = $itemsPerPage;
         $this->filters = $filters;
         $this->productIds = array_values(array_map(intval(...), $productIds));
+        $this->productId = $productId;
+        $this->typeCode = $typeCode;
+
+        $readsRelations = $this->productId !== null && $this->typeCode !== null;
+
+        $this->itemsPerPage = $itemsPerPage
+            ?? ($readsRelations ? self::DEFAULT_RELATIONS_PER_BLOCK : self::DEFAULT_ITEMS_PER_PAGE);
+
+        if ($readsRelations) {
+            $this->products = $this->relatedProducts();
+            $this->preloadCardsOf($this->products);
+
+            return;
+        }
 
         $params = [
             'page' => 1,
@@ -84,8 +120,43 @@ class Base
             $this->dataAccessService->resources('/api/front/products', $params) ?? [],
         ));
 
-        // One call for the whole strip instead of one per card.
-        $productIds = array_map(static fn (ProductDTO $product): int => $product->id, $this->products);
+        $this->preloadCardsOf($this->products);
+    }
+
+    /**
+     * @return ProductDTO[]
+     */
+    private function relatedProducts(): array
+    {
+        $relations = $this->dataAccessService->resources('/api/front/product_associations', [
+            'page' => 1,
+            'itemsPerPage' => $this->itemsPerPage,
+            'product.id' => $this->productId,
+            'type.code' => $this->typeCode,
+            'order[position]' => 'asc',
+        ]) ?? [];
+
+        $relatedProducts = [];
+
+        foreach ($relations as $relation) {
+            $relatedProduct = $relation['associatedProduct'] ?? null;
+
+            if (\is_array($relatedProduct)) {
+                $relatedProducts[] = $relatedProduct;
+            }
+        }
+
+        return ProductDTO::fromCollection($relatedProducts);
+    }
+
+    /**
+     * One call for the whole strip instead of one per card.
+     *
+     * @param ProductDTO[] $products
+     */
+    private function preloadCardsOf(array $products): void
+    {
+        $productIds = array_map(static fn (ProductDTO $product): int => $product->id, $products);
         $this->productImageResolver->preload($productIds);
         $this->productTaxationResolver->preload($productIds);
     }
